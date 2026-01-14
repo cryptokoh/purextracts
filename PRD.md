@@ -445,46 +445,163 @@ interface BlogPost {
 
 ### Platform Strategy
 
-| Platform | Use Case | Automation Level |
-|----------|----------|------------------|
-| Instagram | Visual content, products | Semi-auto (review before post) |
-| Twitter/X | News, industry updates | Full-auto for shares |
-| LinkedIn | B2B, professional content | Manual + scheduled |
-| YouTube | Long-form education | Manual creation |
-| TikTok | **AVOID** - High risk of ban | None |
+| Platform | Use Case | Automation Level | Content Frequency |
+|----------|----------|------------------|-------------------|
+| Instagram | Visual content, education, reels | Semi-auto via Blotato | 7x/week |
+| Facebook | Community, groups, live videos | Semi-auto via Blotato | 5x/week |
+| X (Twitter) | News, threads, industry updates | Full-auto via Blotato | 7x/week |
+| YouTube | Long-form education, Shorts | Manual + auto description | 2x/week |
+| TikTok | Educational content, lab ASMR | Semi-auto via Blotato | 5x/week |
+| LinkedIn | B2B, professional content | Manual + scheduled | 3x/week |
+
+> **Note:** All platforms except Google/Meta paid ads support organic posting for hemp content. TikTok is viable for educational content but NOT product promotion.
+
+### Complete Automation Architecture (n8n + Blotato)
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    CONTENT CREATION LAYER                        │
+├─────────────────────────────────────────────────────────────────┤
+│  Google Sheets    │  Supabase DB    │  AI Content Gen           │
+│  (Content Cal)    │  (Blog Posts)   │  (Claude/GPT)             │
+└────────┬──────────┴────────┬────────┴────────┬──────────────────┘
+         │                   │                  │
+         ▼                   ▼                  ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    n8n ORCHESTRATION LAYER                       │
+│  • Compliance checking (prohibited terms, health claims)         │
+│  • Platform-specific content transformation                      │
+│  • Scheduling optimization by platform                           │
+│  • Performance tracking and reporting                            │
+└────────┬──────────────────────────────────────┬─────────────────┘
+         │                                      │
+         ▼                                      ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    BLOTATO DISTRIBUTION                          │
+│  Unified API for multi-platform posting                          │
+├─────────────────────────────────────────────────────────────────┤
+│  Instagram │ Facebook │ TikTok │ YouTube │ X │ LinkedIn │ Threads│
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### n8n Workflow Files
+
+All workflows are available in `/n8n-workflows/` directory:
+
+| Workflow | File | Purpose |
+|----------|------|---------|
+| Multi-Platform Post | `social-multi-platform-post.json` | Post to all platforms via Blotato |
+| Blog-to-Social | `blog-to-social-pipeline.json` | Auto-distribute new blog posts |
+| SEO Rank Tracker | `seo-rank-tracker.json` | Weekly keyword ranking reports |
+
+### SEO/Social Agent Configuration
+
+Detailed platform strategies, content calendars, hashtag strategies, and compliance rules are documented in `seo-agent-config.md`.
+
+**Key Agent Capabilities:**
+- Platform-specific content transformation
+- Compliance checking (prohibited terms, health claims)
+- Hashtag optimization by platform
+- Posting time optimization
+- Engagement monitoring and response drafts
+
+### Platform-Specific Strategies
+
+#### Instagram Strategy
+- **Content Mix:** Carousels (Mon), Reels (Tue/Fri), Stories (Wed), Product Spotlights (Thu), UGC (Sat)
+- **Hashtag Strategy:** 5 primary + 10 secondary + 5 local + 10 niche
+- **Compliance:** No purchase CTAs, no health claims, "link in bio" for traffic
+
+#### Facebook Strategy
+- **Page Content:** Educational articles (3x/week), Live videos (1x/week), Community posts (daily)
+- **Group Strategy:** Create "Texas Hemp Education Community" (private, age-verified)
+- **Events:** Monthly workshops and tastings (21+)
+
+#### TikTok Strategy
+- **Content Themes:** Lab ASMR, myth busting, 60-sec science lessons, day-in-the-life POV
+- **Compliance:** Educational framing ONLY, never show consumption, never direct to purchase
+- **Viral Hooks:** "POV: You work at a legal hemp lab in Texas"
+
+#### YouTube Strategy
+- **Long-Form:** Deep dives (10-20min) on cannabinoid science, extraction methods, interviews
+- **Shorts:** Quick facts, behind-scenes clips, trending topics
+- **SEO:** Question-based titles, 200+ word descriptions, timestamps
+
+#### X (Twitter) Strategy
+- **Content Types:** Threads (deep dives), quick takes (news), engagement (community), announcements
+- **Tone:** Industry insider, informative, professional
 
 ### n8n Social Workflows
 
 ```yaml
-Workflow: Blog-to-Social
-Trigger: New blog post published
+Workflow: Blog-to-Social (Full Pipeline)
+Trigger: Supabase webhook (new blog_posts)
 Actions:
-  1. Extract featured image + excerpt
-  2. Generate platform-specific copy (Claude)
-  3. Schedule posts:
-     - Instagram: Image + caption (queue for review)
-     - Twitter: Title + link + hashtags (auto-post)
-     - LinkedIn: Professional summary (queue for review)
-  4. Track engagement metrics
-  5. Report weekly performance
+  1. Fetch full blog post content
+  2. AI generates platform-specific versions:
+     - Instagram: 2200 char caption + carousel concept
+     - Facebook: Full excerpt + discussion prompt
+     - X: Thread (5-7 tweets) with hashtags
+     - TikTok: 60-sec video script
+     - YouTube: Shorts description + timestamps
+  3. Compliance check all generated content
+  4. IF compliant: Post via Blotato to all platforms
+  5. IF violation: Queue for manual review + notify team
+  6. Update blog post status (social_posted = true)
+  7. Track performance metrics
 
-Workflow: Product-Launch
-Trigger: New product status = 'active'
+Workflow: Daily Engagement Monitor
+Trigger: Cron (9am, 2pm, 7pm CST)
 Actions:
-  1. Generate announcement copy
-  2. Create social graphics (Canva API or templates)
-  3. Schedule teaser → launch → reminder sequence
-  4. Monitor comments for questions
-  5. Alert team to engagement spikes
+  1. Fetch mentions across all platforms
+  2. Categorize: inquiry / spam / engagement / complaint
+  3. Generate compliant response drafts
+  4. Queue complaints for immediate team alert
+  5. Compile daily engagement summary
 
-Workflow: Engagement-Monitor
-Trigger: Scheduled (hourly)
+Workflow: Weekly Content Prep
+Trigger: Cron (Sundays 6am)
 Actions:
-  1. Check mentions and comments
-  2. Flag negative sentiment for review
-  3. Auto-respond to common questions (optional)
-  4. Compile daily engagement report
+  1. Audit content calendar for gaps
+  2. Research trending topics (Google Trends API)
+  3. Generate AI content suggestions
+  4. Create draft posts for each platform
+  5. Send to team for review/approval
+
+Workflow: Product-Launch Sequence
+Trigger: Product status = 'active'
+Actions:
+  1. Generate launch announcement copy
+  2. Create teaser → launch → reminder sequence
+  3. Schedule across platforms (Blotato)
+  4. Monitor engagement for questions
+  5. Alert team to spikes
 ```
+
+### Compliance Integration (CRITICAL)
+
+All social automation includes built-in compliance checking:
+
+**Prohibited Terms (Auto-Blocked):**
+```
+cure, cures, treat, treats, treatment, heal, heals, healing,
+medicine, medical, drug, drugs, high, stoned, baked,
+intoxicating, psychoactive effects, marijuana, prescription,
+FDA approved, diagnose
+```
+
+**Auto-Replace Suggestions:**
+```
+cure → support, treat → assist, medicine → wellness product,
+heal → help, drug → supplement, medical → natural
+```
+
+**Platform-Specific Rules:**
+- Instagram: No direct purchase links in posts
+- Facebook: Age-restricted page settings enabled
+- TikTok: Educational framing required, no sales language
+- YouTube: Age-gate required for certain content
+- All: No health claims, proper disclaimers
 
 ---
 
