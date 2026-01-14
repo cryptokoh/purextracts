@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollEffects();
     initForms();
     initAnimations();
+    initMobileEnhancements();
 });
 
 /**
@@ -377,6 +378,178 @@ function throttle(func, limit) {
             setTimeout(() => inThrottle = false, limit);
         }
     };
+}
+
+/**
+ * Mobile Enhancements
+ */
+function initMobileEnhancements() {
+    const mobileCta = document.getElementById('mobileCta');
+    const scrollTop = document.getElementById('scrollTop');
+    const heroSection = document.querySelector('.hero');
+
+    // Check if we're on mobile
+    const isMobile = () => window.innerWidth <= 768;
+
+    // Mobile CTA visibility
+    if (mobileCta && heroSection) {
+        let ctaVisible = false;
+
+        const updateMobileCtaVisibility = () => {
+            if (!isMobile()) {
+                mobileCta.classList.remove('visible');
+                return;
+            }
+
+            const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+            const scrollPosition = window.scrollY + window.innerHeight;
+
+            if (scrollPosition > heroBottom + 100 && !ctaVisible) {
+                mobileCta.classList.add('visible');
+                ctaVisible = true;
+            } else if (scrollPosition <= heroBottom && ctaVisible) {
+                mobileCta.classList.remove('visible');
+                ctaVisible = false;
+            }
+        };
+
+        window.addEventListener('scroll', throttle(updateMobileCtaVisibility, 100));
+        window.addEventListener('resize', debounce(updateMobileCtaVisibility, 150));
+        updateMobileCtaVisibility();
+    }
+
+    // Scroll to top button
+    if (scrollTop) {
+        let scrollTopVisible = false;
+
+        const updateScrollTopVisibility = () => {
+            if (window.scrollY > 500 && !scrollTopVisible) {
+                scrollTop.classList.add('visible');
+                scrollTopVisible = true;
+            } else if (window.scrollY <= 500 && scrollTopVisible) {
+                scrollTop.classList.remove('visible');
+                scrollTopVisible = false;
+            }
+        };
+
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        window.addEventListener('scroll', throttle(updateScrollTopVisibility, 100));
+        updateScrollTopVisibility();
+    }
+
+    // Hide swipe hints after first interaction
+    const swipeHints = document.querySelectorAll('.swipe-hint');
+    const swipeContainers = document.querySelectorAll('.research-grid, .trust-grid');
+
+    swipeContainers.forEach((container, index) => {
+        let hasScrolled = false;
+
+        container.addEventListener('scroll', () => {
+            if (!hasScrolled) {
+                hasScrolled = true;
+                const hint = swipeHints[index] || swipeHints[0];
+                if (hint) {
+                    hint.style.opacity = '0';
+                    setTimeout(() => {
+                        hint.style.display = 'none';
+                    }, 300);
+                }
+            }
+        }, { passive: true });
+    });
+
+    // Improve touch scrolling performance
+    document.querySelectorAll('.research-grid, .trust-grid').forEach(el => {
+        el.style.willChange = 'scroll-position';
+    });
+
+    // Handle orientation changes
+    window.addEventListener('orientationchange', () => {
+        // Small delay to allow for orientation change to complete
+        setTimeout(() => {
+            // Recalculate any position-dependent elements
+            window.dispatchEvent(new Event('resize'));
+        }, 100);
+    });
+
+    // Prevent pull-to-refresh on mobile when scrolling horizontally
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    document.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    document.addEventListener('touchmove', (e) => {
+        if (!e.cancelable) return;
+
+        const touchX = e.touches[0].clientX;
+        const touchY = e.touches[0].clientY;
+        const deltaX = Math.abs(touchX - touchStartX);
+        const deltaY = Math.abs(touchY - touchStartY);
+
+        // If horizontal scroll is dominant, prevent vertical scroll interference
+        if (deltaX > deltaY * 1.5) {
+            const target = e.target.closest('.research-grid, .trust-grid');
+            if (target) {
+                // Allow horizontal scrolling
+                e.stopPropagation();
+            }
+        }
+    }, { passive: false });
+
+    // Update theme color meta tag when theme changes
+    window.addEventListener('themechange', (e) => {
+        const themeColors = {
+            clinical: '#0d9488',
+            earth: '#c2703b',
+            herbalist: '#22c55e'
+        };
+        const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+        if (metaThemeColor && themeColors[e.detail.theme]) {
+            metaThemeColor.setAttribute('content', themeColors[e.detail.theme]);
+        }
+    });
+
+    // Lazy load images when they come into view (for future image additions)
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                    }
+                    imageObserver.unobserve(img);
+                }
+            });
+        }, {
+            rootMargin: '50px'
+        });
+
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            imageObserver.observe(img);
+        });
+    }
+
+    // Add haptic feedback for supported devices (optional)
+    if ('vibrate' in navigator) {
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                navigator.vibrate(10);
+            });
+        });
+    }
+
+    console.log('Mobile enhancements initialized');
 }
 
 // Export for potential module usage
