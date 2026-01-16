@@ -1,631 +1,733 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="lab">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
-    <meta name="theme-color" content="#1a1612">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Pure Extracts TX | Sacred Laboratory</title>
-    <meta name="description" content="Where ancient botanical wisdom meets modern extraction science. Premium kratom, kava, and blue lotus extracts.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#ffffff">
+    <title>Pure Extracts TX | Laboratory</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="lab-2d-styles.css">
 </head>
 <body>
-    <!-- Sacred Geometry Background Layer -->
-    <div class="sacred-bg" aria-hidden="true">
-        <svg class="geometry-pattern" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+    <!-- Hallucination Overlay -->
+    <div class="hallucination-overlay" id="hallucination">
+        <svg class="hallucination-pattern" viewBox="0 0 100 100" preserveAspectRatio="none">
             <defs>
-                <pattern id="sacredGrid" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                    <circle cx="10" cy="10" r="0.5" fill="rgba(212,165,116,0.1)"/>
-                    <line x1="0" y1="10" x2="20" y2="10" stroke="rgba(255,255,255,0.02)" stroke-width="0.5"/>
-                    <line x1="10" y1="0" x2="10" y2="20" stroke="rgba(255,255,255,0.02)" stroke-width="0.5"/>
-                </pattern>
-                <pattern id="flowerOfLife" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-                    <circle cx="20" cy="20" r="10" fill="none" stroke="rgba(212,165,116,0.04)" stroke-width="0.3"/>
-                    <circle cx="10" cy="20" r="10" fill="none" stroke="rgba(212,165,116,0.04)" stroke-width="0.3"/>
-                    <circle cx="30" cy="20" r="10" fill="none" stroke="rgba(212,165,116,0.04)" stroke-width="0.3"/>
-                    <circle cx="15" cy="11.34" r="10" fill="none" stroke="rgba(212,165,116,0.04)" stroke-width="0.3"/>
-                    <circle cx="25" cy="11.34" r="10" fill="none" stroke="rgba(212,165,116,0.04)" stroke-width="0.3"/>
-                    <circle cx="15" cy="28.66" r="10" fill="none" stroke="rgba(212,165,116,0.04)" stroke-width="0.3"/>
-                    <circle cx="25" cy="28.66" r="10" fill="none" stroke="rgba(212,165,116,0.04)" stroke-width="0.3"/>
-                </pattern>
+                <radialGradient id="tripGrad1" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#ff006e"/>
+                    <stop offset="50%" stop-color="#8338ec"/>
+                    <stop offset="100%" stop-color="#3a86ff"/>
+                </radialGradient>
+                <radialGradient id="tripGrad2" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#ffbe0b"/>
+                    <stop offset="50%" stop-color="#fb5607"/>
+                    <stop offset="100%" stop-color="#ff006e"/>
+                </radialGradient>
             </defs>
-            <rect width="100%" height="100%" fill="url(#sacredGrid)"/>
-            <rect width="100%" height="100%" fill="url(#flowerOfLife)"/>
+            <circle class="trip-circle c1" cx="50" cy="50" r="60" fill="url(#tripGrad1)"/>
+            <circle class="trip-circle c2" cx="50" cy="50" r="45" fill="url(#tripGrad2)"/>
+            <circle class="trip-circle c3" cx="50" cy="50" r="30" fill="url(#tripGrad1)"/>
         </svg>
+        <div class="hallucination-text">SHIFTING CONSCIOUSNESS</div>
     </div>
 
-    <!-- Floating Particles -->
-    <div class="particles" aria-hidden="true">
-        <span class="particle"></span>
-        <span class="particle"></span>
-        <span class="particle"></span>
-        <span class="particle"></span>
-        <span class="particle"></span>
-    </div>
-
-    <!-- Navigation - Minimal & Sacred -->
-    <nav class="nav">
-        <div class="nav-inner">
-            <a href="#" class="logo">
-                <svg class="logo-icon" viewBox="0 0 32 32" fill="none">
-                    <!-- Alchemical flask with sacred geometry -->
-                    <path d="M12 6V12L6 24C5 26 6 28 8 28H24C26 28 27 26 26 24L20 12V6" stroke="currentColor" stroke-width="1.5"/>
-                    <rect x="10" y="4" width="12" height="3" rx="1" stroke="currentColor" stroke-width="1.5"/>
-                    <circle cx="16" cy="20" r="4" stroke="currentColor" stroke-width="1" opacity="0.5"/>
-                    <circle cx="16" cy="20" r="2" fill="currentColor" opacity="0.3"/>
+    <!-- Top Bar -->
+    <header class="topbar">
+        <div class="logo">PURE EXTRACTS <span>TX</span></div>
+        <nav class="nav">
+            <a href="#lab" class="nav-link active" data-section="lab">LAB</a>
+            <a href="#library" class="nav-link" data-section="library">LIBRARY</a>
+            <a href="#extracts" class="nav-link" data-section="extracts">EXTRACTS</a>
+            <a href="#contact" class="nav-link" data-section="contact">CONTACT</a>
+        </nav>
+        <div class="topbar-right">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle shamanic mode">
+                <svg class="theme-icon lab" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M9 3v6l-5 8c-1 2 .5 4 2.5 4h11c2 0 3.5-2 2.5-4l-5-8V3"/>
+                    <rect x="7" y="1" width="10" height="3" rx="1"/>
                 </svg>
-                <span class="logo-text">PureExtracts<em>TX</em></span>
-            </a>
-            <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
-                <span></span>
-                <span></span>
+                <svg class="theme-icon shaman" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none">
+                    <circle cx="12" cy="12" r="10"/>
+                    <circle cx="12" cy="12" r="6"/>
+                    <circle cx="12" cy="12" r="2"/>
+                    <path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>
+                </svg>
             </button>
-            <div class="nav-menu">
-                <a href="#extracts" class="nav-link">Extracts</a>
-                <a href="#process" class="nav-link">Process</a>
-                <a href="#wisdom" class="nav-link">Wisdom</a>
-                <a href="#contact" class="nav-link nav-cta">Inquire</a>
+            <div class="status">
+                <span class="status-dot"></span>
+                <span class="status-text">ONLINE</span>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Hero: The Sacred Laboratory -->
-        <section class="hero" id="lab">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <svg viewBox="0 0 16 16" fill="currentColor">
-                        <circle cx="8" cy="8" r="3"/>
-                    </svg>
-                    <span>Laboratory-Grade Botanicals</span>
-                </div>
-                <h1>
-                    <span class="hero-line">Ancient Wisdom</span>
-                    <span class="hero-line accent">Modern Science</span>
-                </h1>
-                <p class="hero-text">Premium botanical extracts crafted where shamanic tradition meets scientific precision.</p>
-            </div>
+    <!-- Main Lab View -->
+    <main class="lab-container" id="lab">
+        <!-- Grid Background -->
+        <div class="grid-bg"></div>
 
-            <!-- The Lab Floor - Isometric Scene -->
-            <div class="lab-scene">
-                <!-- Ground Plane with depth -->
-                <div class="ground">
-                    <div class="ground-grid"></div>
-                    <div class="ground-shadow"></div>
-                </div>
+        <!-- Shamanic Background (hidden by default) -->
+        <div class="shaman-bg">
+            <svg class="sacred-geometry" viewBox="0 0 200 200">
+                <g class="rotate-slow">
+                    <circle cx="100" cy="100" r="90" fill="none" stroke="currentColor" stroke-width="0.5"/>
+                    <circle cx="100" cy="100" r="70" fill="none" stroke="currentColor" stroke-width="0.5"/>
+                    <circle cx="100" cy="100" r="50" fill="none" stroke="currentColor" stroke-width="0.5"/>
+                    <polygon points="100,10 178,145 22,145" fill="none" stroke="currentColor" stroke-width="0.5"/>
+                    <polygon points="100,190 22,55 178,55" fill="none" stroke="currentColor" stroke-width="0.5"/>
+                    <circle cx="100" cy="40" r="30" fill="none" stroke="currentColor" stroke-width="0.3"/>
+                    <circle cx="55" cy="120" r="30" fill="none" stroke="currentColor" stroke-width="0.3"/>
+                    <circle cx="145" cy="120" r="30" fill="none" stroke="currentColor" stroke-width="0.3"/>
+                </g>
+            </svg>
+        </div>
 
-                <!-- Lab Bench - Central Element -->
-                <div class="lab-bench">
-                    <!-- Sacred circle beneath -->
-                    <div class="sacred-circle">
-                        <svg viewBox="0 0 200 200">
-                            <circle cx="100" cy="100" r="95" fill="none" stroke="rgba(212,165,116,0.15)" stroke-width="0.5"/>
-                            <circle cx="100" cy="100" r="75" fill="none" stroke="rgba(212,165,116,0.1)" stroke-width="0.5"/>
-                            <circle cx="100" cy="100" r="55" fill="none" stroke="rgba(212,165,116,0.08)" stroke-width="0.5"/>
-                            <!-- Hexagram -->
-                            <polygon points="100,20 165,135 35,135" fill="none" stroke="rgba(212,165,116,0.1)" stroke-width="0.5"/>
-                            <polygon points="100,180 35,65 165,65" fill="none" stroke="rgba(212,165,116,0.1)" stroke-width="0.5"/>
-                        </svg>
-                    </div>
+        <!-- Lab Scene -->
+        <div class="lab-scene">
+            <!-- Floor Grid -->
+            <svg class="floor" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid meet">
+                <g class="floor-lines" stroke="currentColor" stroke-width="0.5" fill="none">
+                    <line x1="0" y1="100" x2="400" y2="100"/>
+                    <line x1="50" y1="75" x2="350" y2="75"/>
+                    <line x1="100" y1="50" x2="300" y2="50"/>
+                    <line x1="50" y1="125" x2="350" y2="125"/>
+                    <line x1="100" y1="150" x2="300" y2="150"/>
+                    <line x1="200" y1="25" x2="0" y2="125"/>
+                    <line x1="200" y1="25" x2="50" y2="100"/>
+                    <line x1="200" y1="25" x2="100" y2="75"/>
+                    <line x1="200" y1="25" x2="400" y2="125"/>
+                    <line x1="200" y1="25" x2="350" y2="100"/>
+                    <line x1="200" y1="25" x2="300" y2="75"/>
+                </g>
+            </svg>
 
-                    <!-- Bench Surface -->
-                    <div class="bench-surface">
-                        <div class="bench-top"></div>
-                        <div class="bench-front"></div>
-                        <div class="bench-side"></div>
-                    </div>
-
-                    <!-- Extract Vials -->
-                    <div class="vials-container">
-                        <!-- Kratom Vial -->
-                        <button class="vial" data-product="kratom" aria-label="Kratom Extract - Click to learn more">
-                            <div class="vial-body">
-                                <div class="vial-liquid" style="--liquid-color: var(--kratom); --liquid-height: 70%;"></div>
-                                <div class="vial-reflection"></div>
-                            </div>
-                            <div class="vial-cap"></div>
-                            <div class="vial-shadow"></div>
-                            <span class="vial-label">Kratom</span>
-                            <div class="vial-glow"></div>
-                        </button>
-
-                        <!-- Kava Vial -->
-                        <button class="vial" data-product="kava" aria-label="Kava Extract - Click to learn more">
-                            <div class="vial-body">
-                                <div class="vial-liquid" style="--liquid-color: var(--kava); --liquid-height: 60%;"></div>
-                                <div class="vial-reflection"></div>
-                            </div>
-                            <div class="vial-cap"></div>
-                            <div class="vial-shadow"></div>
-                            <span class="vial-label">Kava</span>
-                            <div class="vial-glow"></div>
-                        </button>
-
-                        <!-- Blue Lotus Vial -->
-                        <button class="vial" data-product="lotus" aria-label="Blue Lotus Extract - Click to learn more">
-                            <div class="vial-body">
-                                <div class="vial-liquid" style="--liquid-color: var(--lotus); --liquid-height: 75%;"></div>
-                                <div class="vial-reflection"></div>
-                            </div>
-                            <div class="vial-cap"></div>
-                            <div class="vial-shadow"></div>
-                            <span class="vial-label">Blue Lotus</span>
-                            <div class="vial-glow"></div>
-                        </button>
-
-                        <!-- Nootropic Vial -->
-                        <button class="vial" data-product="nootropic" aria-label="Nootropic Blend - Click to learn more">
-                            <div class="vial-body">
-                                <div class="vial-liquid" style="--liquid-color: var(--nootropic); --liquid-height: 55%;"></div>
-                                <div class="vial-reflection"></div>
-                            </div>
-                            <div class="vial-cap"></div>
-                            <div class="vial-shadow"></div>
-                            <span class="vial-label">Nootropic</span>
-                            <div class="vial-glow"></div>
-                        </button>
-                    </div>
-
-                    <!-- Decorative Lab Elements -->
-                    <div class="lab-decor">
-                        <!-- Mortar and Pestle (shamanic) -->
-                        <div class="mortar">
-                            <div class="mortar-bowl"></div>
-                            <div class="pestle"></div>
-                        </div>
-                        <!-- Molecular Model -->
-                        <div class="molecule-model">
-                            <div class="atom"></div>
-                            <div class="atom"></div>
-                            <div class="atom"></div>
-                            <div class="bond"></div>
-                            <div class="bond"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Floating Elements -->
-                <div class="floating-elements">
-                    <div class="leaf leaf-1"></div>
-                    <div class="leaf leaf-2"></div>
-                    <div class="hex hex-1"></div>
-                    <div class="hex hex-2"></div>
-                </div>
-            </div>
-
-            <!-- Scroll Indicator -->
-            <div class="scroll-hint">
-                <span>Scroll to explore</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 5v14M5 12l7 7 7-7"/>
+            <!-- Lab Bench -->
+            <div class="bench">
+                <svg viewBox="0 0 300 120" preserveAspectRatio="xMidYMid meet">
+                    <polygon class="bench-top" points="150,10 280,50 150,90 20,50" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    <polygon class="bench-front" points="20,50 150,90 150,110 20,70" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    <polygon class="bench-side" points="150,90 280,50 280,70 150,110" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    <line x1="85" y1="30" x2="85" y2="70" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
+                    <line x1="150" y1="50" x2="150" y2="90" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
+                    <line x1="215" y1="30" x2="215" y2="70" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
                 </svg>
             </div>
-        </section>
 
-        <!-- Extracts Section -->
-        <section class="extracts" id="extracts">
-            <div class="section-header">
-                <span class="section-tag">Our Offerings</span>
-                <h2>Sacred Extracts</h2>
-                <p>Each formula bridges millennia of traditional use with modern analytical chemistry.</p>
+            <!-- Vials -->
+            <div class="vials">
+                <button class="vial" data-product="kratom" aria-label="Kratom Extract">
+                    <svg viewBox="0 0 40 80" fill="none" stroke="currentColor">
+                        <rect x="8" y="20" width="24" height="50" rx="4" stroke-width="1.5"/>
+                        <rect x="6" y="12" width="28" height="10" rx="2" stroke-width="1.5"/>
+                        <line x1="10" y1="40" x2="30" y2="40" stroke-width="1" class="liquid-line"/>
+                        <rect x="12" y="50" width="16" height="12" rx="1" stroke-width="0.75" opacity="0.5"/>
+                    </svg>
+                    <span class="vial-label">KRATOM</span>
+                </button>
+
+                <button class="vial" data-product="kava" aria-label="Kava Extract">
+                    <svg viewBox="0 0 40 80" fill="none" stroke="currentColor">
+                        <rect x="8" y="20" width="24" height="50" rx="4" stroke-width="1.5"/>
+                        <rect x="6" y="12" width="28" height="10" rx="2" stroke-width="1.5"/>
+                        <line x1="10" y1="45" x2="30" y2="45" stroke-width="1" class="liquid-line"/>
+                        <rect x="12" y="50" width="16" height="12" rx="1" stroke-width="0.75" opacity="0.5"/>
+                    </svg>
+                    <span class="vial-label">KAVA</span>
+                </button>
+
+                <button class="vial" data-product="lotus" aria-label="Blue Lotus Extract">
+                    <svg viewBox="0 0 40 80" fill="none" stroke="currentColor">
+                        <rect x="8" y="20" width="24" height="50" rx="4" stroke-width="1.5"/>
+                        <rect x="6" y="12" width="28" height="10" rx="2" stroke-width="1.5"/>
+                        <line x1="10" y1="35" x2="30" y2="35" stroke-width="1" class="liquid-line"/>
+                        <rect x="12" y="50" width="16" height="12" rx="1" stroke-width="0.75" opacity="0.5"/>
+                    </svg>
+                    <span class="vial-label">LOTUS</span>
+                </button>
+
+                <button class="vial" data-product="nootropic" aria-label="Nootropic Blend">
+                    <svg viewBox="0 0 40 80" fill="none" stroke="currentColor">
+                        <rect x="8" y="20" width="24" height="50" rx="4" stroke-width="1.5"/>
+                        <rect x="6" y="12" width="28" height="10" rx="2" stroke-width="1.5"/>
+                        <line x1="10" y1="50" x2="30" y2="50" stroke-width="1" class="liquid-line"/>
+                        <rect x="12" y="50" width="16" height="12" rx="1" stroke-width="0.75" opacity="0.5"/>
+                    </svg>
+                    <span class="vial-label">NOOTROPIC</span>
+                </button>
             </div>
 
-            <div class="extract-cards">
-                <!-- Kratom Card -->
-                <article class="extract-card" data-product="kratom">
-                    <div class="card-visual">
-                        <div class="card-icon">
-                            <svg viewBox="0 0 48 48" fill="none">
-                                <!-- Leaf shape -->
-                                <path d="M24 4C24 4 8 16 8 28C8 36 15 44 24 44C33 44 40 36 40 28C40 16 24 4 24 4Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
-                                <path d="M24 12V36" stroke="currentColor" stroke-width="1"/>
-                                <path d="M24 20L16 28" stroke="currentColor" stroke-width="1" opacity="0.5"/>
-                                <path d="M24 20L32 28" stroke="currentColor" stroke-width="1" opacity="0.5"/>
-                            </svg>
-                        </div>
-                        <div class="card-glow" style="--glow-color: var(--kratom);"></div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Kratom Extract</h3>
-                        <p class="card-latin">Mitragyna speciosa</p>
-                        <p class="card-desc">Traditional Southeast Asian botanical, scientifically extracted for optimal alkaloid preservation.</p>
-                        <div class="card-meta">
-                            <span class="meta-item">
-                                <svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg>
-                                7-Hydroxymitragynine
-                            </span>
-                            <span class="meta-item">
-                                <svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg>
-                                Mitragynine
-                            </span>
-                        </div>
-                        <button class="card-btn" data-modal="kratom">Explore Extract</button>
-                    </div>
-                </article>
-
-                <!-- Kava Card -->
-                <article class="extract-card" data-product="kava">
-                    <div class="card-visual">
-                        <div class="card-icon">
-                            <svg viewBox="0 0 48 48" fill="none">
-                                <!-- Root shape -->
-                                <circle cx="24" cy="20" r="12" stroke="currentColor" stroke-width="1.5" fill="none"/>
-                                <path d="M24 32V44" stroke="currentColor" stroke-width="1.5"/>
-                                <path d="M20 36L16 44" stroke="currentColor" stroke-width="1"/>
-                                <path d="M28 36L32 44" stroke="currentColor" stroke-width="1"/>
-                                <circle cx="24" cy="20" r="4" stroke="currentColor" stroke-width="1" opacity="0.5"/>
-                            </svg>
-                        </div>
-                        <div class="card-glow" style="--glow-color: var(--kava);"></div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Kava Extract</h3>
-                        <p class="card-latin">Piper methysticum</p>
-                        <p class="card-desc">Pacific Island ceremonial root, concentrated for maximum kavalactone potency.</p>
-                        <div class="card-meta">
-                            <span class="meta-item">
-                                <svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg>
-                                Kavalactones
-                            </span>
-                            <span class="meta-item">
-                                <svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg>
-                                Noble Cultivar
-                            </span>
-                        </div>
-                        <button class="card-btn" data-modal="kava">Explore Extract</button>
-                    </div>
-                </article>
-
-                <!-- Blue Lotus Card -->
-                <article class="extract-card" data-product="lotus">
-                    <div class="card-visual">
-                        <div class="card-icon">
-                            <svg viewBox="0 0 48 48" fill="none">
-                                <!-- Lotus flower -->
-                                <ellipse cx="24" cy="40" rx="16" ry="4" stroke="currentColor" stroke-width="1" opacity="0.3"/>
-                                <path d="M24 36C24 36 12 28 12 20C12 14 17 10 24 10C31 10 36 14 36 20C36 28 24 36 24 36Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
-                                <path d="M24 28C24 28 18 24 18 20C18 17 21 15 24 15C27 15 30 17 30 20C30 24 24 28 24 28Z" stroke="currentColor" stroke-width="1" opacity="0.5"/>
-                                <circle cx="24" cy="20" r="2" fill="currentColor" opacity="0.3"/>
-                            </svg>
-                        </div>
-                        <div class="card-glow" style="--glow-color: var(--lotus);"></div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Blue Lotus Extract</h3>
-                        <p class="card-latin">Nymphaea caerulea</p>
-                        <p class="card-desc">Sacred Egyptian flower, revered for millennia and extracted with reverence.</p>
-                        <div class="card-meta">
-                            <span class="meta-item">
-                                <svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg>
-                                Aporphine
-                            </span>
-                            <span class="meta-item">
-                                <svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg>
-                                Nuciferine
-                            </span>
-                        </div>
-                        <button class="card-btn" data-modal="lotus">Explore Extract</button>
-                    </div>
-                </article>
-
-                <!-- Nootropic Card -->
-                <article class="extract-card" data-product="nootropic">
-                    <div class="card-visual">
-                        <div class="card-icon">
-                            <svg viewBox="0 0 48 48" fill="none">
-                                <!-- Brain/neural pattern -->
-                                <circle cx="24" cy="24" r="16" stroke="currentColor" stroke-width="1.5" fill="none"/>
-                                <circle cx="24" cy="24" r="8" stroke="currentColor" stroke-width="1" opacity="0.5"/>
-                                <circle cx="24" cy="24" r="3" fill="currentColor" opacity="0.3"/>
-                                <path d="M24 8V16M24 32V40M8 24H16M32 24H40" stroke="currentColor" stroke-width="1" opacity="0.5"/>
-                                <path d="M13 13L18 18M30 30L35 35M13 35L18 30M30 18L35 13" stroke="currentColor" stroke-width="1" opacity="0.3"/>
-                            </svg>
-                        </div>
-                        <div class="card-glow" style="--glow-color: var(--nootropic);"></div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Nootropic Blend</h3>
-                        <p class="card-latin">Cognitive Enhancement</p>
-                        <p class="card-desc">Precision-formulated cognitive support combining ancient adaptogens.</p>
-                        <div class="card-meta">
-                            <span class="meta-item">
-                                <svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg>
-                                Alpha-GPC
-                            </span>
-                            <span class="meta-item">
-                                <svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg>
-                                Lion's Mane
-                            </span>
-                        </div>
-                        <button class="card-btn" data-modal="nootropic">Explore Blend</button>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <!-- Process Section -->
-        <section class="process" id="process">
-            <div class="section-header">
-                <span class="section-tag">Our Method</span>
-                <h2>The Sacred Process</h2>
-                <p>Where ancient preparation rituals meet modern extraction technology.</p>
+            <!-- Microscope -->
+            <div class="microscope">
+                <svg viewBox="0 0 60 100" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <ellipse cx="30" cy="8" rx="8" ry="4"/>
+                    <rect x="26" y="10" width="8" height="12"/>
+                    <path d="M22 22 L22 50 Q22 55 27 55 L33 55 Q38 55 38 50 L38 22"/>
+                    <path d="M38 35 L50 35 L50 70"/>
+                    <rect x="15" y="55" width="30" height="4" rx="1"/>
+                    <rect x="27" y="59" width="6" height="10"/>
+                    <ellipse cx="35" cy="85" rx="20" ry="8"/>
+                    <line x1="35" y1="70" x2="35" y2="77"/>
+                </svg>
             </div>
 
-            <div class="process-flow">
-                <div class="process-line"></div>
-
-                <div class="process-step">
-                    <div class="step-marker">
-                        <span class="step-num">01</span>
-                        <div class="step-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M12 6v12M6 12h12"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="step-content">
-                        <h3>Source Selection</h3>
-                        <p>Ethically wildcrafted or cultivated botanicals from traditional growing regions.</p>
-                    </div>
-                </div>
-
-                <div class="process-step">
-                    <div class="step-marker">
-                        <span class="step-num">02</span>
-                        <div class="step-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M12 2L2 7v10l10 5 10-5V7L12 2z"/>
-                                <path d="M12 22V12M2 7l10 5 10-5"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="step-content">
-                        <h3>Sacred Preparation</h3>
-                        <p>Traditional processing methods honored before modern extraction begins.</p>
-                    </div>
-                </div>
-
-                <div class="process-step">
-                    <div class="step-marker">
-                        <span class="step-num">03</span>
-                        <div class="step-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M9 3v4l-5 8c-1 2 .5 5 3 5h10c2.5 0 4-3 3-5l-5-8V3"/>
-                                <rect x="7" y="1" width="10" height="3" rx="1"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="step-content">
-                        <h3>Precision Extraction</h3>
-                        <p>Laboratory-grade processes isolate and preserve active compounds.</p>
-                    </div>
-                </div>
-
-                <div class="process-step">
-                    <div class="step-marker">
-                        <span class="step-num">04</span>
-                        <div class="step-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M9 12l2 2 4-4"/>
-                                <circle cx="12" cy="12" r="10"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="step-content">
-                        <h3>Quality Verification</h3>
-                        <p>Third-party lab testing ensures purity and potency standards.</p>
-                    </div>
+            <!-- Beaker -->
+            <div class="beaker">
+                <svg viewBox="0 0 50 70" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M10 15 L10 55 Q10 65 25 65 Q40 65 40 55 L40 15"/>
+                    <path d="M10 15 L5 10 L15 10"/>
+                    <line x1="35" y1="25" x2="40" y2="25" stroke-width="0.75" opacity="0.5"/>
+                    <line x1="35" y1="35" x2="40" y2="35" stroke-width="0.75" opacity="0.5"/>
+                    <line x1="35" y1="45" x2="40" y2="45" stroke-width="0.75" opacity="0.5"/>
+                    <path d="M12 40 Q25 38 38 40 L38 55 Q38 63 25 63 Q12 63 12 55 Z" stroke-width="0.75" class="liquid-line"/>
+                </svg>
+                <!-- Bubble Message -->
+                <div class="beaker-bubble" id="beakerBubble">
+                    <span class="bubble-text">Ancient Shamanic Lab</span>
+                    <div class="bubble-tail"></div>
                 </div>
             </div>
-        </section>
 
-        <!-- Wisdom Section -->
-        <section class="wisdom" id="wisdom">
-            <div class="wisdom-bg">
-                <div class="wisdom-pattern"></div>
+            <!-- DNA Helix -->
+            <div class="dna-helix">
+                <svg viewBox="0 0 40 120" fill="none" stroke="currentColor" stroke-width="1">
+                    <path d="M10 10 Q30 25 10 40 Q-10 55 10 70 Q30 85 10 100 Q-10 115 10 130" stroke-width="1.5"/>
+                    <path d="M30 10 Q10 25 30 40 Q50 55 30 70 Q10 85 30 100 Q50 115 30 130" stroke-width="1.5"/>
+                    <!-- Rungs -->
+                    <line x1="12" y1="15" x2="28" y2="15" opacity="0.5"/>
+                    <line x1="10" y1="25" x2="30" y2="25" opacity="0.5"/>
+                    <line x1="12" y1="35" x2="28" y2="35" opacity="0.5"/>
+                    <line x1="14" y1="45" x2="26" y2="45" opacity="0.5"/>
+                    <line x1="10" y1="55" x2="30" y2="55" opacity="0.5"/>
+                    <line x1="12" y1="65" x2="28" y2="65" opacity="0.5"/>
+                    <line x1="14" y1="75" x2="26" y2="75" opacity="0.5"/>
+                    <line x1="10" y1="85" x2="30" y2="85" opacity="0.5"/>
+                    <line x1="12" y1="95" x2="28" y2="95" opacity="0.5"/>
+                </svg>
             </div>
-            <div class="wisdom-content">
-                <blockquote>
-                    <p>"The plants are teachers. Science is the language we use to understand their wisdom."</p>
-                </blockquote>
-                <div class="wisdom-stats">
-                    <div class="stat">
-                        <span class="stat-value">5000+</span>
-                        <span class="stat-label">Years of Traditional Use</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value">99.9%</span>
-                        <span class="stat-label">Purity Standard</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value">3rd Party</span>
-                        <span class="stat-label">Lab Verified</span>
-                    </div>
+
+            <!-- Molecule Structure -->
+            <div class="molecule">
+                <svg viewBox="0 0 80 80" fill="none" stroke="currentColor">
+                    <!-- Bonds -->
+                    <line x1="40" y1="20" x2="20" y2="40" stroke-width="1.5"/>
+                    <line x1="40" y1="20" x2="60" y2="40" stroke-width="1.5"/>
+                    <line x1="20" y1="40" x2="20" y2="65" stroke-width="1.5"/>
+                    <line x1="60" y1="40" x2="60" y2="65" stroke-width="1.5"/>
+                    <line x1="20" y1="65" x2="40" y2="75" stroke-width="1.5"/>
+                    <line x1="60" y1="65" x2="40" y2="75" stroke-width="1.5"/>
+                    <!-- Atoms -->
+                    <circle cx="40" cy="20" r="6" fill="currentColor" class="atom"/>
+                    <circle cx="20" cy="40" r="5" fill="none" stroke-width="1.5" class="atom"/>
+                    <circle cx="60" cy="40" r="5" fill="none" stroke-width="1.5" class="atom"/>
+                    <circle cx="20" cy="65" r="4" fill="currentColor" class="atom"/>
+                    <circle cx="60" cy="65" r="4" fill="currentColor" class="atom"/>
+                    <circle cx="40" cy="75" r="6" fill="none" stroke-width="1.5" class="atom"/>
+                </svg>
+            </div>
+
+            <!-- Test Tubes Rack -->
+            <div class="test-tubes">
+                <svg viewBox="0 0 70 80" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <!-- Rack -->
+                    <rect x="5" y="15" width="60" height="8" rx="2"/>
+                    <rect x="5" y="55" width="60" height="8" rx="2"/>
+                    <!-- Tubes -->
+                    <rect x="12" y="20" width="8" height="40" rx="4"/>
+                    <line x1="14" y1="35" x2="18" y2="35" class="liquid-line" stroke-width="1"/>
+                    <rect x="26" y="20" width="8" height="40" rx="4"/>
+                    <line x1="28" y1="30" x2="32" y2="30" class="liquid-line" stroke-width="1"/>
+                    <rect x="40" y="20" width="8" height="40" rx="4"/>
+                    <line x1="42" y1="40" x2="46" y2="40" class="liquid-line" stroke-width="1"/>
+                    <rect x="54" y="20" width="8" height="40" rx="4"/>
+                    <line x1="56" y1="32" x2="60" y2="32" class="liquid-line" stroke-width="1"/>
+                </svg>
+            </div>
+
+            <!-- Petri Dish -->
+            <div class="petri-dish">
+                <svg viewBox="0 0 60 30" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <ellipse cx="30" cy="15" rx="28" ry="12"/>
+                    <ellipse cx="30" cy="13" rx="24" ry="9" stroke-width="1"/>
+                    <!-- Culture dots -->
+                    <circle cx="22" cy="12" r="2" fill="currentColor" opacity="0.3"/>
+                    <circle cx="35" cy="14" r="3" fill="currentColor" opacity="0.3"/>
+                    <circle cx="28" cy="16" r="1.5" fill="currentColor" opacity="0.3"/>
+                    <circle cx="38" cy="10" r="1" fill="currentColor" opacity="0.3"/>
+                </svg>
+            </div>
+
+            <!-- Erlenmeyer Flask -->
+            <div class="flask">
+                <svg viewBox="0 0 50 70" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M18 5 L18 25 L5 60 Q3 67 15 67 L35 67 Q47 67 45 60 L32 25 L32 5"/>
+                    <rect x="16" y="2" width="18" height="5" rx="1"/>
+                    <path d="M8 55 Q25 50 42 55 L42 60 Q42 65 25 65 Q8 65 8 60 Z" stroke-width="1" class="liquid-line"/>
+                </svg>
+            </div>
+
+            <!-- Interactive Lab Elements - Navigation Hints -->
+            <div class="lab-portal library-portal" data-goto="library" tabindex="0" role="button" aria-label="Visit Library">
+                <svg viewBox="0 0 50 60" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <!-- Book Stack -->
+                    <rect x="5" y="40" width="40" height="8" rx="1"/>
+                    <rect x="8" y="32" width="34" height="8" rx="1"/>
+                    <rect x="6" y="24" width="38" height="8" rx="1"/>
+                    <!-- Open Book on top -->
+                    <path d="M10 24 L10 8 Q25 12 25 8 Q25 12 40 8 L40 24"/>
+                    <line x1="25" y1="8" x2="25" y2="24" stroke-width="1"/>
+                    <!-- Page lines -->
+                    <line x1="13" y1="12" x2="22" y2="14" stroke-width="0.5" opacity="0.5"/>
+                    <line x1="13" y1="16" x2="22" y2="18" stroke-width="0.5" opacity="0.5"/>
+                    <line x1="28" y1="14" x2="37" y2="12" stroke-width="0.5" opacity="0.5"/>
+                    <line x1="28" y1="18" x2="37" y2="16" stroke-width="0.5" opacity="0.5"/>
+                </svg>
+                <span class="portal-label">LIBRARY</span>
+                <span class="portal-hint">Research & Knowledge</span>
+            </div>
+
+            <div class="lab-portal extract-portal" data-goto="extracts" tabindex="0" role="button" aria-label="View Extracts">
+                <svg viewBox="0 0 60 50" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <!-- Shelf with bottles -->
+                    <line x1="5" y1="45" x2="55" y2="45"/>
+                    <line x1="5" y1="25" x2="55" y2="25"/>
+                    <!-- Bottles row 1 -->
+                    <rect x="10" y="28" width="10" height="16" rx="2"/>
+                    <rect x="8" y="26" width="14" height="4" rx="1"/>
+                    <rect x="25" y="30" width="8" height="14" rx="2"/>
+                    <rect x="24" y="28" width="10" height="3" rx="1"/>
+                    <rect x="40" y="28" width="12" height="16" rx="2"/>
+                    <rect x="38" y="26" width="16" height="4" rx="1"/>
+                    <!-- Bottles row 2 (smaller) -->
+                    <rect x="12" y="8" width="8" height="12" rx="1"/>
+                    <rect x="28" y="10" width="6" height="10" rx="1"/>
+                    <rect x="42" y="8" width="10" height="12" rx="2"/>
+                </svg>
+                <span class="portal-label">EXTRACTS</span>
+                <span class="portal-hint">Full Catalog</span>
+            </div>
+
+            <!-- Shamanic Elements (hidden by default) -->
+            <div class="shaman-elements">
+                <!-- Mortar & Pestle -->
+                <div class="mortar-pestle">
+                    <svg viewBox="0 0 60 50" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M10 25 Q10 45 30 45 Q50 45 50 25"/>
+                        <ellipse cx="30" cy="25" rx="20" ry="8"/>
+                        <line x1="30" y1="5" x2="45" y2="20" stroke-width="2"/>
+                        <ellipse cx="30" cy="5" rx="4" ry="2"/>
+                    </svg>
+                </div>
+                <!-- Herbs Bundle -->
+                <div class="herbs">
+                    <svg viewBox="0 0 40 60" fill="none" stroke="currentColor" stroke-width="1">
+                        <path d="M20 55 L20 30"/>
+                        <path d="M20 30 Q10 20 15 10 Q20 5 20 10 Q20 5 25 10 Q30 20 20 30"/>
+                        <path d="M18 35 Q5 30 10 20"/>
+                        <path d="M22 35 Q35 30 30 20"/>
+                        <path d="M20 40 Q8 38 12 28"/>
+                        <path d="M20 40 Q32 38 28 28"/>
+                    </svg>
+                </div>
+                <!-- Crystal -->
+                <div class="crystal">
+                    <svg viewBox="0 0 40 60" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <polygon points="20,5 35,25 30,55 10,55 5,25"/>
+                        <line x1="20" y1="5" x2="20" y2="55" opacity="0.3"/>
+                        <line x1="5" y1="25" x2="35" y2="25" opacity="0.3"/>
+                        <line x1="10" y1="55" x2="35" y2="25" opacity="0.3"/>
+                        <line x1="30" y1="55" x2="5" y2="25" opacity="0.3"/>
+                    </svg>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Contact Section -->
-        <section class="contact" id="contact">
-            <div class="contact-inner">
-                <div class="section-header">
-                    <span class="section-tag">Connect</span>
-                    <h2>Begin Your Journey</h2>
-                    <p>Inquire about our extracts for research, wholesale, or personal exploration.</p>
-                </div>
-
-                <form class="contact-form" id="contactForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required autocomplete="name">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required autocomplete="email">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="interest">Primary Interest</label>
-                        <select id="interest" name="interest">
-                            <option value="">Select an option</option>
-                            <option value="kratom">Kratom Extract</option>
-                            <option value="kava">Kava Extract</option>
-                            <option value="lotus">Blue Lotus Extract</option>
-                            <option value="nootropic">Nootropic Blend</option>
-                            <option value="wholesale">Wholesale Inquiry</option>
-                            <option value="research">Research Partnership</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="4" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">
-                        <span>Send Inquiry</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </button>
-                </form>
+        <!-- Info Panel -->
+        <aside class="info-panel" id="infoPanel">
+            <div class="panel-header">
+                <span class="panel-title">SELECT EXTRACT</span>
+                <button class="panel-close" aria-label="Close">&times;</button>
             </div>
-        </section>
+            <div class="panel-content">
+                <p class="panel-hint">Click a vial to view extract information</p>
+            </div>
+        </aside>
+
+        <!-- Bottom Stats Bar -->
+        <footer class="stats-bar">
+            <div class="stat">
+                <span class="stat-label">PURITY</span>
+                <span class="stat-value">99.9%</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">LAB TESTED</span>
+                <span class="stat-value">3RD PARTY</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">EXTRACTS</span>
+                <span class="stat-value">04</span>
+            </div>
+            <div class="stat shaman-stat">
+                <span class="stat-label">TRADITION</span>
+                <span class="stat-value">5000 YRS</span>
+            </div>
+        </footer>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-inner">
-            <div class="footer-brand">
-                <span class="logo-text">PureExtracts<em>TX</em></span>
-                <p>Where ancient wisdom meets modern science.</p>
+    <!-- Product Data Templates -->
+    <template id="product-kratom">
+        <div class="product-info">
+            <h2>KRATOM EXTRACT</h2>
+            <p class="latin">Mitragyna speciosa</p>
+            <div class="specs">
+                <div class="spec-row"><span>PRIMARY</span><span>Mitragynine</span></div>
+                <div class="spec-row"><span>SECONDARY</span><span>7-Hydroxymitragynine</span></div>
+                <div class="spec-row"><span>METHOD</span><span>Water Extraction</span></div>
+                <div class="spec-row"><span>ORIGIN</span><span>Southeast Asia</span></div>
             </div>
-            <div class="footer-links">
-                <a href="#extracts">Extracts</a>
-                <a href="#process">Process</a>
-                <a href="#wisdom">Wisdom</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <div class="footer-legal">
-                <p>&copy; 2025 Pure Extracts TX. All rights reserved.</p>
-                <p class="disclaimer">These statements have not been evaluated by the FDA. Products are not intended to diagnose, treat, cure, or prevent any disease.</p>
-            </div>
+            <button class="inquire-btn" onclick="scrollToContact('kratom')">INQUIRE</button>
         </div>
-    </footer>
+    </template>
 
-    <!-- Product Modals -->
-    <div class="modal-backdrop" id="modalBackdrop"></div>
-
-    <!-- Kratom Modal -->
-    <div class="modal" id="kratom-modal" role="dialog" aria-labelledby="kratom-title" aria-hidden="true">
-        <div class="modal-header" style="--accent: var(--kratom);">
-            <h3 id="kratom-title">Kratom Extract</h3>
-            <button class="modal-close" aria-label="Close">&times;</button>
-        </div>
-        <div class="modal-body">
-            <p class="modal-latin">Mitragyna speciosa</p>
-            <p>Our kratom extract represents the pinnacle of traditional Southeast Asian botanical wisdom, scientifically refined for modern use. Each batch is carefully extracted to preserve the full spectrum of alkaloids.</p>
-            <div class="modal-specs">
-                <div class="spec">
-                    <span class="spec-label">Primary Alkaloids</span>
-                    <span class="spec-value">Mitragynine, 7-OH</span>
-                </div>
-                <div class="spec">
-                    <span class="spec-label">Extraction Method</span>
-                    <span class="spec-value">Water-Based Traditional</span>
-                </div>
-                <div class="spec">
-                    <span class="spec-label">Lab Tested</span>
-                    <span class="spec-value">Third-Party Verified</span>
-                </div>
+    <template id="product-kava">
+        <div class="product-info">
+            <h2>KAVA EXTRACT</h2>
+            <p class="latin">Piper methysticum</p>
+            <div class="specs">
+                <div class="spec-row"><span>ACTIVE</span><span>Kavalactones 30%+</span></div>
+                <div class="spec-row"><span>CULTIVAR</span><span>Noble Variety</span></div>
+                <div class="spec-row"><span>METHOD</span><span>CO2 Extraction</span></div>
+                <div class="spec-row"><span>ORIGIN</span><span>Vanuatu</span></div>
             </div>
-            <button class="modal-cta" onclick="scrollToContact('kratom')">Inquire About Kratom</button>
+            <button class="inquire-btn" onclick="scrollToContact('kava')">INQUIRE</button>
         </div>
-    </div>
+    </template>
 
-    <!-- Kava Modal -->
-    <div class="modal" id="kava-modal" role="dialog" aria-labelledby="kava-title" aria-hidden="true">
-        <div class="modal-header" style="--accent: var(--kava);">
-            <h3 id="kava-title">Kava Extract</h3>
-            <button class="modal-close" aria-label="Close">&times;</button>
-        </div>
-        <div class="modal-body">
-            <p class="modal-latin">Piper methysticum</p>
-            <p>Sourced from the Pacific Islands, our kava extract honors centuries of ceremonial use. We use only noble cultivar roots, extracted to maximize kavalactone concentration.</p>
-            <div class="modal-specs">
-                <div class="spec">
-                    <span class="spec-label">Active Compounds</span>
-                    <span class="spec-value">Kavalactones 30%+</span>
-                </div>
-                <div class="spec">
-                    <span class="spec-label">Cultivar Type</span>
-                    <span class="spec-value">Noble Variety Only</span>
-                </div>
-                <div class="spec">
-                    <span class="spec-label">Origin</span>
-                    <span class="spec-value">Vanuatu, Fiji</span>
-                </div>
+    <template id="product-lotus">
+        <div class="product-info">
+            <h2>BLUE LOTUS</h2>
+            <p class="latin">Nymphaea caerulea</p>
+            <div class="specs">
+                <div class="spec-row"><span>PRIMARY</span><span>Aporphine</span></div>
+                <div class="spec-row"><span>SECONDARY</span><span>Nuciferine</span></div>
+                <div class="spec-row"><span>METHOD</span><span>Dual-Solvent</span></div>
+                <div class="spec-row"><span>TRADITION</span><span>5000+ Years</span></div>
             </div>
-            <button class="modal-cta" onclick="scrollToContact('kava')">Inquire About Kava</button>
+            <button class="inquire-btn" onclick="scrollToContact('lotus')">INQUIRE</button>
         </div>
-    </div>
+    </template>
 
-    <!-- Blue Lotus Modal -->
-    <div class="modal" id="lotus-modal" role="dialog" aria-labelledby="lotus-title" aria-hidden="true">
-        <div class="modal-header" style="--accent: var(--lotus);">
-            <h3 id="lotus-title">Blue Lotus Extract</h3>
-            <button class="modal-close" aria-label="Close">&times;</button>
-        </div>
-        <div class="modal-body">
-            <p class="modal-latin">Nymphaea caerulea</p>
-            <p>The sacred flower of ancient Egypt, revered by pharaohs and priests alike. Our extract captures the essence of this legendary botanical with scientific precision.</p>
-            <div class="modal-specs">
-                <div class="spec">
-                    <span class="spec-label">Active Compounds</span>
-                    <span class="spec-value">Aporphine, Nuciferine</span>
-                </div>
-                <div class="spec">
-                    <span class="spec-label">Extraction</span>
-                    <span class="spec-value">Dual-Solvent Method</span>
-                </div>
-                <div class="spec">
-                    <span class="spec-label">Tradition</span>
-                    <span class="spec-value">5000+ Years</span>
-                </div>
+    <template id="product-nootropic">
+        <div class="product-info">
+            <h2>NOOTROPIC BLEND</h2>
+            <p class="latin">Cognitive Formula</p>
+            <div class="specs">
+                <div class="spec-row"><span>PRIMARY</span><span>Alpha-GPC</span></div>
+                <div class="spec-row"><span>SECONDARY</span><span>Lion's Mane</span></div>
+                <div class="spec-row"><span>FOCUS</span><span>Clarity + Memory</span></div>
+                <div class="spec-row"><span>TYPE</span><span>Adaptogen Stack</span></div>
             </div>
-            <button class="modal-cta" onclick="scrollToContact('lotus')">Inquire About Blue Lotus</button>
+            <button class="inquire-btn" onclick="scrollToContact('nootropic')">INQUIRE</button>
         </div>
-    </div>
+    </template>
 
-    <!-- Nootropic Modal -->
-    <div class="modal" id="nootropic-modal" role="dialog" aria-labelledby="nootropic-title" aria-hidden="true">
-        <div class="modal-header" style="--accent: var(--nootropic);">
-            <h3 id="nootropic-title">Nootropic Blend</h3>
-            <button class="modal-close" aria-label="Close">&times;</button>
-        </div>
-        <div class="modal-body">
-            <p class="modal-latin">Cognitive Enhancement Formula</p>
-            <p>A precision-formulated blend combining traditional adaptogens with modern nootropic compounds. Designed for sustained mental clarity and cognitive support.</p>
-            <div class="modal-specs">
-                <div class="spec">
-                    <span class="spec-label">Key Ingredients</span>
-                    <span class="spec-value">Alpha-GPC, Lion's Mane</span>
+    <!-- Library Section -->
+    <section class="library-section" id="librarySection">
+        <div class="library-container">
+            <!-- Library Header -->
+            <header class="library-header">
+                <button class="back-to-lab" aria-label="Back to Lab">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    <span>LAB</span>
+                </button>
+                <h1 class="library-title">
+                    <span class="title-lab">RESEARCH LIBRARY</span>
+                    <span class="title-shaman">ANCIENT TEXTS</span>
+                </h1>
+                <div class="library-search">
+                    <input type="text" placeholder="Search..." class="search-input">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="M21 21l-4.35-4.35"/>
+                    </svg>
                 </div>
-                <div class="spec">
-                    <span class="spec-label">Synergy</span>
-                    <span class="spec-value">Adaptogen + Nootropic</span>
-                </div>
-                <div class="spec">
-                    <span class="spec-label">Focus</span>
-                    <span class="spec-value">Clarity & Memory</span>
-                </div>
+            </header>
+
+            <!-- Library Grid Background -->
+            <div class="library-bg">
+                <svg class="bookshelf-bg" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+                    <!-- Shelves -->
+                    <line x1="0" y1="75" x2="400" y2="75" stroke="currentColor" stroke-width="2"/>
+                    <line x1="0" y1="150" x2="400" y2="150" stroke="currentColor" stroke-width="2"/>
+                    <line x1="0" y1="225" x2="400" y2="225" stroke="currentColor" stroke-width="2"/>
+                    <!-- Books outline hints -->
+                    <g opacity="0.1">
+                        <rect x="20" y="45" width="15" height="28" rx="1"/>
+                        <rect x="38" y="50" width="12" height="23" rx="1"/>
+                        <rect x="53" y="42" width="18" height="31" rx="1"/>
+                        <rect x="120" y="120" width="14" height="28" rx="1"/>
+                        <rect x="137" y="125" width="10" height="23" rx="1"/>
+                        <rect x="280" y="195" width="16" height="28" rx="1"/>
+                        <rect x="299" y="200" width="12" height="23" rx="1"/>
+                    </g>
+                </svg>
             </div>
-            <button class="modal-cta" onclick="scrollToContact('nootropic')">Inquire About Nootropics</button>
+
+            <!-- Ancient Scroll Background (Shaman mode) -->
+            <div class="scroll-bg">
+                <svg viewBox="0 0 200 200">
+                    <g class="rotate-slow" opacity="0.1">
+                        <circle cx="100" cy="100" r="80" fill="none" stroke="currentColor"/>
+                        <circle cx="100" cy="100" r="60" fill="none" stroke="currentColor"/>
+                        <circle cx="100" cy="100" r="40" fill="none" stroke="currentColor"/>
+                        <path d="M100 20 L100 180 M20 100 L180 100" stroke="currentColor"/>
+                        <path d="M43 43 L157 157 M157 43 L43 157" stroke="currentColor" opacity="0.5"/>
+                    </g>
+                </svg>
+            </div>
+
+            <!-- Category Tabs -->
+            <nav class="library-tabs">
+                <button class="tab-btn active" data-category="all">ALL</button>
+                <button class="tab-btn" data-category="kratom">KRATOM</button>
+                <button class="tab-btn" data-category="kava">KAVA</button>
+                <button class="tab-btn" data-category="lotus">BLUE LOTUS</button>
+                <button class="tab-btn" data-category="science">
+                    <span class="tab-lab">RESEARCH</span>
+                    <span class="tab-shaman">WISDOM</span>
+                </button>
+            </nav>
+
+            <!-- Library Content Grid -->
+            <div class="library-grid">
+                <!-- Kratom Articles -->
+                <article class="library-card" data-category="kratom">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="5" y="5" width="30" height="30" rx="2"/>
+                            <line x1="10" y1="12" x2="30" y2="12"/>
+                            <line x1="10" y1="18" x2="25" y2="18"/>
+                            <line x1="10" y1="24" x2="28" y2="24"/>
+                            <line x1="10" y1="30" x2="20" y2="30"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">
+                        <span class="lab-text">Mitragynine Alkaloid Profile</span>
+                        <span class="shaman-text">The Spirit of Kratom</span>
+                    </h3>
+                    <p class="card-desc">
+                        <span class="lab-text">Comprehensive analysis of primary and secondary alkaloids found in Mitragyna speciosa.</span>
+                        <span class="shaman-text">Understanding the sacred plant ally used by Southeast Asian healers for millennia.</span>
+                    </p>
+                    <span class="card-meta">
+                        <span class="lab-text">12 min read • Lab Report</span>
+                        <span class="shaman-text">Ancient Knowledge • Sacred</span>
+                    </span>
+                </article>
+
+                <article class="library-card" data-category="kratom">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M20 5 L20 15 M15 10 L25 10"/>
+                            <circle cx="20" cy="25" r="12"/>
+                            <path d="M14 22 Q20 18 26 22 Q20 30 14 22"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">
+                        <span class="lab-text">Extraction Methods Comparison</span>
+                        <span class="shaman-text">Traditional Preparation Ways</span>
+                    </h3>
+                    <p class="card-desc">
+                        <span class="lab-text">Water vs. ethanol extraction efficiency and alkaloid preservation analysis.</span>
+                        <span class="shaman-text">How village elders prepared the leaves for ceremony and healing.</span>
+                    </p>
+                    <span class="card-meta">
+                        <span class="lab-text">8 min read • Technical</span>
+                        <span class="shaman-text">Oral Tradition • Methods</span>
+                    </span>
+                </article>
+
+                <!-- Kava Articles -->
+                <article class="library-card" data-category="kava">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <ellipse cx="20" cy="30" rx="15" ry="6"/>
+                            <path d="M5 30 L5 20 Q5 10 20 10 Q35 10 35 20 L35 30"/>
+                            <path d="M12 18 Q20 22 28 18"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">
+                        <span class="lab-text">Kavalactone Chemotypes</span>
+                        <span class="shaman-text">Spirits of the Kava Bowl</span>
+                    </h3>
+                    <p class="card-desc">
+                        <span class="lab-text">Understanding the six primary kavalactones and their neurological effects.</span>
+                        <span class="shaman-text">The sacred root that brings peace and connects the village.</span>
+                    </p>
+                    <span class="card-meta">
+                        <span class="lab-text">15 min read • Research</span>
+                        <span class="shaman-text">Pacific Wisdom • Ceremony</span>
+                    </span>
+                </article>
+
+                <article class="library-card" data-category="kava">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="20" cy="20" r="15"/>
+                            <circle cx="20" cy="20" r="8"/>
+                            <circle cx="20" cy="20" r="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">
+                        <span class="lab-text">Noble vs. Tudei Varieties</span>
+                        <span class="shaman-text">Choosing the Right Spirit</span>
+                    </h3>
+                    <p class="card-desc">
+                        <span class="lab-text">Quality indicators and safety considerations for kava cultivar selection.</span>
+                        <span class="shaman-text">Why the ancestors chose certain roots for different occasions.</span>
+                    </p>
+                    <span class="card-meta">
+                        <span class="lab-text">6 min read • Guide</span>
+                        <span class="shaman-text">Elder Teaching • Selection</span>
+                    </span>
+                </article>
+
+                <!-- Blue Lotus Articles -->
+                <article class="library-card" data-category="lotus">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M20 35 L20 22"/>
+                            <path d="M20 22 Q10 18 12 10 Q16 14 20 10 Q24 14 28 10 Q30 18 20 22"/>
+                            <ellipse cx="20" cy="8" rx="3" ry="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">
+                        <span class="lab-text">Aporphine & Nuciferine Analysis</span>
+                        <span class="shaman-text">Flower of the Nile Gods</span>
+                    </h3>
+                    <p class="card-desc">
+                        <span class="lab-text">Psychoactive alkaloid research from Nymphaea caerulea specimens.</span>
+                        <span class="shaman-text">The sacred lotus that opened the doors to the divine for Egyptian priests.</span>
+                    </p>
+                    <span class="card-meta">
+                        <span class="lab-text">10 min read • Study</span>
+                        <span class="shaman-text">5000 Years • Egypt</span>
+                    </span>
+                </article>
+
+                <article class="library-card" data-category="lotus">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="8" y="8" width="24" height="24" rx="2"/>
+                            <path d="M12 16 L28 16 M12 22 L28 22 M12 28 L20 28"/>
+                            <circle cx="26" cy="28" r="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">
+                        <span class="lab-text">Historical Use Documentation</span>
+                        <span class="shaman-text">Temple Scrolls Decoded</span>
+                    </h3>
+                    <p class="card-desc">
+                        <span class="lab-text">Archaeological evidence of blue lotus in ancient Egyptian ceremonies.</span>
+                        <span class="shaman-text">What the hieroglyphs reveal about lotus in sacred rites.</span>
+                    </p>
+                    <span class="card-meta">
+                        <span class="lab-text">20 min read • History</span>
+                        <span class="shaman-text">Ancient Text • Sacred</span>
+                    </span>
+                </article>
+
+                <!-- General Science/Wisdom -->
+                <article class="library-card" data-category="science">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M15 5 L15 15 L8 32 Q6 36 12 36 L28 36 Q34 36 32 32 L25 15 L25 5"/>
+                            <line x1="12" y1="5" x2="28" y2="5"/>
+                            <path d="M12 25 Q20 22 28 25"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">
+                        <span class="lab-text">Extraction Technology Guide</span>
+                        <span class="shaman-text">Alchemical Principles</span>
+                    </h3>
+                    <p class="card-desc">
+                        <span class="lab-text">Modern extraction methods: CO2, ethanol, and water-based techniques.</span>
+                        <span class="shaman-text">The ancient art of drawing forth the essence of sacred plants.</span>
+                    </p>
+                    <span class="card-meta">
+                        <span class="lab-text">25 min read • Technical</span>
+                        <span class="shaman-text">Master Teaching • Art</span>
+                    </span>
+                </article>
+
+                <article class="library-card" data-category="science">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="20" cy="12" r="8"/>
+                            <path d="M20 20 L20 28 M15 33 L20 28 L25 33"/>
+                            <circle cx="10" cy="30" r="4"/>
+                            <circle cx="30" cy="30" r="4"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">
+                        <span class="lab-text">Quality Testing Standards</span>
+                        <span class="shaman-text">Signs of True Medicine</span>
+                    </h3>
+                    <p class="card-desc">
+                        <span class="lab-text">Third-party testing protocols and certificate of analysis interpretation.</span>
+                        <span class="shaman-text">How the wise ones knew which plants held true healing power.</span>
+                    </p>
+                    <span class="card-meta">
+                        <span class="lab-text">8 min read • Standards</span>
+                        <span class="shaman-text">Discernment • Truth</span>
+                    </span>
+                </article>
+            </div>
+
+            <!-- Library Footer -->
+            <footer class="library-footer">
+                <p class="footer-text">
+                    <span class="lab-text">All research for educational purposes. Consult healthcare providers before use.</span>
+                    <span class="shaman-text">Honor the plants. Honor the traditions. Honor yourself.</span>
+                </p>
+            </footer>
+        </div>
+    </section>
+
+    <!-- Contact Overlay -->
+    <div class="contact-overlay" id="contact">
+        <div class="contact-panel">
+            <div class="panel-header">
+                <span class="panel-title">CONTACT</span>
+                <button class="panel-close" onclick="closeContact()">&times;</button>
+            </div>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label>NAME</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label>EMAIL</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>INTEREST</label>
+                    <select name="interest" id="interestSelect">
+                        <option value="">Select</option>
+                        <option value="kratom">Kratom</option>
+                        <option value="kava">Kava</option>
+                        <option value="lotus">Blue Lotus</option>
+                        <option value="nootropic">Nootropic</option>
+                        <option value="wholesale">Wholesale</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>MESSAGE</label>
+                    <textarea name="message" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">SEND INQUIRY</button>
+            </form>
         </div>
     </div>
 
