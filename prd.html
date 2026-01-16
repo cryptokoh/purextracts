@@ -534,7 +534,7 @@
                 <path d="M20 12C20 12 16 16 16 22C16 24.209 17.791 26 20 26C22.209 26 24 24.209 24 22C24 16 20 12 20 12Z" fill="currentColor"/>
             </svg>
             <span class="header-title">Pure Extracts TX</span>
-            <span class="header-badge">v1.0 PRD</span>
+            <span class="header-badge">v2.0 PRD</span>
         </div>
         <nav class="header-nav">
             <a href="index.html" class="header-link">Home</a>
@@ -552,7 +552,7 @@
             Project Roadmap
         </div>
         <h1>Building Pure Extracts TX</h1>
-        <p>A comprehensive digital platform for legal THCA extracts featuring e-commerce, content management, and automated marketing.</p>
+        <p>A comprehensive digital platform for premium botanical extracts (kratom, kava, blue lotus) featuring e-commerce, content management, and automated marketing.</p>
     </section>
 
     <section class="stats-grid">
@@ -581,15 +581,15 @@
 
         <div class="timeline">
             <!-- Phase 1 -->
-            <div class="timeline-phase active">
+            <div class="timeline-phase completed">
                 <div class="phase-header">
                     <span class="phase-number">PHASE 1</span>
                     <span class="phase-title">Foundation</span>
                     <span class="phase-dates">Weeks 1-2</span>
-                    <span class="phase-status status-active">In Progress</span>
+                    <span class="phase-status status-completed">Frontend Complete</span>
                 </div>
                 <div class="phase-content">
-                    <p class="phase-description">Core infrastructure, authentication, and basic site structure. Setting up the foundation for everything that follows.</p>
+                    <p class="phase-description">Core infrastructure, authentication, and basic site structure. Frontend MVP complete - backend integration pending.</p>
                     <div class="task-list">
                         <div class="task-item completed">
                             <span class="task-checkbox checked">
@@ -597,7 +597,7 @@
                                     <path d="M5 13l4 4L19 7"/>
                                 </svg>
                             </span>
-                            <span>Static site with themes</span>
+                            <span>Static site with 3 themes</span>
                         </div>
                         <div class="task-item completed">
                             <span class="task-checkbox checked">
@@ -607,13 +607,25 @@
                             </span>
                             <span>Mobile responsive design</span>
                         </div>
-                        <div class="task-item">
-                            <span class="task-checkbox"></span>
-                            <span>Supabase project setup</span>
+                        <div class="task-item completed">
+                            <span class="task-checkbox checked">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>Product catalog (42 products)</span>
+                        </div>
+                        <div class="task-item completed">
+                            <span class="task-checkbox checked">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>Category filtering system</span>
                         </div>
                         <div class="task-item">
                             <span class="task-checkbox"></span>
-                            <span>Database migrations</span>
+                            <span>Supabase project setup</span>
                         </div>
                         <div class="task-item">
                             <span class="task-checkbox"></span>
@@ -625,10 +637,6 @@
                         </div>
                         <div class="task-item">
                             <span class="task-checkbox"></span>
-                            <span>Product catalog display</span>
-                        </div>
-                        <div class="task-item">
-                            <span class="task-checkbox"></span>
                             <span>Basic admin panel</span>
                         </div>
                     </div>
@@ -636,27 +644,43 @@
             </div>
 
             <!-- Phase 2 -->
-            <div class="timeline-phase">
+            <div class="timeline-phase active">
                 <div class="phase-header">
                     <span class="phase-number">PHASE 2</span>
                     <span class="phase-title">E-Commerce</span>
                     <span class="phase-dates">Weeks 3-4</span>
-                    <span class="phase-status status-upcoming">Upcoming</span>
+                    <span class="phase-status status-active">Frontend Complete</span>
                 </div>
                 <div class="phase-content">
-                    <p class="phase-description">Full shopping experience with cart, checkout, and payment processing through high-risk merchant account.</p>
+                    <p class="phase-description">Full shopping experience with cart, checkout, and payment processing via Stripe (standard rates).</p>
                     <div class="task-list">
-                        <div class="task-item">
-                            <span class="task-checkbox"></span>
+                        <div class="task-item completed">
+                            <span class="task-checkbox checked">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
                             <span>Shopping cart system</span>
                         </div>
-                        <div class="task-item">
-                            <span class="task-checkbox"></span>
-                            <span>Checkout flow</span>
+                        <div class="task-item completed">
+                            <span class="task-checkbox checked">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>Checkout flow (frontend)</span>
+                        </div>
+                        <div class="task-item completed">
+                            <span class="task-checkbox checked">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>Cart persistence (localStorage)</span>
                         </div>
                         <div class="task-item">
                             <span class="task-checkbox"></span>
-                            <span>Payment processor integration</span>
+                            <span>Stripe payment integration</span>
                         </div>
                         <div class="task-item">
                             <span class="task-checkbox"></span>
@@ -666,25 +690,53 @@
                             <span class="task-checkbox"></span>
                             <span>Email notifications</span>
                         </div>
-                        <div class="task-item">
-                            <span class="task-checkbox"></span>
-                            <span>Shipping integration</span>
-                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Phase 3 -->
-            <div class="timeline-phase">
+            <div class="timeline-phase active">
                 <div class="phase-header">
                     <span class="phase-number">PHASE 3</span>
                     <span class="phase-title">Content System</span>
                     <span class="phase-dates">Weeks 5-6</span>
-                    <span class="phase-status status-upcoming">Upcoming</span>
+                    <span class="phase-status status-active">Frontend Complete</span>
                 </div>
                 <div class="phase-content">
-                    <p class="phase-description">Self-service blog CMS with rich text editing, image management, and SEO optimization tools.</p>
+                    <p class="phase-description">Education center with blog listing, category filtering, search, and newsletter signup.</p>
                     <div class="task-list">
+                        <div class="task-item completed">
+                            <span class="task-checkbox checked">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>Blog listing page</span>
+                        </div>
+                        <div class="task-item completed">
+                            <span class="task-checkbox checked">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>Category filtering</span>
+                        </div>
+                        <div class="task-item completed">
+                            <span class="task-checkbox checked">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>Search functionality</span>
+                        </div>
+                        <div class="task-item completed">
+                            <span class="task-checkbox checked">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>Newsletter signup</span>
+                        </div>
                         <div class="task-item">
                             <span class="task-checkbox"></span>
                             <span>Blog CMS admin</span>
@@ -693,44 +745,48 @@
                             <span class="task-checkbox"></span>
                             <span>Rich text editor</span>
                         </div>
-                        <div class="task-item">
-                            <span class="task-checkbox"></span>
-                            <span>Image management</span>
-                        </div>
-                        <div class="task-item">
-                            <span class="task-checkbox"></span>
-                            <span>SEO meta editor</span>
-                        </div>
-                        <div class="task-item">
-                            <span class="task-checkbox"></span>
-                            <span>Draft/publish workflow</span>
-                        </div>
-                        <div class="task-item">
-                            <span class="task-checkbox"></span>
-                            <span>Scheduled publishing</span>
-                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Phase 4 -->
-            <div class="timeline-phase">
+            <div class="timeline-phase active">
                 <div class="phase-header">
                     <span class="phase-number">PHASE 4</span>
                     <span class="phase-title">Automation</span>
                     <span class="phase-dates">Weeks 7-8</span>
-                    <span class="phase-status status-upcoming">Upcoming</span>
+                    <span class="phase-status status-active">SEO Foundation Complete</span>
                 </div>
                 <div class="phase-content">
-                    <p class="phase-description">n8n workflows for SEO monitoring, social media automation, and Claude Code agent integration.</p>
+                    <p class="phase-description">Technical SEO foundation complete. n8n workflows for monitoring and automation pending.</p>
                     <div class="task-list">
-                        <div class="task-item">
-                            <span class="task-checkbox"></span>
-                            <span>VPS setup with n8n</span>
+                        <div class="task-item completed">
+                            <span class="task-checkbox checked">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>Schema.org structured data</span>
+                        </div>
+                        <div class="task-item completed">
+                            <span class="task-checkbox checked">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>XML Sitemap</span>
+                        </div>
+                        <div class="task-item completed">
+                            <span class="task-checkbox checked">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>Open Graph / Twitter Cards</span>
                         </div>
                         <div class="task-item">
                             <span class="task-checkbox"></span>
-                            <span>SEO monitoring workflows</span>
+                            <span>VPS setup with n8n</span>
                         </div>
                         <div class="task-item">
                             <span class="task-checkbox"></span>
@@ -738,15 +794,7 @@
                         </div>
                         <div class="task-item">
                             <span class="task-checkbox"></span>
-                            <span>Email automation</span>
-                        </div>
-                        <div class="task-item">
-                            <span class="task-checkbox"></span>
                             <span>Analytics dashboard</span>
-                        </div>
-                        <div class="task-item">
-                            <span class="task-checkbox"></span>
-                            <span>Claude Code agent tasks</span>
                         </div>
                     </div>
                 </div>
@@ -824,8 +872,8 @@
                             <path d="M1 10h22"/>
                         </svg>
                     </div>
-                    <div class="tech-name">High-Risk Processor</div>
-                    <div class="tech-desc">Paybotic or PaymentCloud for compliant hemp/THCA payment processing.</div>
+                    <div class="tech-name">Stripe Payments</div>
+                    <div class="tech-desc">Standard payment processing for botanical extracts (2.9% + 30¢).</div>
                 </div>
             </div>
         </div>
@@ -868,7 +916,7 @@
                                     ▼
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                        <span class="highlight">INTEGRATIONS</span>                                   │
-│   Payment: Paybotic/PaymentCloud    Email: Resend                      │
+│   Payment: Stripe (standard rates)  Email: Resend                      │
 │   Analytics: Plausible              Search: Algolia                    │
 │   CDN: Cloudflare                   Social: Twitter/Instagram API     │
 └─────────────────────────────────────────────────────────────────────────┘

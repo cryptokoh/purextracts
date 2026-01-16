@@ -15,6 +15,70 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ============================================
+   Onboarding System (Global Function)
+   ============================================ */
+function dismissOnboarding() {
+    const overlay = document.getElementById('onboardingOverlay');
+    if (overlay) {
+        overlay.classList.add('hidden');
+        // Store that user has seen onboarding
+        localStorage.setItem('purextracts-onboarding-seen', 'true');
+    }
+}
+
+function checkOnboarding() {
+    const seen = localStorage.getItem('purextracts-onboarding-seen');
+    const overlay = document.getElementById('onboardingOverlay');
+
+    if (seen && overlay) {
+        overlay.classList.add('hidden');
+    } else if (overlay) {
+        // Auto-dismiss after 8 seconds if user doesn't interact
+        setTimeout(() => {
+            overlay.classList.add('hidden');
+        }, 8000);
+    }
+}
+
+// Run onboarding check when DOM is ready
+document.addEventListener('DOMContentLoaded', checkOnboarding);
+
+/* ============================================
+   Scroll to Contact (Global Function)
+   ============================================ */
+function scrollToContact(product) {
+    // Close any open modals first
+    closeAllModals();
+
+    // Find the contact section
+    const contactSection = document.getElementById('contact') || document.querySelector('.contact-section');
+
+    if (contactSection) {
+        // Smooth scroll to contact
+        contactSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+
+        // Pre-fill the message field if it exists
+        setTimeout(() => {
+            const messageField = document.querySelector('#message') || document.querySelector('textarea[name="message"]');
+            if (messageField && product) {
+                const productNames = {
+                    'kratom': 'Kratom Extract',
+                    'kava': 'Kava Extract',
+                    'lotus': 'Blue Lotus Extract',
+                    'nootropic': 'Nootropic Blend'
+                };
+                const productName = productNames[product] || product;
+                messageField.value = `I'm interested in learning more about your ${productName}. Please send me pricing and availability information.`;
+                messageField.focus();
+            }
+        }, 800);
+    }
+}
+
+/* ============================================
    Navigation
    ============================================ */
 function initNavigation() {
