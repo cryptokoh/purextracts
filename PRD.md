@@ -9,15 +9,21 @@
 
 ## Executive Summary
 
-Pure Extracts TX is a legal THCA extract laboratory based in Fredericksburg, Texas. This PRD outlines the complete digital platform strategy including e-commerce, content management, SEO automation, and social media integration. The platform will be built with compliance-first architecture given the evolving regulatory landscape for hemp-derived products.
+Pure Extracts TX is a premium botanical extract laboratory based in Fredericksburg, Texas, specializing in high-quality kratom, kava, blue lotus, and other natural plant extracts. This PRD outlines the complete digital platform strategy including e-commerce, content management, SEO automation, and social media integration.
 
-### Critical Legal Context
+### Product Focus
 
-> **December 2024 Update:** Congress has narrowed the federal definition of "hemp," closing the loophole that allowed products high in non-delta-9 cannabinoids (THCA, delta-8, delta-10) to qualify as hemp. This significantly impacts product positioning and compliance requirements.
+**Core Product Lines:**
+- **Kratom Extracts** - Mitragyna speciosa concentrates and powders
+- **Kava Extracts** - Piper methysticum preparations
+- **Blue Lotus** - Nymphaea caerulea extracts
+- **Botanical Blends** - Proprietary wellness formulations
 
-**Sources:**
-- [Regulatory Oversight - Congress Narrows Hemp Definition](https://www.regulatoryoversight.com/2025/12/congress-narrows-federal-definition-of-hemp-effectively-banning-most-intoxicating-hemp-products/)
-- [Cannabis Regulations AI - 2025 Advertising Rules](https://www.cannabisregulations.ai/cannabis-and-hemp-regulations-compliance-ai-blog/2025-advertising-meta-google-tiktok-hemp-thc)
+**Competitive Advantages:**
+- Texas Hill Country laboratory with rigorous quality control
+- Full transparency with Certificates of Analysis (COA)
+- Educational-first approach to botanical wellness
+- Direct-to-consumer and B2B wholesale options
 
 ---
 
@@ -41,21 +47,21 @@ Pure Extracts TX is a legal THCA extract laboratory based in Fredericksburg, Tex
 ## Project Overview
 
 ### Vision
-Build a best-in-class digital presence for Pure Extracts TX that establishes authority in the legal hemp/botanical extract space through educational content, transparent lab practices, and seamless e-commerce.
+Build a best-in-class digital presence for Pure Extracts TX that establishes authority in the botanical extract space through educational content, transparent lab practices, and seamless e-commerce.
 
 ### Goals
-1. **Authority Building** - Position as trusted source for hemp extraction knowledge
-2. **Compliance-First** - Navigate complex regulatory environment proactively
-3. **Organic Growth** - SEO-driven traffic (paid ads restricted for hemp products)
+1. **Authority Building** - Position as the trusted source for botanical extract knowledge
+2. **Education-First** - Lead with science-backed content on kratom, kava, and botanicals
+3. **SEO Dominance** - Organic + paid traffic strategies for botanical wellness keywords
 4. **Automation** - Minimize manual work through intelligent automation
-5. **Community** - Build engaged customer base through education
+5. **Community** - Build engaged customer base through education and transparency
 
 ### Target Audience
-- Health-conscious consumers seeking natural alternatives
-- Existing hemp/CBD users looking for quality products
-- DIY extraction enthusiasts
-- B2B clients (dispensaries, wellness brands)
-- Researchers and educators
+- Health-conscious consumers seeking natural wellness alternatives
+- Kratom and kava enthusiasts looking for quality lab-tested products
+- Holistic health practitioners and herbalists
+- B2B clients (wellness brands, supplement retailers, spas)
+- Researchers and ethnobotany enthusiasts
 
 ---
 
@@ -96,7 +102,7 @@ Build a best-in-class digital presence for Pure Extracts TX that establishes aut
                               ▼
 ┌─────────────────────────────────────────────────────────────┐
 │                   INTEGRATIONS                              │
-│  Payment: High-Risk Processor (Paybotic/PaymentCloud)      │
+│  Payment: Stripe (2.9% + 30¢)                              │
 │  Email: Resend / Postmark                                   │
 │  Analytics: Plausible / Umami (privacy-focused)            │
 │  Search: Algolia / Meilisearch                             │
@@ -212,18 +218,19 @@ Build a best-in-class digital presence for Pure Extracts TX that establishes aut
 
 ### Payment Processing Strategy
 
-**Challenge:** Hemp/THCA products are classified as "high-risk" by payment processors, limiting options and increasing fees.
+**Advantage:** Botanical extracts (kratom, kava, blue lotus) can use standard payment processors - no high-risk fees required.
 
-**Recommended Processors:**
+**Recommended Stack:**
 
-| Processor | Fees | Pros | Cons |
-|-----------|------|------|------|
-| [Paybotic](https://paybotic.com/) | 3-5% | Cannabis-specialist, compliant | Higher fees |
-| [PaymentCloud](https://www.covasoftware.com/payment-processing-for-cbd-and-hemp-stores) | 3-4% | CBD-friendly, banking approved | Application process |
-| [Easy Pay Direct](https://www.bigcommerce.com/articles/selling-cbd-online/cbd-payments/) | 3-5% | Multi-bank routing | Setup complexity |
-| Crypto (NOWPayments) | 0.5-1% | Low fees, no chargebacks | Customer friction |
+| Processor | Fees | Use Case |
+|-----------|------|----------|
+| **Stripe** | 2.9% + 30¢ | Primary processor - cards, Apple Pay, Google Pay |
+| **PayPal** | 2.99% + 49¢ | Alternative for customer preference |
+| **Crypto (NOWPayments)** | 0.5-1% | Optional for crypto-native customers |
 
-**Recommendation:** Primary processor (Paybotic/PaymentCloud) + Crypto option for power users.
+**Recommendation:** Stripe as primary with PayPal as backup. Crypto optional for B2B wholesale.
+
+**Note:** Kratom has some state-level restrictions. Implement geo-blocking for restricted states at checkout.
 
 ### Product Data Model
 
@@ -406,21 +413,27 @@ interface BlogPost {
 ### Target Keywords
 
 **Primary (High Intent):**
-- "buy thca online" / "thca for sale"
-- "thca flower texas"
-- "legal thca products"
-- "thca extract"
+- "buy kratom extract online"
+- "kava extract for sale"
+- "blue lotus extract"
+- "premium botanical extracts"
 
 **Educational (Content Marketing):**
-- "what is thca"
-- "thca vs thc"
-- "thca benefits"
-- "how to extract thca"
+- "kratom benefits and effects"
+- "kava vs kratom"
+- "blue lotus tea effects"
+- "what is mitragynine"
+- "kavalactones explained"
 
 **Long-tail (Low Competition):**
-- "thca fredericksburg texas"
-- "bulk thca extract wholesale"
-- "thca certificate of analysis"
+- "kratom extract texas"
+- "bulk kava wholesale"
+- "lab tested kratom COA"
+- "botanical extracts fredericksburg tx"
+
+**Local SEO:**
+- "herbal extracts texas hill country"
+- "natural wellness fredericksburg"
 
 ### Technical SEO Checklist
 
@@ -609,12 +622,12 @@ heal → help, drug → supplement, medical → natural
 
 ### Required Disclosures
 
-1. **Age Verification** - 21+ gate required
-2. **COA Display** - Certificate of Analysis for each batch
-3. **THC Content** - Clear labeling of cannabinoid content
-4. **State Restrictions** - Shipping restrictions by state
+1. **Age Verification** - 18+ or 21+ depending on product/state
+2. **COA Display** - Certificate of Analysis for each batch (alkaloid content, heavy metals, microbials)
+3. **Kratom Consumer Protection Act** - Follow KCPA guidelines where applicable
+4. **State Restrictions** - Kratom banned in: Alabama, Arkansas, Indiana, Rhode Island, Vermont, Wisconsin
 5. **FDA Disclaimer** - "Not intended to diagnose, treat, cure, or prevent any disease"
-6. **Health Claims** - Avoid unsubstantiated claims
+6. **Health Claims** - Avoid unsubstantiated claims (no "cures", "treats", "heals")
 
 ### Compliance Documentation
 
