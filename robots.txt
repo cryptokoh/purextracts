@@ -1,0 +1,38 @@
+# Pure Extracts TX - Robots.txt
+# https://pureextractstx.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://pureextractstx.com/sitemap.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Disallow admin/private areas (when implemented)
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+
+# Allow important resources
+Allow: /styles.css
+Allow: /script.js
+Allow: /images/
+
+# Block search result pages (when implemented)
+Disallow: /search?*
+
+# Block cart/checkout (when implemented)
+Disallow: /cart
+Disallow: /checkout
+
+# Google specific
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bing specific
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
