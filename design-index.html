@@ -478,7 +478,7 @@
             <p class="subtitle">Design System & Page Index</p>
             <div class="stats">
                 <div class="stat">
-                    <span class="stat-value">6</span>
+                    <span class="stat-value">8</span>
                     <span class="stat-label">PAGES</span>
                 </div>
                 <div class="stat">
@@ -486,7 +486,7 @@
                     <span class="stat-label">THEMES</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-value">3</span>
+                    <span class="stat-value">4</span>
                     <span class="stat-label">DESIGN STYLES</span>
                 </div>
             </div>
@@ -654,6 +654,50 @@
                                 <span>Overview</span>
                             </div>
                         </div>
+
+                        <!-- Styles Directory -->
+                        <div class="tree-node">
+                            <div class="node-header">
+                                <div class="node-icon">&#128193;</div>
+                                <span class="node-name">styles/</span>
+                                <span class="node-status status-live">EXPERIMENTS</span>
+                            </div>
+                            <p class="node-desc">Design experiments and alternative implementations.</p>
+                        </div>
+
+                        <div class="tree-branch">
+                            <!-- 3D Lab Three.js Original -->
+                            <div class="tree-node">
+                                <div class="node-header">
+                                    <div class="node-icon">&#127919;</div>
+                                    <span class="node-name">3d-lab/</span>
+                                    <span class="node-status status-live">THREE.JS</span>
+                                    <div class="node-link"><a href="styles/3d-lab/index.html">VIEW</a></div>
+                                </div>
+                                <p class="node-desc">Original Three.js WebGL laboratory with real 3D scene, OrbitControls, bloom effects, and interactive equipment.</p>
+                                <div class="node-meta">
+                                    <span>Three.js</span>
+                                    <span>WebGL</span>
+                                    <span>OrbitControls</span>
+                                </div>
+                            </div>
+
+                            <!-- 3D Lab Three.js Modern -->
+                            <div class="tree-node">
+                                <div class="node-header">
+                                    <div class="node-icon">&#127919;</div>
+                                    <span class="node-name">3d-lab-modern/</span>
+                                    <span class="node-status status-live">THREE.JS</span>
+                                    <div class="node-link"><a href="styles/3d-lab-modern/index.html">VIEW</a></div>
+                                </div>
+                                <p class="node-desc">Modern Three.js lab with EffectComposer, UnrealBloomPass, postprocessing effects, and enhanced lighting.</p>
+                                <div class="node-meta">
+                                    <span>Three.js</span>
+                                    <span>PostProcessing</span>
+                                    <span>Bloom Effects</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -663,7 +707,7 @@
         <section class="section-header">
             <div class="section-icon">&#127912;</div>
             <h2 class="section-title">DESIGN STYLES</h2>
-            <span class="section-count">3 DISTINCT APPROACHES</span>
+            <span class="section-count">4 DISTINCT APPROACHES</span>
         </section>
 
         <div class="pages-grid">
@@ -754,6 +798,38 @@
                     <span class="card-path">lab-2d.html, lab-2d-styles.css</span>
                     <div class="card-actions">
                         <a href="lab-2d.html" class="btn btn-primary">VIEW</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Three.js WebGL Lab Style -->
+            <div class="page-card">
+                <div class="card-header">
+                    <span class="card-title">THREE.JS WEBGL LAB</span>
+                    <span class="card-badge badge-secondary">WEBGL</span>
+                </div>
+                <div class="card-preview" style="background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 50%, #10B981 100%);">
+                    <div style="text-align: center;">
+                        <div style="font-size: 24px; margin-bottom: 8px;">&#127919;</div>
+                        <div>Real 3D WebGL Scene</div>
+                    </div>
+                </div>
+                <p class="card-desc">
+                    Actual Three.js implementation with real WebGL rendering. Features OrbitControls for camera movement,
+                    EffectComposer for postprocessing, UnrealBloomPass for glow effects, and interactive 3D lab equipment.
+                </p>
+                <div class="card-features">
+                    <span class="feature-tag">THREE.JS</span>
+                    <span class="feature-tag">WEBGL</span>
+                    <span class="feature-tag">ORBIT CONTROLS</span>
+                    <span class="feature-tag">BLOOM</span>
+                    <span class="feature-tag">POSTPROCESS</span>
+                </div>
+                <div class="card-footer">
+                    <span class="card-path">styles/3d-lab/, styles/3d-lab-modern/</span>
+                    <div class="card-actions">
+                        <a href="styles/3d-lab/index.html" class="btn">ORIGINAL</a>
+                        <a href="styles/3d-lab-modern/index.html" class="btn btn-primary">MODERN</a>
                     </div>
                 </div>
             </div>
@@ -904,8 +980,10 @@
 
         <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px;">
             <a href="index.html" class="btn btn-primary">MAIN SITE</a>
-            <a href="lab.html" class="btn">3D LAB</a>
+            <a href="lab.html" class="btn">CSS 3D LAB</a>
             <a href="lab-2d.html" class="btn">2D LAB</a>
+            <a href="styles/3d-lab/index.html" class="btn">THREE.JS LAB</a>
+            <a href="styles/3d-lab-modern/index.html" class="btn">THREE.JS MODERN</a>
             <a href="blog.html" class="btn">BLOG</a>
             <a href="prd.html" class="btn">PRD</a>
         </div>
