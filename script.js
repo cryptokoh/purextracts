@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initForms();
     initAnimations();
     initMobileEnhancements();
+    initProductFiltering();
 });
 
 /**
@@ -552,7 +553,109 @@ function initMobileEnhancements() {
     console.log('Mobile enhancements initialized');
 }
 
+/**
+ * Product Category Filtering
+ */
+function initProductFiltering() {
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    const productCards = document.querySelectorAll('.product-card');
+    const productsGrid = document.querySelector('.products-grid');
+
+    if (!categoryButtons.length || !productCards.length) return;
+
+    // Handle category button clicks
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const category = button.dataset.category;
+
+            // Update active button state
+            categoryButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            // Filter products with animation
+            filterProducts(category, productCards);
+
+            // Scroll to products section smoothly
+            const productsSection = document.getElementById('products');
+            if (productsSection && window.scrollY > productsSection.offsetTop) {
+                // Already past products, no need to scroll
+            }
+        });
+    });
+
+    // Add keyboard navigation for category buttons
+    categoryButtons.forEach((button, index) => {
+        button.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                const next = categoryButtons[index + 1] || categoryButtons[0];
+                next.focus();
+                next.click();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                const prev = categoryButtons[index - 1] || categoryButtons[categoryButtons.length - 1];
+                prev.focus();
+                prev.click();
+            }
+        });
+    });
+
+    // URL hash-based filtering
+    const handleHashFilter = () => {
+        const hash = window.location.hash.replace('#', '');
+        if (hash && hash.startsWith('filter-')) {
+            const category = hash.replace('filter-', '');
+            const targetButton = document.querySelector(`.category-btn[data-category="${category}"]`);
+            if (targetButton) {
+                targetButton.click();
+            }
+        }
+    };
+
+    window.addEventListener('hashchange', handleHashFilter);
+    handleHashFilter(); // Check on load
+
+    console.log('Product filtering initialized');
+}
+
+/**
+ * Filter products by category with staggered animation
+ */
+function filterProducts(category, productCards) {
+    let visibleIndex = 0;
+
+    productCards.forEach((card, index) => {
+        const cardCategory = card.dataset.category;
+        const shouldShow = category === 'all' || cardCategory === category;
+
+        if (shouldShow) {
+            // Show with staggered animation
+            card.classList.remove('hidden');
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+
+            setTimeout(() => {
+                card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, visibleIndex * 50);
+
+            visibleIndex++;
+        } else {
+            // Hide immediately
+            card.classList.add('hidden');
+            card.style.opacity = '0';
+        }
+    });
+
+    // Update product count display if exists
+    const productCount = document.querySelector('.product-count');
+    if (productCount) {
+        productCount.textContent = `${visibleIndex} product${visibleIndex !== 1 ? 's' : ''}`;
+    }
+}
+
 // Export for potential module usage
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { setTheme };
+    module.exports = { setTheme, filterProducts };
 }

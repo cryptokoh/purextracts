@@ -452,85 +452,701 @@
     <section class="products-section" id="products">
         <div class="container">
             <div class="section-header">
-                <span class="section-label">Coming Soon</span>
+                <span class="section-label">Shop Our Collection</span>
                 <h2 class="section-title">Premium Botanical Products</h2>
                 <p class="section-subtitle">
-                    We're preparing our first product line featuring carefully formulated nootropics,
-                    adaptogens, and botanical extracts. Sign up to be notified at launch.
+                    From functional gummies to rare seeds, explore our curated collection of
+                    lab-tested botanical extracts and ethnobotanical treasures.
                 </p>
             </div>
-            <div class="products-preview">
-                <div class="product-card product-featured">
-                    <div class="product-badge">Coming Soon</div>
-                    <div class="product-image">
-                        <div class="product-illustration">
-                            <svg viewBox="0 0 120 180" fill="currentColor">
-                                <rect x="35" y="40" width="50" height="120" rx="8"/>
-                                <rect x="30" y="30" width="60" height="20" rx="4"/>
-                                <circle cx="60" cy="100" r="20" opacity="0.3"/>
-                                <path d="M50 90l10 20 10-20" stroke="currentColor" fill="none" stroke-width="2"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h3 class="product-title">Blue Lotus Tincture</h3>
-                        <p class="product-description">
-                            Premium extract of Nymphaea caerulea, traditionally used for relaxation
-                            and dream enhancement. Crafted using our proprietary cold extraction process.
-                        </p>
-                        <ul class="product-features">
-                            <li>Full-spectrum extract</li>
-                            <li>Organic alcohol base</li>
-                            <li>Third-party tested</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-badge">Coming Soon</div>
-                    <div class="product-image">
-                        <div class="product-illustration energy">
-                            <svg viewBox="0 0 120 160" fill="currentColor">
-                                <path d="M30 140h60l-10-60h15L55 20 45 80h15l-30 60z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h3 class="product-title">Nootropic Energy Drink</h3>
-                        <p class="product-description">
-                            Clean, sustained energy without the crash. Featuring lion's mane, cordyceps,
-                            and natural caffeine from green tea.
-                        </p>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-badge">Coming Soon</div>
-                    <div class="product-image">
-                        <div class="product-illustration seeds">
-                            <svg viewBox="0 0 120 120" fill="currentColor">
-                                <ellipse cx="60" cy="60" rx="40" ry="25"/>
-                                <ellipse cx="60" cy="60" rx="30" ry="18" opacity="0.5"/>
-                                <path d="M60 35v50M45 50c10-5 20-5 30 0"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h3 class="product-title">Nicotiana Rustica Seeds</h3>
-                        <p class="product-description">
-                            Heirloom tobacco seeds for traditional ceremonial use.
-                            Organically grown and ethically sourced.
-                        </p>
-                    </div>
-                </div>
+
+            <!-- Category Navigation -->
+            <div class="product-categories" id="productCategories">
+                <button class="category-btn active" data-category="all">All Products</button>
+                <button class="category-btn" data-category="gummies">Gummies</button>
+                <button class="category-btn" data-category="tinctures">Tinctures</button>
+                <button class="category-btn" data-category="extracts">Pure Extracts</button>
+                <button class="category-btn" data-category="nutrients">Plant Nutrients</button>
+                <button class="category-btn" data-category="dried">Dried Plants</button>
+                <button class="category-btn" data-category="live">Live Plants</button>
+                <button class="category-btn" data-category="seeds">Seeds</button>
             </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid" id="productsGrid">
+
+                <!-- GUMMIES -->
+                <div class="product-card" data-category="gummies">
+                    <div class="product-badge bestseller">Bestseller</div>
+                    <div class="product-image">
+                        <div class="product-illustration gummy">
+                            <svg viewBox="0 0 80 80" fill="currentColor">
+                                <ellipse cx="40" cy="50" rx="28" ry="20"/>
+                                <ellipse cx="40" cy="45" rx="22" ry="15" opacity="0.6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Gummies</span>
+                    <h3 class="product-title">Kanna Mood Gummies</h3>
+                    <p class="product-description">Sceletium tortuosum for natural mood elevation and stress relief.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="gummies">
+                    <div class="product-image">
+                        <div class="product-illustration gummy lotus">
+                            <svg viewBox="0 0 80 80" fill="currentColor">
+                                <ellipse cx="40" cy="50" rx="28" ry="20"/>
+                                <ellipse cx="40" cy="45" rx="22" ry="15" opacity="0.6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Gummies</span>
+                    <h3 class="product-title">Blue Lotus Dream Gummies</h3>
+                    <p class="product-description">Nymphaea caerulea for relaxation and lucid dreaming support.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="gummies">
+                    <div class="product-image">
+                        <div class="product-illustration gummy energy">
+                            <svg viewBox="0 0 80 80" fill="currentColor">
+                                <ellipse cx="40" cy="50" rx="28" ry="20"/>
+                                <ellipse cx="40" cy="45" rx="22" ry="15" opacity="0.6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Gummies</span>
+                    <h3 class="product-title">Nootropic Focus Gummies</h3>
+                    <p class="product-description">Cognitive enhancement blend for clarity and concentration.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="gummies">
+                    <div class="product-badge new">New</div>
+                    <div class="product-image">
+                        <div class="product-illustration gummy focus">
+                            <svg viewBox="0 0 80 80" fill="currentColor">
+                                <ellipse cx="40" cy="50" rx="28" ry="20"/>
+                                <ellipse cx="40" cy="45" rx="22" ry="15" opacity="0.6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Gummies</span>
+                    <h3 class="product-title">Focus Formula Gummies</h3>
+                    <p class="product-description">Natural alternative for sustained attention and productivity.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="gummies">
+                    <div class="product-image">
+                        <div class="product-illustration gummy sleep">
+                            <svg viewBox="0 0 80 80" fill="currentColor">
+                                <ellipse cx="40" cy="50" rx="28" ry="20"/>
+                                <ellipse cx="40" cy="45" rx="22" ry="15" opacity="0.6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Gummies</span>
+                    <h3 class="product-title">Deep Sleep Gummies</h3>
+                    <p class="product-description">Botanical blend for restful, restorative sleep.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="gummies">
+                    <div class="product-image">
+                        <div class="product-illustration gummy recovery">
+                            <svg viewBox="0 0 80 80" fill="currentColor">
+                                <ellipse cx="40" cy="50" rx="28" ry="20"/>
+                                <ellipse cx="40" cy="45" rx="22" ry="15" opacity="0.6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Gummies</span>
+                    <h3 class="product-title">Recovery & Repair Gummies</h3>
+                    <p class="product-description">Post-workout recovery with adaptogenic support.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="gummies">
+                    <div class="product-image">
+                        <div class="product-illustration gummy detox">
+                            <svg viewBox="0 0 80 80" fill="currentColor">
+                                <ellipse cx="40" cy="50" rx="28" ry="20"/>
+                                <ellipse cx="40" cy="45" rx="22" ry="15" opacity="0.6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Gummies</span>
+                    <h3 class="product-title">Detox & Cleanse Gummies</h3>
+                    <p class="product-description">Gentle cleansing formula with parasite-clearing botanicals.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="gummies">
+                    <div class="product-image">
+                        <div class="product-illustration gummy immune">
+                            <svg viewBox="0 0 80 80" fill="currentColor">
+                                <ellipse cx="40" cy="50" rx="28" ry="20"/>
+                                <ellipse cx="40" cy="45" rx="22" ry="15" opacity="0.6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Gummies</span>
+                    <h3 class="product-title">Immune Boost Gummies</h3>
+                    <p class="product-description">Daily immune support with elderberry and adaptogenic mushrooms.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="gummies">
+                    <div class="product-image">
+                        <div class="product-illustration gummy creatine">
+                            <svg viewBox="0 0 80 80" fill="currentColor">
+                                <ellipse cx="40" cy="50" rx="28" ry="20"/>
+                                <ellipse cx="40" cy="45" rx="22" ry="15" opacity="0.6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Gummies</span>
+                    <h3 class="product-title">Creatine Performance Gummies</h3>
+                    <p class="product-description">Delicious way to get your daily creatine for strength and cognition.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <!-- TINCTURES -->
+                <div class="product-card" data-category="tinctures">
+                    <div class="product-badge bestseller">Bestseller</div>
+                    <div class="product-image">
+                        <div class="product-illustration tincture">
+                            <svg viewBox="0 0 60 120" fill="currentColor">
+                                <rect x="18" y="30" width="24" height="80" rx="4"/>
+                                <rect x="15" y="20" width="30" height="15" rx="2"/>
+                                <rect x="22" y="5" width="16" height="18" rx="2"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Tinctures</span>
+                    <h3 class="product-title">Kanna Extract Tincture</h3>
+                    <p class="product-description">High-potency Sceletium tortuosum for rapid mood support.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="tinctures">
+                    <div class="product-image">
+                        <div class="product-illustration tincture lotus">
+                            <svg viewBox="0 0 60 120" fill="currentColor">
+                                <rect x="18" y="30" width="24" height="80" rx="4"/>
+                                <rect x="15" y="20" width="30" height="15" rx="2"/>
+                                <rect x="22" y="5" width="16" height="18" rx="2"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Tinctures</span>
+                    <h3 class="product-title">Blue Lotus Tincture</h3>
+                    <p class="product-description">Premium Nymphaea caerulea for relaxation and dream enhancement.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="tinctures">
+                    <div class="product-image">
+                        <div class="product-illustration tincture nootropic">
+                            <svg viewBox="0 0 60 120" fill="currentColor">
+                                <rect x="18" y="30" width="24" height="80" rx="4"/>
+                                <rect x="15" y="20" width="30" height="15" rx="2"/>
+                                <rect x="22" y="5" width="16" height="18" rx="2"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Tinctures</span>
+                    <h3 class="product-title">Nootropic Blend Tincture</h3>
+                    <p class="product-description">Synergistic cognitive enhancement formula.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="tinctures">
+                    <div class="product-image">
+                        <div class="product-illustration tincture energy">
+                            <svg viewBox="0 0 60 120" fill="currentColor">
+                                <rect x="18" y="30" width="24" height="80" rx="4"/>
+                                <rect x="15" y="20" width="30" height="15" rx="2"/>
+                                <rect x="22" y="5" width="16" height="18" rx="2"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Tinctures</span>
+                    <h3 class="product-title">Energy Boost Tincture</h3>
+                    <p class="product-description">Natural energy without jitters or crash.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="tinctures">
+                    <div class="product-image">
+                        <div class="product-illustration tincture sleep">
+                            <svg viewBox="0 0 60 120" fill="currentColor">
+                                <rect x="18" y="30" width="24" height="80" rx="4"/>
+                                <rect x="15" y="20" width="30" height="15" rx="2"/>
+                                <rect x="22" y="5" width="16" height="18" rx="2"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Tinctures</span>
+                    <h3 class="product-title">Sleep Formula Tincture</h3>
+                    <p class="product-description">Fast-acting sleep support for restful nights.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="tinctures">
+                    <div class="product-image">
+                        <div class="product-illustration tincture lung">
+                            <svg viewBox="0 0 60 120" fill="currentColor">
+                                <rect x="18" y="30" width="24" height="80" rx="4"/>
+                                <rect x="15" y="20" width="30" height="15" rx="2"/>
+                                <rect x="22" y="5" width="16" height="18" rx="2"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Tinctures</span>
+                    <h3 class="product-title">Lung Detox Tincture</h3>
+                    <p class="product-description">Respiratory cleanse with mullein and traditional herbs.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="tinctures">
+                    <div class="product-image">
+                        <div class="product-illustration tincture immune">
+                            <svg viewBox="0 0 60 120" fill="currentColor">
+                                <rect x="18" y="30" width="24" height="80" rx="4"/>
+                                <rect x="15" y="20" width="30" height="15" rx="2"/>
+                                <rect x="22" y="5" width="16" height="18" rx="2"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Tinctures</span>
+                    <h3 class="product-title">Immune Defense Tincture</h3>
+                    <p class="product-description">Concentrated immune support for daily wellness.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <!-- PURE EXTRACTS -->
+                <div class="product-card" data-category="extracts">
+                    <div class="product-badge premium">Premium</div>
+                    <div class="product-image">
+                        <div class="product-illustration extract">
+                            <svg viewBox="0 0 80 80" fill="currentColor">
+                                <circle cx="40" cy="40" r="30"/>
+                                <circle cx="40" cy="40" r="20" opacity="0.5"/>
+                                <circle cx="40" cy="40" r="10" opacity="0.3"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Pure Extracts</span>
+                    <h3 class="product-title">Kanna 200:1 Extract</h3>
+                    <p class="product-description">Standardized high-potency Sceletium tortuosum extract.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="extracts">
+                    <div class="product-badge premium">Premium</div>
+                    <div class="product-image">
+                        <div class="product-illustration extract lotus">
+                            <svg viewBox="0 0 80 80" fill="currentColor">
+                                <circle cx="40" cy="40" r="30"/>
+                                <circle cx="40" cy="40" r="20" opacity="0.5"/>
+                                <circle cx="40" cy="40" r="10" opacity="0.3"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Pure Extracts</span>
+                    <h3 class="product-title">Blue Lotus Resin 200:1</h3>
+                    <p class="product-description">Concentrated Nymphaea caerulea resin extract.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="extracts">
+                    <div class="product-badge new">New</div>
+                    <div class="product-image">
+                        <div class="product-illustration extract mushroom">
+                            <svg viewBox="0 0 80 80" fill="currentColor">
+                                <circle cx="40" cy="40" r="30"/>
+                                <circle cx="40" cy="40" r="20" opacity="0.5"/>
+                                <circle cx="40" cy="40" r="10" opacity="0.3"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Pure Extracts</span>
+                    <h3 class="product-title">Amanita Muscaria Extract</h3>
+                    <p class="product-description">Muscimol-standardized extract from fly agaric mushroom.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="extracts">
+                    <div class="product-image">
+                        <div class="product-illustration extract elderberry">
+                            <svg viewBox="0 0 80 80" fill="currentColor">
+                                <circle cx="40" cy="40" r="30"/>
+                                <circle cx="40" cy="40" r="20" opacity="0.5"/>
+                                <circle cx="40" cy="40" r="10" opacity="0.3"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Pure Extracts</span>
+                    <h3 class="product-title">Elderberry Extract</h3>
+                    <p class="product-description">Potent immune-supporting Sambucus nigra concentrate.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="extracts">
+                    <div class="product-image">
+                        <div class="product-illustration extract hibiscus">
+                            <svg viewBox="0 0 80 80" fill="currentColor">
+                                <circle cx="40" cy="40" r="30"/>
+                                <circle cx="40" cy="40" r="20" opacity="0.5"/>
+                                <circle cx="40" cy="40" r="10" opacity="0.3"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Pure Extracts</span>
+                    <h3 class="product-title">Hibiscus Extract</h3>
+                    <p class="product-description">Rich in antioxidants for cardiovascular and skin health.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <!-- PLANT NUTRIENTS -->
+                <div class="product-card" data-category="nutrients">
+                    <div class="product-image">
+                        <div class="product-illustration nutrient">
+                            <svg viewBox="0 0 80 100" fill="currentColor">
+                                <rect x="20" y="20" width="40" height="70" rx="4"/>
+                                <rect x="25" y="10" width="30" height="15" rx="2"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Plant Nutrients</span>
+                    <h3 class="product-title">Natural Surfactant</h3>
+                    <p class="product-description">Organic wetting agent for improved nutrient absorption.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="nutrients">
+                    <div class="product-image">
+                        <div class="product-illustration nutrient bio">
+                            <svg viewBox="0 0 80 100" fill="currentColor">
+                                <rect x="20" y="20" width="40" height="70" rx="4"/>
+                                <rect x="25" y="10" width="30" height="15" rx="2"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Plant Nutrients</span>
+                    <h3 class="product-title">Biostimulant Concentrate</h3>
+                    <p class="product-description">Enhance root development and plant vigor naturally.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="nutrients">
+                    <div class="product-image">
+                        <div class="product-illustration nutrient microbe">
+                            <svg viewBox="0 0 80 100" fill="currentColor">
+                                <rect x="20" y="20" width="40" height="70" rx="4"/>
+                                <rect x="25" y="10" width="30" height="15" rx="2"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Plant Nutrients</span>
+                    <h3 class="product-title">Beneficial Microbes</h3>
+                    <p class="product-description">Living soil inoculant for thriving plant health.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <!-- DRIED PLANTS -->
+                <div class="product-card" data-category="dried">
+                    <div class="product-badge bestseller">Bestseller</div>
+                    <div class="product-image">
+                        <div class="product-illustration dried">
+                            <svg viewBox="0 0 80 80" fill="currentColor">
+                                <path d="M40 10 C20 30, 20 60, 40 70 C60 60, 60 30, 40 10"/>
+                                <path d="M40 20 C30 35, 30 55, 40 65 C50 55, 50 35, 40 20" opacity="0.5"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Dried Plants</span>
+                    <h3 class="product-title">Mullein Leaf</h3>
+                    <p class="product-description">Traditional respiratory support herb, wildcrafted.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="dried">
+                    <div class="product-image">
+                        <div class="product-illustration dried lotus">
+                            <svg viewBox="0 0 80 80" fill="currentColor">
+                                <path d="M40 10 C20 30, 20 60, 40 70 C60 60, 60 30, 40 10"/>
+                                <path d="M40 20 C30 35, 30 55, 40 65 C50 55, 50 35, 40 20" opacity="0.5"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Dried Plants</span>
+                    <h3 class="product-title">Blue Lotus Flowers</h3>
+                    <p class="product-description">Whole dried Nymphaea caerulea for tea or smoking blends.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="dried">
+                    <div class="product-image">
+                        <div class="product-illustration dried kanna">
+                            <svg viewBox="0 0 80 80" fill="currentColor">
+                                <path d="M40 10 C20 30, 20 60, 40 70 C60 60, 60 30, 40 10"/>
+                                <path d="M40 20 C30 35, 30 55, 40 65 C50 55, 50 35, 40 20" opacity="0.5"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Dried Plants</span>
+                    <h3 class="product-title">Kanna (Sceletium)</h3>
+                    <p class="product-description">Fermented and dried South African mood herb.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="dried">
+                    <div class="product-image">
+                        <div class="product-illustration dried mushroom">
+                            <svg viewBox="0 0 80 80" fill="currentColor">
+                                <path d="M40 10 C20 30, 20 60, 40 70 C60 60, 60 30, 40 10"/>
+                                <path d="M40 20 C30 35, 30 55, 40 65 C50 55, 50 35, 40 20" opacity="0.5"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Dried Plants</span>
+                    <h3 class="product-title">Amanita Muscaria Caps</h3>
+                    <p class="product-description">Properly prepared fly agaric mushroom caps.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="dried">
+                    <div class="product-image">
+                        <div class="product-illustration dried moringa">
+                            <svg viewBox="0 0 80 80" fill="currentColor">
+                                <path d="M40 10 C20 30, 20 60, 40 70 C60 60, 60 30, 40 10"/>
+                                <path d="M40 20 C30 35, 30 55, 40 65 C50 55, 50 35, 40 20" opacity="0.5"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Dried Plants</span>
+                    <h3 class="product-title">Moringa Leaf Powder</h3>
+                    <p class="product-description">Nutrient-dense superfood from the miracle tree.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="dried">
+                    <div class="product-image">
+                        <div class="product-illustration dried cloves">
+                            <svg viewBox="0 0 80 80" fill="currentColor">
+                                <path d="M40 10 C20 30, 20 60, 40 70 C60 60, 60 30, 40 10"/>
+                                <path d="M40 20 C30 35, 30 55, 40 65 C50 55, 50 35, 40 20" opacity="0.5"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Dried Plants</span>
+                    <h3 class="product-title">Whole Cloves</h3>
+                    <p class="product-description">Aromatic spice with antimicrobial properties.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <!-- LIVE PLANTS -->
+                <div class="product-card" data-category="live">
+                    <div class="product-badge limited">Limited</div>
+                    <div class="product-image">
+                        <div class="product-illustration live cactus">
+                            <svg viewBox="0 0 80 100" fill="currentColor">
+                                <ellipse cx="40" cy="85" rx="25" ry="10"/>
+                                <path d="M40 80 L40 30 M30 50 L40 40 L50 50"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Live Plants</span>
+                    <h3 class="product-title">San Pedro Cactus</h3>
+                    <p class="product-description">Trichocereus pachanoi - ornamental columnar cactus.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="live">
+                    <div class="product-image">
+                        <div class="product-illustration live cutting">
+                            <svg viewBox="0 0 80 100" fill="currentColor">
+                                <ellipse cx="40" cy="85" rx="25" ry="10"/>
+                                <path d="M40 80 L40 40 M25 55 C35 50 45 50 55 55"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Live Plants</span>
+                    <h3 class="product-title">Elderberry Cuttings</h3>
+                    <p class="product-description">Ready-to-root Sambucus nigra for your garden.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="live">
+                    <div class="product-image">
+                        <div class="product-illustration live dragon">
+                            <svg viewBox="0 0 80 100" fill="currentColor">
+                                <ellipse cx="40" cy="85" rx="25" ry="10"/>
+                                <path d="M40 80 L40 40 M25 55 C35 50 45 50 55 55"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Live Plants</span>
+                    <h3 class="product-title">Dragon Fruit Cuttings</h3>
+                    <p class="product-description">Exotic pitaya vine cuttings for growing your own.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="live">
+                    <div class="product-image">
+                        <div class="product-illustration live berry">
+                            <svg viewBox="0 0 80 100" fill="currentColor">
+                                <ellipse cx="40" cy="85" rx="25" ry="10"/>
+                                <path d="M40 80 L40 40 M25 55 C35 50 45 50 55 55"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Live Plants</span>
+                    <h3 class="product-title">Blueberry Cuttings</h3>
+                    <p class="product-description">Heritage variety blueberry plant starts.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="live">
+                    <div class="product-image">
+                        <div class="product-illustration live blackberry">
+                            <svg viewBox="0 0 80 100" fill="currentColor">
+                                <ellipse cx="40" cy="85" rx="25" ry="10"/>
+                                <path d="M40 80 L40 40 M25 55 C35 50 45 50 55 55"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Live Plants</span>
+                    <h3 class="product-title">Blackberry Cuttings</h3>
+                    <p class="product-description">Thornless blackberry variety for easy harvesting.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="live">
+                    <div class="product-badge rare">Rare</div>
+                    <div class="product-image">
+                        <div class="product-illustration live sugarcane">
+                            <svg viewBox="0 0 80 100" fill="currentColor">
+                                <ellipse cx="40" cy="85" rx="25" ry="10"/>
+                                <path d="M40 80 L40 40 M25 55 C35 50 45 50 55 55"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Live Plants</span>
+                    <h3 class="product-title">Heirloom Sugarcane</h3>
+                    <p class="product-description">Rare heritage sugarcane variety cuttings.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="live">
+                    <div class="product-image">
+                        <div class="product-illustration live comfrey">
+                            <svg viewBox="0 0 80 100" fill="currentColor">
+                                <ellipse cx="40" cy="85" rx="25" ry="10"/>
+                                <path d="M40 80 L40 40 M25 55 C35 50 45 50 55 55"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Live Plants</span>
+                    <h3 class="product-title">Comfrey Root Cutting</h3>
+                    <p class="product-description">Symphytum officinale - medicinal compost activator.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <!-- SEEDS -->
+                <div class="product-card" data-category="seeds">
+                    <div class="product-image">
+                        <div class="product-illustration seed">
+                            <svg viewBox="0 0 80 80" fill="currentColor">
+                                <ellipse cx="40" cy="40" rx="25" ry="15"/>
+                                <ellipse cx="40" cy="38" rx="18" ry="10" opacity="0.5"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Seeds</span>
+                    <h3 class="product-title">West Texas Yucca Seeds</h3>
+                    <p class="product-description">Native yucca for xeriscaping and traditional use.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="seeds">
+                    <div class="product-badge popular">Popular</div>
+                    <div class="product-image">
+                        <div class="product-illustration seed tobacco">
+                            <svg viewBox="0 0 80 80" fill="currentColor">
+                                <ellipse cx="40" cy="40" rx="25" ry="15"/>
+                                <ellipse cx="40" cy="38" rx="18" ry="10" opacity="0.5"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Seeds</span>
+                    <h3 class="product-title">Nicotiana Rustica Seeds</h3>
+                    <p class="product-description">Sacred tobacco - Aztec ceremonial variety.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="seeds">
+                    <div class="product-image">
+                        <div class="product-illustration seed hibiscus">
+                            <svg viewBox="0 0 80 80" fill="currentColor">
+                                <ellipse cx="40" cy="40" rx="25" ry="15"/>
+                                <ellipse cx="40" cy="38" rx="18" ry="10" opacity="0.5"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Seeds</span>
+                    <h3 class="product-title">Hibiscus Seeds</h3>
+                    <p class="product-description">Hibiscus sabdariffa for tea and ornamental growing.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="seeds">
+                    <div class="product-image">
+                        <div class="product-illustration seed sugarcane">
+                            <svg viewBox="0 0 80 80" fill="currentColor">
+                                <ellipse cx="40" cy="40" rx="25" ry="15"/>
+                                <ellipse cx="40" cy="38" rx="18" ry="10" opacity="0.5"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Seeds</span>
+                    <h3 class="product-title">Sugarcane Seeds</h3>
+                    <p class="product-description">Rare sugarcane seeds for the dedicated grower.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+                <div class="product-card" data-category="seeds">
+                    <div class="product-badge limited">Limited</div>
+                    <div class="product-image">
+                        <div class="product-illustration seed cactus">
+                            <svg viewBox="0 0 80 80" fill="currentColor">
+                                <ellipse cx="40" cy="40" rx="25" ry="15"/>
+                                <ellipse cx="40" cy="38" rx="18" ry="10" opacity="0.5"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="product-category">Seeds</span>
+                    <h3 class="product-title">San Pedro Seeds</h3>
+                    <p class="product-description">Trichocereus pachanoi seeds for cactus enthusiasts.</p>
+                    <a href="#" class="product-link">View Product →</a>
+                </div>
+
+            </div>
+
+            <!-- Newsletter -->
             <div class="products-newsletter">
                 <div class="newsletter-content">
-                    <h3>Be First to Know</h3>
-                    <p>Join our waitlist for exclusive early access and 25% off your first order.</p>
+                    <h3>Get 15% Off Your First Order</h3>
+                    <p>Join our newsletter for exclusive deals, new product alerts, and botanical education.</p>
                 </div>
                 <form class="newsletter-form" id="newsletterForm">
                     <input type="email" placeholder="Enter your email" required>
                     <button type="submit" class="btn btn-primary">
-                        <span>Join Waitlist</span>
+                        <span>Subscribe</span>
                     </button>
                 </form>
             </div>
