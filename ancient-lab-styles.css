@@ -1004,6 +1004,40 @@ body.ancient-lab-body {
     height: 16px;
 }
 
+.lab-experience-btns {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.lab-2d-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: transparent;
+    color: var(--vine-green);
+    border: 2px solid var(--vine-green);
+    border-radius: var(--radius-lg);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.lab-2d-btn:hover {
+    background: var(--vine-green);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(61, 107, 53, 0.3);
+}
+
+.lab-2d-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
 @media (max-width: 600px) {
     .lab-3d-card {
         flex-direction: column;
@@ -1013,6 +1047,10 @@ body.ancient-lab-body {
     .lab-3d-visual {
         width: 80px;
         height: 80px;
+    }
+
+    .lab-experience-btns {
+        justify-content: center;
     }
 
     .lab-3d-icon {
@@ -1767,7 +1805,7 @@ body.ancient-lab-body {
     }
 
     .zone-nav {
-        top: 44px;
+        top: 56px;
         padding: var(--spacing-xs) var(--spacing-sm);
         justify-content: center;
         gap: var(--spacing-xs);
@@ -1796,7 +1834,7 @@ body.ancient-lab-body {
     }
 
     .lab-main {
-        padding-top: 100px;
+        padding-top: 115px;
     }
 
     .zone {
@@ -1821,6 +1859,22 @@ body.ancient-lab-body {
     .ruins-atmosphere {
         height: 180px;
         padding-top: var(--spacing-sm);
+    }
+
+    /* Smaller title to fit inside pillars on mobile */
+    .ruins-title {
+        font-size: 1.25rem;
+        line-height: 1.4;
+        padding: 0 var(--spacing-lg);
+    }
+
+    .ruins-header {
+        margin-bottom: var(--spacing-xl);
+    }
+
+    .ruins-description {
+        font-size: 0.875rem;
+        padding: 0 var(--spacing-sm);
     }
 
     .wisdom-card {
@@ -1912,11 +1966,11 @@ body.ancient-lab-body {
 
 @media (max-width: 480px) {
     .lab-main {
-        padding-top: 95px;
+        padding-top: 105px;
     }
 
     .zone-nav {
-        top: 40px;
+        top: 52px;
         gap: 2px;
         padding: var(--spacing-xs) 4px;
     }
@@ -1942,6 +1996,16 @@ body.ancient-lab-body {
 
     .zone-description {
         font-size: 0.9rem;
+    }
+
+    /* Even smaller ruins title for small phones */
+    .ruins-title {
+        font-size: 1.1rem;
+        padding: 0 var(--spacing-xl);
+    }
+
+    .ruins-atmosphere {
+        height: 160px;
     }
 
     .filter-tabs {

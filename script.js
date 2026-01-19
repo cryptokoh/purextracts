@@ -716,11 +716,26 @@ function initFeaturedCarousel() {
         updateCarousel();
     }
 
+    // Check if mobile (using native scroll)
+    function isMobile() {
+        return window.innerWidth <= 768;
+    }
+
     // Update carousel position
     function updateCarousel() {
-        const slideWidth = getSlideWidth();
-        const translateX = -currentIndex * slideWidth;
-        track.style.transform = `translateX(${translateX}px)`;
+        // On mobile, use native scroll instead of transform
+        if (isMobile()) {
+            track.style.transform = 'none';
+            // Scroll to current card
+            const card = cards[currentIndex];
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+        } else {
+            const slideWidth = getSlideWidth();
+            const translateX = -currentIndex * slideWidth;
+            track.style.transform = `translateX(${translateX}px)`;
+        }
 
         // Update buttons
         prevBtn.disabled = currentIndex === 0;
@@ -805,10 +820,13 @@ function initFeaturedCarousel() {
         }, 250);
     });
 
-    // Auto-advance (optional, every 5 seconds)
+    // Auto-advance (desktop only, every 5 seconds)
     let autoAdvance;
 
     function startAutoAdvance() {
+        // Don't auto-advance on mobile - let users swipe naturally
+        if (isMobile()) return;
+
         autoAdvance = setInterval(() => {
             if (currentIndex < totalCards - cardsPerView) {
                 nextSlide();
@@ -823,9 +841,46 @@ function initFeaturedCarousel() {
         clearInterval(autoAdvance);
     }
 
-    // Pause on hover
+    // Pause on hover (desktop only)
     track.addEventListener('mouseenter', stopAutoAdvance);
-    track.addEventListener('mouseleave', startAutoAdvance);
+    track.addEventListener('mouseleave', () => {
+        if (!isMobile()) startAutoAdvance();
+    });
+
+    // Sync dots with native scroll on mobile
+    let scrollTimeout;
+    track.addEventListener('scroll', () => {
+        if (!isMobile()) return;
+
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            // Find which card is most visible
+            const trackRect = track.getBoundingClientRect();
+            const trackCenter = trackRect.left + trackRect.width / 2;
+
+            let closestCard = 0;
+            let closestDistance = Infinity;
+
+            cards.forEach((card, i) => {
+                const cardRect = card.getBoundingClientRect();
+                const cardCenter = cardRect.left + cardRect.width / 2;
+                const distance = Math.abs(cardCenter - trackCenter);
+
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closestCard = i;
+                }
+            });
+
+            currentIndex = closestCard;
+
+            // Update dots without scrolling
+            const dots = dotsContainer.querySelectorAll('.carousel-dot');
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentIndex);
+            });
+        }, 100);
+    }, { passive: true });
 
     // Initialize
     createDots();
