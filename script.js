@@ -3,7 +3,15 @@
  * Supports 3 themes: Clinical White, Earth Apothecary, Modern Herbalist
  */
 
+// Prevent browser scroll restoration
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    // Reset scroll position on page load
+    window.scrollTo(0, 0);
+
     // Initialize all components
     initThemeSwitcher();
     initNavigation();

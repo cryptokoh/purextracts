@@ -32,6 +32,9 @@
     --serif: 'Cormorant Garamond', serif;
 
     --transition-theme: 0.8s ease;
+
+    /* Font scaling (default 130% for better readability) */
+    --font-scale: 1.3;
 }
 
 /* Shaman Theme Override */
@@ -52,12 +55,12 @@ html, body {
 
 body {
     font-family: var(--mono);
-    font-size: 11px;
+    font-size: calc(11px * var(--font-scale));
     background: var(--bg);
     color: var(--text);
     line-height: 1.4;
     -webkit-font-smoothing: antialiased;
-    transition: background var(--transition-theme), color var(--transition-theme);
+    transition: background var(--transition-theme), color var(--transition-theme), font-size 0.2s ease;
 }
 
 /* Shaman uses serif */
@@ -263,6 +266,77 @@ body.tripping * {
 
 [data-theme="shaman"] .theme-icon.shaman {
     display: block;
+}
+
+/* Font Size Control */
+.font-size-control {
+    display: flex;
+    gap: 1px;
+    border: 1px solid var(--line-dim);
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--line-dim);
+}
+
+.font-btn {
+    padding: 6px 10px;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    background: var(--bg);
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 28px;
+    text-align: center;
+}
+
+.font-btn:hover {
+    background: var(--line-dim);
+    color: var(--text);
+}
+
+.font-btn:active {
+    transform: scale(0.95);
+}
+
+.font-btn.active {
+    background: var(--line);
+    color: var(--bg);
+}
+
+.font-btn.disabled,
+.font-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.font-btn:disabled:hover {
+    background: var(--bg);
+    color: var(--text-dim);
+}
+
+/* Shaman theme font control */
+[data-theme="shaman"] .font-btn {
+    font-family: var(--serif);
+    font-size: 12px;
+    letter-spacing: 0.02em;
+}
+
+[data-theme="shaman"] .font-size-control {
+    border-color: var(--shaman-line-dim);
+    border-radius: 6px;
+}
+
+[data-theme="shaman"] .font-btn:hover {
+    background: var(--shaman-line-dim);
+}
+
+[data-theme="shaman"] .font-btn.active {
+    background: var(--shaman-accent);
+    color: var(--shaman-bg);
 }
 
 .status {
@@ -1655,29 +1729,31 @@ body.tripping * {
 }
 
 .card-title {
-    font-size: 11px;
+    font-size: calc(11px * var(--font-scale));
     font-weight: 500;
     letter-spacing: 0.05em;
     margin-bottom: 8px;
     line-height: 1.4;
+    transition: font-size 0.2s ease;
 }
 
 [data-theme="shaman"] .card-title {
     font-family: var(--serif);
-    font-size: 14px;
+    font-size: calc(14px * var(--font-scale));
     letter-spacing: 0;
 }
 
 .card-desc {
-    font-size: 9px;
+    font-size: calc(9px * var(--font-scale));
     line-height: 1.6;
     color: var(--text-dim);
     margin-bottom: 12px;
+    transition: font-size 0.2s ease;
 }
 
 [data-theme="shaman"] .card-desc {
     font-family: var(--serif);
-    font-size: 11px;
+    font-size: calc(11px * var(--font-scale));
     font-style: italic;
 }
 
@@ -1770,6 +1846,22 @@ body.tripping * {
     .theme-toggle {
         width: 28px;
         height: 28px;
+    }
+
+    /* Font size control - compact on mobile */
+    .font-size-control {
+        gap: 0;
+    }
+
+    .font-btn {
+        padding: 4px 8px;
+        font-size: 9px;
+        min-width: 24px;
+        min-height: 28px;
+    }
+
+    .font-reset {
+        display: none; /* Hide reset on small screens */
     }
 }
 
@@ -2136,31 +2228,33 @@ body.tripping * {
 }
 
 .modal-body h3 {
-    font-size: 13px;
+    font-size: calc(13px * var(--font-scale));
     letter-spacing: 0.1em;
     color: var(--text);
     margin: 0 0 12px 0;
     padding-bottom: 8px;
     border-bottom: 1px solid var(--line-dim);
+    transition: font-size 0.2s ease;
 }
 
 [data-theme="shaman"] .modal-body h3 {
     font-family: var(--serif);
-    font-size: 16px;
+    font-size: calc(16px * var(--font-scale));
     letter-spacing: 0.05em;
 }
 
 .modal-body p {
-    font-size: 13px;
+    font-size: calc(13px * var(--font-scale));
     line-height: 1.7;
     color: var(--text);
     margin: 0 0 16px 0;
     opacity: 0.85;
+    transition: font-size 0.2s ease;
 }
 
 [data-theme="shaman"] .modal-body p {
     font-family: var(--serif);
-    font-size: 14px;
+    font-size: calc(14px * var(--font-scale));
     line-height: 1.8;
 }
 
@@ -2171,12 +2265,13 @@ body.tripping * {
 }
 
 .modal-body li {
-    font-size: 12px;
+    font-size: calc(12px * var(--font-scale));
     line-height: 1.6;
     color: var(--text);
     padding: 6px 0 6px 16px;
     position: relative;
     opacity: 0.85;
+    transition: font-size 0.2s ease;
 }
 
 .modal-body li::before {
@@ -2188,7 +2283,7 @@ body.tripping * {
 
 [data-theme="shaman"] .modal-body li {
     font-family: var(--serif);
-    font-size: 13px;
+    font-size: calc(13px * var(--font-scale));
 }
 
 [data-theme="shaman"] .modal-body li::before {

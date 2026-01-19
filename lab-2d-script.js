@@ -37,8 +37,119 @@
         }, duration);
     }
 
+    // Font Size Manager
+    const FontSizeManager = {
+        SCALE_KEY: 'pureextracts-font-scale',
+        SCALES: [1, 1.15, 1.30, 1.45, 1.60],
+        DEFAULT_INDEX: 2, // 130% as default for better readability
+
+        currentIndex: 2,
+
+        init() {
+            // Load saved preference
+            const saved = localStorage.getItem(this.SCALE_KEY);
+            if (saved !== null) {
+                const index = parseInt(saved, 10);
+                if (index >= 0 && index < this.SCALES.length) {
+                    this.currentIndex = index;
+                }
+            }
+            this.apply();
+            this.bindEvents();
+            this.updateButtons();
+        },
+
+        apply() {
+            const scale = this.SCALES[this.currentIndex];
+            document.documentElement.style.setProperty('--font-scale', scale);
+        },
+
+        increase() {
+            if (this.currentIndex < this.SCALES.length - 1) {
+                this.currentIndex++;
+                this.save();
+                this.apply();
+                this.updateButtons();
+            }
+        },
+
+        decrease() {
+            if (this.currentIndex > 0) {
+                this.currentIndex--;
+                this.save();
+                this.apply();
+                this.updateButtons();
+            }
+        },
+
+        reset() {
+            this.currentIndex = this.DEFAULT_INDEX;
+            this.save();
+            this.apply();
+            this.updateButtons();
+        },
+
+        save() {
+            localStorage.setItem(this.SCALE_KEY, this.currentIndex.toString());
+        },
+
+        updateButtons() {
+            const decreaseBtn = $('#fontDecrease');
+            const increaseBtn = $('#fontIncrease');
+            const resetBtn = $('#fontReset');
+
+            if (decreaseBtn) {
+                decreaseBtn.disabled = this.currentIndex === 0;
+                decreaseBtn.classList.toggle('disabled', this.currentIndex === 0);
+            }
+            if (increaseBtn) {
+                increaseBtn.disabled = this.currentIndex === this.SCALES.length - 1;
+                increaseBtn.classList.toggle('disabled', this.currentIndex === this.SCALES.length - 1);
+            }
+            if (resetBtn) {
+                resetBtn.classList.toggle('active', this.currentIndex === this.DEFAULT_INDEX);
+            }
+        },
+
+        bindEvents() {
+            const decreaseBtn = $('#fontDecrease');
+            const increaseBtn = $('#fontIncrease');
+            const resetBtn = $('#fontReset');
+
+            if (decreaseBtn) {
+                decreaseBtn.addEventListener('click', () => this.decrease());
+            }
+            if (increaseBtn) {
+                increaseBtn.addEventListener('click', () => this.increase());
+            }
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => this.reset());
+            }
+
+            // Keyboard shortcuts (optional)
+            document.addEventListener('keydown', (e) => {
+                // Only trigger if not in an input field
+                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+                if (e.ctrlKey || e.metaKey) {
+                    if (e.key === '=' || e.key === '+') {
+                        e.preventDefault();
+                        this.increase();
+                    } else if (e.key === '-') {
+                        e.preventDefault();
+                        this.decrease();
+                    } else if (e.key === '0') {
+                        e.preventDefault();
+                        this.reset();
+                    }
+                }
+            });
+        }
+    };
+
     // Init
     document.addEventListener('DOMContentLoaded', () => {
+        FontSizeManager.init();
         initVials();
         initPanel();
         initContact();

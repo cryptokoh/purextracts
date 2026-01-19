@@ -3068,16 +3068,16 @@ ul, ol {
 .scroll-indicator {
     display: none;
     position: fixed;
-    bottom: 100px;
-    right: var(--spacing-md);
-    width: 40px;
-    height: 40px;
+    bottom: 20px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
     background: var(--color-primary);
     color: var(--color-text-inverse);
     border-radius: var(--radius-full);
     align-items: center;
     justify-content: center;
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-md);
     opacity: 0;
     transform: translateY(20px);
     transition: all var(--transition-base);
@@ -3091,16 +3091,20 @@ ul, ol {
 }
 
 .scroll-indicator svg {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
 }
 
+/* Scroll indicator disabled - users can scroll manually */
+/*
 @media (max-width: 768px) {
     .scroll-indicator {
         display: flex;
-        bottom: 100px;
+        bottom: 20px;
+        right: 20px;
     }
 }
+*/
 
 /* ============================================
    Mobile Card Swipe Indicators

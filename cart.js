@@ -373,6 +373,14 @@ const Cart = {
 
     // Show checkout modal (demo)
     showCheckoutModal() {
+        // Prevent multiple modals
+        if (document.querySelector('.checkout-modal')) {
+            return;
+        }
+
+        // Close cart sidebar first to prevent z-index stacking issues
+        this.close();
+
         const modal = document.createElement('div');
         modal.className = 'checkout-modal';
         modal.innerHTML = `
