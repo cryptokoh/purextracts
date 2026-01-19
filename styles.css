@@ -619,6 +619,14 @@ ul, ol {
     transform: scaleX(1);
 }
 
+.nav-link.active {
+    color: var(--color-primary);
+}
+
+.nav-link.active::after {
+    transform: scaleX(1);
+}
+
 .nav-link-cta {
     padding: var(--spacing-sm) var(--spacing-lg);
     background: var(--gradient-primary);

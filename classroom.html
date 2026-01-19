@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="earth">
+<html lang="en" data-theme="clinical">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -28,10 +28,33 @@
                 <span class="logo-text">Pure Extracts<span class="logo-suffix">TX</span></span>
             </a>
             <div class="nav-links" id="navLinks">
-                <a href="index.html" class="nav-link">Home</a>
                 <a href="index.html#products" class="nav-link">Products</a>
-                <a href="blog.html" class="nav-link">Articles</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="classroom.html" class="nav-link active">Learn</a>
                 <a href="index.html#contact" class="nav-link nav-link-cta">Contact Us</a>
+                <!-- Theme Switcher -->
+                <div class="theme-switcher" id="themeSwitcher">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Change theme">
+                        <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                        </svg>
+                    </button>
+                    <div class="theme-options" id="themeOptions">
+                        <button class="theme-option" data-theme="clinical">
+                            <span class="theme-preview clinical-preview"></span>
+                            <span>Clinical White</span>
+                        </button>
+                        <button class="theme-option" data-theme="earth">
+                            <span class="theme-preview earth-preview"></span>
+                            <span>Earth Apothecary</span>
+                        </button>
+                        <button class="theme-option" data-theme="herbalist">
+                            <span class="theme-preview herbalist-preview"></span>
+                            <span>Modern Herbalist</span>
+                        </button>
+                    </div>
+                </div>
             </div>
             <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle menu">
                 <span></span>
