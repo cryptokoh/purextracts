@@ -1963,6 +1963,97 @@ ul, ol {
 }
 
 /* ============================================
+   About Section
+   ============================================ */
+
+.about-section {
+    padding: var(--spacing-4xl) 0;
+    background: var(--color-surface);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-3xl);
+    align-items: center;
+}
+
+.about-content {
+    max-width: 560px;
+}
+
+.about-content p {
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.7;
+}
+
+.about-values {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.value-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: var(--color-text);
+    font-weight: 500;
+    font-size: var(--text-sm);
+}
+
+.value-item svg {
+    width: 20px;
+    height: 20px;
+    color: var(--color-primary);
+}
+
+.about-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-image-placeholder {
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-bg);
+    border-radius: var(--radius-2xl);
+    color: var(--color-primary);
+}
+
+.about-image-placeholder svg {
+    width: 80%;
+    height: 80%;
+}
+
+@media (max-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+    }
+
+    .about-visual {
+        order: -1;
+    }
+
+    .about-image-placeholder {
+        max-width: 280px;
+    }
+
+    .about-values {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+}
+
+/* ============================================
    Contact Section
    ============================================ */
 
