@@ -1782,6 +1782,97 @@ body.tripping * {
     }
 }
 
+/* Mobile Lab Scene Elements */
+@media (max-width: 767px) {
+    .lab-container {
+        padding-top: 44px;
+    }
+
+    .grid-bg {
+        inset: 44px 0 0 0;
+        background-size: 30px 30px;
+    }
+
+    .lab-scene {
+        padding: 10px;
+    }
+
+    .bench {
+        bottom: 60px;
+        width: 80%;
+        max-width: 220px;
+    }
+
+    .vials {
+        bottom: 90px;
+        gap: 6px;
+    }
+
+    .vial svg {
+        width: 28px;
+        height: 56px;
+    }
+
+    .vial-label {
+        font-size: 6px;
+    }
+
+    .floor {
+        bottom: 40px;
+        width: 100%;
+        max-width: 320px;
+    }
+
+    /* Show lab elements on mobile - smaller and repositioned */
+    .microscope {
+        display: block;
+        left: 2%;
+        bottom: 70px;
+        width: 28px;
+        opacity: 0.5;
+    }
+
+    .beaker {
+        display: block;
+        right: 2%;
+        bottom: 75px;
+        width: 24px;
+        opacity: 0.5;
+    }
+
+    .test-tubes {
+        display: block;
+        left: 8%;
+        bottom: 65px;
+        width: 30px;
+        opacity: 0.4;
+    }
+
+    .petri-dish {
+        display: block;
+        right: 8%;
+        bottom: 60px;
+        width: 28px;
+        opacity: 0.4;
+    }
+
+    .dna-helix {
+        display: block;
+        left: 3%;
+        top: 80px;
+        width: 20px;
+        opacity: 0.3;
+    }
+
+    .molecule {
+        display: block;
+        right: 3%;
+        top: 90px;
+        width: 25px;
+        opacity: 0.3;
+    }
+}
+
 /* Responsive Library Header */
 @media (max-width: 600px) {
     .library-header {
