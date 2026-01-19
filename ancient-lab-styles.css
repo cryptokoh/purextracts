@@ -1866,6 +1866,7 @@ body.ancient-lab-body {
         font-size: 1.25rem;
         line-height: 1.4;
         padding: 0 var(--spacing-lg);
+        margin-bottom: var(--spacing-lg);
     }
 
     .ruins-header {
@@ -1875,6 +1876,7 @@ body.ancient-lab-body {
     .ruins-description {
         font-size: 0.875rem;
         padding: 0 var(--spacing-sm);
+        margin-top: var(--spacing-md);
     }
 
     .wisdom-card {
@@ -2002,6 +2004,11 @@ body.ancient-lab-body {
     .ruins-title {
         font-size: 1.1rem;
         padding: 0 var(--spacing-xl);
+        margin-bottom: var(--spacing-md);
+    }
+
+    .ruins-description {
+        margin-top: var(--spacing-lg);
     }
 
     .ruins-atmosphere {
