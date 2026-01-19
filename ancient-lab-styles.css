@@ -1767,7 +1767,7 @@ body.ancient-lab-body {
     }
 
     .zone-nav {
-        top: 52px;
+        top: 44px;
         padding: var(--spacing-xs) var(--spacing-sm);
         justify-content: center;
         gap: var(--spacing-xs);
@@ -1796,7 +1796,7 @@ body.ancient-lab-body {
     }
 
     .lab-main {
-        padding-top: 110px;
+        padding-top: 100px;
     }
 
     .zone {
@@ -1912,11 +1912,11 @@ body.ancient-lab-body {
 
 @media (max-width: 480px) {
     .lab-main {
-        padding-top: 105px;
+        padding-top: 95px;
     }
 
     .zone-nav {
-        top: 48px;
+        top: 40px;
         gap: 2px;
         padding: var(--spacing-xs) 4px;
     }
