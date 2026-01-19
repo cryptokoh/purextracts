@@ -573,10 +573,19 @@ body.tripping * {
         opacity: 0;
         pointer-events: none;
         transform-origin: bottom center;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .beaker-bubble:hover {
+        background: var(--line-dim);
+        border-color: var(--accent);
     }
 
     .beaker-bubble.active {
         animation: bubblePop 4s ease-out forwards;
+        pointer-events: auto;
     }
 
     .bubble-text {
@@ -1892,36 +1901,37 @@ body.tripping * {
     .library-portal {
         display: block !important;
         position: fixed;
-        left: 10px;
+        left: 20px;
         top: 50%;
         transform: translateY(-50%);
-        width: 40px;
+        width: 55px;
         z-index: 100;
         background: var(--bg);
-        padding: 8px;
-        border-radius: 8px;
+        padding: 12px;
+        border-radius: 10px;
         border: 1px solid var(--line-dim);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 12px rgba(0,0,0,0.15);
     }
 
     .extract-portal {
         display: block !important;
         position: fixed;
-        right: 10px;
+        right: 20px;
         top: 50%;
         transform: translateY(-50%);
-        width: 45px;
+        width: 60px;
         z-index: 100;
         background: var(--bg);
-        padding: 8px;
-        border-radius: 8px;
+        padding: 12px;
+        border-radius: 10px;
         border: 1px solid var(--line-dim);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 12px rgba(0,0,0,0.15);
     }
 
     .portal-label {
-        font-size: 6px;
-        letter-spacing: 0.1em;
+        font-size: 7px;
+        letter-spacing: 0.08em;
+        margin-top: 6px;
     }
 
     .portal-hint {
