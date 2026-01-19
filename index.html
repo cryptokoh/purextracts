@@ -186,28 +186,14 @@
     <link rel="stylesheet" href="cart-styles.css">
 </head>
 <body>
-    <!-- Theme Switcher -->
-    <div class="theme-switcher" id="themeSwitcher">
-        <button class="theme-toggle" id="themeToggle" aria-label="Change theme">
-            <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="3"/>
-                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-            </svg>
-        </button>
-        <div class="theme-options" id="themeOptions">
-            <button class="theme-option" data-theme="clinical">
-                <span class="theme-preview clinical-preview"></span>
-                <span>Clinical White</span>
-            </button>
-            <button class="theme-option" data-theme="earth">
-                <span class="theme-preview earth-preview"></span>
-                <span>Earth Apothecary</span>
-            </button>
-            <button class="theme-option" data-theme="herbalist">
-                <span class="theme-preview herbalist-preview"></span>
-                <span>Modern Herbalist</span>
-            </button>
-        </div>
+    <!-- Ambient Floating Elements -->
+    <div class="ambient-container" aria-hidden="true">
+        <div class="ambient-orb orb-1"></div>
+        <div class="ambient-orb orb-2"></div>
+        <div class="ambient-orb orb-3"></div>
+        <div class="ambient-particle particle-1"></div>
+        <div class="ambient-particle particle-2"></div>
+        <div class="ambient-particle particle-3"></div>
     </div>
 
     <!-- Navigation -->
@@ -224,12 +210,33 @@
                 <span class="logo-text">Pure Extracts<span class="logo-suffix">TX</span></span>
             </a>
             <div class="nav-links" id="navLinks">
-                <a href="#about" class="nav-link">About</a>
-                <a href="#research" class="nav-link">Research</a>
                 <a href="#products" class="nav-link">Products</a>
-                <a href="blog.html" class="nav-link">Education</a>
-                <a href="#services" class="nav-link">Services</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="classroom.html" class="nav-link">Learn</a>
                 <a href="#contact" class="nav-link nav-link-cta">Contact Us</a>
+                <!-- Theme Switcher in Nav -->
+                <div class="theme-switcher" id="themeSwitcher">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Change theme">
+                        <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                        </svg>
+                    </button>
+                    <div class="theme-options" id="themeOptions">
+                        <button class="theme-option" data-theme="clinical">
+                            <span class="theme-preview clinical-preview"></span>
+                            <span>Clinical White</span>
+                        </button>
+                        <button class="theme-option" data-theme="earth">
+                            <span class="theme-preview earth-preview"></span>
+                            <span>Earth Apothecary</span>
+                        </button>
+                        <button class="theme-option" data-theme="herbalist">
+                            <span class="theme-preview herbalist-preview"></span>
+                            <span>Modern Herbalist</span>
+                        </button>
+                    </div>
+                </div>
             </div>
             <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle menu">
                 <span></span>
@@ -270,8 +277,8 @@
                         <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
                     </svg>
                 </a>
-                <a href="#research" class="btn btn-secondary">
-                    <span>Read Research</span>
+                <a href="classroom.html" class="btn btn-secondary">
+                    <span>Explore Labs</span>
                 </a>
             </div>
             <div class="hero-stats">
@@ -373,254 +380,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about-section" id="about">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-content">
-                    <span class="section-label">Our Story</span>
-                    <h2 class="section-title">From Personal Struggle to Natural Solutions</h2>
-                    <p class="about-lead">
-                        Inspired by our own battles with health challenges that pharmaceuticals couldn't resolve,
-                        we embarked on a global quest to uncover ancient remedies.
-                    </p>
-                    <p>
-                        Our founders traveled globally, studying traditional healing practices from Egyptian temples
-                        to Himalayan monasteries. We analyzed hundreds of scientific studies to validate what
-                        ancient cultures knew intuitively.
-                    </p>
-                    <p>
-                        Today, Pure Extracts combines this wisdom with proprietary extraction procedures
-                        developed using custom-designed equipment to preserve potency and purity.
-                    </p>
-                    <div class="about-features">
-                        <div class="about-feature">
-                            <div class="feature-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4>Research-Driven</h4>
-                                <p>Hundreds of studies reviewed</p>
-                            </div>
-                        </div>
-                        <div class="about-feature">
-                            <div class="feature-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4>Conservation Focus</h4>
-                                <p>Supporting biodiversity</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-visual">
-                    <div class="about-image-stack">
-                        <div class="about-image about-image-1">
-                            <div class="image-placeholder botanical-illustration">
-                                <svg viewBox="0 0 120 160" fill="currentColor" opacity="0.6">
-                                    <ellipse cx="60" cy="140" rx="40" ry="10"/>
-                                    <path d="M60 140V60"/>
-                                    <ellipse cx="60" cy="40" rx="35" ry="30"/>
-                                    <path d="M30 100C30 100 40 80 60 80C80 80 90 100 90 100"/>
-                                    <circle cx="60" cy="35" r="8"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="about-image about-image-2">
-                            <div class="image-placeholder lab-illustration">
-                                <svg viewBox="0 0 120 120" fill="currentColor" opacity="0.6">
-                                    <path d="M40 20h40v30l20 50H20l20-50V20z"/>
-                                    <rect x="45" y="10" width="30" height="15" rx="2"/>
-                                    <circle cx="50" cy="75" r="8"/>
-                                    <circle cx="70" cy="80" r="6"/>
-                                    <circle cx="60" cy="65" r="5"/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="about-decoration">
-                        <div class="deco-circle deco-circle-1"></div>
-                        <div class="deco-circle deco-circle-2"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Research Section -->
-    <section class="research-section" id="research">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Ingredient Insights</span>
-                <h2 class="section-title">Science-Backed Research</h2>
-                <p class="section-subtitle">
-                    Explore our comprehensive guides on nootropics, adaptogens, and botanical compounds.
-                    Every ingredient in our products is backed by peer-reviewed research.
-                </p>
-                <p class="swipe-hint">Swipe to explore</p>
-            </div>
-            <div class="research-grid">
-                <!-- Ashwagandha -->
-                <article class="research-card">
-                    <div class="research-card-header">
-                        <div class="research-icon adaptogen">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                            </svg>
-                        </div>
-                        <span class="research-category">Adaptogen</span>
-                    </div>
-                    <h3 class="research-title">Ashwagandha</h3>
-                    <p class="research-subtitle">6 Surprising Super Powers Backed By Science</p>
-                    <p class="research-excerpt">
-                        Discover the scientifically-supported benefits of this revered botanical adaptogen
-                        used for centuries in Ayurvedic medicine.
-                    </p>
-                    <a href="#" class="research-link">
-                        <span>Read Article</span>
-                        <svg viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                    </a>
-                </article>
-
-                <!-- Lion's Mane -->
-                <article class="research-card">
-                    <div class="research-card-header">
-                        <div class="research-icon mushroom">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2C8 2 4 6 4 10c0 2.5 1 4.5 3 6v4h10v-4c2-1.5 3-3.5 3-6 0-4-4-8-8-8z"/>
-                            </svg>
-                        </div>
-                        <span class="research-category">Nootropic Mushroom</span>
-                    </div>
-                    <h3 class="research-title">Lion's Mane</h3>
-                    <p class="research-subtitle">The Mushroom Powerhouse for Brain Health</p>
-                    <p class="research-excerpt">
-                        Explore how this remarkable fungus supports cognitive function, nerve growth factor
-                        production, and neurological wellness.
-                    </p>
-                    <a href="#" class="research-link">
-                        <span>Read Article</span>
-                        <svg viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                    </a>
-                </article>
-
-                <!-- Rhodiola Rosea -->
-                <article class="research-card">
-                    <div class="research-card-header">
-                        <div class="research-icon adaptogen">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z"/>
-                            </svg>
-                        </div>
-                        <span class="research-category">Adaptogen</span>
-                    </div>
-                    <h3 class="research-title">Rhodiola Rosea</h3>
-                    <p class="research-subtitle">Nature's Stress-Buster</p>
-                    <p class="research-excerpt">
-                        Learn about this Arctic root's ability to enhance mental performance, reduce fatigue,
-                        and support stress resilience.
-                    </p>
-                    <a href="#" class="research-link">
-                        <span>Read Article</span>
-                        <svg viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                    </a>
-                </article>
-
-                <!-- Cordyceps -->
-                <article class="research-card">
-                    <div class="research-card-header">
-                        <div class="research-icon mushroom">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2C8 2 4 6 4 10c0 2.5 1 4.5 3 6v4h10v-4c2-1.5 3-3.5 3-6 0-4-4-8-8-8z"/>
-                            </svg>
-                        </div>
-                        <span class="research-category">Energy Mushroom</span>
-                    </div>
-                    <h3 class="research-title">Cordyceps</h3>
-                    <p class="research-subtitle">The Energy-Boosting Fungus from the Himalayas</p>
-                    <p class="research-excerpt">
-                        Discover how this legendary mushroom enhances athletic performance, oxygen utilization,
-                        and cellular energy production.
-                    </p>
-                    <a href="#" class="research-link">
-                        <span>Read Article</span>
-                        <svg viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                    </a>
-                </article>
-
-                <!-- Bacopa Monnieri -->
-                <article class="research-card">
-                    <div class="research-card-header">
-                        <div class="research-icon nootropic">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"/>
-                                <circle cx="12" cy="12" r="4"/>
-                            </svg>
-                        </div>
-                        <span class="research-category">Nootropic Herb</span>
-                    </div>
-                    <h3 class="research-title">Bacopa Monnieri</h3>
-                    <p class="research-subtitle">The Ancient Memory-Boosting Herb</p>
-                    <p class="research-excerpt">
-                        Explore how this Ayurvedic herb enhances memory formation, learning capacity,
-                        and cognitive longevity.
-                    </p>
-                    <a href="#" class="research-link">
-                        <span>Read Article</span>
-                        <svg viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                    </a>
-                </article>
-
-                <!-- Kanna -->
-                <article class="research-card">
-                    <div class="research-card-header">
-                        <div class="research-icon mood">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                            </svg>
-                        </div>
-                        <span class="research-category">Mood Support</span>
-                    </div>
-                    <h3 class="research-title">Kanna</h3>
-                    <p class="research-subtitle">The South African Herb for Mood and Focus</p>
-                    <p class="research-excerpt">
-                        Learn about Sceletium tortuosum's traditional uses and modern research
-                        on mood enhancement and cognitive benefits.
-                    </p>
-                    <a href="#" class="research-link">
-                        <span>Read Article</span>
-                        <svg viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                    </a>
-                </article>
-            </div>
-            <div class="research-cta">
-                <a href="#" class="btn btn-outline">
-                    <span>View All Research Articles</span>
-                    <svg viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </section>
-
     <!-- Products Section -->
     <section class="products-section" id="products">
         <div class="container">
@@ -628,25 +387,205 @@
                 <span class="section-label">Shop Our Collection</span>
                 <h2 class="section-title">Premium Botanical Products</h2>
                 <p class="section-subtitle">
-                    From functional gummies to rare seeds, explore our curated collection of
-                    lab-tested botanical extracts and ethnobotanical treasures.
+                    Lab-tested botanical extracts and ethnobotanical treasures, crafted with 30+ years of expertise.
                 </p>
             </div>
 
-            <!-- Category Navigation -->
-            <div class="product-categories" id="productCategories">
-                <button class="category-btn active" data-category="all">All Products</button>
-                <button class="category-btn" data-category="gummies">Gummies</button>
-                <button class="category-btn" data-category="tinctures">Tinctures</button>
-                <button class="category-btn" data-category="extracts">Pure Extracts</button>
-                <button class="category-btn" data-category="nutrients">Plant Nutrients</button>
-                <button class="category-btn" data-category="dried">Dried Plants</button>
-                <button class="category-btn" data-category="live">Live Plants</button>
-                <button class="category-btn" data-category="seeds">Seeds</button>
+            <!-- Featured Products Carousel -->
+            <div class="featured-products">
+                <div class="featured-header">
+                    <h3 class="featured-title">Featured Products</h3>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn carousel-prev" id="carouselPrev" aria-label="Previous">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M15 19l-7-7 7-7"/>
+                            </svg>
+                        </button>
+                        <button class="carousel-btn carousel-next" id="carouselNext" aria-label="Next">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="carousel-container">
+                    <div class="carousel-track" id="carouselTrack">
+                        <!-- Featured Product 1: Kanna Mood Gummies -->
+                        <div class="featured-card">
+                            <div class="featured-badge">Bestseller</div>
+                            <div class="featured-image">
+                                <div class="featured-illustration gummy">
+                                    <svg viewBox="0 0 100 100" fill="currentColor">
+                                        <ellipse cx="50" cy="60" rx="35" ry="25"/>
+                                        <ellipse cx="50" cy="55" rx="28" ry="18" opacity="0.6"/>
+                                        <ellipse cx="50" cy="50" rx="20" ry="12" opacity="0.3"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="featured-content">
+                                <span class="featured-category">Gummies</span>
+                                <h4 class="featured-name">Kanna Mood Gummies</h4>
+                                <p class="featured-desc">Sceletium tortuosum for natural mood elevation and stress relief.</p>
+                                <div class="featured-footer">
+                                    <span class="featured-price">$34.99</span>
+                                    <button class="btn btn-primary btn-sm add-to-cart-btn">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Featured Product 2: Blue Lotus Resin -->
+                        <div class="featured-card">
+                            <div class="featured-badge premium">Premium</div>
+                            <div class="featured-image">
+                                <div class="featured-illustration extract">
+                                    <svg viewBox="0 0 100 100" fill="currentColor">
+                                        <path d="M35 85 L35 45 Q35 35 50 30 Q65 35 65 45 L65 85 Z" opacity="0.8"/>
+                                        <ellipse cx="50" cy="85" rx="15" ry="5"/>
+                                        <ellipse cx="50" cy="30" rx="10" ry="5" opacity="0.6"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="featured-content">
+                                <span class="featured-category">Pure Extracts</span>
+                                <h4 class="featured-name">Blue Lotus Resin 200:1</h4>
+                                <p class="featured-desc">Concentrated Nymphaea caerulea resin extract for deep relaxation.</p>
+                                <div class="featured-footer">
+                                    <span class="featured-price">$49.99</span>
+                                    <button class="btn btn-primary btn-sm add-to-cart-btn">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Featured Product 3: Kanna Extract Tincture -->
+                        <div class="featured-card">
+                            <div class="featured-badge">Bestseller</div>
+                            <div class="featured-image">
+                                <div class="featured-illustration tincture">
+                                    <svg viewBox="0 0 100 100" fill="currentColor">
+                                        <path d="M40 20 L40 35 L35 45 L35 80 Q35 85 50 85 Q65 85 65 80 L65 45 L60 35 L60 20 Z" opacity="0.7"/>
+                                        <rect x="38" y="15" width="24" height="8" rx="2"/>
+                                        <ellipse cx="50" cy="65" rx="10" ry="12" opacity="0.4"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="featured-content">
+                                <span class="featured-category">Tinctures</span>
+                                <h4 class="featured-name">Kanna Extract Tincture</h4>
+                                <p class="featured-desc">High-potency Sceletium tortuosum for rapid mood support.</p>
+                                <div class="featured-footer">
+                                    <span class="featured-price">$39.99</span>
+                                    <button class="btn btn-primary btn-sm add-to-cart-btn">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Featured Product 4: Lion's Mane Focus -->
+                        <div class="featured-card">
+                            <div class="featured-badge new">New</div>
+                            <div class="featured-image">
+                                <div class="featured-illustration gummy mushroom">
+                                    <svg viewBox="0 0 100 100" fill="currentColor">
+                                        <ellipse cx="50" cy="60" rx="35" ry="25"/>
+                                        <ellipse cx="50" cy="55" rx="28" ry="18" opacity="0.6"/>
+                                        <circle cx="50" cy="45" r="8" opacity="0.4"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="featured-content">
+                                <span class="featured-category">Gummies</span>
+                                <h4 class="featured-name">Nootropic Focus Gummies</h4>
+                                <p class="featured-desc">Cognitive enhancement blend for clarity and concentration.</p>
+                                <div class="featured-footer">
+                                    <span class="featured-price">$32.99</span>
+                                    <button class="btn btn-primary btn-sm add-to-cart-btn">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Featured Product 5: Mullein Leaf -->
+                        <div class="featured-card">
+                            <div class="featured-badge">Bestseller</div>
+                            <div class="featured-image">
+                                <div class="featured-illustration dried">
+                                    <svg viewBox="0 0 100 100" fill="currentColor">
+                                        <path d="M50 85 L50 40" stroke="currentColor" stroke-width="3" fill="none"/>
+                                        <ellipse cx="50" cy="35" rx="25" ry="20" opacity="0.7"/>
+                                        <ellipse cx="40" cy="55" rx="15" ry="12" opacity="0.5"/>
+                                        <ellipse cx="60" cy="60" rx="12" ry="10" opacity="0.5"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="featured-content">
+                                <span class="featured-category">Dried Plants</span>
+                                <h4 class="featured-name">Mullein Leaf</h4>
+                                <p class="featured-desc">Traditional respiratory support herb, wildcrafted and pure.</p>
+                                <div class="featured-footer">
+                                    <span class="featured-price">$18.99</span>
+                                    <button class="btn btn-primary btn-sm add-to-cart-btn">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Featured Product 6: Kanna 200:1 Extract -->
+                        <div class="featured-card">
+                            <div class="featured-badge premium">Premium</div>
+                            <div class="featured-image">
+                                <div class="featured-illustration extract powder">
+                                    <svg viewBox="0 0 100 100" fill="currentColor">
+                                        <path d="M25 80 L35 50 L65 50 L75 80 Z" opacity="0.8"/>
+                                        <ellipse cx="50" cy="80" rx="25" ry="8"/>
+                                        <ellipse cx="50" cy="50" rx="15" ry="5" opacity="0.6"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="featured-content">
+                                <span class="featured-category">Pure Extracts</span>
+                                <h4 class="featured-name">Kanna 200:1 Extract</h4>
+                                <p class="featured-desc">Standardized high-potency Sceletium tortuosum extract.</p>
+                                <div class="featured-footer">
+                                    <span class="featured-price">$54.99</span>
+                                    <button class="btn btn-primary btn-sm add-to-cart-btn">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-dots" id="carouselDots"></div>
             </div>
 
-            <!-- Products Grid -->
-            <div class="products-grid" id="productsGrid">
+            <!-- View All Products Toggle -->
+            <div class="view-all-container">
+                <button class="view-all-btn" id="viewAllBtn">
+                    <span class="view-all-text">View All Products</span>
+                    <span class="view-all-count">45+ Items</span>
+                    <svg class="view-all-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <a href="classroom.html" class="learn-more-btn">
+                    <svg class="learn-more-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                    </svg>
+                    <span>Learn More</span>
+                </a>
+            </div>
+
+            <!-- Full Product Catalog (Collapsible) -->
+            <div class="full-catalog" id="fullCatalog">
+                <!-- Category Navigation -->
+                <div class="product-categories" id="productCategories">
+                    <button class="category-btn active" data-category="all">All Products</button>
+                    <button class="category-btn" data-category="gummies">Gummies</button>
+                    <button class="category-btn" data-category="tinctures">Tinctures</button>
+                    <button class="category-btn" data-category="extracts">Pure Extracts</button>
+                    <button class="category-btn" data-category="nutrients">Plant Nutrients</button>
+                    <button class="category-btn" data-category="dried">Dried Plants</button>
+                    <button class="category-btn" data-category="live">Live Plants</button>
+                    <button class="category-btn" data-category="seeds">Seeds</button>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="products-grid" id="productsGrid">
 
                 <!-- GUMMIES -->
                 <div class="product-card" data-category="gummies">
@@ -1309,6 +1248,8 @@
                 </div>
 
             </div>
+            </div>
+            <!-- End Full Product Catalog -->
 
             <!-- Newsletter -->
             <div class="products-newsletter">
@@ -1326,115 +1267,6 @@
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services-section" id="services">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Professional Services</span>
-                <h2 class="section-title">Equipment & Extraction Services</h2>
-                <p class="section-subtitle">
-                    From greenhouse design to bulk extraction, we provide professional-grade
-                    solutions for botanical processing operations of all scales.
-                </p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-                        </svg>
-                    </div>
-                    <h3 class="service-title">Greenhouse Design</h3>
-                    <p class="service-description">
-                        Controlled environments for optimal plant growth and extraction. Climate control systems,
-                        UV-resistant materials, and automated irrigation customizable for any scale.
-                    </p>
-                    <ul class="service-features">
-                        <li>Climate control systems</li>
-                        <li>Automated irrigation</li>
-                        <li>Scalable designs</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
-                        </svg>
-                    </div>
-                    <h3 class="service-title">Extraction Equipment</h3>
-                    <p class="service-description">
-                        Professional setup of ethanol, butane, and heptane extraction systems.
-                        Proper calibration, safety compliance, and integration with existing setups.
-                    </p>
-                    <ul class="service-features">
-                        <li>Multiple extraction methods</li>
-                        <li>Safety compliance</li>
-                        <li>System integration</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-                            <circle cx="12" cy="12" r="3"/>
-                        </svg>
-                    </div>
-                    <h3 class="service-title">Equipment Repair</h3>
-                    <p class="service-description">
-                        Diagnostic and maintenance support covering pumps, extractors, and environmental
-                        control systems with on-site and remote assistance.
-                    </p>
-                    <ul class="service-features">
-                        <li>On-site support</li>
-                        <li>Remote diagnostics</li>
-                        <li>Minimize downtime</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-                        </svg>
-                    </div>
-                    <h3 class="service-title">Bulk Extraction</h3>
-                    <p class="service-description">
-                        Processing of crops into refined extracts for product infusion or wholesale needs.
-                        Wholesale accounts receive bulk pricing and priority handling.
-                    </p>
-                    <ul class="service-features">
-                        <li>Wholesale pricing</li>
-                        <li>Priority handling</li>
-                        <li>Quality assurance</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Explore Natural Wellness?</h2>
-                <p>
-                    Whether you're seeking premium botanical products or professional extraction services,
-                    we're here to help you on your wellness journey.
-                </p>
-                <div class="cta-actions">
-                    <a href="#contact" class="btn btn-primary btn-lg">
-                        <span>Get in Touch</span>
-                        <svg viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                        </svg>
-                    </a>
-                    <a href="#research" class="btn btn-ghost btn-lg">
-                        <span>Learn More</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
         <div class="container">
@@ -1443,7 +1275,7 @@
                     <span class="section-label">Get in Touch</span>
                     <h2 class="section-title">Let's Connect</h2>
                     <p>
-                        Have questions about our products or services? We'd love to hear from you.
+                        Have questions about our products? We'd love to hear from you.
                         Reach out and our team will respond within 24 hours.
                     </p>
                     <div class="contact-details">
@@ -1486,11 +1318,11 @@
                             <label for="interest">Area of Interest</label>
                             <select id="interest" name="interest">
                                 <option value="">Select an option</option>
-                                <option value="products">Products</option>
-                                <option value="greenhouse">Greenhouse Design</option>
-                                <option value="extraction">Extraction Equipment</option>
-                                <option value="repair">Equipment Repair</option>
-                                <option value="bulk">Bulk Extraction</option>
+                                <option value="gummies">Gummies</option>
+                                <option value="tinctures">Tinctures</option>
+                                <option value="extracts">Pure Extracts</option>
+                                <option value="plants">Plants & Seeds</option>
+                                <option value="wholesale">Wholesale Inquiry</option>
                                 <option value="other">Other</option>
                             </select>
                         </div>
@@ -1532,28 +1364,28 @@
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#research">Research</a></li>
                         <li><a href="#products">Products</a></li>
-                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="classroom.html">Learn</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
-                    <h4>Services</h4>
+                    <h4>Products</h4>
                     <ul>
-                        <li><a href="#services">Greenhouse Design</a></li>
-                        <li><a href="#services">Extraction Equipment</a></li>
-                        <li><a href="#services">Equipment Repair</a></li>
-                        <li><a href="#services">Bulk Extraction</a></li>
+                        <li><a href="#products">Gummies</a></li>
+                        <li><a href="#products">Tinctures</a></li>
+                        <li><a href="#products">Pure Extracts</a></li>
+                        <li><a href="#products">Plants & Seeds</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
-                    <h4>Research</h4>
+                    <h4>Learn</h4>
                     <ul>
-                        <li><a href="#">Ashwagandha</a></li>
-                        <li><a href="#">Lion's Mane</a></li>
-                        <li><a href="#">Rhodiola Rosea</a></li>
-                        <li><a href="#">View All Articles</a></li>
+                        <li><a href="classroom.html">Classroom</a></li>
+                        <li><a href="ancient-lab.html">Ancient Lab</a></li>
+                        <li><a href="ancient-lab.html#library">Research Library</a></li>
+                        <li><a href="blog.html">Blog</a></li>
                     </ul>
                 </div>
             </div>

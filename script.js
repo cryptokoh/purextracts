@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initAnimations();
     initMobileEnhancements();
     initProductFiltering();
+    initFeaturedCarousel();
+    initViewAllProducts();
 });
 
 /**
@@ -653,6 +655,228 @@ function filterProducts(category, productCards) {
     if (productCount) {
         productCount.textContent = `${visibleIndex} product${visibleIndex !== 1 ? 's' : ''}`;
     }
+}
+
+/**
+ * Featured Products Carousel
+ */
+function initFeaturedCarousel() {
+    const track = document.getElementById('carouselTrack');
+    const prevBtn = document.getElementById('carouselPrev');
+    const nextBtn = document.getElementById('carouselNext');
+    const dotsContainer = document.getElementById('carouselDots');
+
+    if (!track || !prevBtn || !nextBtn) {
+        console.log('Carousel elements not found');
+        return;
+    }
+
+    const cards = track.querySelectorAll('.featured-card');
+    const totalCards = cards.length;
+    let currentIndex = 0;
+    let cardsPerView = getCardsPerView();
+
+    // Create dots
+    function createDots() {
+        dotsContainer.innerHTML = '';
+        const totalDots = Math.ceil(totalCards / cardsPerView);
+
+        for (let i = 0; i < totalDots; i++) {
+            const dot = document.createElement('button');
+            dot.classList.add('carousel-dot');
+            if (i === 0) dot.classList.add('active');
+            dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    // Get cards per view based on screen width
+    function getCardsPerView() {
+        if (window.innerWidth <= 768) return 1;
+        if (window.innerWidth <= 1024) return 2;
+        return 3;
+    }
+
+    // Calculate slide width
+    function getSlideWidth() {
+        if (!cards.length) return 0;
+        const card = cards[0];
+        const style = window.getComputedStyle(card);
+        const width = card.offsetWidth;
+        const marginRight = parseFloat(style.marginRight) || 0;
+        const gap = 24; // var(--spacing-lg)
+        return width + gap;
+    }
+
+    // Go to specific slide
+    function goToSlide(index) {
+        const maxIndex = Math.max(0, totalCards - cardsPerView);
+        currentIndex = Math.min(Math.max(0, index * cardsPerView), maxIndex);
+        updateCarousel();
+    }
+
+    // Update carousel position
+    function updateCarousel() {
+        const slideWidth = getSlideWidth();
+        const translateX = -currentIndex * slideWidth;
+        track.style.transform = `translateX(${translateX}px)`;
+
+        // Update buttons
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex >= totalCards - cardsPerView;
+
+        // Update dots
+        const dots = dotsContainer.querySelectorAll('.carousel-dot');
+        const activeDotIndex = Math.floor(currentIndex / cardsPerView);
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === activeDotIndex);
+        });
+    }
+
+    // Next slide
+    function nextSlide() {
+        const maxIndex = totalCards - cardsPerView;
+        if (currentIndex < maxIndex) {
+            currentIndex++;
+            updateCarousel();
+        }
+    }
+
+    // Previous slide
+    function prevSlide() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
+        }
+    }
+
+    // Event listeners
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+
+    // Keyboard navigation
+    track.parentElement.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            prevSlide();
+        } else if (e.key === 'ArrowRight') {
+            nextSlide();
+        }
+    });
+
+    // Touch/swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    track.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    track.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        }
+    }
+
+    // Handle window resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            const newCardsPerView = getCardsPerView();
+            if (newCardsPerView !== cardsPerView) {
+                cardsPerView = newCardsPerView;
+                currentIndex = 0;
+                createDots();
+                updateCarousel();
+            }
+        }, 250);
+    });
+
+    // Auto-advance (optional, every 5 seconds)
+    let autoAdvance;
+
+    function startAutoAdvance() {
+        autoAdvance = setInterval(() => {
+            if (currentIndex < totalCards - cardsPerView) {
+                nextSlide();
+            } else {
+                currentIndex = 0;
+                updateCarousel();
+            }
+        }, 5000);
+    }
+
+    function stopAutoAdvance() {
+        clearInterval(autoAdvance);
+    }
+
+    // Pause on hover
+    track.addEventListener('mouseenter', stopAutoAdvance);
+    track.addEventListener('mouseleave', startAutoAdvance);
+
+    // Initialize
+    createDots();
+    updateCarousel();
+    startAutoAdvance();
+
+    console.log('Featured carousel initialized');
+}
+
+/**
+ * View All Products Toggle
+ */
+function initViewAllProducts() {
+    const viewAllBtn = document.getElementById('viewAllBtn');
+    const fullCatalog = document.getElementById('fullCatalog');
+
+    if (!viewAllBtn || !fullCatalog) {
+        console.log('View all elements not found');
+        return;
+    }
+
+    // Update button text based on state
+    function updateButtonText(isExpanded) {
+        const textSpan = viewAllBtn.querySelector('.view-all-text');
+        if (textSpan) {
+            textSpan.textContent = isExpanded ? 'Hide Products' : 'View All Products';
+        }
+    }
+
+    // Toggle catalog visibility
+    viewAllBtn.addEventListener('click', () => {
+        const isExpanded = fullCatalog.classList.toggle('expanded');
+        viewAllBtn.classList.toggle('active', isExpanded);
+        updateButtonText(isExpanded);
+
+        // Smooth scroll to catalog if expanding
+        if (isExpanded) {
+            setTimeout(() => {
+                fullCatalog.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+
+        // Announce state change for accessibility
+        viewAllBtn.setAttribute('aria-expanded', isExpanded);
+    });
+
+    // Initialize ARIA
+    viewAllBtn.setAttribute('aria-expanded', 'false');
+    viewAllBtn.setAttribute('aria-controls', 'fullCatalog');
+
+    console.log('View all products initialized');
 }
 
 // Export for potential module usage

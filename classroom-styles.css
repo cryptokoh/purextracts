@@ -1,0 +1,480 @@
+/* ============================================
+   Pure Extracts TX - Classroom Portal Styles
+   Educational entry point with lab navigation
+   ============================================ */
+
+/* Override theme for classroom */
+.classroom-body {
+    --color-primary: #6b7c5e;
+    --color-primary-light: #8a9e7a;
+    --color-primary-dark: #4f5c45;
+    --color-accent: #d4a857;
+    --color-accent-light: #e6c88a;
+}
+
+/* ============================================
+   Classroom Navigation
+   ============================================ */
+
+.classroom-nav {
+    background: rgba(250, 248, 245, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+[data-theme="herbalist"] .classroom-nav {
+    background: rgba(10, 15, 13, 0.95);
+}
+
+/* ============================================
+   Classroom Hero Section
+   ============================================ */
+
+.classroom-hero {
+    position: relative;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: calc(80px + var(--spacing-3xl)) var(--container-padding) var(--spacing-3xl);
+    text-align: center;
+    overflow: hidden;
+}
+
+.classroom-hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #f5f2ed 0%, #ede9e3 50%, #e5ddd3 100%);
+    z-index: 0;
+}
+
+[data-theme="herbalist"] .classroom-hero-bg {
+    background: linear-gradient(135deg, #0a0f0d 0%, #111916 50%, #1a2420 100%);
+}
+
+.hero-gradient-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center top, rgba(107, 124, 94, 0.1) 0%, transparent 60%);
+}
+
+/* Particle field */
+.particle-field {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: floatParticle 10s ease-in-out infinite;
+}
+
+@keyframes floatParticle {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.2;
+    }
+    50% {
+        transform: translateY(-30px) translateX(10px);
+        opacity: 0.5;
+    }
+}
+
+.classroom-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+}
+
+.classroom-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-text);
+}
+
+.text-gradient-gold {
+    background: linear-gradient(135deg, #d4a857 0%, #b8860b 50%, #d4a857 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.classroom-subtitle {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ============================================
+   Lab Experiences Section
+   ============================================ */
+
+.lab-experiences {
+    padding: var(--spacing-4xl) 0;
+    background: var(--color-bg);
+}
+
+.lab-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .lab-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Lab Card Styles */
+.lab-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-surface);
+    border-radius: var(--radius-2xl);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+    transition: all var(--transition-base);
+    text-decoration: none;
+    color: inherit;
+}
+
+.lab-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-color: var(--color-primary);
+}
+
+.lab-card-featured {
+    grid-column: 1 / -1;
+}
+
+@media (min-width: 768px) {
+    .lab-card-featured {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+    }
+}
+
+.lab-card-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(212, 168, 87, 0.1) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+    pointer-events: none;
+}
+
+.lab-card:hover .lab-card-glow {
+    opacity: 1;
+}
+
+.lab-card-badge {
+    position: absolute;
+    top: var(--spacing-md);
+    left: var(--spacing-md);
+    background: linear-gradient(135deg, #d4a857, #b8860b);
+    color: #fff;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 2;
+}
+
+.lab-card-visual {
+    position: relative;
+    padding: var(--spacing-2xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    background: linear-gradient(135deg, var(--color-bg-muted) 0%, var(--color-bg-alt) 100%);
+}
+
+.lab-card-featured .lab-card-visual {
+    min-height: 280px;
+}
+
+.lab-illustration {
+    width: 100%;
+    max-width: 200px;
+    color: var(--color-primary);
+    transition: transform var(--transition-base);
+}
+
+.lab-card:hover .lab-illustration {
+    transform: scale(1.05);
+}
+
+.lab-card-featured .lab-illustration {
+    max-width: 240px;
+}
+
+.lab-card-content {
+    padding: var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.lab-card-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text);
+}
+
+.lab-card-featured .lab-card-title {
+    font-size: var(--text-2xl);
+}
+
+.lab-card-description {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-md);
+    flex-grow: 1;
+}
+
+.lab-card-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-lg);
+}
+
+.feature-tag {
+    font-size: var(--text-xs);
+    font-weight: 500;
+    color: var(--color-primary);
+    background: var(--color-primary-subtle, rgba(107, 124, 94, 0.1));
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-full);
+}
+
+.lab-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-primary);
+    transition: gap var(--transition-base);
+}
+
+.lab-card-cta svg {
+    width: 18px;
+    height: 18px;
+    transition: transform var(--transition-base);
+}
+
+.lab-card:hover .lab-card-cta {
+    gap: var(--spacing-md);
+}
+
+.lab-card:hover .lab-card-cta svg {
+    transform: translateX(4px);
+}
+
+/* ============================================
+   Learning Paths Section
+   ============================================ */
+
+.learning-paths {
+    padding: var(--spacing-4xl) 0;
+    background: var(--color-bg-alt);
+}
+
+.paths-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.path-card {
+    background: var(--color-surface);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
+    border: 1px solid var(--color-border);
+    text-align: center;
+    transition: all var(--transition-base);
+}
+
+.path-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.path-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary-subtle, rgba(107, 124, 94, 0.1));
+    border-radius: var(--radius-lg);
+    color: var(--color-primary);
+}
+
+.path-icon svg {
+    width: 28px;
+    height: 28px;
+}
+
+.path-card h3 {
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text);
+}
+
+.path-card p {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-md);
+}
+
+.path-link {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text-muted);
+    font-style: italic;
+}
+
+/* ============================================
+   Classroom Footer
+   ============================================ */
+
+.classroom-footer {
+    padding: var(--spacing-2xl) 0;
+    background: var(--color-bg-muted);
+    border-top: 1px solid var(--color-border);
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xl);
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+@media (min-width: 768px) {
+    .footer-content {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
+}
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    text-decoration: none;
+    color: var(--color-text);
+}
+
+.footer-logo .logo-icon {
+    width: 32px;
+    height: 32px;
+    color: var(--color-primary);
+}
+
+.footer-logo span {
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    font-weight: 600;
+}
+
+.footer-tagline {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+}
+
+.footer-nav {
+    display: flex;
+    gap: var(--spacing-lg);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-nav a {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.footer-nav a:hover {
+    color: var(--color-primary);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--color-border);
+}
+
+.footer-bottom p {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+}
+
+/* ============================================
+   Responsive Adjustments
+   ============================================ */
+
+@media (max-width: 768px) {
+    .classroom-hero {
+        min-height: 60vh;
+        padding-top: calc(70px + var(--spacing-2xl));
+    }
+
+    .classroom-title {
+        font-size: 2rem;
+    }
+
+    .classroom-subtitle {
+        font-size: var(--text-base);
+    }
+
+    .lab-card-featured .lab-card-visual {
+        min-height: 200px;
+    }
+
+    .lab-card-featured .lab-card-title {
+        font-size: var(--text-xl);
+    }
+
+    .paths-grid {
+        grid-template-columns: 1fr;
+    }
+}
