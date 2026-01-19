@@ -8,9 +8,19 @@ if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
 }
 
+// Clear hash on fresh page load (prevents auto-scroll to sections)
+// but preserve filter hashes
+if (window.location.hash && !window.location.hash.startsWith('#filter-')) {
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // Reset scroll position on page load
     window.scrollTo(0, 0);
+
+    // Ensure scroll stays at top after browser processes the page
+    setTimeout(() => window.scrollTo(0, 0), 0);
+    requestAnimationFrame(() => window.scrollTo(0, 0));
 
     // Initialize all components
     initThemeSwitcher();
@@ -828,13 +838,10 @@ function initFeaturedCarousel() {
         }, 250);
     });
 
-    // Auto-advance (desktop only, every 5 seconds)
+    // Auto-advance (every 3 seconds with gentle transition)
     let autoAdvance;
 
     function startAutoAdvance() {
-        // Don't auto-advance on mobile - let users swipe naturally
-        if (isMobile()) return;
-
         autoAdvance = setInterval(() => {
             if (currentIndex < totalCards - cardsPerView) {
                 nextSlide();
@@ -842,18 +849,21 @@ function initFeaturedCarousel() {
                 currentIndex = 0;
                 updateCarousel();
             }
-        }, 5000);
+        }, 3000);
     }
 
     function stopAutoAdvance() {
         clearInterval(autoAdvance);
     }
 
-    // Pause on hover (desktop only)
+    // Pause on hover/touch, resume after
     track.addEventListener('mouseenter', stopAutoAdvance);
-    track.addEventListener('mouseleave', () => {
-        if (!isMobile()) startAutoAdvance();
-    });
+    track.addEventListener('mouseleave', startAutoAdvance);
+    track.addEventListener('touchstart', stopAutoAdvance, { passive: true });
+    track.addEventListener('touchend', () => {
+        // Resume auto-advance after a short delay
+        setTimeout(startAutoAdvance, 2000);
+    }, { passive: true });
 
     // Sync dots with native scroll on mobile
     let scrollTimeout;
@@ -890,8 +900,64 @@ function initFeaturedCarousel() {
         }, 100);
     }, { passive: true });
 
+    // Create overlay navigation arrows
+    function createOverlayArrows() {
+        const container = track.parentElement;
+
+        // Create left arrow
+        const leftArrow = document.createElement('button');
+        leftArrow.className = 'carousel-overlay-arrow carousel-overlay-left';
+        leftArrow.setAttribute('aria-label', 'Previous');
+        leftArrow.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 19l-7-7 7-7"/>
+            </svg>
+        `;
+        leftArrow.addEventListener('click', (e) => {
+            e.stopPropagation();
+            prevSlide();
+            stopAutoAdvance();
+            setTimeout(startAutoAdvance, 3000);
+        });
+
+        // Create right arrow
+        const rightArrow = document.createElement('button');
+        rightArrow.className = 'carousel-overlay-arrow carousel-overlay-right';
+        rightArrow.setAttribute('aria-label', 'Next');
+        rightArrow.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 5l7 7-7 7"/>
+            </svg>
+        `;
+        rightArrow.addEventListener('click', (e) => {
+            e.stopPropagation();
+            nextSlide();
+            stopAutoAdvance();
+            setTimeout(startAutoAdvance, 3000);
+        });
+
+        container.appendChild(leftArrow);
+        container.appendChild(rightArrow);
+
+        // Update arrow visibility based on position
+        function updateOverlayArrows() {
+            leftArrow.classList.toggle('hidden', currentIndex === 0);
+            rightArrow.classList.toggle('hidden', currentIndex >= totalCards - cardsPerView);
+        }
+
+        // Hook into updateCarousel
+        const originalUpdate = updateCarousel;
+        updateCarousel = function() {
+            originalUpdate();
+            updateOverlayArrows();
+        };
+
+        updateOverlayArrows();
+    }
+
     // Initialize
     createDots();
+    createOverlayArrows();
     updateCarousel();
     startAutoAdvance();
 

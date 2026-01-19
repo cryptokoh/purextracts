@@ -230,7 +230,7 @@ body.ancient-lab-body {
 
 .zone-nav {
     position: fixed;
-    top: 60px;
+    top: 53px;
     left: 0;
     right: 0;
     z-index: 90;
@@ -1805,7 +1805,7 @@ body.ancient-lab-body {
     }
 
     .zone-nav {
-        top: 56px;
+        top: 48px;
         padding: var(--spacing-xs) var(--spacing-sm);
         justify-content: center;
         gap: var(--spacing-xs);
@@ -1972,7 +1972,7 @@ body.ancient-lab-body {
     }
 
     .zone-nav {
-        top: 52px;
+        top: 44px;
         gap: 2px;
         padding: var(--spacing-xs) 4px;
     }
