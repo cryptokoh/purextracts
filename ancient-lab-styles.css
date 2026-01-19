@@ -1863,9 +1863,9 @@ body.ancient-lab-body {
 
     /* Smaller title to fit inside pillars on mobile */
     .ruins-title {
-        font-size: 1.25rem;
+        font-size: 1.1rem;
         line-height: 1.4;
-        padding: 0 var(--spacing-lg);
+        padding: 0 var(--spacing-2xl);
         margin-bottom: var(--spacing-lg);
     }
 
@@ -2002,8 +2002,8 @@ body.ancient-lab-body {
 
     /* Even smaller ruins title for small phones */
     .ruins-title {
-        font-size: 1.1rem;
-        padding: 0 var(--spacing-xl);
+        font-size: 1rem;
+        padding: 0 var(--spacing-2xl);
         margin-bottom: var(--spacing-md);
     }
 
