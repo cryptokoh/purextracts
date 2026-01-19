@@ -1355,15 +1355,27 @@ body.tripping * {
     z-index: 150;
     opacity: 0;
     visibility: hidden;
-    transform: translateX(100%);
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(30px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     overflow-y: auto;
 }
 
 .library-section.active {
     opacity: 1;
     visibility: visible;
-    transform: translateX(0);
+    transform: translateY(0);
+}
+
+/* Lab scene transition when section opens */
+.lab-container.transitioning {
+    opacity: 0.3;
+    transform: scale(0.98);
+    filter: blur(4px);
+    transition: all 0.3s ease;
+}
+
+.lab-container {
+    transition: opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease;
 }
 
 .library-container {

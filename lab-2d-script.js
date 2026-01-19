@@ -13,6 +13,29 @@
     let activeVial = null;
     let isTripping = false;
     let currentTheme = 'lab';
+    let isTransitioning = false;
+
+    // Smooth section transition helper
+    function smoothTransition(callback, duration = 300) {
+        if (isTransitioning) return;
+        isTransitioning = true;
+
+        const labContainer = $('.lab-container');
+        if (labContainer) {
+            labContainer.classList.add('transitioning');
+        }
+
+        setTimeout(() => {
+            if (callback) callback();
+
+            setTimeout(() => {
+                if (labContainer) {
+                    labContainer.classList.remove('transitioning');
+                }
+                isTransitioning = false;
+            }, 50);
+        }, duration);
+    }
 
     // Init
     document.addEventListener('DOMContentLoaded', () => {
@@ -166,19 +189,23 @@
 
     function openContact(product = null) {
         const overlay = $('#contact');
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
 
-        if (product) {
-            const select = $('#interestSelect');
-            if (select) select.value = product;
-        }
+        // Use smooth transition
+        smoothTransition(() => {
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
 
-        // Focus first input
-        setTimeout(() => {
-            const input = $('input', overlay);
-            if (input) input.focus();
-        }, 100);
+            if (product) {
+                const select = $('#interestSelect');
+                if (select) select.value = product;
+            }
+
+            // Focus first input
+            setTimeout(() => {
+                const input = $('input', overlay);
+                if (input) input.focus();
+            }, 100);
+        }, 200);
     }
 
     function closeContact() {
@@ -427,38 +454,41 @@
 
         const isShaman = currentTheme === 'shaman';
 
-        title.textContent = isShaman ? 'SACRED MEDICINES' : 'EXTRACT CATALOG';
-        content.innerHTML = `
-            <div class="extracts-preview">
-                <p class="preview-intro">${isShaman
-                    ? 'Plant allies prepared with intention and reverence.'
-                    : 'Premium botanical extracts, lab tested for purity.'
-                }</p>
-                <div class="preview-categories">
-                    <div class="preview-item">
-                        <span class="preview-icon">🍃</span>
-                        <span>Kratom Varieties</span>
+        // Use smooth transition
+        smoothTransition(() => {
+            title.textContent = isShaman ? 'SACRED MEDICINES' : 'EXTRACT CATALOG';
+            content.innerHTML = `
+                <div class="extracts-preview">
+                    <p class="preview-intro">${isShaman
+                        ? 'Plant allies prepared with intention and reverence.'
+                        : 'Premium botanical extracts, lab tested for purity.'
+                    }</p>
+                    <div class="preview-categories">
+                        <div class="preview-item">
+                            <span class="preview-icon">🍃</span>
+                            <span>Kratom Varieties</span>
+                        </div>
+                        <div class="preview-item">
+                            <span class="preview-icon">🥥</span>
+                            <span>Kava Cultivars</span>
+                        </div>
+                        <div class="preview-item">
+                            <span class="preview-icon">🪷</span>
+                            <span>Blue Lotus</span>
+                        </div>
+                        <div class="preview-item">
+                            <span class="preview-icon">🧠</span>
+                            <span>Nootropic Blends</span>
+                        </div>
                     </div>
-                    <div class="preview-item">
-                        <span class="preview-icon">🥥</span>
-                        <span>Kava Cultivars</span>
-                    </div>
-                    <div class="preview-item">
-                        <span class="preview-icon">🪷</span>
-                        <span>Blue Lotus</span>
-                    </div>
-                    <div class="preview-item">
-                        <span class="preview-icon">🧠</span>
-                        <span>Nootropic Blends</span>
-                    </div>
+                    <button class="inquire-btn" onclick="alert('Full catalog coming soon!')">
+                        ${isShaman ? 'VIEW OFFERINGS' : 'VIEW CATALOG'}
+                    </button>
                 </div>
-                <button class="inquire-btn" onclick="alert('Full catalog coming soon!')">
-                    ${isShaman ? 'VIEW OFFERINGS' : 'VIEW CATALOG'}
-                </button>
-            </div>
-        `;
+            `;
 
-        panel.classList.add('active');
+            panel.classList.add('active');
+        }, 200);
     }
 
     // Library Section
@@ -517,27 +547,50 @@
         if (!library) return;
 
         closePanel(); // Close info panel
-        library.classList.add('active');
-        document.body.style.overflow = 'hidden';
 
-        // Animate cards in
-        $$('.library-card', library).forEach((card, i) => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            setTimeout(() => {
-                card.style.transition = 'all 0.4s ease';
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            }, 100 + (i * 50));
-        });
+        // Use smooth transition
+        smoothTransition(() => {
+            library.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            // Animate cards in
+            $$('.library-card', library).forEach((card, i) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.4s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 + (i * 50));
+            });
+        }, 250);
     }
 
     function closeLibrary() {
         const library = $('#librarySection');
         if (!library) return;
 
-        library.classList.remove('active');
-        document.body.style.overflow = '';
+        // Fade out cards first
+        $$('.library-card', library).forEach((card, i) => {
+            card.style.transition = 'all 0.2s ease';
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(-10px)';
+        });
+
+        // Then close with smooth transition
+        setTimeout(() => {
+            smoothTransition(() => {
+                library.classList.remove('active');
+                document.body.style.overflow = '';
+
+                // Reset card styles
+                $$('.library-card', library).forEach(card => {
+                    card.style.opacity = '';
+                    card.style.transform = '';
+                    card.style.transition = '';
+                });
+            }, 200);
+        }, 150);
 
         // Reset nav
         $$('.nav-link').forEach(link => {
@@ -680,17 +733,31 @@
                     modalContent.innerHTML = '';
                     modalContent.appendChild(content);
 
-                    // Show modal
+                    // Animate modal in
+                    articleModalOverlay.style.opacity = '0';
                     articleModalOverlay.classList.add('active');
                     document.body.style.overflow = 'hidden';
+
+                    // Trigger fade in
+                    requestAnimationFrame(() => {
+                        articleModalOverlay.style.transition = 'opacity 0.3s ease';
+                        articleModalOverlay.style.opacity = '1';
+                    });
                 }
             });
         });
 
-        // Close modal
+        // Close modal with smooth animation
         const closeModal = () => {
-            articleModalOverlay.classList.remove('active');
-            document.body.style.overflow = '';
+            articleModalOverlay.style.transition = 'opacity 0.25s ease';
+            articleModalOverlay.style.opacity = '0';
+
+            setTimeout(() => {
+                articleModalOverlay.classList.remove('active');
+                articleModalOverlay.style.opacity = '';
+                articleModalOverlay.style.transition = '';
+                document.body.style.overflow = '';
+            }, 250);
         };
 
         if (modalClose) {
