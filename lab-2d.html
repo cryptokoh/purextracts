@@ -508,7 +508,7 @@
             <!-- Library Content Grid -->
             <div class="library-grid">
                 <!-- Kratom Articles -->
-                <article class="library-card" data-category="kratom">
+                <article class="library-card" data-category="kratom" data-article="kratom-alkaloids">
                     <div class="card-icon">
                         <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
                             <rect x="5" y="5" width="30" height="30" rx="2"/>
@@ -532,7 +532,7 @@
                     </span>
                 </article>
 
-                <article class="library-card" data-category="kratom">
+                <article class="library-card" data-category="kratom" data-article="kratom-extraction">
                     <div class="card-icon">
                         <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
                             <path d="M20 5 L20 15 M15 10 L25 10"/>
@@ -555,7 +555,7 @@
                 </article>
 
                 <!-- Kava Articles -->
-                <article class="library-card" data-category="kava">
+                <article class="library-card" data-category="kava" data-article="kava-chemotypes">
                     <div class="card-icon">
                         <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
                             <ellipse cx="20" cy="30" rx="15" ry="6"/>
@@ -577,7 +577,7 @@
                     </span>
                 </article>
 
-                <article class="library-card" data-category="kava">
+                <article class="library-card" data-category="kava" data-article="kava-varieties">
                     <div class="card-icon">
                         <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
                             <circle cx="20" cy="20" r="15"/>
@@ -600,7 +600,7 @@
                 </article>
 
                 <!-- Blue Lotus Articles -->
-                <article class="library-card" data-category="lotus">
+                <article class="library-card" data-category="lotus" data-article="lotus-alkaloids">
                     <div class="card-icon">
                         <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
                             <path d="M20 35 L20 22"/>
@@ -622,7 +622,7 @@
                     </span>
                 </article>
 
-                <article class="library-card" data-category="lotus">
+                <article class="library-card" data-category="lotus" data-article="lotus-history">
                     <div class="card-icon">
                         <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
                             <rect x="8" y="8" width="24" height="24" rx="2"/>
@@ -645,7 +645,7 @@
                 </article>
 
                 <!-- General Science/Wisdom -->
-                <article class="library-card" data-category="science">
+                <article class="library-card" data-category="science" data-article="extraction-guide">
                     <div class="card-icon">
                         <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
                             <path d="M15 5 L15 15 L8 32 Q6 36 12 36 L28 36 Q34 36 32 32 L25 15 L25 5"/>
@@ -667,7 +667,7 @@
                     </span>
                 </article>
 
-                <article class="library-card" data-category="science">
+                <article class="library-card" data-category="science" data-article="quality-testing">
                     <div class="card-icon">
                         <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
                             <circle cx="20" cy="12" r="8"/>
@@ -736,6 +736,324 @@
             </form>
         </div>
     </div>
+
+    <!-- Library Article Modal -->
+    <div class="article-modal-overlay" id="articleModalOverlay">
+        <div class="article-modal" id="articleModal">
+            <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
+            <div class="modal-content" id="modalContent">
+                <!-- Content populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Article Content Templates -->
+    <template id="article-kratom-alkaloids">
+        <article class="modal-article">
+            <header class="modal-header">
+                <span class="modal-category">KRATOM</span>
+                <h2 class="modal-title">
+                    <span class="lab-text">Mitragynine Alkaloid Profile</span>
+                    <span class="shaman-text">The Spirit of Kratom</span>
+                </h2>
+            </header>
+            <div class="modal-body">
+                <section class="lab-text">
+                    <h3>Primary Alkaloids</h3>
+                    <p><strong>Mitragynine</strong> comprises 60-66% of the alkaloid content in Mitragyna speciosa leaves. This indole alkaloid acts on opioid receptors with partial agonist activity, contributing to the plant's analgesic properties.</p>
+                    <p><strong>7-Hydroxymitragynine</strong> represents only 2% of alkaloid content but possesses significantly higher receptor binding affinity. Research indicates it's 13 times more potent than morphine in certain assays.</p>
+
+                    <h3>Secondary Alkaloids</h3>
+                    <ul>
+                        <li><strong>Paynantheine</strong> (8-9%) - Smooth muscle relaxant</li>
+                        <li><strong>Speciogynine</strong> (6-7%) - Smooth muscle relaxant</li>
+                        <li><strong>Speciociliatine</strong> (1%) - Weak opioid activity</li>
+                        <li><strong>Corynantheidine</strong> (&lt;1%) - Mu-opioid antagonist</li>
+                    </ul>
+
+                    <h3>Extraction Considerations</h3>
+                    <p>Alkaloid preservation requires careful pH management during extraction. Water-based methods at pH 4-5 optimize mitragynine solubility while minimizing degradation of 7-hydroxymitragynine.</p>
+                </section>
+                <section class="shaman-text">
+                    <h3>The Living Spirit</h3>
+                    <p>For thousands of years, the people of Southeast Asia have known kratom as a plant ally. Thai farmers chewed fresh leaves to endure long hours of labor under the tropical sun. The spirit of the plant gave them strength and eased their suffering.</p>
+
+                    <h3>Traditional Knowledge</h3>
+                    <p>Village healers understood that different preparations yielded different effects. Fresh leaves brought energy; dried leaves brought calm. The elders knew to honor the plant by taking only what was needed and giving thanks for its gifts.</p>
+
+                    <h3>The Sacred Balance</h3>
+                    <p>The spirit of kratom teaches balance. Too little offers no benefit; too much brings discomfort. Like all plant teachers, it asks us to listen carefully and approach with respect.</p>
+                </section>
+            </div>
+        </article>
+    </template>
+
+    <template id="article-kratom-extraction">
+        <article class="modal-article">
+            <header class="modal-header">
+                <span class="modal-category">KRATOM</span>
+                <h2 class="modal-title">
+                    <span class="lab-text">Extraction Methods Comparison</span>
+                    <span class="shaman-text">Traditional Preparation Ways</span>
+                </h2>
+            </header>
+            <div class="modal-body">
+                <section class="lab-text">
+                    <h3>Water Extraction</h3>
+                    <p>The simplest and most traditional method. Acidified water (pH 4-5 using citric acid) at 80-90°C extracts 70-85% of available alkaloids. Multiple extractions increase yield but dilute concentration.</p>
+
+                    <h3>Ethanol Extraction</h3>
+                    <p>Food-grade ethanol (40-95%) provides superior alkaloid solubility. Cold maceration preserves heat-sensitive compounds. Yields typically reach 85-95% with proper technique.</p>
+
+                    <h3>Comparison Table</h3>
+                    <table class="modal-table">
+                        <tr><th>Method</th><th>Yield</th><th>Purity</th><th>Cost</th></tr>
+                        <tr><td>Water</td><td>70-85%</td><td>Medium</td><td>Low</td></tr>
+                        <tr><td>Ethanol</td><td>85-95%</td><td>High</td><td>Medium</td></tr>
+                        <tr><td>CO2</td><td>90-98%</td><td>Very High</td><td>High</td></tr>
+                    </table>
+                </section>
+                <section class="shaman-text">
+                    <h3>The Way of Water</h3>
+                    <p>The ancestors knew that water carries the essence of plants into our bodies. They would simmer fresh leaves slowly, allowing the spirit to transfer gently. Rushing the process insults the plant and weakens its medicine.</p>
+
+                    <h3>Preparation Ritual</h3>
+                    <p>Before harvesting, traditional practitioners would offer prayers of gratitude. The leaves were gathered at dawn when their power was strongest. The preparation was done in silence, with focused intention.</p>
+
+                    <h3>Honoring the Process</h3>
+                    <p>Modern extraction may be faster, but it lacks the ceremony that connects us to the plant's spirit. Consider incorporating gratitude and intention into your preparation, whatever method you choose.</p>
+                </section>
+            </div>
+        </article>
+    </template>
+
+    <template id="article-kava-chemotypes">
+        <article class="modal-article">
+            <header class="modal-header">
+                <span class="modal-category">KAVA</span>
+                <h2 class="modal-title">
+                    <span class="lab-text">Kavalactone Chemotypes</span>
+                    <span class="shaman-text">Spirits of the Kava Bowl</span>
+                </h2>
+            </header>
+            <div class="modal-body">
+                <section class="lab-text">
+                    <h3>The Six Major Kavalactones</h3>
+                    <p>Kava's effects are determined by six primary kavalactones, each assigned a number for chemotype classification:</p>
+                    <ul>
+                        <li><strong>1 - Desmethoxyyangonin (DMY)</strong> - Mood elevation</li>
+                        <li><strong>2 - Dihydrokavain (DHK)</strong> - Relaxation, mild sedation</li>
+                        <li><strong>3 - Yangonin (Y)</strong> - Anxiolytic effects</li>
+                        <li><strong>4 - Kavain (K)</strong> - Mental clarity, sociability</li>
+                        <li><strong>5 - Dihydromethysticin (DHM)</strong> - Strong sedation</li>
+                        <li><strong>6 - Methysticin (M)</strong> - Moderate relaxation</li>
+                    </ul>
+
+                    <h3>Understanding Chemotype Codes</h3>
+                    <p>A chemotype like "426135" indicates kavain is most abundant, followed by DHK, then DMY. Noble varieties typically start with 4, 2, or 6.</p>
+                </section>
+                <section class="shaman-text">
+                    <h3>The Spirits Within</h3>
+                    <p>The Pacific Islanders say each kava plant contains many spirits. Some bring joy and laughter; others bring deep peace and dreaming. The wise ones learned which plants to choose for ceremony, for medicine, and for daily life.</p>
+
+                    <h3>The Kava Circle</h3>
+                    <p>When the village gathers around the kava bowl, the spirits unite the people. Arguments are forgotten, friendships are strengthened, and the ancestors draw near. This is the true power of kava - not in any single compound, but in the communion it creates.</p>
+                </section>
+            </div>
+        </article>
+    </template>
+
+    <template id="article-kava-varieties">
+        <article class="modal-article">
+            <header class="modal-header">
+                <span class="modal-category">KAVA</span>
+                <h2 class="modal-title">
+                    <span class="lab-text">Noble vs. Tudei Varieties</span>
+                    <span class="shaman-text">Choosing the Right Spirit</span>
+                </h2>
+            </header>
+            <div class="modal-body">
+                <section class="lab-text">
+                    <h3>Noble Kava Characteristics</h3>
+                    <p>Noble varieties are the only type recommended for regular consumption. They produce pleasant effects without next-day drowsiness.</p>
+                    <ul>
+                        <li>Chemotypes beginning with 4, 2, or 6</li>
+                        <li>Low levels of Flavokavain B (&lt;0.5%)</li>
+                        <li>Pleasant taste profile</li>
+                        <li>Clear-headed effects</li>
+                    </ul>
+
+                    <h3>Tudei (Two-Day) Kava</h3>
+                    <p>Named for effects lasting two days, Tudei varieties contain higher levels of DHM and Flavokavain B. Associated with nausea and prolonged lethargy.</p>
+
+                    <h3>Quality Indicators</h3>
+                    <p>Reputable vendors provide chemotype testing and certificates of analysis. Look for Flavokavain B levels below 0.5% and chemotypes starting with noble indicators.</p>
+                </section>
+                <section class="shaman-text">
+                    <h3>The Elder's Teaching</h3>
+                    <p>Not all kava is meant for people. Some varieties were used only for specific ceremonies or reserved for communication with spirits. The elders knew which plants were safe for daily use and which should be approached with caution.</p>
+
+                    <h3>Reading the Signs</h3>
+                    <p>The wise ones could identify good kava by its appearance, smell, and taste. Dark, bitter roots with unpleasant effects were avoided. The best kava brought peace without penalty.</p>
+                </section>
+            </div>
+        </article>
+    </template>
+
+    <template id="article-lotus-alkaloids">
+        <article class="modal-article">
+            <header class="modal-header">
+                <span class="modal-category">BLUE LOTUS</span>
+                <h2 class="modal-title">
+                    <span class="lab-text">Aporphine & Nuciferine Analysis</span>
+                    <span class="shaman-text">Flower of the Nile Gods</span>
+                </h2>
+            </header>
+            <div class="modal-body">
+                <section class="lab-text">
+                    <h3>Primary Active Compounds</h3>
+                    <p><strong>Aporphine</strong> acts as a dopamine agonist, producing mild euphoria and altered perception. Concentrations vary from 0.1-0.5% in dried flowers.</p>
+                    <p><strong>Nuciferine</strong> functions as a dopamine receptor blocker with sedative properties. It may contribute to the dream-enhancing effects reported by users.</p>
+
+                    <h3>Synergistic Effects</h3>
+                    <p>The combination of aporphine's stimulating and nuciferine's sedating properties creates the unique "lucid relaxation" characteristic of blue lotus.</p>
+
+                    <h3>Extraction Notes</h3>
+                    <p>Alcohol extraction (40-60% ethanol) yields the most complete alkaloid profile. Water extraction captures nuciferine effectively but less aporphine.</p>
+                </section>
+                <section class="shaman-text">
+                    <h3>Gift of the Nile</h3>
+                    <p>The ancient Egyptians called it the Sacred Lily of the Nile. They believed it emerged from the primordial waters at the beginning of creation, carrying the light of the sun within its petals.</p>
+
+                    <h3>Gateway to the Divine</h3>
+                    <p>Temple priests used blue lotus to enter trance states and communicate with the gods. The flower was sacred to Ra, Osiris, and Nefertem - the god of perfume who emerged from a lotus at dawn.</p>
+
+                    <h3>The Dream Flower</h3>
+                    <p>Those who drink lotus tea before sleep often report vivid, meaningful dreams. The ancients believed the flower opened doors between worlds, allowing the soul to travel freely.</p>
+                </section>
+            </div>
+        </article>
+    </template>
+
+    <template id="article-lotus-history">
+        <article class="modal-article">
+            <header class="modal-header">
+                <span class="modal-category">BLUE LOTUS</span>
+                <h2 class="modal-title">
+                    <span class="lab-text">Historical Use Documentation</span>
+                    <span class="shaman-text">Temple Scrolls Decoded</span>
+                </h2>
+            </header>
+            <div class="modal-body">
+                <section class="lab-text">
+                    <h3>Archaeological Evidence</h3>
+                    <p>Blue lotus appears extensively in Egyptian art from 3000 BCE onward. Tomb paintings show it held at banquets, offered to deities, and placed on mummies.</p>
+
+                    <h3>Documented Uses</h3>
+                    <ul>
+                        <li>Religious ceremonies and temple rituals</li>
+                        <li>Funerary practices (found in Tutankhamun's tomb)</li>
+                        <li>Social gatherings and celebrations</li>
+                        <li>Medicinal preparations for various ailments</li>
+                    </ul>
+
+                    <h3>Cultural Significance</h3>
+                    <p>The lotus represented creation, rebirth, and the sun. Its daily cycle of closing at night and opening at dawn symbolized the eternal return of life.</p>
+                </section>
+                <section class="shaman-text">
+                    <h3>Words of the Ancients</h3>
+                    <p>"I am the pure lotus that emerged from the divine light..." - inscription from the Book of the Dead. The lotus was not merely a plant but a symbol of spiritual awakening.</p>
+
+                    <h3>The Priest's Path</h3>
+                    <p>Before entering the inner sanctuary, temple priests would anoint themselves with lotus oil and drink lotus wine. This prepared their consciousness to receive divine wisdom.</p>
+
+                    <h3>Legacy of the Flower</h3>
+                    <p>For 5,000 years, the blue lotus has guided seekers toward enlightenment. Its spirit continues to teach those who approach with reverence and open hearts.</p>
+                </section>
+            </div>
+        </article>
+    </template>
+
+    <template id="article-extraction-guide">
+        <article class="modal-article">
+            <header class="modal-header">
+                <span class="modal-category">SCIENCE</span>
+                <h2 class="modal-title">
+                    <span class="lab-text">Extraction Technology Guide</span>
+                    <span class="shaman-text">Alchemical Principles</span>
+                </h2>
+            </header>
+            <div class="modal-body">
+                <section class="lab-text">
+                    <h3>CO2 Extraction</h3>
+                    <p>Supercritical CO2 provides the cleanest extraction with precise compound targeting. Operating at 31°C and 74 bar, CO2 becomes a powerful solvent that leaves no residue.</p>
+
+                    <h3>Ethanol Extraction</h3>
+                    <p>Food-grade ethanol remains the industry standard for full-spectrum extracts. Cold ethanol (-40°C) minimizes chlorophyll extraction while capturing desired compounds.</p>
+
+                    <h3>Water Extraction</h3>
+                    <p>The gentlest method, ideal for heat-sensitive compounds. Acidified water enhances alkaloid solubility. Often used as a first-pass before ethanol refinement.</p>
+
+                    <h3>Quality Parameters</h3>
+                    <ul>
+                        <li>Solvent residue: &lt;500ppm (ethanol), 0ppm (CO2)</li>
+                        <li>Heavy metals: Below detectable limits</li>
+                        <li>Microbial: Negative for pathogens</li>
+                    </ul>
+                </section>
+                <section class="shaman-text">
+                    <h3>The Alchemist's Art</h3>
+                    <p>True alchemy is not about turning lead into gold - it is about extracting the essence, the spirit, from matter. The ancient alchemists knew that plants contain subtle forces that can be concentrated and purified.</p>
+
+                    <h3>Solve et Coagula</h3>
+                    <p>"Dissolve and recombine" - the fundamental alchemical principle. We break down the plant to release its spirit, then bring that spirit together in concentrated form. The process mirrors spiritual transformation.</p>
+
+                    <h3>Working with Intention</h3>
+                    <p>The alchemists believed the practitioner's consciousness affected the work. Approach extraction with clear intention and respect for the plant spirits. The quality of your presence influences the quality of your medicine.</p>
+                </section>
+            </div>
+        </article>
+    </template>
+
+    <template id="article-quality-testing">
+        <article class="modal-article">
+            <header class="modal-header">
+                <span class="modal-category">SCIENCE</span>
+                <h2 class="modal-title">
+                    <span class="lab-text">Quality Testing Standards</span>
+                    <span class="shaman-text">Signs of True Medicine</span>
+                </h2>
+            </header>
+            <div class="modal-body">
+                <section class="lab-text">
+                    <h3>Certificate of Analysis (COA)</h3>
+                    <p>A valid COA should include: identity confirmation, potency testing, contaminant screening, and batch-specific information from an ISO-accredited laboratory.</p>
+
+                    <h3>Key Tests</h3>
+                    <ul>
+                        <li><strong>Identity</strong>: HPLC fingerprinting confirms species</li>
+                        <li><strong>Potency</strong>: Quantifies active compounds</li>
+                        <li><strong>Heavy Metals</strong>: Lead, arsenic, mercury, cadmium</li>
+                        <li><strong>Microbial</strong>: E. coli, Salmonella, mold, yeast</li>
+                        <li><strong>Pesticides</strong>: Screen for common agricultural chemicals</li>
+                    </ul>
+
+                    <h3>Red Flags</h3>
+                    <p>Avoid products without batch-specific COAs, tests from non-accredited labs, or results that seem too good to be true. Legitimate vendors welcome questions about their testing.</p>
+                </section>
+                <section class="shaman-text">
+                    <h3>The Healer's Discernment</h3>
+                    <p>Traditional healers developed keen senses for recognizing true medicine. They would smell, taste, and observe the effects of plants before using them. This wisdom took lifetimes to develop.</p>
+
+                    <h3>Signs of Power</h3>
+                    <p>Good medicine has presence. It looks vibrant, smells characteristic, and produces consistent effects. The ancestors knew that plants grown with care and harvested properly carried stronger spirits.</p>
+
+                    <h3>Trust Your Body</h3>
+                    <p>Modern tests confirm what the body already knows. If a plant product causes unexpected reactions or feels wrong, trust your instincts. The body recognizes true medicine.</p>
+                </section>
+            </div>
+        </article>
+    </template>
 
     <!-- Back Navigation Drawer -->
     <div class="back-drawer" id="backDrawer">

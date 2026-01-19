@@ -658,6 +658,61 @@
     }
 
     // ==========================================
+    // Library Article Modals
+    // ==========================================
+    const articleModalOverlay = document.getElementById('articleModalOverlay');
+    const articleModal = document.getElementById('articleModal');
+    const modalContent = document.getElementById('modalContent');
+    const modalClose = document.getElementById('modalClose');
+    const libraryCards = document.querySelectorAll('.library-card[data-article]');
+
+    if (articleModalOverlay && libraryCards.length > 0) {
+        // Open modal when card is clicked
+        libraryCards.forEach(card => {
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', () => {
+                const articleId = card.dataset.article;
+                const template = document.getElementById(`article-${articleId}`);
+
+                if (template) {
+                    // Clone template content
+                    const content = template.content.cloneNode(true);
+                    modalContent.innerHTML = '';
+                    modalContent.appendChild(content);
+
+                    // Show modal
+                    articleModalOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        // Close modal
+        const closeModal = () => {
+            articleModalOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        if (modalClose) {
+            modalClose.addEventListener('click', closeModal);
+        }
+
+        // Close on overlay click
+        articleModalOverlay.addEventListener('click', (e) => {
+            if (e.target === articleModalOverlay) {
+                closeModal();
+            }
+        });
+
+        // Close on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && articleModalOverlay.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    }
+
+    // ==========================================
     // Back Navigation Drawer
     // ==========================================
     const backDrawer = document.getElementById('backDrawer');

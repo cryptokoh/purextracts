@@ -2010,6 +2010,299 @@ body.tripping * {
 }
 
 /* ============================================
+   Article Modal
+   ============================================ */
+.article-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.article-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+[data-theme="shaman"] .article-modal-overlay {
+    background: rgba(26, 22, 18, 0.85);
+}
+
+.article-modal {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    max-width: 700px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    transform: translateY(20px) scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.article-modal-overlay.active .article-modal {
+    transform: translateY(0) scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: 1px solid var(--line-dim);
+    border-radius: 50%;
+    color: var(--text);
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.modal-close:hover {
+    background: var(--line-dim);
+    border-color: var(--line);
+}
+
+.modal-content {
+    padding: 0;
+}
+
+.modal-article {
+    padding: 0;
+}
+
+.modal-header {
+    padding: 24px 24px 16px;
+    border-bottom: 1px solid var(--line-dim);
+}
+
+.modal-category {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+    padding: 4px 10px;
+    background: var(--line-dim);
+    border-radius: 12px;
+}
+
+[data-theme="shaman"] .modal-category {
+    font-family: var(--serif);
+    letter-spacing: 0.1em;
+}
+
+.modal-title {
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: var(--text);
+    margin: 0;
+}
+
+[data-theme="shaman"] .modal-title {
+    font-family: var(--serif);
+    font-size: 24px;
+    letter-spacing: 0.02em;
+}
+
+.modal-body {
+    padding: 24px;
+}
+
+.modal-body h3 {
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    color: var(--text);
+    margin: 0 0 12px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line-dim);
+}
+
+[data-theme="shaman"] .modal-body h3 {
+    font-family: var(--serif);
+    font-size: 16px;
+    letter-spacing: 0.05em;
+}
+
+.modal-body p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text);
+    margin: 0 0 16px 0;
+    opacity: 0.85;
+}
+
+[data-theme="shaman"] .modal-body p {
+    font-family: var(--serif);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.modal-body ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px 0;
+}
+
+.modal-body li {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--text);
+    padding: 6px 0 6px 16px;
+    position: relative;
+    opacity: 0.85;
+}
+
+.modal-body li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+}
+
+[data-theme="shaman"] .modal-body li {
+    font-family: var(--serif);
+    font-size: 13px;
+}
+
+[data-theme="shaman"] .modal-body li::before {
+    content: '◆';
+    font-size: 8px;
+    top: 8px;
+}
+
+.modal-body strong {
+    color: var(--text);
+    font-weight: 500;
+}
+
+.modal-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 11px;
+}
+
+.modal-table th,
+.modal-table td {
+    padding: 10px 12px;
+    text-align: left;
+    border: 1px solid var(--line-dim);
+}
+
+.modal-table th {
+    background: var(--line-dim);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 9px;
+}
+
+.modal-table td {
+    opacity: 0.85;
+}
+
+/* Theme text visibility in modal */
+.modal-body .lab-text,
+.modal-header .lab-text {
+    display: block;
+}
+
+.modal-body .shaman-text,
+.modal-header .shaman-text {
+    display: none;
+}
+
+[data-theme="shaman"] .modal-body .lab-text,
+[data-theme="shaman"] .modal-header .lab-text {
+    display: none;
+}
+
+[data-theme="shaman"] .modal-body .shaman-text,
+[data-theme="shaman"] .modal-header .shaman-text {
+    display: block;
+}
+
+/* Modal mobile styles */
+@media (max-width: 767px) {
+    .article-modal-overlay {
+        padding: 10px;
+    }
+
+    .article-modal {
+        max-height: 90vh;
+        border-radius: 12px;
+    }
+
+    .modal-close {
+        top: 8px;
+        right: 8px;
+        width: 32px;
+        height: 32px;
+        font-size: 20px;
+    }
+
+    .modal-header {
+        padding: 20px 16px 12px;
+    }
+
+    .modal-category {
+        font-size: 8px;
+    }
+
+    .modal-title {
+        font-size: 16px;
+    }
+
+    [data-theme="shaman"] .modal-title {
+        font-size: 18px;
+    }
+
+    .modal-body {
+        padding: 16px;
+    }
+
+    .modal-body h3 {
+        font-size: 11px;
+    }
+
+    .modal-body p {
+        font-size: 12px;
+    }
+
+    .modal-body li {
+        font-size: 11px;
+    }
+
+    .modal-table {
+        font-size: 10px;
+    }
+
+    .modal-table th {
+        font-size: 8px;
+        padding: 8px;
+    }
+
+    .modal-table td {
+        padding: 8px;
+    }
+}
+
+/* ============================================
    Back Navigation Drawer
    ============================================ */
 .back-drawer {
