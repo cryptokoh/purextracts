@@ -2092,6 +2092,26 @@ body::before {
     width: 100%;
 }
 
+.nav-link-back {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    opacity: 0.7;
+}
+
+.nav-link-back:hover {
+    opacity: 1;
+    color: var(--kava-green);
+}
+
+.nav-link-back::after {
+    display: none;
+}
+
+.nav-link-back svg {
+    flex-shrink: 0;
+}
+
 .nav-link-cta {
     background: linear-gradient(135deg, var(--kava-green), #059669);
     color: white !important;
