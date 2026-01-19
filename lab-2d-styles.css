@@ -1914,6 +1914,135 @@ body.tripping * {
 }
 
 /* ============================================
+   Back Navigation Drawer
+   ============================================ */
+.back-drawer {
+    position: fixed;
+    bottom: 24px;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.back-drawer-toggle {
+    width: 44px;
+    height: 44px;
+    background: var(--bg);
+    border: 1px solid var(--line-dim);
+    border-left: none;
+    border-radius: 0 8px 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+}
+
+.back-drawer-toggle:hover {
+    background: var(--line-dim);
+}
+
+.drawer-arrow {
+    width: 20px;
+    height: 20px;
+    stroke: var(--text);
+    transition: transform 0.3s ease;
+}
+
+.back-drawer.open .drawer-arrow {
+    transform: rotate(180deg);
+}
+
+.back-drawer-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: var(--bg);
+    border: 1px solid var(--line-dim);
+    border-left: none;
+    border-radius: 0 8px 8px 0;
+    padding: 8px 12px;
+    margin-left: -1px;
+    transform: translateX(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+}
+
+.back-drawer.open .back-drawer-menu {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.drawer-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    color: var(--text);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.drawer-link:hover {
+    background: var(--line-dim);
+}
+
+.drawer-link svg {
+    width: 18px;
+    height: 18px;
+    stroke: var(--text);
+    flex-shrink: 0;
+}
+
+/* Shaman theme adjustments */
+[data-theme="shaman"] .back-drawer-toggle {
+    box-shadow: 2px 2px 12px rgba(201,166,107,0.15);
+}
+
+[data-theme="shaman"] .back-drawer-menu {
+    box-shadow: 2px 2px 12px rgba(201,166,107,0.15);
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+    .back-drawer {
+        bottom: 16px;
+    }
+
+    .back-drawer-toggle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .drawer-arrow {
+        width: 18px;
+        height: 18px;
+    }
+
+    .drawer-link {
+        padding: 8px 12px;
+        font-size: 10px;
+    }
+
+    .drawer-link svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* ============================================
    Reduced Motion
    ============================================ */
 @media (prefers-reduced-motion: reduce) {

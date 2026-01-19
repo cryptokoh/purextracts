@@ -12,7 +12,36 @@ document.addEventListener('DOMContentLoaded', () => {
     initFloatingMolecules();
     initContactForm();
     initParticleEffects();
+    initBackDrawer();
 });
+
+/* ============================================
+   Back Navigation Drawer
+   ============================================ */
+function initBackDrawer() {
+    const backDrawer = document.getElementById('backDrawer');
+    const backDrawerToggle = document.getElementById('backDrawerToggle');
+
+    if (backDrawer && backDrawerToggle) {
+        backDrawerToggle.addEventListener('click', () => {
+            backDrawer.classList.toggle('open');
+        });
+
+        // Close drawer when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!backDrawer.contains(e.target)) {
+                backDrawer.classList.remove('open');
+            }
+        });
+
+        // Close drawer on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                backDrawer.classList.remove('open');
+            }
+        });
+    }
+}
 
 /* ============================================
    Onboarding System (Global Function)
