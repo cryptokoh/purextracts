@@ -1825,51 +1825,67 @@ body.tripping * {
 
     /* Show lab elements on mobile - smaller and repositioned */
     .microscope {
-        display: block;
-        left: 2%;
-        bottom: 70px;
-        width: 28px;
-        opacity: 0.5;
+        display: block !important;
+        left: 3%;
+        bottom: 140px;
+        width: 32px;
+        opacity: 0.7;
+        z-index: 5;
     }
 
     .beaker {
-        display: block;
-        right: 2%;
-        bottom: 75px;
-        width: 24px;
-        opacity: 0.5;
+        display: block !important;
+        right: 3%;
+        bottom: 145px;
+        width: 28px;
+        opacity: 0.7;
+        z-index: 5;
     }
 
     .test-tubes {
-        display: block;
-        left: 8%;
-        bottom: 65px;
-        width: 30px;
-        opacity: 0.4;
+        display: block !important;
+        left: 12%;
+        bottom: 130px;
+        width: 35px;
+        opacity: 0.6;
+        z-index: 5;
     }
 
     .petri-dish {
-        display: block;
-        right: 8%;
-        bottom: 60px;
-        width: 28px;
-        opacity: 0.4;
+        display: block !important;
+        right: 12%;
+        bottom: 125px;
+        width: 32px;
+        opacity: 0.6;
+        z-index: 5;
     }
 
     .dna-helix {
-        display: block;
-        left: 3%;
-        top: 80px;
-        width: 20px;
-        opacity: 0.3;
+        display: block !important;
+        left: 5%;
+        top: 100px;
+        width: 24px;
+        opacity: 0.5;
+        z-index: 5;
     }
 
     .molecule {
-        display: block;
-        right: 3%;
-        top: 90px;
-        width: 25px;
-        opacity: 0.3;
+        display: block !important;
+        right: 5%;
+        top: 110px;
+        width: 30px;
+        opacity: 0.5;
+        z-index: 5;
+    }
+
+    .flask {
+        display: block !important;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 20px;
+        width: 30px;
+        opacity: 0.5;
+        z-index: 5;
     }
 }
 

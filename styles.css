@@ -2754,42 +2754,69 @@ ul, ol {
         border-radius: var(--radius-md);
     }
 
-    /* Footer */
+    /* Footer - Compact mobile layout */
     .footer {
-        padding: var(--spacing-3xl) 0 var(--spacing-xl);
+        padding: var(--spacing-xl) 0 var(--spacing-lg);
     }
 
     .footer-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-md) var(--spacing-sm);
     }
 
     .footer-brand {
+        grid-column: 1 / -1;
         text-align: center;
+        margin-bottom: var(--spacing-sm);
     }
 
     .footer-logo {
         justify-content: center;
     }
 
+    .footer-tagline {
+        font-size: var(--text-sm);
+        line-height: 1.4;
+    }
+
     .footer-links {
-        text-align: center;
+        text-align: left;
+    }
+
+    .footer-links h4 {
+        font-size: var(--text-xs);
+        margin-bottom: var(--spacing-xs);
     }
 
     .footer-links ul {
-        align-items: center;
+        gap: var(--spacing-xs);
+    }
+
+    .footer-links a {
+        font-size: var(--text-xs);
+        min-height: 32px;
     }
 
     .footer-bottom {
         flex-direction: column;
-        gap: var(--spacing-md);
+        gap: var(--spacing-sm);
         text-align: center;
+        margin-top: var(--spacing-md);
+        padding-top: var(--spacing-md);
+    }
+
+    .footer-bottom p {
+        font-size: var(--text-xs);
     }
 
     .footer-legal {
         flex-wrap: wrap;
         justify-content: center;
-        gap: var(--spacing-md);
+        gap: var(--spacing-sm);
+    }
+
+    .footer-legal a {
+        font-size: var(--text-xs);
     }
 }
 
@@ -2841,8 +2868,16 @@ ul, ol {
 
     /* Featured carousel on small screens */
     .featured-card {
-        flex: 0 0 calc(100vw - var(--spacing-xl));
+        flex: 0 0 calc(100vw - 60px);
+        min-width: 240px;
         max-width: 300px;
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+    }
+
+    .carousel-track {
+        padding: var(--spacing-sm) var(--spacing-md);
+        margin: 0 calc(-1 * var(--spacing-md));
     }
 
     .featured-content {
@@ -2990,17 +3025,8 @@ ul, ol {
 }
 
 @media (max-width: 768px) {
+    /* Mobile sticky CTA disabled for cleaner look */
     .mobile-cta {
-        display: block;
-    }
-
-    /* Add bottom padding to body to account for sticky CTA */
-    body {
-        padding-bottom: 80px;
-    }
-
-    /* Hide footer CTA buttons since we have sticky CTA */
-    .cta-section {
         display: none;
     }
 }
@@ -3557,8 +3583,8 @@ ul, ol {
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
         scroll-behavior: smooth;
-        padding: var(--spacing-sm) var(--spacing-md);
-        margin: 0 calc(-1 * var(--spacing-md));
+        padding: var(--spacing-sm) var(--spacing-lg);
+        margin: 0 calc(-1 * var(--spacing-lg));
         /* Hide scrollbar but keep functionality */
         scrollbar-width: none;
         -ms-overflow-style: none;
@@ -3569,20 +3595,20 @@ ul, ol {
     }
 
     .featured-card {
-        flex: 0 0 calc(100vw - var(--spacing-2xl) - var(--spacing-lg));
-        min-width: 0;
+        flex: 0 0 calc(100vw - 80px);
+        min-width: 260px;
         max-width: 320px;
-        scroll-snap-align: start;
+        scroll-snap-align: center;
         scroll-snap-stop: always;
     }
 
     /* Ensure first and last cards have proper spacing */
     .featured-card:first-child {
-        margin-left: 0;
+        margin-left: var(--spacing-sm);
     }
 
     .featured-card:last-child {
-        margin-right: var(--spacing-md);
+        margin-right: var(--spacing-sm);
     }
 
     .carousel-controls {
