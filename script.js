@@ -822,8 +822,7 @@ function initFeaturedCarousel() {
             interactiveElements.includes(touchTarget.tagName) ||
             touchTarget.closest('button') ||
             touchTarget.closest('a') ||
-            touchTarget.closest('.add-to-cart-btn') ||
-            touchTarget.closest('.product-info-btn')
+            touchTarget.closest('.add-to-cart-btn')
         );
 
         if (clickedInteractive) {

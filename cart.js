@@ -7,6 +7,7 @@
 const Cart = {
     items: [],
     isOpen: false,
+    isProcessing: false, // Prevent double-clicks
 
     // Initialize cart from localStorage
     init() {
@@ -23,8 +24,11 @@ const Cart = {
         this.bindEvents();
     },
 
-    // Add item to cart
+    // Add item to cart (with debounce protection)
     addItem(product) {
+        if (this.isProcessing) return;
+        this.isProcessing = true;
+
         const existingItem = this.items.find(item => item.id === product.id);
 
         if (existingItem) {
@@ -39,8 +43,12 @@ const Cart = {
         this.save();
         this.render();
         this.updateCartCount();
-        this.showAddedNotification(product.name);
-        this.open();
+        this.showAddedFeedback(product.name);
+
+        // Reset processing flag after a short delay
+        setTimeout(() => {
+            this.isProcessing = false;
+        }, 300);
     },
 
     // Remove item from cart
@@ -93,6 +101,7 @@ const Cart = {
 
     // Open cart sidebar
     open() {
+        if (this.isOpen) return; // Prevent double-open
         this.isOpen = true;
         const sidebar = document.getElementById('cartSidebar');
         const overlay = document.getElementById('cartOverlay');
@@ -130,29 +139,17 @@ const Cart = {
         });
     },
 
-    // Show added notification
-    showAddedNotification(productName) {
-        const notification = document.createElement('div');
-        notification.className = 'cart-notification';
-        notification.innerHTML = `
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                <polyline points="22 4 12 14.01 9 11.01"/>
-            </svg>
-            <span>${productName} added to cart</span>
-        `;
-        document.body.appendChild(notification);
+    // Show feedback when item is added (simpler than notification + sidebar)
+    showAddedFeedback(productName) {
+        // Just open the cart - the item appearing is feedback enough
+        this.open();
 
-        // Animate in
-        requestAnimationFrame(() => {
-            notification.classList.add('show');
-        });
-
-        // Remove after delay
-        setTimeout(() => {
-            notification.classList.remove('show');
-            setTimeout(() => notification.remove(), 300);
-        }, 2500);
+        // Brief highlight animation on the cart icon
+        const cartToggle = document.getElementById('cartToggle');
+        if (cartToggle) {
+            cartToggle.classList.add('cart-bounce');
+            setTimeout(() => cartToggle.classList.remove('cart-bounce'), 500);
+        }
     },
 
     // Render cart sidebar content
@@ -165,6 +162,7 @@ const Cart = {
         if (!cartItems) return;
 
         if (this.items.length === 0) {
+            cartItems.innerHTML = '';
             cartItems.style.display = 'none';
             if (cartEmpty) cartEmpty.style.display = 'flex';
             if (checkoutBtn) checkoutBtn.disabled = true;
@@ -191,20 +189,20 @@ const Cart = {
                     <span class="cart-item-price">$${item.price.toFixed(2)}</span>
                 </div>
                 <div class="cart-item-quantity">
-                    <button class="qty-btn qty-minus" data-id="${item.id}">
+                    <button class="qty-btn qty-minus" data-id="${item.id}" type="button">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="5" y1="12" x2="19" y2="12"/>
                         </svg>
                     </button>
                     <span class="qty-value">${item.quantity}</span>
-                    <button class="qty-btn qty-plus" data-id="${item.id}">
+                    <button class="qty-btn qty-plus" data-id="${item.id}" type="button">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="12" y1="5" x2="12" y2="19"/>
                             <line x1="5" y1="12" x2="19" y2="12"/>
                         </svg>
                     </button>
                 </div>
-                <button class="cart-item-remove" data-id="${item.id}" aria-label="Remove item">
+                <button class="cart-item-remove" data-id="${item.id}" aria-label="Remove item" type="button">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="18" y1="6" x2="6" y2="18"/>
                         <line x1="6" y1="6" x2="18" y2="18"/>
@@ -217,54 +215,58 @@ const Cart = {
             cartTotal.textContent = `$${this.getTotal().toFixed(2)}`;
         }
 
-        // Rebind quantity and remove buttons
+        // Use event delegation instead of rebinding
         this.bindCartItemEvents();
     },
 
-    // Bind events for cart items
+    // Bind events for cart items using event delegation
     bindCartItemEvents() {
-        // Quantity buttons
-        document.querySelectorAll('.qty-minus').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const id = e.currentTarget.dataset.id;
-                const item = this.items.find(i => i.id === id);
-                if (item) {
-                    this.updateQuantity(id, item.quantity - 1);
-                }
-            });
-        });
+        const cartItems = document.getElementById('cartItems');
+        if (!cartItems) return;
 
-        document.querySelectorAll('.qty-plus').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const id = e.currentTarget.dataset.id;
-                const item = this.items.find(i => i.id === id);
-                if (item) {
-                    this.updateQuantity(id, item.quantity + 1);
-                }
-            });
-        });
+        // Remove old listener if exists, then add new one
+        cartItems.removeEventListener('click', this.handleCartItemClick);
+        this.handleCartItemClick = (e) => {
+            const target = e.target.closest('button');
+            if (!target) return;
 
-        // Remove buttons
-        document.querySelectorAll('.cart-item-remove').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const id = e.currentTarget.dataset.id;
+            const id = target.dataset.id;
+            if (!id) return;
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            if (target.classList.contains('qty-minus')) {
+                const item = this.items.find(i => i.id === id);
+                if (item) this.updateQuantity(id, item.quantity - 1);
+            } else if (target.classList.contains('qty-plus')) {
+                const item = this.items.find(i => i.id === id);
+                if (item) this.updateQuantity(id, item.quantity + 1);
+            } else if (target.classList.contains('cart-item-remove')) {
                 this.removeItem(id);
-            });
-        });
+            }
+        };
+        cartItems.addEventListener('click', this.handleCartItemClick);
     },
 
-    // Bind global events
+    // Bind global events (called once on init)
     bindEvents() {
         // Cart toggle button
         const cartToggle = document.getElementById('cartToggle');
         if (cartToggle) {
-            cartToggle.addEventListener('click', () => this.toggle());
+            cartToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.toggle();
+            });
         }
 
         // Close button
         const closeBtn = document.getElementById('cartClose');
         if (closeBtn) {
-            closeBtn.addEventListener('click', () => this.close());
+            closeBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.close();
+            });
         }
 
         // Overlay click to close
@@ -283,19 +285,27 @@ const Cart = {
         // Checkout button
         const checkoutBtn = document.getElementById('checkoutBtn');
         if (checkoutBtn) {
-            checkoutBtn.addEventListener('click', () => this.checkout());
+            checkoutBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.checkout();
+            });
         }
 
-        // Add to cart buttons (both featured cards and product cards)
-        document.querySelectorAll('.featured-card .add-to-cart-btn, .product-card .add-to-cart-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation(); // Prevent carousel swipe interference
-                const product = this.getProductFromCard(e.currentTarget);
-                if (product) {
-                    this.addItem(product);
-                }
-            });
+        // Bind Add to Cart buttons using event delegation on document
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('.add-to-cart-btn');
+            if (!btn) return;
+
+            // Skip if inside the checkout modal (handled separately)
+            if (btn.closest('.checkout-modal')) return;
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            const product = this.getProductFromCard(btn);
+            if (product) {
+                this.addItem(product);
+            }
         });
     },
 
@@ -309,12 +319,7 @@ const Cart = {
             const id = featuredCard.dataset.productId || name.toLowerCase().replace(/\s+/g, '-');
             const price = parseFloat(featuredCard.dataset.price) || 29.99;
 
-            return {
-                id,
-                name,
-                category,
-                price
-            };
+            return { id, name, category, price };
         }
 
         // Fall back to product card
@@ -325,7 +330,6 @@ const Cart = {
         const category = card.querySelector('.product-category')?.textContent || 'Botanical';
         const id = card.dataset.productId || title.toLowerCase().replace(/\s+/g, '-');
 
-        // Default price (in production, this would come from a database)
         const priceMap = {
             'gummies': 29.99,
             'tinctures': 39.99,
@@ -339,72 +343,46 @@ const Cart = {
         const categoryKey = card.dataset.category || 'extracts';
         const price = priceMap[categoryKey] || 29.99;
 
-        return {
-            id,
-            name: title,
-            category,
-            price
-        };
+        return { id, name: title, category, price };
     },
 
     // Checkout process
     async checkout() {
-        if (this.items.length === 0) return;
+        if (this.items.length === 0 || this.isProcessing) return;
+        this.isProcessing = true;
 
         const checkoutBtn = document.getElementById('checkoutBtn');
         const originalText = checkoutBtn.innerHTML;
 
-        // Show loading state
         checkoutBtn.innerHTML = '<span>Processing...</span>';
         checkoutBtn.disabled = true;
 
         try {
-            // In production, this would call your backend to create a Stripe Checkout session
-            // const response = await fetch('/api/create-checkout-session', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify({
-            //         items: this.items.map(item => ({
-            //             id: item.id,
-            //             name: item.name,
-            //             price: item.price,
-            //             quantity: item.quantity
-            //         }))
-            //     })
-            // });
-            // const { sessionId } = await response.json();
-            // const stripe = Stripe('your-publishable-key');
-            // await stripe.redirectToCheckout({ sessionId });
-
-            // For demo, show checkout modal
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            // In production, call backend to create Stripe Checkout session
+            await new Promise(resolve => setTimeout(resolve, 800));
             this.showCheckoutModal();
-
         } catch (error) {
             console.error('Checkout error:', error);
             alert('There was an error processing your checkout. Please try again.');
         } finally {
             checkoutBtn.innerHTML = originalText;
             checkoutBtn.disabled = false;
+            this.isProcessing = false;
         }
     },
 
     // Show checkout modal (demo)
     showCheckoutModal() {
-        // Prevent multiple modals
-        if (document.querySelector('.checkout-modal')) {
-            return;
-        }
+        if (document.querySelector('.checkout-modal')) return;
 
-        // Close cart sidebar first to prevent z-index stacking issues
-        this.close();
+        this.close(); // Close cart sidebar first
 
         const modal = document.createElement('div');
         modal.className = 'checkout-modal';
         modal.innerHTML = `
             <div class="checkout-modal-overlay"></div>
             <div class="checkout-modal-content">
-                <button class="checkout-modal-close" aria-label="Close">
+                <button class="checkout-modal-close" aria-label="Close" type="button">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="18" y1="6" x2="6" y2="18"/>
                         <line x1="6" y1="6" x2="18" y2="18"/>
@@ -438,32 +416,16 @@ const Cart = {
                         <line x1="12" y1="16" x2="12" y2="12"/>
                         <line x1="12" y1="8" x2="12.01" y2="8"/>
                     </svg>
-                    <p>This is a demo checkout. In production, this would redirect to Stripe's secure payment page.</p>
+                    <p>Demo checkout. Production will redirect to Stripe.</p>
                 </div>
                 <div class="checkout-actions">
-                    <button class="btn btn-secondary" id="continueShopping">Continue Shopping</button>
-                    <button class="btn btn-primary" id="simulatePayment">
+                    <button class="btn btn-secondary" id="continueShopping" type="button">Continue Shopping</button>
+                    <button class="btn btn-primary" id="simulatePayment" type="button">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                         </svg>
-                        <span>Simulate Payment</span>
+                        <span>Complete Order</span>
                     </button>
-                </div>
-                <div class="checkout-badges">
-                    <span class="security-badge">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                        </svg>
-                        SSL Encrypted
-                    </span>
-                    <span class="security-badge">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                            <path d="M22 10H2" fill="none" stroke="white" stroke-width="2"/>
-                        </svg>
-                        Stripe Powered
-                    </span>
                 </div>
             </div>
         `;
@@ -471,12 +433,8 @@ const Cart = {
         document.body.appendChild(modal);
         document.body.style.overflow = 'hidden';
 
-        // Animate in
-        requestAnimationFrame(() => {
-            modal.classList.add('open');
-        });
+        requestAnimationFrame(() => modal.classList.add('open'));
 
-        // Close handlers
         const closeModal = () => {
             modal.classList.remove('open');
             setTimeout(() => {
@@ -487,20 +445,15 @@ const Cart = {
 
         modal.querySelector('.checkout-modal-close').addEventListener('click', closeModal);
         modal.querySelector('.checkout-modal-overlay').addEventListener('click', closeModal);
-        modal.querySelector('#continueShopping').addEventListener('click', () => {
-            closeModal();
-            this.close();
-        });
+        modal.querySelector('#continueShopping').addEventListener('click', closeModal);
 
-        // Simulate payment
         modal.querySelector('#simulatePayment').addEventListener('click', async () => {
             const btn = modal.querySelector('#simulatePayment');
             btn.innerHTML = '<span>Processing...</span>';
             btn.disabled = true;
 
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            await new Promise(resolve => setTimeout(resolve, 1500));
 
-            // Show success
             modal.querySelector('.checkout-modal-content').innerHTML = `
                 <div class="checkout-success">
                     <div class="success-icon">
@@ -510,21 +463,16 @@ const Cart = {
                         </svg>
                     </div>
                     <h2>Order Confirmed!</h2>
-                    <p>Thank you for your order. This is a demo - no actual payment was processed.</p>
+                    <p>Thank you for your order. This is a demo.</p>
                     <p class="order-number">Order #DEMO-${Date.now()}</p>
-                    <button class="btn btn-primary" id="closeSuccess">
+                    <button class="btn btn-primary" id="closeSuccess" type="button">
                         <span>Return to Shop</span>
                     </button>
                 </div>
             `;
 
-            // Clear cart
             this.clear();
-
-            modal.querySelector('#closeSuccess').addEventListener('click', () => {
-                closeModal();
-                this.close();
-            });
+            modal.querySelector('#closeSuccess').addEventListener('click', closeModal);
         });
     }
 };
@@ -532,168 +480,7 @@ const Cart = {
 // Initialize cart when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     Cart.init();
-    Cart.addCartButtonsToProducts();
-    initProductInfoModals();
 });
-
-/**
- * Product Info Modal System
- */
-function initProductInfoModals() {
-    // Bind info button clicks
-    document.querySelectorAll('.product-info-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            showProductInfoModal(btn);
-        });
-    });
-}
-
-function showProductInfoModal(button) {
-    // Prevent multiple modals
-    if (document.querySelector('.product-info-modal')) {
-        return;
-    }
-
-    // Get product data from the card
-    const card = button.closest('.featured-card');
-    if (!card) return;
-
-    const name = card.querySelector('.featured-name')?.textContent || 'Product';
-    const category = card.querySelector('.featured-category')?.textContent || 'Botanical';
-    const price = card.dataset.price || '0.00';
-    const details = button.dataset.details || 'No additional details available.';
-    const productId = card.dataset.productId || name.toLowerCase().replace(/\s+/g, '-');
-
-    // Create modal
-    const modal = document.createElement('div');
-    modal.className = 'product-info-modal';
-    modal.innerHTML = `
-        <div class="product-info-modal-overlay"></div>
-        <div class="product-info-modal-content">
-            <button class="product-info-modal-close" aria-label="Close">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="18" y1="6" x2="6" y2="18"/>
-                    <line x1="6" y1="6" x2="18" y2="18"/>
-                </svg>
-            </button>
-            <div class="product-info-header">
-                <div class="product-info-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                    </svg>
-                </div>
-                <div class="product-info-title">
-                    <h3>${name}</h3>
-                    <span>${category}</span>
-                </div>
-            </div>
-            <div class="product-info-body">
-                <p>${details}</p>
-            </div>
-            <div class="product-info-footer">
-                <span class="product-info-price">$${parseFloat(price).toFixed(2)}</span>
-                <button class="btn btn-primary add-to-cart-btn" data-product-id="${productId}">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="9" cy="21" r="1"/>
-                        <circle cx="20" cy="21" r="1"/>
-                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-                    </svg>
-                    <span>Add to Cart</span>
-                </button>
-            </div>
-        </div>
-    `;
-
-    document.body.appendChild(modal);
-    document.body.style.overflow = 'hidden';
-
-    // Animate in
-    requestAnimationFrame(() => {
-        modal.classList.add('open');
-    });
-
-    // Close handlers
-    const closeModal = () => {
-        modal.classList.remove('open');
-        setTimeout(() => {
-            modal.remove();
-            document.body.style.overflow = '';
-        }, 300);
-    };
-
-    modal.querySelector('.product-info-modal-close').addEventListener('click', closeModal);
-    modal.querySelector('.product-info-modal-overlay').addEventListener('click', closeModal);
-
-    // Escape key to close
-    const escHandler = (e) => {
-        if (e.key === 'Escape') {
-            closeModal();
-            document.removeEventListener('keydown', escHandler);
-        }
-    };
-    document.addEventListener('keydown', escHandler);
-
-    // Add to cart from modal
-    modal.querySelector('.add-to-cart-btn').addEventListener('click', () => {
-        const product = {
-            id: productId,
-            name: name,
-            category: category,
-            price: parseFloat(price)
-        };
-        Cart.addItem(product);
-        closeModal();
-    });
-}
-
-// Add "Add to Cart" buttons to all product cards
-Cart.addCartButtonsToProducts = function() {
-    const productCards = document.querySelectorAll('.product-card');
-
-    productCards.forEach((card, index) => {
-        // Generate unique product ID
-        const title = card.querySelector('.product-title')?.textContent || 'Product';
-        const productId = `product-${index}-${title.toLowerCase().replace(/\s+/g, '-').substring(0, 20)}`;
-        card.dataset.productId = productId;
-
-        // Find the product link
-        const productLink = card.querySelector('.product-link');
-        if (!productLink) return;
-
-        // Create action buttons container
-        const actionsDiv = document.createElement('div');
-        actionsDiv.className = 'product-actions';
-
-        // Create Add to Cart button
-        const addToCartBtn = document.createElement('button');
-        addToCartBtn.className = 'add-to-cart-btn';
-        addToCartBtn.innerHTML = `
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="9" cy="21" r="1"/>
-                <circle cx="20" cy="21" r="1"/>
-                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-            </svg>
-            <span>Add to Cart</span>
-        `;
-
-        addToCartBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const product = this.getProductFromCard(addToCartBtn);
-            if (product) {
-                this.addItem(product);
-            }
-        });
-
-        // Wrap existing link and add button
-        actionsDiv.appendChild(addToCartBtn);
-
-        // Insert after the product link or replace it
-        productLink.parentNode.insertBefore(actionsDiv, productLink);
-        productLink.style.display = 'none'; // Hide original link for now
-    });
-};
 
 // Export for module usage
 if (typeof module !== 'undefined' && module.exports) {
