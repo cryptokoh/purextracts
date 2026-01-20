@@ -799,23 +799,57 @@ function initFeaturedCarousel() {
 
     // Touch/swipe support for mobile
     let touchStartX = 0;
+    let touchStartY = 0;
     let touchEndX = 0;
+    let touchEndY = 0;
+    let touchStartTime = 0;
+    let touchTarget = null;
 
     track.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+        touchStartTime = Date.now();
+        touchTarget = e.target;
     }, { passive: true });
 
     track.addEventListener('touchend', (e) => {
         touchEndX = e.changedTouches[0].screenX;
+        touchEndY = e.changedTouches[0].screenY;
+
+        // Don't trigger swipe if the touch started on an interactive element
+        const interactiveElements = ['BUTTON', 'A', 'INPUT', 'SELECT'];
+        const clickedInteractive = touchTarget && (
+            interactiveElements.includes(touchTarget.tagName) ||
+            touchTarget.closest('button') ||
+            touchTarget.closest('a') ||
+            touchTarget.closest('.add-to-cart-btn') ||
+            touchTarget.closest('.product-info-btn')
+        );
+
+        if (clickedInteractive) {
+            return; // Let the click happen naturally
+        }
+
         handleSwipe();
     }, { passive: true });
 
     function handleSwipe() {
-        const swipeThreshold = 50;
-        const diff = touchStartX - touchEndX;
+        const swipeThreshold = 80; // Increased threshold to reduce accidental swipes
+        const verticalThreshold = 50; // If vertical movement is significant, it's a scroll not swipe
+        const maxSwipeTime = 500; // Swipe must complete within 500ms
 
-        if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0) {
+        const diffX = touchStartX - touchEndX;
+        const diffY = Math.abs(touchStartY - touchEndY);
+        const swipeTime = Date.now() - touchStartTime;
+
+        // Only trigger swipe if:
+        // 1. Horizontal movement exceeds threshold
+        // 2. Vertical movement is minimal (not a scroll)
+        // 3. Swipe completed quickly (intentional gesture)
+        if (Math.abs(diffX) > swipeThreshold &&
+            diffY < verticalThreshold &&
+            swipeTime < maxSwipeTime) {
+            if (diffX > 0) {
                 nextSlide();
             } else {
                 prevSlide();
@@ -838,10 +872,14 @@ function initFeaturedCarousel() {
         }, 250);
     });
 
-    // Auto-advance (every 3 seconds with gentle transition)
+    // Auto-advance (every 5 seconds with gentle transition) - disabled on mobile
     let autoAdvance;
 
     function startAutoAdvance() {
+        // Don't auto-advance on mobile - let users control via native scroll
+        if (isMobile()) return;
+
+        stopAutoAdvance(); // Clear any existing interval
         autoAdvance = setInterval(() => {
             if (currentIndex < totalCards - cardsPerView) {
                 nextSlide();
@@ -849,21 +887,23 @@ function initFeaturedCarousel() {
                 currentIndex = 0;
                 updateCarousel();
             }
-        }, 3000);
+        }, 5000); // Increased to 5 seconds for less aggressive advancement
     }
 
     function stopAutoAdvance() {
-        clearInterval(autoAdvance);
+        if (autoAdvance) {
+            clearInterval(autoAdvance);
+            autoAdvance = null;
+        }
     }
 
-    // Pause on hover/touch, resume after
+    // Pause on hover/touch, resume after (desktop only)
     track.addEventListener('mouseenter', stopAutoAdvance);
-    track.addEventListener('mouseleave', startAutoAdvance);
+    track.addEventListener('mouseleave', () => {
+        if (!isMobile()) startAutoAdvance();
+    });
+    // Touch events - stop auto-advance but don't resume on mobile
     track.addEventListener('touchstart', stopAutoAdvance, { passive: true });
-    track.addEventListener('touchend', () => {
-        // Resume auto-advance after a short delay
-        setTimeout(startAutoAdvance, 2000);
-    }, { passive: true });
 
     // Sync dots with native scroll on mobile
     let scrollTimeout;

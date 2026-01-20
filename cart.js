@@ -286,10 +286,11 @@ const Cart = {
             checkoutBtn.addEventListener('click', () => this.checkout());
         }
 
-        // Add to cart buttons
-        document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+        // Add to cart buttons (both featured cards and product cards)
+        document.querySelectorAll('.featured-card .add-to-cart-btn, .product-card .add-to-cart-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
+                e.stopPropagation(); // Prevent carousel swipe interference
                 const product = this.getProductFromCard(e.currentTarget);
                 if (product) {
                     this.addItem(product);
@@ -298,8 +299,25 @@ const Cart = {
         });
     },
 
-    // Get product data from card
+    // Get product data from card (supports both .product-card and .featured-card)
     getProductFromCard(button) {
+        // Try featured card first
+        const featuredCard = button.closest('.featured-card');
+        if (featuredCard) {
+            const name = featuredCard.querySelector('.featured-name')?.textContent || 'Product';
+            const category = featuredCard.querySelector('.featured-category')?.textContent || 'Botanical';
+            const id = featuredCard.dataset.productId || name.toLowerCase().replace(/\s+/g, '-');
+            const price = parseFloat(featuredCard.dataset.price) || 29.99;
+
+            return {
+                id,
+                name,
+                category,
+                price
+            };
+        }
+
+        // Fall back to product card
         const card = button.closest('.product-card');
         if (!card) return null;
 
@@ -515,7 +533,120 @@ const Cart = {
 document.addEventListener('DOMContentLoaded', () => {
     Cart.init();
     Cart.addCartButtonsToProducts();
+    initProductInfoModals();
 });
+
+/**
+ * Product Info Modal System
+ */
+function initProductInfoModals() {
+    // Bind info button clicks
+    document.querySelectorAll('.product-info-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            showProductInfoModal(btn);
+        });
+    });
+}
+
+function showProductInfoModal(button) {
+    // Prevent multiple modals
+    if (document.querySelector('.product-info-modal')) {
+        return;
+    }
+
+    // Get product data from the card
+    const card = button.closest('.featured-card');
+    if (!card) return;
+
+    const name = card.querySelector('.featured-name')?.textContent || 'Product';
+    const category = card.querySelector('.featured-category')?.textContent || 'Botanical';
+    const price = card.dataset.price || '0.00';
+    const details = button.dataset.details || 'No additional details available.';
+    const productId = card.dataset.productId || name.toLowerCase().replace(/\s+/g, '-');
+
+    // Create modal
+    const modal = document.createElement('div');
+    modal.className = 'product-info-modal';
+    modal.innerHTML = `
+        <div class="product-info-modal-overlay"></div>
+        <div class="product-info-modal-content">
+            <button class="product-info-modal-close" aria-label="Close">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+            <div class="product-info-header">
+                <div class="product-info-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <div class="product-info-title">
+                    <h3>${name}</h3>
+                    <span>${category}</span>
+                </div>
+            </div>
+            <div class="product-info-body">
+                <p>${details}</p>
+            </div>
+            <div class="product-info-footer">
+                <span class="product-info-price">$${parseFloat(price).toFixed(2)}</span>
+                <button class="btn btn-primary add-to-cart-btn" data-product-id="${productId}">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"/>
+                        <circle cx="20" cy="21" r="1"/>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                    </svg>
+                    <span>Add to Cart</span>
+                </button>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+    document.body.style.overflow = 'hidden';
+
+    // Animate in
+    requestAnimationFrame(() => {
+        modal.classList.add('open');
+    });
+
+    // Close handlers
+    const closeModal = () => {
+        modal.classList.remove('open');
+        setTimeout(() => {
+            modal.remove();
+            document.body.style.overflow = '';
+        }, 300);
+    };
+
+    modal.querySelector('.product-info-modal-close').addEventListener('click', closeModal);
+    modal.querySelector('.product-info-modal-overlay').addEventListener('click', closeModal);
+
+    // Escape key to close
+    const escHandler = (e) => {
+        if (e.key === 'Escape') {
+            closeModal();
+            document.removeEventListener('keydown', escHandler);
+        }
+    };
+    document.addEventListener('keydown', escHandler);
+
+    // Add to cart from modal
+    modal.querySelector('.add-to-cart-btn').addEventListener('click', () => {
+        const product = {
+            id: productId,
+            name: name,
+            category: category,
+            price: parseFloat(price)
+        };
+        Cart.addItem(product);
+        closeModal();
+    });
+}
 
 // Add "Add to Cart" buttons to all product cards
 Cart.addCartButtonsToProducts = function() {
