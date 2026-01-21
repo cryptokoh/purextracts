@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="clinical">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0d9488">
+    <title>Project Details | Pure Extracts TX</title>
+    <meta name="description" content="Development progress, milestones, and roadmap for Pure Extracts TX website.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="roadmap-styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 40 40" fill="none">
+                        <path d="M20 4C20 4 8 12 8 22C8 28.627 13.373 34 20 34C26.627 34 32 28.627 32 22C32 12 20 4 20 4Z" fill="currentColor" opacity="0.2"/>
+                        <path d="M20 8C20 8 12 14 12 22C12 26.418 15.582 30 20 30C24.418 30 28 26.418 28 22C28 14 20 8 20 8Z" fill="currentColor" opacity="0.4"/>
+                        <path d="M20 12C20 12 16 16 16 22C16 24.209 17.791 26 20 26C22.209 26 24 24.209 24 22C24 16 20 12 20 12Z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <span class="logo-text">Pure Extracts<span class="logo-suffix">TX</span></span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#products" class="nav-link">Products</a>
+                <a href="classroom.html" class="nav-link">Learn</a>
+                <a href="design-index.html" class="nav-link">Design System</a>
+            </div>
+            <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="project-hero">
+        <div class="project-hero-bg">
+            <div class="hero-gradient"></div>
+            <div class="hero-pattern"></div>
+        </div>
+        <div class="container">
+            <div class="project-hero-content">
+                <div class="project-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                    </svg>
+                    <span>Development Dashboard</span>
+                </div>
+                <h1 class="project-title">Pure Extracts TX</h1>
+                <p class="project-subtitle">Track development progress, milestones, and upcoming features for the botanical wellness platform.</p>
+
+                <div class="project-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="commitCount">30+</span>
+                            <span class="stat-label">Commits</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                <polyline points="22 4 12 14.01 9 11.01"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="featuresComplete">15</span>
+                            <span class="stat-label">Features Built</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="todoCount">0</span>
+                            <span class="stat-label">In Progress</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">What's Built</span>
+                <h2 class="section-title">Features in Place</h2>
+                <p class="section-subtitle">Current functionality and completed development milestones.</p>
+            </div>
+
+            <div class="features-grid">
+                <!-- Core Features -->
+                <div class="feature-card completed">
+                    <div class="feature-status">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <span>Complete</span>
+                    </div>
+                    <div class="feature-icon homepage">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                            <polyline points="9 22 9 12 15 12 15 22"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Homepage</h3>
+                    <p class="feature-desc">Hero section, trust badges, featured products carousel, newsletter signup, and contact form.</p>
+                    <div class="feature-tags">
+                        <span class="tag">Responsive</span>
+                        <span class="tag">Animated</span>
+                    </div>
+                </div>
+
+                <div class="feature-card completed">
+                    <div class="feature-status">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <span>Complete</span>
+                    </div>
+                    <div class="feature-icon products">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"/>
+                            <rect x="14" y="3" width="7" height="7"/>
+                            <rect x="14" y="14" width="7" height="7"/>
+                            <rect x="3" y="14" width="7" height="7"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Product Catalog</h3>
+                    <p class="feature-desc">45+ products across 8 categories with filtering, search-ready structure, and detailed cards.</p>
+                    <div class="feature-tags">
+                        <span class="tag">45+ Items</span>
+                        <span class="tag">8 Categories</span>
+                    </div>
+                </div>
+
+                <div class="feature-card completed">
+                    <div class="feature-status">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <span>Complete</span>
+                    </div>
+                    <div class="feature-icon cart">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="9" cy="21" r="1"/>
+                            <circle cx="20" cy="21" r="1"/>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Shopping Cart</h3>
+                    <p class="feature-desc">Full cart system with add/remove, quantity controls, sidebar drawer, and Stripe-ready checkout.</p>
+                    <div class="feature-tags">
+                        <span class="tag">Stripe Ready</span>
+                        <span class="tag">Persistent</span>
+                    </div>
+                </div>
+
+                <div class="feature-card completed">
+                    <div class="feature-status">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <span>Complete</span>
+                    </div>
+                    <div class="feature-icon themes">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"/>
+                            <line x1="12" y1="1" x2="12" y2="3"/>
+                            <line x1="12" y1="21" x2="12" y2="23"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                            <line x1="1" y1="12" x2="3" y2="12"/>
+                            <line x1="21" y1="12" x2="23" y2="12"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Multi-Theme System</h3>
+                    <p class="feature-desc">Three distinct themes - Clinical White, Earth Apothecary, Modern Herbalist with smooth transitions.</p>
+                    <div class="feature-tags">
+                        <span class="tag">3 Themes</span>
+                        <span class="tag">CSS Variables</span>
+                    </div>
+                </div>
+
+                <div class="feature-card completed">
+                    <div class="feature-status">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <span>Complete</span>
+                    </div>
+                    <div class="feature-icon classroom">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Classroom / Learn</h3>
+                    <p class="feature-desc">Educational hub with About section, compound library, and links to interactive lab experiences.</p>
+                    <div class="feature-tags">
+                        <span class="tag">Educational</span>
+                        <span class="tag">Interactive</span>
+                    </div>
+                </div>
+
+                <div class="feature-card completed">
+                    <div class="feature-status">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <span>Complete</span>
+                    </div>
+                    <div class="feature-icon lab3d">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                            <polyline points="7.5 4.21 12 6.81 16.5 4.21"/>
+                            <polyline points="7.5 19.79 7.5 14.6 3 12"/>
+                            <polyline points="21 12 16.5 14.6 16.5 19.79"/>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                            <line x1="12" y1="22.08" x2="12" y2="12"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">3D Lab Experience</h3>
+                    <p class="feature-desc">Three.js WebGL shamanic lab with floating elements, mobile optimization, and back navigation.</p>
+                    <div class="feature-tags">
+                        <span class="tag">Three.js</span>
+                        <span class="tag">WebGL</span>
+                    </div>
+                </div>
+
+                <div class="feature-card completed">
+                    <div class="feature-status">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <span>Complete</span>
+                    </div>
+                    <div class="feature-icon lab2d">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="9" y1="3" x2="9" y2="21"/>
+                            <line x1="15" y1="3" x2="15" y2="21"/>
+                            <line x1="3" y1="9" x2="21" y2="9"/>
+                            <line x1="3" y1="15" x2="21" y2="15"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">2D Lab Experience</h3>
+                    <p class="feature-desc">Technical lab with dual-theme system, section navigation, portals, and smooth transitions.</p>
+                    <div class="feature-tags">
+                        <span class="tag">Dual Theme</span>
+                        <span class="tag">Interactive</span>
+                    </div>
+                </div>
+
+                <div class="feature-card completed">
+                    <div class="feature-status">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <span>Complete</span>
+                    </div>
+                    <div class="feature-icon ruins">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Ancient Ruins Lab</h3>
+                    <p class="feature-desc">Mystical garden lab with library modals, shaman elements, and zone navigation.</p>
+                    <div class="feature-tags">
+                        <span class="tag">Immersive</span>
+                        <span class="tag">Mobile Ready</span>
+                    </div>
+                </div>
+
+                <div class="feature-card completed">
+                    <div class="feature-status">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <span>Complete</span>
+                    </div>
+                    <div class="feature-icon blog">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <polyline points="10 9 9 9 8 9"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Blog System</h3>
+                    <p class="feature-desc">Comprehensive blog/education system for botanical knowledge sharing.</p>
+                    <div class="feature-tags">
+                        <span class="tag">SEO Ready</span>
+                        <span class="tag">Categories</span>
+                    </div>
+                </div>
+
+                <div class="feature-card completed">
+                    <div class="feature-status">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <span>Complete</span>
+                    </div>
+                    <div class="feature-icon seo">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">SEO Infrastructure</h3>
+                    <p class="feature-desc">Open Graph, Twitter Cards, Schema.org structured data, and comprehensive meta tags.</p>
+                    <div class="feature-tags">
+                        <span class="tag">Schema.org</span>
+                        <span class="tag">Social Ready</span>
+                    </div>
+                </div>
+
+                <div class="feature-card completed">
+                    <div class="feature-status">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <span>Complete</span>
+                    </div>
+                    <div class="feature-icon mobile">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                            <line x1="12" y1="18" x2="12.01" y2="18"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Mobile Optimization</h3>
+                    <p class="feature-desc">Fully responsive design with mobile CTAs, touch-friendly navigation, and optimized performance.</p>
+                    <div class="feature-tags">
+                        <span class="tag">Touch Ready</span>
+                        <span class="tag">PWA Ready</span>
+                    </div>
+                </div>
+
+                <div class="feature-card completed">
+                    <div class="feature-status">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <span>Complete</span>
+                    </div>
+                    <div class="feature-icon design">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                            <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                            <path d="M2 2l7.586 7.586"/>
+                            <circle cx="11" cy="11" r="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Design System</h3>
+                    <p class="feature-desc">Comprehensive CSS variables, component library, and design index documentation.</p>
+                    <div class="feature-tags">
+                        <span class="tag">CSS Variables</span>
+                        <span class="tag">Documented</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Milestone Timeline -->
+    <section class="timeline-section" id="milestones">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Development Journey</span>
+                <h2 class="section-title">Milestone Timeline</h2>
+                <p class="section-subtitle">Key development milestones from initial commit to current state.</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Initial Setup</div>
+                        <h3 class="timeline-title">Website Redesign Foundation</h3>
+                        <p class="timeline-desc">Initial commit establishing Pure Extracts TX website with core structure and styling framework.</p>
+                        <span class="timeline-hash">ad36cae</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Phase 1</div>
+                        <h3 class="timeline-title">Mobile-First Responsive Design</h3>
+                        <p class="timeline-desc">Comprehensive responsive redesign ensuring optimal experience across all device sizes.</p>
+                        <span class="timeline-hash">f30cf50</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Phase 2</div>
+                        <h3 class="timeline-title">Botanical Extract Pivot</h3>
+                        <p class="timeline-desc">Strategic pivot to botanical extracts - kratom, kava, blue lotus, and ethnobotanicals.</p>
+                        <span class="timeline-hash">e59b7c5</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Phase 3</div>
+                        <h3 class="timeline-title">Product Catalog & SEO</h3>
+                        <p class="timeline-desc">Full product catalog with 8 categories, comprehensive SEO infrastructure, and social automation.</p>
+                        <span class="timeline-hash">b121bd3</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Phase 4</div>
+                        <h3 class="timeline-title">E-Commerce Cart System</h3>
+                        <p class="timeline-desc">Complete shopping cart with Stripe-ready checkout, persistent storage, and security features.</p>
+                        <span class="timeline-hash">7dfa511</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Phase 5</div>
+                        <h3 class="timeline-title">Interactive Lab Experiences</h3>
+                        <p class="timeline-desc">Shamanic 3D lab with Three.js, 2D technical lab with dual themes, and Ancient Ruins garden lab.</p>
+                        <span class="timeline-hash">fac2c9c - 65c0a99</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Phase 6</div>
+                        <h3 class="timeline-title">Navigation & UX Polish</h3>
+                        <p class="timeline-desc">Enhanced navigation consistency, sliding drawers, home buttons, and mobile UX improvements.</p>
+                        <span class="timeline-hash">94d4183 - abdcf55</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item current">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Current</div>
+                        <h3 class="timeline-title">UI/UX Refinements</h3>
+                        <p class="timeline-desc">Homepage scroll fixes, carousel enhancements, ancient lab spacing, and mobile portal improvements.</p>
+                        <span class="timeline-hash">b107df7</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Todo/Roadmap Section -->
+    <section class="roadmap-section" id="roadmap">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">What's Next</span>
+                <h2 class="section-title">Development Roadmap</h2>
+                <p class="section-subtitle">Track upcoming features, active work, and completed tasks.</p>
+            </div>
+
+            <div class="kanban-board">
+                <!-- Backlog Column -->
+                <div class="kanban-column" data-status="backlog">
+                    <div class="kanban-header">
+                        <div class="kanban-header-info">
+                            <span class="kanban-icon backlog">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                                </svg>
+                            </span>
+                            <h3>Backlog</h3>
+                        </div>
+                        <span class="kanban-count" id="backlogCount">0</span>
+                    </div>
+                    <div class="kanban-cards" id="backlogCards">
+                        <!-- Cards populated by JS -->
+                    </div>
+                    <button class="add-card-btn" data-status="backlog">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                        Add Task
+                    </button>
+                </div>
+
+                <!-- In Progress Column -->
+                <div class="kanban-column" data-status="in-progress">
+                    <div class="kanban-header">
+                        <div class="kanban-header-info">
+                            <span class="kanban-icon in-progress">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/>
+                                </svg>
+                            </span>
+                            <h3>In Progress</h3>
+                        </div>
+                        <span class="kanban-count" id="inProgressCount">0</span>
+                    </div>
+                    <div class="kanban-cards" id="inProgressCards">
+                        <!-- Cards populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Review Column -->
+                <div class="kanban-column" data-status="review">
+                    <div class="kanban-header">
+                        <div class="kanban-header-info">
+                            <span class="kanban-icon review">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                            </span>
+                            <h3>Review</h3>
+                        </div>
+                        <span class="kanban-count" id="reviewCount">0</span>
+                    </div>
+                    <div class="kanban-cards" id="reviewCards">
+                        <!-- Cards populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Done Column -->
+                <div class="kanban-column" data-status="done">
+                    <div class="kanban-header">
+                        <div class="kanban-header-info">
+                            <span class="kanban-icon done">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                    <polyline points="22 4 12 14.01 9 11.01"/>
+                                </svg>
+                            </span>
+                            <h3>Done</h3>
+                        </div>
+                        <span class="kanban-count" id="doneCount">0</span>
+                    </div>
+                    <div class="kanban-cards" id="doneCards">
+                        <!-- Cards populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="actions-section">
+        <div class="container">
+            <div class="actions-grid">
+                <a href="index.html" class="action-card">
+                    <div class="action-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                            <polyline points="9 22 9 12 15 12 15 22"/>
+                        </svg>
+                    </div>
+                    <h3>View Live Site</h3>
+                    <p>See the current production version</p>
+                </a>
+                <a href="design-index.html" class="action-card">
+                    <div class="action-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                            <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                        </svg>
+                    </div>
+                    <h3>Design System</h3>
+                    <p>Explore components and styles</p>
+                </a>
+                <a href="ancient-lab.html" class="action-card">
+                    <div class="action-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                            <polyline points="2 17 12 22 22 17"/>
+                            <polyline points="2 12 12 17 22 12"/>
+                        </svg>
+                    </div>
+                    <h3>Lab Experiences</h3>
+                    <p>Interactive 2D & 3D environments</p>
+                </a>
+                <a href="prd.html" class="action-card">
+                    <div class="action-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                        </svg>
+                    </div>
+                    <h3>PRD Document</h3>
+                    <p>Product requirements & roadmap</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer project-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 Pure Extracts TX - Development Dashboard</p>
+                <div class="footer-legal">
+                    <a href="index.html">Back to Site</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Add Task Modal -->
+    <div class="modal-overlay" id="addTaskModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Task</h3>
+                <button class="modal-close" id="modalClose">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <form id="addTaskForm">
+                <div class="form-group">
+                    <label for="taskTitle">Task Title</label>
+                    <input type="text" id="taskTitle" name="taskTitle" required placeholder="Enter task title...">
+                </div>
+                <div class="form-group">
+                    <label for="taskDescription">Description</label>
+                    <textarea id="taskDescription" name="taskDescription" rows="3" placeholder="Optional description..."></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="taskPriority">Priority</label>
+                        <select id="taskPriority" name="taskPriority">
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="taskCategory">Category</label>
+                        <select id="taskCategory" name="taskCategory">
+                            <option value="feature">Feature</option>
+                            <option value="bug">Bug Fix</option>
+                            <option value="enhancement">Enhancement</option>
+                            <option value="docs">Documentation</option>
+                            <option value="design">Design</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelTask">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="roadmap-script.js"></script>
+</body>
+</html>
