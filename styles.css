@@ -3653,8 +3653,8 @@ ul, ol {
         /* Hide scrollbar but keep functionality */
         scrollbar-width: none;
         -ms-overflow-style: none;
-        /* Allow horizontal pan but not pinch zoom on the track */
-        touch-action: pan-x;
+        /* Allow horizontal pan and vertical scroll */
+        touch-action: pan-x pan-y;
     }
 
     .carousel-track::-webkit-scrollbar {
