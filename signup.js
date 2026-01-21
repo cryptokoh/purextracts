@@ -33,6 +33,12 @@ const SignupModal = {
 
     // Initialize the modal system
     init() {
+        // If already subscribed, redirect to welcome page
+        if (SignupTracker.isSubscribed() && window.location.pathname.endsWith('index.html') ||
+            SignupTracker.isSubscribed() && window.location.pathname === '/') {
+            // Don't auto-redirect, let them browse
+        }
+
         this.createModal();
         this.bindEvents();
 
@@ -43,8 +49,11 @@ const SignupModal = {
             }, 8000);
         }
 
-        // Also bind inline signup form
-        this.bindInlineSignup();
+        // Bind hero signup form
+        this.bindHeroSignup();
+
+        // Bind mobile signup button
+        this.bindMobileSignup();
     },
 
     // Create the modal HTML
@@ -153,34 +162,45 @@ const SignupModal = {
         }
     },
 
-    // Bind inline signup form (in the page content)
-    bindInlineSignup() {
-        const inlineForm = document.getElementById('inlineSignupForm');
-        if (inlineForm) {
-            inlineForm.addEventListener('submit', (e) => {
+    // Bind hero signup form
+    bindHeroSignup() {
+        const heroForm = document.getElementById('heroSignupForm');
+        if (heroForm) {
+            heroForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-                const email = inlineForm.querySelector('input[type="email"]').value;
-                const button = inlineForm.querySelector('button');
+                const emailInput = document.getElementById('heroEmail');
+                const email = emailInput?.value;
+                if (!email) return;
+
+                const button = heroForm.querySelector('button');
                 const originalText = button.innerHTML;
 
                 // Show loading state
                 button.innerHTML = '<span>Joining...</span>';
                 button.disabled = true;
 
-                // Simulate API call
+                // Simulate API call (replace with actual API in production)
                 setTimeout(() => {
                     SignupTracker.setSubscribed(email);
-                    button.innerHTML = '<span>You\'re In!</span>';
+                    button.innerHTML = '<span>Welcome!</span>';
+                    console.log('Hero signup:', email);
 
-                    // Reset after delay
+                    // Redirect to welcome page
                     setTimeout(() => {
-                        button.innerHTML = originalText;
-                        button.disabled = false;
-                        inlineForm.reset();
-                    }, 3000);
-
-                    console.log('Inline signup:', email);
+                        window.location.href = 'welcome.html';
+                    }, 800);
                 }, 1000);
+            });
+        }
+    },
+
+    // Bind mobile signup button
+    bindMobileSignup() {
+        const mobileBtn = document.getElementById('mobileSignupBtn');
+        if (mobileBtn) {
+            mobileBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.open();
             });
         }
     },
@@ -210,12 +230,12 @@ const SignupModal = {
                 success.style.display = 'block';
             }
 
-            // Close modal after showing success
-            setTimeout(() => {
-                this.close();
-            }, 3000);
+            console.log('Modal signup:', email);
 
-            console.log('Newsletter signup:', email);
+            // Redirect to welcome page after showing success
+            setTimeout(() => {
+                window.location.href = 'welcome.html';
+            }, 1500);
         }, 1000);
     },
 
