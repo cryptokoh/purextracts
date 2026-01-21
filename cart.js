@@ -477,10 +477,13 @@ const Cart = {
     }
 };
 
+// Cart disabled for pre-launch phase
+// To re-enable: uncomment Cart.init() below and restore cart HTML in index.html
+//
 // Initialize cart when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    Cart.init();
-});
+// document.addEventListener('DOMContentLoaded', () => {
+//     Cart.init();
+// });
 
 // Export for module usage
 if (typeof module !== 'undefined' && module.exports) {
