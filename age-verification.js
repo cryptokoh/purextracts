@@ -1,7 +1,7 @@
 /**
  * Age Verification System for Pure Extracts TX
  *
- * Shows an 18+ age gate modal on first visit.
+ * Shows a 21+ age gate modal on first visit.
  * Stores verification in localStorage for 30 days.
  */
 
@@ -63,14 +63,14 @@
                 </div>
 
                 <div class="age-gate-badge">
-                    <span>18+</span>
+                    <span>21+</span>
                 </div>
 
                 <h2 class="age-gate-title" id="ageGateTitle">Age Verification Required</h2>
 
                 <p class="age-gate-text">
                     This website contains products intended for adults only.
-                    By entering, you confirm that you are at least 18 years of age.
+                    By entering, you confirm that you are at least 21 years of age.
                 </p>
 
                 <div class="age-gate-buttons">
@@ -79,10 +79,10 @@
                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
                             <polyline points="22 4 12 14.01 9 11.01"/>
                         </svg>
-                        Yes, I am 18 or older
+                        Yes, I am 21 or older
                     </button>
                     <button class="age-gate-btn age-gate-btn-deny" id="ageGateDeny">
-                        No, I am under 18
+                        No, I am under 21
                     </button>
                 </div>
 
