@@ -1,38 +1,72 @@
 # Pure Extracts TX - Robots.txt
 # https://pureextractstx.com
 
+# Default rules for all crawlers
 User-agent: *
 Allow: /
+Crawl-delay: 1
 
 # Sitemap location
 Sitemap: https://pureextractstx.com/sitemap.xml
 
-# Crawl-delay for polite crawling
-Crawl-delay: 1
+# Allow important resources for rendering
+Allow: /*.css
+Allow: /*.js
+Allow: /*.svg
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.webp
+Allow: /images/
 
-# Disallow admin/private areas (when implemented)
+# Disallow admin/private areas
 Disallow: /admin/
 Disallow: /api/
 Disallow: /private/
+Disallow: /_*
 
-# Allow important resources
-Allow: /styles.css
-Allow: /script.js
-Allow: /images/
+# Block utility pages
+Disallow: /design-index.html
+Disallow: /prd.html
+Disallow: /styles/
 
-# Block search result pages (when implemented)
+# Block query strings (when implemented)
+Disallow: /*?*
 Disallow: /search?*
-
-# Block cart/checkout (when implemented)
 Disallow: /cart
 Disallow: /checkout
 
-# Google specific
+# Google specific - faster crawling allowed
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 0
 
-# Bing specific
+User-agent: Googlebot-Image
+Allow: /images/
+
+# Bing
 User-agent: Bingbot
 Allow: /
 Crawl-delay: 1
+
+# Social media crawlers - allow everything for rich previews
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# AI crawlers - allow for training data (optional, adjust as needed)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /

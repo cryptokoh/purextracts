@@ -1,115 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
     <!-- Homepage -->
     <url>
         <loc>https://pureextractstx.com/</loc>
-        <lastmod>2025-01-15</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://pureextractstx.com/images/og-image.jpg</image:loc>
+            <image:title>Pure Extracts TX - Premium Botanical Extracts</image:title>
+            <image:caption>Premium kratom, kava, blue lotus and ethnobotanical extracts from Texas Hill Country</image:caption>
+        </image:image>
     </url>
 
-    <!-- Product Category Pages -->
+    <!-- Education: The Classroom -->
     <url>
-        <loc>https://pureextractstx.com/#products</loc>
-        <lastmod>2025-01-15</lastmod>
+        <loc>https://pureextractstx.com/classroom.html</loc>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
 
+    <!-- Education: Interactive Lab -->
     <url>
-        <loc>https://pureextractstx.com/#filter-gummies</loc>
-        <lastmod>2025-01-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <url>
-        <loc>https://pureextractstx.com/#filter-tinctures</loc>
-        <lastmod>2025-01-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <url>
-        <loc>https://pureextractstx.com/#filter-extracts</loc>
-        <lastmod>2025-01-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <url>
-        <loc>https://pureextractstx.com/#filter-nutrients</loc>
-        <lastmod>2025-01-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <url>
-        <loc>https://pureextractstx.com/#filter-dried</loc>
-        <lastmod>2025-01-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <url>
-        <loc>https://pureextractstx.com/#filter-live</loc>
-        <lastmod>2025-01-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <url>
-        <loc>https://pureextractstx.com/#filter-seeds</loc>
-        <lastmod>2025-01-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Main Sections -->
-    <url>
-        <loc>https://pureextractstx.com/#about</loc>
-        <lastmod>2025-01-15</lastmod>
+        <loc>https://pureextractstx.com/lab-2d.html</loc>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
+        <priority>0.8</priority>
     </url>
 
+    <!-- Education: Ancient Wisdom -->
     <url>
-        <loc>https://pureextractstx.com/#research</loc>
-        <lastmod>2025-01-15</lastmod>
+        <loc>https://pureextractstx.com/ancient-lab.html</loc>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
+        <priority>0.8</priority>
     </url>
 
+    <!-- Blog / Research Articles -->
     <url>
-        <loc>https://pureextractstx.com/#services</loc>
-        <lastmod>2025-01-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
+        <loc>https://pureextractstx.com/blog.html</loc>
+        <lastmod>2025-01-22</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
     </url>
 
+    <!-- Roadmap -->
     <url>
-        <loc>https://pureextractstx.com/#contact</loc>
-        <lastmod>2025-01-15</lastmod>
+        <loc>https://pureextractstx.com/roadmap.html</loc>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
 
-    <!-- Blog (placeholder for future content) -->
+    <!-- Welcome Page -->
     <url>
-        <loc>https://pureextractstx.com/blog/</loc>
-        <lastmod>2025-01-15</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
+        <loc>https://pureextractstx.com/welcome.html</loc>
+        <lastmod>2025-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
     </url>
 
-    <!-- Education Section (placeholder for future content) -->
+    <!-- 3D Lab Experience -->
     <url>
-        <loc>https://pureextractstx.com/education/</loc>
-        <lastmod>2025-01-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
+        <loc>https://pureextractstx.com/lab.html</loc>
+        <lastmod>2025-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- SEO Strategy (Transparency) -->
+    <url>
+        <loc>https://pureextractstx.com/seo.html</loc>
+        <lastmod>2025-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
     </url>
 
 </urlset>
