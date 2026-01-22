@@ -225,6 +225,9 @@
 .feature-icon.seo { background: linear-gradient(135deg, #f43f5e 0%, #fb7185 100%); }
 .feature-icon.mobile { background: linear-gradient(135deg, #6366f1 0%, #a78bfa 100%); }
 .feature-icon.design { background: linear-gradient(135deg, #22c55e 0%, #4ade80 100%); }
+.feature-icon.darkmode { background: linear-gradient(135deg, #1e293b 0%, #475569 100%); }
+.feature-icon.funnel { background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%); }
+.feature-icon.agegate { background: linear-gradient(135deg, #dc2626 0%, #f87171 100%); }
 
 .feature-title {
     font-size: var(--text-xl);
