@@ -700,18 +700,27 @@ ul, ol {
     gap: var(--spacing-xl);
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1025px) {
     .hero-content {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
         gap: var(--spacing-3xl);
     }
+
+    .hero-text {
+        flex: 1;
+        max-width: 560px;
+    }
+
+    .hero-signup {
+        flex-shrink: 0;
+        width: 420px;
+    }
 }
 
 .hero-text {
-    flex: 1;
-    max-width: 560px;
+    max-width: 100%;
 }
 
 .hero-badge {
@@ -814,14 +823,6 @@ ul, ol {
     box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px var(--color-primary-subtle);
     position: relative;
     overflow: hidden;
-    flex-shrink: 0;
-}
-
-@media (min-width: 1024px) {
-    .hero-signup {
-        width: 420px;
-        max-width: 420px;
-    }
 }
 
 .hero-signup::before {
