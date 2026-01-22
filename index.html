@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#0d9488" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#0f0f0f" media="(prefers-color-scheme: dark)">
-    <title>Pure Extracts TX | Coming Soon</title>
-    <meta name="description" content="Premium botanical extracts combining ancient wisdom with modern science. Sign up to be notified when we launch.">
+    <title>Pure Extracts TX | Premium Botanical Extracts</title>
+    <meta name="description" content="Premium botanical extracts combining ancient wisdom with modern science. Kratom, Kava, Blue Lotus, and ethnobotanicals crafted in Texas Hill Country.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,34 +50,113 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: var(--font-sans);
             background: var(--color-bg);
             color: var(--color-text);
-            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ==================== TOP BAR ==================== */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+            padding: 12px 0;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .top-bar:hover {
+            background: linear-gradient(135deg, var(--color-primary-dark) 0%, #115e59 100%);
+        }
+
+        .top-bar-content {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 24px;
+            gap: 12px;
+            font-size: 14px;
+            font-weight: 500;
         }
 
-        .landing {
-            width: 100%;
-            max-width: 480px;
-            text-align: center;
+        .top-bar-content svg {
+            width: 18px;
+            height: 18px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .top-bar-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .top-bar:hover .top-bar-cta {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* ==================== NAV ==================== */
+        .nav {
+            position: fixed;
+            top: 44px;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: var(--color-surface);
+            border-bottom: 1px solid var(--color-border);
+            padding: 16px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav.scrolled {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 32px;
+            gap: 10px;
+            text-decoration: none;
         }
 
         .logo-text {
             font-family: var(--font-serif);
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 600;
             color: var(--color-text);
         }
@@ -86,37 +165,93 @@
             color: var(--color-primary);
         }
 
-        .badge {
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-link {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--color-primary);
+        }
+
+        .nav-cta {
+            padding: 10px 20px;
+            background: var(--color-primary);
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: var(--color-primary-dark);
+            color: white;
+        }
+
+        /* ==================== HERO ==================== */
+        .hero {
+            padding: 180px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center top, var(--color-primary-subtle) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 6px 16px;
-            background: linear-gradient(135deg, var(--color-primary-subtle), rgba(217, 119, 6, 0.1));
-            border: 1px solid var(--color-primary);
+            padding: 8px 16px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
             border-radius: 100px;
             font-size: 13px;
             font-weight: 500;
-            color: var(--color-primary-dark);
+            color: var(--color-text-secondary);
             margin-bottom: 24px;
-            animation: pulse-badge 2s ease-in-out infinite;
         }
 
-        .badge svg {
-            width: 16px;
-            height: 16px;
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--color-primary);
+            border-radius: 50%;
+            animation: blink 1.5s ease-in-out infinite;
         }
 
-        @keyframes pulse-badge {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.4); }
-            50% { box-shadow: 0 0 0 8px rgba(13, 148, 136, 0); }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
         }
 
-        h1 {
+        .hero h1 {
             font-family: var(--font-serif);
-            font-size: clamp(32px, 8vw, 48px);
+            font-size: clamp(40px, 8vw, 72px);
             font-weight: 700;
             line-height: 1.1;
-            margin-bottom: 16px;
+            margin-bottom: 24px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .gradient-text {
@@ -126,137 +261,547 @@
             background-clip: text;
         }
 
-        .subtitle {
-            font-size: 16px;
+        .hero-subtitle {
+            font-size: 18px;
             color: var(--color-text-secondary);
-            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(13, 148, 136, 0.3);
+        }
+
+        .hero-cta:hover {
+            background: var(--color-primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(13, 148, 136, 0.4);
+        }
+
+        .hero-cta svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-value {
+            font-family: var(--font-serif);
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .hero-stat-label {
+            font-size: 13px;
+            color: var(--color-text-muted);
+            margin-top: 4px;
+        }
+
+        /* ==================== SECTION STYLES ==================== */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-primary);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        /* ==================== ABOUT ==================== */
+        .about {
+            background: var(--color-surface);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-content .section-subtitle {
             margin-bottom: 32px;
         }
 
-        .signup-card {
-            background: var(--color-surface);
-            border: 2px solid var(--color-primary);
-            border-radius: 16px;
-            padding: 32px 24px;
-            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
+        .about-features {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .about-feature {
+            display: flex;
+            gap: 16px;
+        }
+
+        .about-feature-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-primary-subtle);
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+
+        .about-feature-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--color-primary);
+        }
+
+        .about-feature h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .about-feature p {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+        }
+
+        .about-visual {
+            position: relative;
+        }
+
+        .about-image {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, var(--color-primary-subtle) 0%, rgba(217, 119, 6, 0.1) 100%);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
             overflow: hidden;
         }
 
-        .signup-card::before {
+        .about-image::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%230d9488' opacity='0.1' d='M100,10 C100,10 40,40 40,100 C40,140 65,180 100,180 C135,180 160,140 160,100 C160,40 100,10 100,10 Z'/%3E%3C/svg%3E") center/60% no-repeat;
         }
 
-        .signup-title {
+        .about-image-text {
             font-family: var(--font-serif);
-            font-size: 20px;
+            font-size: 24px;
+            color: var(--color-primary);
+            z-index: 1;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* ==================== PRODUCTS ==================== */
+        .products {
+            background: var(--color-bg);
+        }
+
+        .products-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .product-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+            border-color: var(--color-primary);
+        }
+
+        .product-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 20px;
+            background: var(--color-primary-subtle);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-icon svg {
+            width: 32px;
+            height: 32px;
+            color: var(--color-primary);
+        }
+
+        .product-card h3 {
+            font-size: 18px;
             font-weight: 600;
             margin-bottom: 8px;
         }
 
-        .signup-desc {
+        .product-card p {
             font-size: 14px;
             color: var(--color-text-secondary);
-            margin-bottom: 20px;
+            line-height: 1.6;
         }
 
-        .input-group {
+        /* ==================== EDUCATION ==================== */
+        .education {
+            background: var(--color-surface);
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .education-card {
             display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 14px 16px;
-            border: 1px solid var(--color-border);
-            border-radius: 10px;
-            font-size: 16px;
-            font-family: var(--font-sans);
+            gap: 24px;
+            padding: 32px;
             background: var(--color-bg);
-            transition: all 0.2s;
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
         }
 
-        .input-group input:focus {
-            outline: none;
+        .education-card:hover {
             border-color: var(--color-primary);
-            box-shadow: 0 0 0 3px var(--color-primary-subtle);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
         }
 
-        .input-group input::placeholder {
+        .education-card-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .education-card-icon svg {
+            width: 28px;
+            height: 28px;
+            color: white;
+        }
+
+        .education-card-content h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .education-card-content p {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .education-card-link {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-primary);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .education-card-link svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.2s;
+        }
+
+        .education-card:hover .education-card-link svg {
+            transform: translateX(4px);
+        }
+
+        /* ==================== TRUST ==================== */
+        .trust {
+            background: var(--color-bg);
+        }
+
+        .trust-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+        }
+
+        .trust-item {
+            text-align: center;
+        }
+
+        .trust-icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 16px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .trust-icon svg {
+            width: 28px;
+            height: 28px;
+            color: var(--color-primary);
+        }
+
+        .trust-item h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .trust-item p {
+            font-size: 13px;
             color: var(--color-text-muted);
         }
 
-        .btn {
-            width: 100%;
-            padding: 14px 24px;
-            background: var(--color-primary);
+        /* ==================== FINAL CTA ==================== */
+        .final-cta {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
             color: white;
+            text-align: center;
+        }
+
+        .final-cta .section-label {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .final-cta .section-title {
+            color: white;
+        }
+
+        .final-cta .section-subtitle {
+            color: rgba(255,255,255,0.9);
+            margin: 0 auto 40px;
+        }
+
+        .final-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 18px 36px;
+            background: white;
+            color: var(--color-primary-dark);
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 16px;
             font-weight: 600;
-            font-family: var(--font-sans);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .final-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+
+        .final-cta-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* ==================== FOOTER ==================== */
+        .footer {
+            background: var(--color-surface);
+            border-top: 1px solid var(--color-border);
+            padding: 60px 0 40px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand .logo-text {
+            margin-bottom: 12px;
+        }
+
+        .footer-tagline {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 64px;
+        }
+
+        .footer-column h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-column a:hover {
+            color: var(--color-primary);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 24px;
+            border-top: 1px solid var(--color-border);
+            font-size: 13px;
+            color: var(--color-text-muted);
+        }
+
+        /* ==================== MODAL ==================== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            width: 100%;
+            max-width: 480px;
+            background: var(--color-surface);
+            border-radius: 20px;
+            padding: 40px;
+            transform: scale(0.95) translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: var(--color-bg);
+            border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            color: var(--color-text-muted);
             transition: all 0.2s;
         }
 
-        .btn:hover {
-            background: var(--color-primary-dark);
-            transform: translateY(-1px);
+        .modal-close:hover {
+            background: var(--color-border);
+            color: var(--color-text);
         }
 
-        .btn svg {
-            width: 18px;
-            height: 18px;
+        .modal-close svg {
+            width: 20px;
+            height: 20px;
         }
 
-        .benefits {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            padding-top: 16px;
-            border-top: 1px solid var(--color-border);
-            margin-top: 4px;
-        }
-
-        .benefit {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            color: var(--color-text-secondary);
-        }
-
-        .benefit svg {
-            width: 16px;
-            height: 16px;
-            color: var(--color-primary);
-            flex-shrink: 0;
-        }
-
-        .success {
-            display: none;
+        .modal-header {
             text-align: center;
-            padding: 20px 0;
+            margin-bottom: 24px;
         }
 
-        .success.show {
-            display: block;
-        }
-
-        .success-icon {
+        .modal-icon {
             width: 64px;
             height: 64px;
             margin: 0 auto 16px;
@@ -265,147 +810,705 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        .modal-icon svg {
+            width: 32px;
+            height: 32px;
             color: var(--color-primary);
         }
 
-        .success-icon svg {
-            width: 32px;
-            height: 32px;
-        }
-
-        .success h3 {
+        .modal-title {
             font-family: var(--font-serif);
-            font-size: 20px;
+            font-size: 24px;
+            font-weight: 600;
             margin-bottom: 8px;
         }
 
-        .success p {
+        .modal-subtitle {
             font-size: 14px;
             color: var(--color-text-secondary);
         }
 
-        .form-container.hidden {
+        .modal-form {
+            margin-bottom: 24px;
+        }
+
+        .modal-input {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: var(--font-sans);
+            background: var(--color-bg);
+            margin-bottom: 12px;
+            transition: all 0.2s;
+        }
+
+        .modal-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px var(--color-primary-subtle);
+        }
+
+        .modal-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .modal-btn:hover {
+            background: var(--color-primary-dark);
+        }
+
+        .modal-benefits {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .modal-benefit {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--color-text-secondary);
+        }
+
+        .modal-benefit svg {
+            width: 18px;
+            height: 18px;
+            color: var(--color-primary);
+        }
+
+        .modal-success {
+            text-align: center;
             display: none;
         }
 
-        @media (min-width: 480px) {
-            .input-group {
-                flex-direction: row;
+        .modal-success.show {
+            display: block;
+        }
+
+        .modal-form-content.hidden {
+            display: none;
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .input-group input {
-                flex: 1;
+            .trust-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar-content {
+                font-size: 13px;
             }
 
-            .btn {
-                width: auto;
-                white-space: nowrap;
+            .nav {
+                top: 40px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 160px 0 80px;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .about-visual {
+                order: -1;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .trust-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                gap: 32px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero-subtitle {
+                font-size: 16px;
+            }
+
+            .trust-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal {
+                padding: 32px 24px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="landing">
-        <div class="logo">
-            <span class="logo-text">Pure Extracts<span class="logo-suffix">TX</span></span>
-        </div>
-
-        <div class="badge">
-            <svg viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+    <!-- Top Bar CTA -->
+    <div class="top-bar" id="topBar">
+        <div class="top-bar-content">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
             </svg>
             <span>Launching Soon</span>
+            <span class="top-bar-cta">
+                Get Early Access
+                <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+            </span>
         </div>
+    </div>
 
-        <h1>Ancient Wisdom.<br><span class="gradient-text">Modern Science.</span></h1>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">Pure Extracts<span class="logo-suffix">TX</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#products" class="nav-link">Products</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="classroom.html" class="nav-link">Learn</a>
+                <button class="nav-link nav-cta" id="navCta">Get Early Access</button>
+            </div>
+        </div>
+    </nav>
 
-        <p class="subtitle">Premium botanical extracts crafted in Texas Hill Country. 30+ years of R&D, finally available to the public.</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                <span>Texas Hill Country Crafted</span>
+            </div>
+            <h1>Ancient Wisdom.<br><span class="gradient-text">Modern Science.</span></h1>
+            <p class="hero-subtitle">Premium botanical extracts developed over 30 years of research. Kratom, Kava, Blue Lotus, and ethnobotanicals crafted with precision and care.</p>
+            <button class="hero-cta" id="heroCta">
+                <span>Join the Waitlist</span>
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+            </button>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-value">30+</div>
+                    <div class="hero-stat-label">Years of Research</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">45+</div>
+                    <div class="hero-stat-label">Products Ready</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">100%</div>
+                    <div class="hero-stat-label">Lab Tested</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <div class="signup-card">
-            <div class="form-container" id="formContainer">
-                <h2 class="signup-title">Be First in Line</h2>
-                <p class="signup-desc">Get notified when we launch + exclusive founding member benefits.</p>
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <span class="section-label">Our Story</span>
+                    <h2 class="section-title">Rooted in Texas.<br>Refined by Science.</h2>
+                    <p class="section-subtitle">What started as a passion for ethnobotany in the Texas Hill Country has evolved into three decades of dedicated research, extraction refinement, and product development.</p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Quality First</h4>
+                                <p>Every batch is third-party tested for purity, potency, and safety.</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Education Focused</h4>
+                                <p>We believe informed customers make the best decisions for their wellness.</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 7h-9M14 17H5"/>
+                                    <circle cx="17" cy="17" r="3"/>
+                                    <circle cx="7" cy="7" r="3"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Transparent Process</h4>
+                                <p>From sourcing to extraction, we share our methods and standards openly.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="about-image">
+                        <span class="about-image-text">Crafted with Care<br>in Texas Hill Country</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <form id="signupForm">
-                    <div class="input-group">
-                        <input type="email" id="email" placeholder="Enter your email" required autocomplete="email">
-                        <button type="submit" class="btn">
-                            <span>Get Early Access</span>
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="products-header">
+                <span class="section-label">Our Collection</span>
+                <h2 class="section-title">Premium Botanical Categories</h2>
+                <p class="section-subtitle" style="margin: 0 auto;">Expertly formulated products across multiple delivery methods for your wellness journey.</p>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h3>Kratom</h3>
+                    <p>Traditional Southeast Asian botanical with a rich history of use for energy and relaxation.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 18a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2"/>
+                            <rect x="3" y="4" width="18" height="18" rx="2"/>
+                            <circle cx="9" cy="10" r="2"/>
+                            <path d="M15 8h.01"/>
+                        </svg>
+                    </div>
+                    <h3>Kava</h3>
+                    <p>Pacific Island ceremonial root known for promoting calm and social relaxation.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+                            <path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6"/>
+                        </svg>
+                    </div>
+                    <h3>Blue Lotus</h3>
+                    <p>Sacred Egyptian flower used for millennia for relaxation and vivid dreaming.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3>Ethnobotanicals</h3>
+                    <p>Curated selection of traditional plants from cultures around the world.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="education" id="education">
+        <div class="container">
+            <span class="section-label">Learn With Us</span>
+            <h2 class="section-title">Education is Our Foundation</h2>
+            <p class="section-subtitle">We believe in empowering our community with knowledge. Explore our educational resources to understand the science and history behind botanical wellness.</p>
+            <div class="education-grid">
+                <a href="classroom.html" class="education-card">
+                    <div class="education-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <div class="education-card-content">
+                        <h3>The Classroom</h3>
+                        <p>Comprehensive guides on alkaloids, extraction methods, dosing, and the science behind each botanical.</p>
+                        <span class="education-card-link">
+                            Start Learning
                             <svg viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
                             </svg>
-                        </button>
+                        </span>
                     </div>
-                </form>
+                </a>
+                <a href="lab-2d.html" class="education-card">
+                    <div class="education-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/>
+                        </svg>
+                    </div>
+                    <div class="education-card-content">
+                        <h3>Interactive Lab</h3>
+                        <p>Explore our virtual laboratory with detailed compound profiles and extraction technique breakdowns.</p>
+                        <span class="education-card-link">
+                            Enter the Lab
+                            <svg viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+                <a href="ancient-lab.html" class="education-card">
+                    <div class="education-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <div class="education-card-content">
+                        <h3>Ancient Wisdom</h3>
+                        <p>Journey through the traditional uses and cultural significance of sacred plants throughout history.</p>
+                        <span class="education-card-link">
+                            Explore History
+                            <svg viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+                <a href="blog.html" class="education-card">
+                    <div class="education-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                        </svg>
+                    </div>
+                    <div class="education-card-content">
+                        <h3>Research Articles</h3>
+                        <p>In-depth articles on the latest research, safe usage guidelines, and botanical science.</p>
+                        <span class="education-card-link">
+                            Read Articles
+                            <svg viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
 
-                <div class="benefits">
-                    <div class="benefit">
+    <!-- Trust Section -->
+    <section class="trust">
+        <div class="container">
+            <div class="trust-header">
+                <span class="section-label">Why Choose Us</span>
+                <h2 class="section-title">Committed to Excellence</h2>
+            </div>
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <div class="trust-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                    </div>
+                    <h4>Lab Tested</h4>
+                    <p>Third-party verified purity & potency</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h4>GMP Compliant</h4>
+                    <p>Manufactured to pharmaceutical standards</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                    </div>
+                    <h4>Texas Crafted</h4>
+                    <p>Produced locally in the Hill Country</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <h4>Education First</h4>
+                    <p>Comprehensive learning resources</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <div class="container">
+            <span class="section-label">Be Part of the Journey</span>
+            <h2 class="section-title">Ready to Experience Pure Quality?</h2>
+            <p class="section-subtitle">Join our founding members list for exclusive early access, special pricing, and educational content delivered straight to your inbox.</p>
+            <button class="final-cta-btn" id="finalCta">
+                <span>Get Early Access</span>
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <span class="logo-text">Pure Extracts<span class="logo-suffix">TX</span></span>
+                    </div>
+                    <p class="footer-tagline">Ancient Wisdom. Modern Science.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Products</h4>
+                        <ul>
+                            <li><a href="#products">Kratom</a></li>
+                            <li><a href="#products">Kava</a></li>
+                            <li><a href="#products">Blue Lotus</a></li>
+                            <li><a href="#products">Ethnobotanicals</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Education</h4>
+                        <ul>
+                            <li><a href="classroom.html">The Classroom</a></li>
+                            <li><a href="blog.html">Articles</a></li>
+                            <li><a href="lab-2d.html">Interactive Lab</a></li>
+                            <li><a href="ancient-lab.html">Ancient Wisdom</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#">Lab Testing</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Wholesale</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Pure Extracts TX. All rights reserved.</p>
+                <p>These statements have not been evaluated by the FDA.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Signup Modal -->
+    <div class="modal-overlay" id="signupModal">
+        <div class="modal" style="position: relative;">
+            <button class="modal-close" id="modalClose">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+            <div class="modal-form-content" id="modalFormContent">
+                <div class="modal-header">
+                    <div class="modal-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="modal-title">Join the Waitlist</h3>
+                    <p class="modal-subtitle">Be first to know when we launch + exclusive member benefits.</p>
+                </div>
+                <form class="modal-form" id="signupForm">
+                    <input type="email" class="modal-input" id="email" placeholder="Enter your email" required autocomplete="email">
+                    <button type="submit" class="modal-btn">Get Early Access</button>
+                </form>
+                <div class="modal-benefits">
+                    <div class="modal-benefit">
                         <svg viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                         </svg>
                         <span>15% off your first order</span>
                     </div>
-                    <div class="benefit">
+                    <div class="modal-benefit">
                         <svg viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                         </svg>
                         <span>Early access before public launch</span>
                     </div>
-                    <div class="benefit">
+                    <div class="modal-benefit">
                         <svg viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                         </svg>
-                        <span>Exclusive botanical education</span>
+                        <span>Exclusive botanical education content</span>
                     </div>
                 </div>
             </div>
-
-            <div class="success" id="success">
-                <div class="success-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                        <polyline points="22 4 12 14.01 9 11.01"/>
-                    </svg>
+            <div class="modal-success" id="modalSuccess">
+                <div class="modal-header">
+                    <div class="modal-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="modal-title">You're on the list!</h3>
+                    <p class="modal-subtitle">We'll notify you the moment we launch with your exclusive discount code.</p>
                 </div>
-                <h3>You're on the list!</h3>
-                <p>We'll notify you the moment we launch.</p>
             </div>
         </div>
     </div>
 
     <script>
+        // Modal functionality
+        const modal = document.getElementById('signupModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalFormContent = document.getElementById('modalFormContent');
+        const modalSuccess = document.getElementById('modalSuccess');
         const form = document.getElementById('signupForm');
-        const formContainer = document.getElementById('formContainer');
-        const success = document.getElementById('success');
 
+        // Open modal triggers
+        document.getElementById('topBar').addEventListener('click', openModal);
+        document.getElementById('heroCta').addEventListener('click', openModal);
+        document.getElementById('navCta').addEventListener('click', openModal);
+        document.getElementById('finalCta').addEventListener('click', openModal);
+
+        function openModal() {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        modalClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // Form submission
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             const email = document.getElementById('email').value;
             const btn = form.querySelector('button');
 
-            btn.innerHTML = '<span>Joining...</span>';
+            btn.textContent = 'Joining...';
             btn.disabled = true;
 
             setTimeout(() => {
                 localStorage.setItem('pureextracts-subscribed', 'true');
                 localStorage.setItem('pureextracts-email', email);
 
-                formContainer.classList.add('hidden');
-                success.classList.add('show');
+                modalFormContent.classList.add('hidden');
+                modalSuccess.classList.add('show');
 
-                console.log('Signup:', email);
-
-                // Redirect to welcome page after delay
+                // Close modal after delay
                 setTimeout(() => {
-                    window.location.href = 'welcome.html';
-                }, 2000);
+                    closeModal();
+                    // Reset form state
+                    setTimeout(() => {
+                        modalFormContent.classList.remove('hidden');
+                        modalSuccess.classList.remove('show');
+                        btn.textContent = 'Get Early Access';
+                        btn.disabled = false;
+                        form.reset();
+                    }, 300);
+                }, 2500);
             }, 1000);
         });
 
-        // If already subscribed, redirect to welcome
-        if (localStorage.getItem('pureextracts-subscribed') === 'true') {
-            window.location.href = 'welcome.html';
-        }
+        // Nav scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 120;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
     <script src="age-verification.js"></script>
 </body>
