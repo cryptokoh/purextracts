@@ -692,8 +692,26 @@ ul, ol {
 .hero-content {
     position: relative;
     z-index: 1;
-    max-width: 640px;
+    max-width: var(--container-max);
+    width: 100%;
     padding: 0 var(--container-padding);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+@media (min-width: 1024px) {
+    .hero-content {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--spacing-3xl);
+    }
+}
+
+.hero-text {
+    flex: 1;
+    max-width: 560px;
 }
 
 .hero-badge {
@@ -733,7 +751,7 @@ ul, ol {
 .hero-subtitle {
     font-size: var(--text-lg);
     color: var(--color-text-secondary);
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
     line-height: 1.7;
 }
 
@@ -748,6 +766,13 @@ ul, ol {
     display: flex;
     align-items: center;
     gap: var(--spacing-xl);
+    margin-top: var(--spacing-md);
+}
+
+@media (max-width: 1023px) {
+    .hero-stats {
+        justify-content: center;
+    }
 }
 
 .stat {
@@ -781,7 +806,6 @@ ul, ol {
 
 /* Hero Signup Form - Paywall Style */
 .hero-signup {
-    margin-top: var(--spacing-xl);
     max-width: 520px;
     background: var(--color-surface);
     border: 2px solid var(--color-primary);
@@ -790,6 +814,14 @@ ul, ol {
     box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px var(--color-primary-subtle);
     position: relative;
     overflow: hidden;
+    flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+    .hero-signup {
+        width: 420px;
+        max-width: 420px;
+    }
 }
 
 .hero-signup::before {
