@@ -766,9 +766,138 @@ ul, ol {
 
 .hero-actions {
     display: flex;
-    gap: var(--spacing-md);
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-lg);
     margin-bottom: var(--spacing-3xl);
+}
+
+@media (min-width: 768px) {
+    .hero-actions {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+/* Hero Classroom Link - Beautiful Secondary CTA */
+.hero-classroom-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: var(--color-text);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-classroom-link::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--color-primary-subtle), var(--color-accent-subtle));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.hero-classroom-link:hover {
+    border-color: var(--color-primary);
+    transform: translateX(4px);
+    box-shadow: 0 4px 20px rgba(var(--color-primary-rgb, 13, 148, 136), 0.15);
+}
+
+.hero-classroom-link:hover::before {
+    opacity: 1;
+}
+
+.hero-classroom-link > * {
+    position: relative;
+    z-index: 1;
+}
+
+.classroom-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark, var(--color-primary)));
+    border-radius: var(--radius-md);
+    color: white;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.classroom-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.hero-classroom-link:hover .classroom-icon {
+    transform: scale(1.05);
+}
+
+.classroom-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-align: left;
+}
+
+.classroom-label {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+.classroom-title {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text);
+    white-space: nowrap;
+}
+
+.classroom-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    color: var(--color-primary);
+    transition: transform 0.3s ease;
+    margin-left: var(--spacing-xs);
+}
+
+.classroom-arrow svg {
+    width: 16px;
+    height: 16px;
+}
+
+.hero-classroom-link:hover .classroom-arrow {
+    transform: translateX(4px);
+}
+
+/* Theme-specific adjustments for classroom link */
+[data-theme="earth"] .classroom-icon {
+    background: linear-gradient(135deg, var(--color-primary), #a85d2e);
+}
+
+[data-theme="herbalist"] .classroom-icon {
+    background: linear-gradient(135deg, var(--color-primary), #16a34a);
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+    .hero-classroom-link {
+        width: 100%;
+        justify-content: flex-start;
+    }
 }
 
 .hero-stats {
@@ -1214,6 +1343,83 @@ ul, ol {
 .trust-content p {
     font-size: var(--text-sm);
     color: var(--color-text-muted);
+}
+
+/* ============================================
+   Contact Section
+   ============================================ */
+
+.contact {
+    padding: var(--spacing-4xl) 0;
+    background: var(--color-surface);
+    text-align: center;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-2xl);
+}
+
+.contact-card {
+    background: var(--color-bg);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.contact-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--spacing-md);
+}
+
+.contact-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke: white;
+}
+
+.contact-card h4 {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-text);
+}
+
+.contact-card p {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-sm);
+}
+
+.contact-link {
+    color: var(--color-primary);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.contact-link:hover {
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+}
+
+.contact-location {
+    color: var(--color-text);
+    font-weight: 600;
 }
 
 /* ============================================

@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="clinical">
+<head>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-050E36TGR9"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-050E36TGR9");</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Research Library | Pure Extracts TX</title>
+    <meta name="description" content="Comprehensive research library covering botanical infrastructure, growing techniques, extraction methods, and effects on the human body. Read-friendly format from Pure Extracts TX.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://pureextractstx.com/research.html">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pureextractstx.com/research.html">
+    <meta property="og:title" content="Research Library | Pure Extracts TX">
+    <meta property="og:description" content="Comprehensive botanical research library - infrastructure, growing, extraction, and human body effects.">
+    <meta property="og:site_name" content="Pure Extracts TX">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="age-verification.css">
+    <style>
+        .research-page { padding-top: 100px; min-height: 100vh; }
+
+        /* Hero */
+        .research-hero {
+            text-align: center;
+            padding: 2rem 1.5rem 2.5rem;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+        .research-hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: var(--color-primary-subtle); color: var(--color-primary);
+            padding: 0.375rem 1rem; border-radius: var(--radius-full);
+            font-size: var(--text-sm); font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.05em; margin-bottom: 1.5rem;
+        }
+        .research-hero h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 5vw, 3rem);
+            line-height: 1.15; color: var(--color-text); margin-bottom: 1rem;
+        }
+        .research-hero p {
+            font-size: var(--text-lg); color: var(--color-text-muted); line-height: 1.7;
+        }
+
+        /* Category Tabs */
+        .research-categories {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0 1.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        .research-tab {
+            padding: 0.625rem 1.25rem;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-full);
+            background: var(--color-bg);
+            color: var(--color-text-muted);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            font-family: var(--font-sans);
+        }
+        .research-tab:hover { border-color: var(--color-primary); color: var(--color-primary); }
+        .research-tab.active {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+
+        /* Content Container */
+        .research-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem 4rem;
+        }
+
+        /* Research Category Section */
+        .research-section {
+            margin-bottom: 3rem;
+        }
+        .research-section.hidden { display: none; }
+
+        .research-section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--color-border);
+        }
+        .research-section-icon {
+            width: 48px; height: 48px;
+            color: var(--color-primary);
+            flex-shrink: 0;
+        }
+        .research-section-title {
+            font-family: var(--font-serif);
+            font-size: var(--text-2xl);
+            color: var(--color-text);
+        }
+        .research-section-count {
+            margin-left: auto;
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+            font-family: var(--font-mono);
+        }
+
+        /* Article Cards */
+        .research-articles {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+        .research-article {
+            display: flex;
+            gap: 1.25rem;
+            padding: 1.5rem;
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            transition: var(--transition-fast);
+            text-decoration: none;
+            color: inherit;
+        }
+        .research-article:hover {
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-md);
+        }
+        .research-article-number {
+            font-family: var(--font-mono);
+            font-size: var(--text-sm);
+            color: var(--color-primary);
+            opacity: 0.6;
+            font-weight: 600;
+            min-width: 28px;
+            padding-top: 2px;
+        }
+        .research-article-body { flex: 1; }
+        .research-article-title {
+            font-family: var(--font-serif);
+            font-size: var(--text-lg);
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+        .research-article-excerpt {
+            color: var(--color-text-muted);
+            font-size: var(--text-sm);
+            line-height: 1.7;
+            margin-bottom: 0.75rem;
+        }
+        .research-article-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+        }
+        .research-article-tag {
+            background: var(--color-primary-subtle);
+            color: var(--color-primary);
+            padding: 0.125rem 0.5rem;
+            border-radius: var(--radius-full);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Interactive Classroom CTA */
+        .research-cta {
+            background: var(--color-surface-alt, var(--color-bg-secondary));
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-2xl);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        .research-cta p {
+            color: var(--color-text-muted);
+            font-size: var(--text-sm);
+            margin-bottom: 1rem;
+        }
+        .research-cta-btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.625rem 1.5rem; background: var(--color-primary); color: white;
+            border-radius: var(--radius-full); font-weight: 600; font-size: var(--text-sm);
+            text-decoration: none; transition: var(--transition-fast);
+        }
+        .research-cta-btn:hover { background: var(--color-primary-dark); }
+        .research-cta-btn svg { width: 16px; height: 16px; }
+
+        /* No results */
+        .no-results {
+            text-align: center; padding: 3rem 1rem; display: none;
+        }
+        .no-results.visible { display: block; }
+        .no-results p { color: var(--color-text-muted); }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 40 40" fill="none">
+                        <path d="M20 4C20 4 8 12 8 22C8 28.627 13.373 34 20 34C26.627 34 32 28.627 32 22C32 12 20 4 20 4Z" fill="currentColor" opacity="0.2"/>
+                        <path d="M20 8C20 8 12 14 12 22C12 26.418 15.582 30 20 30C24.418 30 28 26.418 28 22C28 14 20 8 20 8Z" fill="currentColor" opacity="0.4"/>
+                        <path d="M20 12C20 12 16 16 16 22C16 24.209 17.791 26 20 26C22.209 26 24 24.209 24 22C24 16 20 12 20 12Z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <span class="logo-text">Pure Extracts<span class="logo-suffix">TX</span></span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="classroom.html" class="nav-link">Classroom</a>
+                <a href="blog.html" class="nav-link">Articles</a>
+                <a href="research.html" class="nav-link active">Research</a>
+                <a href="contact.html" class="nav-link nav-link-cta">Contact Us</a>
+            </div>
+            <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Theme Switcher -->
+    <div class="theme-switcher" id="themeSwitcher">
+        <button class="theme-toggle" id="themeToggle" aria-label="Change theme">
+            <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+        </button>
+        <div class="theme-options" id="themeOptions">
+            <button class="theme-option" data-theme="clinical"><span class="theme-preview clinical-preview"></span><span>Clinical White</span></button>
+            <button class="theme-option" data-theme="earth"><span class="theme-preview earth-preview"></span><span>Earth Apothecary</span></button>
+            <button class="theme-option" data-theme="herbalist"><span class="theme-preview herbalist-preview"></span><span>Modern Herbalist</span></button>
+        </div>
+    </div>
+
+    <main class="research-page">
+        <!-- Hero -->
+        <div class="research-hero">
+            <span class="research-hero-badge">Research Library</span>
+            <h1>Read the Research</h1>
+            <p>All classroom content in a readable article format. Browse by category or explore everything - organized for those who prefer reading over interactive exploration.</p>
+        </div>
+
+        <!-- Category Tabs -->
+        <div class="research-categories">
+            <button class="research-tab active" data-category="all">All Topics</button>
+            <button class="research-tab" data-category="infrastructure">Infrastructure</button>
+            <button class="research-tab" data-category="growing">Growing</button>
+            <button class="research-tab" data-category="extraction">Extraction</button>
+            <button class="research-tab" data-category="effects">Effects</button>
+        </div>
+
+        <!-- Research Content -->
+        <div class="research-content">
+
+            <!-- Infrastructure Section -->
+            <div class="research-section" id="infrastructure" data-category="infrastructure">
+                <div class="research-section-header">
+                    <div class="research-section-icon">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="6" y="20" width="36" height="22" rx="2"/>
+                            <path d="M6 20L24 8L42 20"/>
+                            <rect x="14" y="28" width="8" height="10" rx="1"/>
+                            <rect x="26" y="28" width="8" height="6" rx="1"/>
+                        </svg>
+                    </div>
+                    <h2 class="research-section-title">Building Infrastructure & Equipment</h2>
+                    <span class="research-section-count">9 topics</span>
+                </div>
+                <div class="research-articles">
+                    <a href="classroom/infrastructure.html" class="research-article">
+                        <span class="research-article-number">01</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Outdoor Rows of Plants & Irrigation Systems</h3>
+                            <p class="research-article-excerpt">Planning field layouts, row spacing, drip irrigation vs overhead sprinklers, water management, and soil preparation for large-scale botanical cultivation.</p>
+                            <div class="research-article-meta">
+                                <span class="research-article-tag">Infrastructure</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="classroom/infrastructure.html" class="research-article">
+                        <span class="research-article-number">02</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Terraced Land with Stone Edges & Massive Planters</h3>
+                            <p class="research-article-excerpt">Building terraced growing areas on hillsides, stone retaining walls, large-format raised planters, and managing water flow on sloped terrain.</p>
+                            <div class="research-article-meta">
+                                <span class="research-article-tag">Infrastructure</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="classroom/infrastructure.html" class="research-article">
+                        <span class="research-article-number">03</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Raised Beds for Botanical Cultivation</h3>
+                            <p class="research-article-excerpt">Design and construction of raised bed systems, soil mix optimization, drainage considerations, and seasonal management for ethnobotanical species.</p>
+                            <div class="research-article-meta">
+                                <span class="research-article-tag">Infrastructure</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="classroom/infrastructure.html" class="research-article">
+                        <span class="research-article-number">04</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Aquaponics Systems</h3>
+                            <p class="research-article-excerpt">Integrating fish cultivation with plant growing. System design, water chemistry, beneficial bacteria cycles, and species compatibility for botanical aquaponics.</p>
+                            <div class="research-article-meta">
+                                <span class="research-article-tag">Infrastructure</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="classroom/infrastructure.html" class="research-article">
+                        <span class="research-article-number">05</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Greenhouse Structures</h3>
+                            <p class="research-article-excerpt">Types of greenhouse construction, climate control systems, covering materials, ventilation, and creating optimal environments for tropical botanicals in temperate zones.</p>
+                            <div class="research-article-meta">
+                                <span class="research-article-tag">Infrastructure</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="classroom/infrastructure.html" class="research-article">
+                        <span class="research-article-number">06</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Aeroponics Setups</h3>
+                            <p class="research-article-excerpt">Mist-based root zone growing systems, nozzle types, timer configurations, nutrient delivery, and advantages for rapid botanical propagation.</p>
+                            <div class="research-article-meta">
+                                <span class="research-article-tag">Infrastructure</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="classroom/infrastructure.html" class="research-article">
+                        <span class="research-article-number">07</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Indoor Growing: HPS & LED Lighting</h3>
+                            <p class="research-article-excerpt">Comparing high-pressure sodium and LED grow lights, light spectrum science, photoperiod management, and setting up efficient indoor botanical grow rooms.</p>
+                            <div class="research-article-meta">
+                                <span class="research-article-tag">Infrastructure</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="classroom/infrastructure.html" class="research-article">
+                        <span class="research-article-number">08</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Cloning Plants</h3>
+                            <p class="research-article-excerpt">Vegetative propagation techniques including stem cuttings, rooting hormones, humidity domes, and maintaining genetic consistency across generations.</p>
+                            <div class="research-article-meta">
+                                <span class="research-article-tag">Infrastructure</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="classroom/infrastructure.html" class="research-article">
+                        <span class="research-article-number">09</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Tissue Culture</h3>
+                            <p class="research-article-excerpt">Micropropagation in sterile lab conditions, media preparation, explant selection, contamination prevention, and scaling up from culture to field-ready plants.</p>
+                            <div class="research-article-meta">
+                                <span class="research-article-tag">Infrastructure</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="research-cta">
+                    <p>Prefer interactive learning? Explore this topic hands-on.</p>
+                    <a href="classroom/infrastructure.html" class="research-cta-btn">
+                        <span>Enter Infrastructure Classroom</span>
+                        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Growing Section -->
+            <div class="research-section" id="growing" data-category="growing">
+                <div class="research-section-header">
+                    <div class="research-section-icon">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M24 42V22"/>
+                            <path d="M24 22c-8-12-18-10-18-2s10 14 18 2z"/>
+                            <path d="M24 22c8-12 18-10 18-2s-10 14-18 2z"/>
+                            <path d="M24 14c-5-15-16-12-14-4s9 14 14 4z"/>
+                            <path d="M24 14c5-15 16-12 14-4s-9 14-14 4z"/>
+                        </svg>
+                    </div>
+                    <h2 class="research-section-title">Growing & Harvesting Plants</h2>
+                    <span class="research-section-count">6 topics</span>
+                </div>
+                <div class="research-articles">
+                    <a href="classroom/growing.html" class="research-article">
+                        <span class="research-article-number">01</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Trees: Large Woody Botanicals</h3>
+                            <p class="research-article-excerpt">Growing and harvesting tree-form botanicals including kratom (Mitragyna speciosa). Lifecycle management, leaf harvesting windows, and sustainable forestry practices.</p>
+                            <div class="research-article-meta"><span class="research-article-tag">Growing</span></div>
+                        </div>
+                    </a>
+                    <a href="classroom/growing.html" class="research-article">
+                        <span class="research-article-number">02</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Bushes & Shrubs</h3>
+                            <p class="research-article-excerpt">Cultivation of shrub-form botanicals including kava (Piper methysticum). Root development, pruning strategies, and harvest timing for optimal compound profiles.</p>
+                            <div class="research-article-meta"><span class="research-article-tag">Growing</span></div>
+                        </div>
+                    </a>
+                    <a href="classroom/growing.html" class="research-article">
+                        <span class="research-article-number">03</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Plants & Herbs</h3>
+                            <p class="research-article-excerpt">Herbaceous botanical cultivation covering blue lotus, passionflower, valerian, and other medicinal herbs. Seasonal cycles, companion planting, and harvest methods.</p>
+                            <div class="research-article-meta"><span class="research-article-tag">Growing</span></div>
+                        </div>
+                    </a>
+                    <a href="classroom/growing.html" class="research-article">
+                        <span class="research-article-number">04</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Grasses</h3>
+                            <p class="research-article-excerpt">Grass-form botanical cultivation and harvesting. Understanding rhizome systems, growth patterns, and processing methods for grass-type medicinal plants.</p>
+                            <div class="research-article-meta"><span class="research-article-tag">Growing</span></div>
+                        </div>
+                    </a>
+                    <a href="classroom/growing.html" class="research-article">
+                        <span class="research-article-number">05</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Moss</h3>
+                            <p class="research-article-excerpt">Cultivating moss species with medicinal properties. Moisture management, substrate preparation, light requirements, and sustainable harvesting techniques.</p>
+                            <div class="research-article-meta"><span class="research-article-tag">Growing</span></div>
+                        </div>
+                    </a>
+                    <a href="classroom/growing.html" class="research-article">
+                        <span class="research-article-number">06</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Fungi</h3>
+                            <p class="research-article-excerpt">Mushroom and fungal cultivation for medicinal use. Substrate preparation, sterile technique, fruiting conditions, and understanding mycelium networks.</p>
+                            <div class="research-article-meta"><span class="research-article-tag">Growing</span></div>
+                        </div>
+                    </a>
+                </div>
+                <div class="research-cta">
+                    <p>Prefer interactive learning? Explore this topic hands-on.</p>
+                    <a href="classroom/growing.html" class="research-cta-btn">
+                        <span>Enter Growing Classroom</span>
+                        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Extraction Section -->
+            <div class="research-section" id="extraction" data-category="extraction">
+                <div class="research-section-header">
+                    <div class="research-section-icon">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 8h12M20 8v10l-8 18v4a2 2 0 002 2h20a2 2 0 002-2v-4l-8-18V8"/>
+                            <path d="M14 36h20"/>
+                            <circle cx="21" cy="32" r="2"/>
+                            <circle cx="28" cy="34" r="1.5"/>
+                        </svg>
+                    </div>
+                    <h2 class="research-section-title">Extracting Plants & Making Products</h2>
+                    <span class="research-section-count">9 topics</span>
+                </div>
+                <div class="research-articles">
+                    <a href="classroom/extraction.html" class="research-article">
+                        <span class="research-article-number">01</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Solventless Extraction</h3>
+                            <p class="research-article-excerpt">Heat press rosin extraction and dry sifting techniques. No chemicals involved - using heat, pressure, and mechanical separation to concentrate plant compounds.</p>
+                            <div class="research-article-meta"><span class="research-article-tag">Extraction</span></div>
+                        </div>
+                    </a>
+                    <a href="classroom/extraction.html" class="research-article">
+                        <span class="research-article-number">02</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Water-Based Extractions</h3>
+                            <p class="research-article-excerpt">Traditional and modern water extraction methods. Hot water, cold water, ice water hash, and understanding water-soluble compound isolation.</p>
+                            <div class="research-article-meta"><span class="research-article-tag">Extraction</span></div>
+                        </div>
+                    </a>
+                    <a href="classroom/extraction.html" class="research-article">
+                        <span class="research-article-number">03</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Making Ethanol & Ethanol Extraction</h3>
+                            <p class="research-article-excerpt">Producing food-grade ethanol and using it as an extraction solvent. Soak methods, QWET technique, winterization, and solvent recovery.</p>
+                            <div class="research-article-meta"><span class="research-article-tag">Extraction</span></div>
+                        </div>
+                    </a>
+                    <a href="classroom/extraction.html" class="research-article">
+                        <span class="research-article-number">04</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Pressurized Gas Extraction (CO2 & Butane)</h3>
+                            <p class="research-article-excerpt">Supercritical CO2 extraction systems and hydrocarbon methods. Equipment requirements, safety protocols, pressure/temperature parameters, and output quality.</p>
+                            <div class="research-article-meta"><span class="research-article-tag">Extraction</span></div>
+                        </div>
+                    </a>
+                    <a href="classroom/extraction.html" class="research-article">
+                        <span class="research-article-number">05</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Chromatography</h3>
+                            <p class="research-article-excerpt">Compound separation and purification using chromatographic techniques. Column chromatography, HPLC, and isolating specific alkaloids from complex plant matrices.</p>
+                            <div class="research-article-meta"><span class="research-article-tag">Extraction</span></div>
+                        </div>
+                    </a>
+                    <a href="classroom/extraction.html" class="research-article">
+                        <span class="research-article-number">06</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Distillation</h3>
+                            <p class="research-article-excerpt">Simple, fractional, and steam distillation methods for botanical compounds. Equipment setup, temperature control, and collecting specific fractions.</p>
+                            <div class="research-article-meta"><span class="research-article-tag">Extraction</span></div>
+                        </div>
+                    </a>
+                    <a href="classroom/extraction.html" class="research-article">
+                        <span class="research-article-number">07</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Crystallization</h3>
+                            <p class="research-article-excerpt">Producing pure crystalline compounds from botanical extracts. Solvent selection, temperature gradients, seeding, and achieving high-purity isolates.</p>
+                            <div class="research-article-meta"><span class="research-article-tag">Extraction</span></div>
+                        </div>
+                    </a>
+                    <a href="classroom/extraction.html" class="research-article">
+                        <span class="research-article-number">08</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Solvent Reclaiming with Equipment</h3>
+                            <p class="research-article-excerpt">Recovering and recycling extraction solvents. Rotary evaporators, falling film evaporators, and closed-loop reclamation systems for efficiency and safety.</p>
+                            <div class="research-article-meta"><span class="research-article-tag">Extraction</span></div>
+                        </div>
+                    </a>
+                    <a href="classroom/extraction.html" class="research-article">
+                        <span class="research-article-number">09</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Carrier & Delivery Methods</h3>
+                            <p class="research-article-excerpt">Formulating finished products: water-soluble nanoemulsions, MCT and hemp seed oil carriers, capsule filling, and optimizing bioavailability for end users.</p>
+                            <div class="research-article-meta"><span class="research-article-tag">Extraction</span></div>
+                        </div>
+                    </a>
+                </div>
+                <div class="research-cta">
+                    <p>Prefer interactive learning? Explore this topic hands-on.</p>
+                    <a href="classroom/extraction.html" class="research-cta-btn">
+                        <span>Enter Extraction Classroom</span>
+                        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Effects Section -->
+            <div class="research-section" id="effects" data-category="effects">
+                <div class="research-section-header">
+                    <div class="research-section-icon">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="24" cy="14" r="8"/>
+                            <path d="M24 22v14M16 28h16M18 36l-4 8M30 36l4 8"/>
+                            <circle cx="21" cy="12" r="1.5" fill="currentColor" opacity="0.4"/>
+                            <circle cx="27" cy="12" r="1.5" fill="currentColor" opacity="0.4"/>
+                        </svg>
+                    </div>
+                    <h2 class="research-section-title">Effects on the Human Body</h2>
+                    <span class="research-section-count">7 topics</span>
+                </div>
+                <div class="research-articles">
+                    <a href="classroom/effects.html" class="research-article">
+                        <span class="research-article-number">01</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Brain & Neurotransmitters</h3>
+                            <p class="research-article-excerpt">How botanical compounds interact with serotonin, dopamine, GABA, and opioid receptor systems. Mechanism of action for key alkaloids and their neurological effects.</p>
+                            <div class="research-article-meta"><span class="research-article-tag">Effects</span></div>
+                        </div>
+                    </a>
+                    <a href="classroom/effects.html" class="research-article">
+                        <span class="research-article-number">02</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Muscles & Musculoskeletal System</h3>
+                            <p class="research-article-excerpt">Botanical effects on muscle relaxation, inflammation, pain signaling, and joint health. Understanding how plant compounds interact with the musculoskeletal system.</p>
+                            <div class="research-article-meta"><span class="research-article-tag">Effects</span></div>
+                        </div>
+                    </a>
+                    <a href="classroom/effects.html" class="research-article">
+                        <span class="research-article-number">03</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Internal Organs</h3>
+                            <p class="research-article-excerpt">How botanicals are metabolized by the liver, affect kidney function, and interact with the digestive system. Bioavailability, first-pass metabolism, and organ health considerations.</p>
+                            <div class="research-article-meta"><span class="research-article-tag">Effects</span></div>
+                        </div>
+                    </a>
+                    <a href="classroom/effects.html" class="research-article">
+                        <span class="research-article-number">04</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Chronic Physical Ailments</h3>
+                            <p class="research-article-excerpt">Research on botanical applications for chronic pain, arthritis, fibromyalgia, and other persistent conditions. Current evidence and traditional use patterns.</p>
+                            <div class="research-article-meta"><span class="research-article-tag">Effects</span></div>
+                        </div>
+                    </a>
+                    <a href="classroom/effects.html" class="research-article">
+                        <span class="research-article-number">05</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Mental Health Conditions</h3>
+                            <p class="research-article-excerpt">Botanical research related to anxiety, depression, PTSD, and stress management. How adaptogenic and anxiolytic plant compounds support mental wellness.</p>
+                            <div class="research-article-meta"><span class="research-article-tag">Effects</span></div>
+                        </div>
+                    </a>
+                    <a href="classroom/effects.html" class="research-article">
+                        <span class="research-article-number">06</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Sicknesses & Illness</h3>
+                            <p class="research-article-excerpt">Botanical approaches to immune support, common ailments, and recovery. Traditional remedies and modern research on plant-based immune modulation.</p>
+                            <div class="research-article-meta"><span class="research-article-tag">Effects</span></div>
+                        </div>
+                    </a>
+                    <a href="classroom/effects.html" class="research-article">
+                        <span class="research-article-number">07</span>
+                        <div class="research-article-body">
+                            <h3 class="research-article-title">Diet & Nutrition</h3>
+                            <p class="research-article-excerpt">Bioavailability of botanical compounds, food-based potentiators, nutrient interactions, and optimizing absorption. How diet affects botanical efficacy.</p>
+                            <div class="research-article-meta"><span class="research-article-tag">Effects</span></div>
+                        </div>
+                    </a>
+                </div>
+                <div class="research-cta">
+                    <p>Prefer interactive learning? Explore this topic hands-on.</p>
+                    <a href="classroom/effects.html" class="research-cta-btn">
+                        <span>Enter Effects Classroom</span>
+                        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <div class="logo-icon">
+                            <svg viewBox="0 0 40 40" fill="none">
+                                <path d="M20 4C20 4 8 12 8 22C8 28.627 13.373 34 20 34C26.627 34 32 28.627 32 22C32 12 20 4 20 4Z" fill="currentColor" opacity="0.2"/>
+                                <path d="M20 8C20 8 12 14 12 22C12 26.418 15.582 30 20 30C24.418 30 28 26.418 28 22C28 14 20 8 20 8Z" fill="currentColor" opacity="0.4"/>
+                                <path d="M20 12C20 12 16 16 16 22C16 24.209 17.791 26 20 26C22.209 26 24 24.209 24 22C24 16 20 12 20 12Z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <span class="logo-text">Pure Extracts<span class="logo-suffix">TX</span></span>
+                    </a>
+                    <p class="footer-tagline">Ancient Wisdom. Modern Science.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Products</h4>
+                        <ul class="footer-nav">
+                            <li><a href="products/gummies.html">Gummies</a></li>
+                            <li><a href="products/tinctures.html">Tinctures</a></li>
+                            <li><a href="products/extracts.html">Pure Extracts</a></li>
+                            <li><a href="products/live-plants.html">Live Plants</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Education</h4>
+                        <ul class="footer-nav">
+                            <li><a href="blog.html">Articles</a></li>
+                            <li><a href="classroom.html">The Classroom</a></li>
+                            <li><a href="research.html">Research</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Company</h4>
+                        <ul class="footer-nav">
+                            <li><a href="index.html#about">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="mailto:wholesale@pureextractstx.com">Wholesale</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2025 Pure Extracts TX. All rights reserved.</p>
+                <p class="footer-disclaimer">These statements have not been evaluated by the FDA. Our products are not intended to diagnose, treat, cure, or prevent any disease.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Research category filtering
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.research-tab');
+            const sections = document.querySelectorAll('.research-section');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const category = tab.dataset.category;
+
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    // Filter sections
+                    sections.forEach(section => {
+                        if (category === 'all' || section.dataset.category === category) {
+                            section.classList.remove('hidden');
+                        } else {
+                            section.classList.add('hidden');
+                        }
+                    });
+
+                    // Update URL hash
+                    if (category !== 'all') {
+                        history.replaceState(null, '', `#${category}`);
+                    } else {
+                        history.replaceState(null, '', window.location.pathname);
+                    }
+                });
+            });
+
+            // Handle URL hash on load
+            const hash = window.location.hash.replace('#', '');
+            if (hash) {
+                const targetTab = document.querySelector(`.research-tab[data-category="${hash}"]`);
+                if (targetTab) {
+                    targetTab.click();
+                    // Scroll to section after a brief delay
+                    setTimeout(() => {
+                        const section = document.getElementById(hash);
+                        if (section) {
+                            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }, 100);
+                }
+            }
+        });
+    </script>
+    <script src="analytics.js"></script>
+    <script src="age-verification.js"></script>
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="clinical">
+<head>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-050E36TGR9"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-050E36TGR9");</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Contact Us | Pure Extracts TX</title>
+    <meta name="description" content="Get in touch with Pure Extracts TX. Questions about botanicals, wholesale inquiries, or general support - we'd love to hear from you.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://pureextractstx.com/contact.html">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pureextractstx.com/contact.html">
+    <meta property="og:title" content="Contact Us | Pure Extracts TX">
+    <meta property="og:description" content="Get in touch with Pure Extracts TX. Questions, wholesale inquiries, or support.">
+    <meta property="og:site_name" content="Pure Extracts TX">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="age-verification.css">
+    <style>
+        .contact-page { padding-top: 100px; min-height: 100vh; }
+        .contact-hero {
+            text-align: center;
+            padding: 2rem 1.5rem 3rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .contact-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--color-primary-subtle);
+            color: var(--color-primary);
+            padding: 0.375rem 1rem;
+            border-radius: var(--radius-full);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+        }
+        .contact-hero h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(2.25rem, 5vw, 3.5rem);
+            line-height: 1.15;
+            color: var(--color-text);
+            margin-bottom: 1rem;
+        }
+        .contact-hero p {
+            font-size: var(--text-lg);
+            color: var(--color-text-muted);
+            line-height: 1.7;
+        }
+
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            max-width: 960px;
+            margin: 0 auto 3rem;
+            padding: 0 1.5rem;
+        }
+        .contact-info-card {
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            text-align: center;
+        }
+        .contact-info-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 1rem;
+            color: var(--color-primary);
+        }
+        .contact-info-card h3 {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+        }
+        .contact-info-card p {
+            color: var(--color-text-muted);
+            font-size: var(--text-sm);
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+        .contact-info-link {
+            color: var(--color-primary);
+            font-weight: 500;
+            text-decoration: none;
+            font-size: var(--text-sm);
+        }
+        .contact-info-link:hover { text-decoration: underline; }
+        .contact-location-text {
+            color: var(--color-primary);
+            font-weight: 600;
+            font-size: var(--text-sm);
+        }
+
+        .contact-form-section {
+            max-width: 640px;
+            margin: 0 auto 4rem;
+            padding: 0 1.5rem;
+        }
+        .contact-form-wrapper {
+            background: var(--color-surface-alt, var(--color-bg-secondary));
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-2xl);
+            padding: 2.5rem;
+        }
+        .contact-form-wrapper h2 {
+            font-family: var(--font-serif);
+            font-size: var(--text-2xl);
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        .contact-form-wrapper > p {
+            color: var(--color-text-muted);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: var(--text-sm);
+        }
+        .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
+        .form-group { display: flex; flex-direction: column; gap: 0.375rem; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+        @media (max-width: 540px) { .form-row { grid-template-columns: 1fr; } }
+        .form-label {
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--color-text);
+        }
+        .form-input, .form-select, .form-textarea {
+            padding: 0.75rem 1rem;
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            font-size: var(--text-base);
+            color: var(--color-text);
+            font-family: var(--font-sans);
+            transition: var(--transition-fast);
+        }
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px var(--color-primary-subtle);
+        }
+        .form-textarea { resize: vertical; min-height: 140px; }
+        .form-select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
+        .form-submit {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.875rem 2rem;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: var(--text-base);
+            font-family: var(--font-sans);
+            cursor: pointer;
+            transition: var(--transition-base);
+            margin-top: 0.5rem;
+        }
+        .form-submit:hover { background: var(--color-primary-dark); transform: translateY(-1px); }
+        .form-submit svg { width: 18px; height: 18px; }
+
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        .form-success.visible { display: block; }
+        .form-success-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1rem;
+            color: var(--color-primary);
+        }
+        .form-success h3 {
+            font-family: var(--font-serif);
+            font-size: var(--text-xl);
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+        }
+        .form-success p {
+            color: var(--color-text-muted);
+            font-size: var(--text-sm);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 40 40" fill="none">
+                        <path d="M20 4C20 4 8 12 8 22C8 28.627 13.373 34 20 34C26.627 34 32 28.627 32 22C32 12 20 4 20 4Z" fill="currentColor" opacity="0.2"/>
+                        <path d="M20 8C20 8 12 14 12 22C12 26.418 15.582 30 20 30C24.418 30 28 26.418 28 22C28 14 20 8 20 8Z" fill="currentColor" opacity="0.4"/>
+                        <path d="M20 12C20 12 16 16 16 22C16 24.209 17.791 26 20 26C22.209 26 24 24.209 24 22C24 16 20 12 20 12Z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <span class="logo-text">Pure Extracts<span class="logo-suffix">TX</span></span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#products" class="nav-link">Products</a>
+                <a href="blog.html" class="nav-link">Education</a>
+                <a href="classroom.html" class="nav-link">Learn</a>
+                <a href="contact.html" class="nav-link nav-link-cta active">Contact Us</a>
+            </div>
+            <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Theme Switcher -->
+    <div class="theme-switcher" id="themeSwitcher">
+        <button class="theme-toggle" id="themeToggle" aria-label="Change theme">
+            <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+        </button>
+        <div class="theme-options" id="themeOptions">
+            <button class="theme-option" data-theme="clinical">
+                <span class="theme-preview clinical-preview"></span>
+                <span>Clinical White</span>
+            </button>
+            <button class="theme-option" data-theme="earth">
+                <span class="theme-preview earth-preview"></span>
+                <span>Earth Apothecary</span>
+            </button>
+            <button class="theme-option" data-theme="herbalist">
+                <span class="theme-preview herbalist-preview"></span>
+                <span>Modern Herbalist</span>
+            </button>
+        </div>
+    </div>
+
+    <main class="contact-page">
+        <!-- Hero -->
+        <div class="contact-hero">
+            <span class="contact-hero-badge">Get in Touch</span>
+            <h1>Contact Us</h1>
+            <p>Have questions about our products, want to learn more about botanicals, or interested in wholesale partnerships? We'd love to hear from you.</p>
+        </div>
+
+        <!-- Info Cards -->
+        <div class="contact-cards">
+            <div class="contact-info-card">
+                <div class="contact-info-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                </div>
+                <h3>Email Us</h3>
+                <p>General inquiries and support</p>
+                <a href="mailto:hello@pureextractstx.com" class="contact-info-link">hello@pureextractstx.com</a>
+            </div>
+            <div class="contact-info-card">
+                <div class="contact-info-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </div>
+                <h3>Wholesale</h3>
+                <p>Partner with Pure Extracts TX</p>
+                <a href="mailto:wholesale@pureextractstx.com" class="contact-info-link">wholesale@pureextractstx.com</a>
+            </div>
+            <div class="contact-info-card">
+                <div class="contact-info-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                </div>
+                <h3>Location</h3>
+                <p>Crafted with care in</p>
+                <span class="contact-location-text">Texas Hill Country</span>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form-section">
+            <div class="contact-form-wrapper">
+                <h2>Send a Message</h2>
+                <p>Fill out the form below and we'll get back to you within 24-48 hours.</p>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contactName" class="form-label">Name</label>
+                            <input type="text" id="contactName" name="name" class="form-input" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail" class="form-label">Email</label>
+                            <input type="email" id="contactEmail" name="email" class="form-input" placeholder="you@example.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactSubject" class="form-label">Subject</label>
+                        <select id="contactSubject" name="subject" class="form-select" required>
+                            <option value="" disabled selected>Choose a topic</option>
+                            <option value="general">General Question</option>
+                            <option value="products">Product Inquiry</option>
+                            <option value="wholesale">Wholesale Partnership</option>
+                            <option value="education">Education & Research</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactMessage" class="form-label">Message</label>
+                        <textarea id="contactMessage" name="message" class="form-textarea" placeholder="Tell us what's on your mind..." required></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">
+                        Send Message
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"/>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                        </svg>
+                    </button>
+                </form>
+
+                <div class="form-success" id="formSuccess">
+                    <div class="form-success-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                    </div>
+                    <h3>Message Sent!</h3>
+                    <p>Thank you for reaching out. We'll get back to you within 24-48 hours.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <div class="logo-icon">
+                            <svg viewBox="0 0 40 40" fill="none">
+                                <path d="M20 4C20 4 8 12 8 22C8 28.627 13.373 34 20 34C26.627 34 32 28.627 32 22C32 12 20 4 20 4Z" fill="currentColor" opacity="0.2"/>
+                                <path d="M20 8C20 8 12 14 12 22C12 26.418 15.582 30 20 30C24.418 30 28 26.418 28 22C28 14 20 8 20 8Z" fill="currentColor" opacity="0.4"/>
+                                <path d="M20 12C20 12 16 16 16 22C16 24.209 17.791 26 20 26C22.209 26 24 24.209 24 22C24 16 20 12 20 12Z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <span class="logo-text">Pure Extracts<span class="logo-suffix">TX</span></span>
+                    </a>
+                    <p class="footer-tagline">Ancient Wisdom. Modern Science.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Products</h4>
+                        <ul class="footer-nav">
+                            <li><a href="products/gummies.html">Gummies</a></li>
+                            <li><a href="products/tinctures.html">Tinctures</a></li>
+                            <li><a href="products/extracts.html">Pure Extracts</a></li>
+                            <li><a href="products/live-plants.html">Live Plants</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Education</h4>
+                        <ul class="footer-nav">
+                            <li><a href="blog.html">Articles</a></li>
+                            <li><a href="classroom.html">The Classroom</a></li>
+                            <li><a href="lab.html">Interactive Lab</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Company</h4>
+                        <ul class="footer-nav">
+                            <li><a href="index.html#about">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="mailto:wholesale@pureextractstx.com">Wholesale</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2025 Pure Extracts TX. All rights reserved.</p>
+                <p class="footer-disclaimer">These statements have not been evaluated by the FDA. Our products are not intended to diagnose, treat, cure, or prevent any disease.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Contact form handler (placeholder - connect to webhook later)
+        const contactForm = document.getElementById('contactForm');
+        const formSuccess = document.getElementById('formSuccess');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Collect form data
+                const formData = new FormData(contactForm);
+                const data = Object.fromEntries(formData);
+
+                // TODO: Replace with actual webhook endpoint
+                console.log('Contact form submission:', data);
+
+                // Show success state
+                contactForm.style.display = 'none';
+                formSuccess.classList.add('visible');
+            });
+        }
+    </script>
+    <script src="analytics.js"></script>
+    <script src="age-verification.js"></script>
+</body>
+</html>
