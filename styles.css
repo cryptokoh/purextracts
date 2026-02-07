@@ -3,6 +3,9 @@
    3 Themes: Clinical White, Earth Apothecary, Modern Herbalist
    ============================================ */
 
+/* Font imports - Cinzel for display titles, Cormorant Garamond for refined headings */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
 /* ============================================
    CSS Custom Properties - Theme Variables
    ============================================ */
@@ -20,7 +23,8 @@
 
     /* Typography */
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-display: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
     --text-xs: 0.75rem;
@@ -575,7 +579,7 @@ ul, ol {
 }
 
 .logo-text {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-size: var(--text-xl);
     font-weight: 600;
     color: var(--color-text);
@@ -742,7 +746,7 @@ ul, ol {
 }
 
 .hero-title {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-size: clamp(var(--text-4xl), 8vw, var(--text-6xl));
     font-weight: 700;
     line-height: 1.1;
@@ -970,7 +974,7 @@ ul, ol {
 }
 
 .hero-signup-title {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-size: var(--text-2xl);
     font-weight: 600;
     color: var(--color-text);
@@ -1437,7 +1441,7 @@ ul, ol {
 }
 
 .section-title {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-size: clamp(var(--text-3xl), 5vw, var(--text-4xl));
     font-weight: 700;
     line-height: 1.2;
@@ -1684,7 +1688,7 @@ ul, ol {
 }
 
 .research-title {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-size: var(--text-xl);
     font-weight: 600;
     margin-bottom: var(--spacing-xs);
@@ -2196,7 +2200,7 @@ ul, ol {
 }
 
 .cta-content h2 {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
     margin-bottom: var(--spacing-md);
 }
@@ -2614,7 +2618,7 @@ ul, ol {
 }
 
 .footer-logo span {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-size: var(--text-lg);
     font-weight: 600;
 }

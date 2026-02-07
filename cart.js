@@ -346,7 +346,7 @@ const Cart = {
         return { id, name: title, category, price };
     },
 
-    // Checkout process
+    // Checkout process - Real Stripe Integration
     async checkout() {
         if (this.items.length === 0 || this.isProcessing) return;
         this.isProcessing = true;
@@ -358,13 +358,39 @@ const Cart = {
         checkoutBtn.disabled = true;
 
         try {
-            // In production, call backend to create Stripe Checkout session
-            await new Promise(resolve => setTimeout(resolve, 800));
-            this.showCheckoutModal();
+            // Check if Stripe is configured
+            if (!window.StripeConfig) {
+                throw new Error('Stripe not configured. Please include stripe-config.js');
+            }
+
+            // Create checkout session
+            const { sessionId, url } = await window.StripeConfig.createCheckoutSession(
+                this.items,
+                null // Can add customer email here if you collect it
+            );
+
+            // Redirect to Stripe Checkout
+            if (url) {
+                // Direct redirect (Stripe Checkout hosted page)
+                window.location.href = url;
+            } else if (sessionId) {
+                // Use Stripe.js redirect
+                await window.StripeConfig.redirectToCheckout(sessionId);
+            } else {
+                throw new Error('No checkout URL received');
+            }
+
         } catch (error) {
             console.error('Checkout error:', error);
-            alert('There was an error processing your checkout. Please try again.');
-        } finally {
+
+            // Show user-friendly error message
+            const errorMsg = error.message.includes('fetch')
+                ? 'Unable to connect to payment processor. Please check your internet connection and try again.'
+                : error.message || 'There was an error processing your checkout. Please try again.';
+
+            alert(errorMsg);
+
+            // Reset button
             checkoutBtn.innerHTML = originalText;
             checkoutBtn.disabled = false;
             this.isProcessing = false;

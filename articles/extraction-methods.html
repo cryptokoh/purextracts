@@ -12,7 +12,7 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="../age-verification.css">
     <style>
@@ -21,10 +21,10 @@
         .article-meta-header { display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; }
         .article-category-tag { background: var(--color-primary); color: white; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
         .article-date, .article-read-time { color: var(--color-text-muted); font-size: 0.875rem; }
-        .article-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.2; margin-bottom: 1.5rem; }
+        .article-title { font-family: var(--font-display, 'Cinzel', serif); font-size: clamp(2rem, 5vw, 3rem); line-height: 1.2; margin-bottom: 1.5rem; }
         .article-excerpt { font-size: 1.25rem; color: var(--color-text-muted); line-height: 1.6; margin-bottom: 2rem; }
         .article-content { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; }
-        .article-content h2 { font-family: 'Playfair Display', serif; font-size: 1.75rem; margin: 2.5rem 0 1rem; }
+        .article-content h2 { font-family: var(--font-display, 'Cinzel', serif); font-size: 1.75rem; margin: 2.5rem 0 1rem; }
         .article-content h3 { font-size: 1.25rem; margin: 2rem 0 0.75rem; }
         .article-content p { line-height: 1.8; margin-bottom: 1.5rem; }
         .article-content ul, .article-content ol { margin: 1rem 0 1.5rem 1.5rem; line-height: 1.8; }
@@ -43,16 +43,37 @@
         .back-to-blog { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--color-primary); text-decoration: none; font-weight: 500; }
         .back-to-blog:hover { text-decoration: underline; }
     </style>
+    <link rel="stylesheet" href="../chat-widget.css">
+    <link rel="stylesheet" href="../shipping-estimator.css">
+    <link rel="stylesheet" href="../site-enhancements.css">
+    <link rel="stylesheet" href="../site-search.css">
+    <link rel="stylesheet" href="../visual-enhancements.css">
 </head>
 <body>
-    <nav class="nav" id="nav">
-        <div class="container nav-container">
-            <a href="../index.html" class="nav-logo"><span class="logo-text">Pure Extracts<span class="logo-suffix">TX</span></span></a>
-            <div class="nav-links">
+        <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 40 40" fill="none">
+                        <path d="M20 4C20 4 8 12 8 22C8 28.627 13.373 34 20 34C26.627 34 32 28.627 32 22C32 12 20 4 20 4Z" fill="currentColor" opacity="0.2"/>
+                        <path d="M20 8C20 8 12 14 12 22C12 26.418 15.582 30 20 30C24.418 30 28 26.418 28 22C28 14 20 8 20 8Z" fill="currentColor" opacity="0.4"/>
+                        <path d="M20 12C20 12 16 16 16 22C16 24.209 17.791 26 20 26C22.209 26 24 24.209 24 22C24 16 20 12 20 12Z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <span class="logo-text">Pure Extracts<span class="logo-suffix">TX</span></span>
+            </a>
+            <div class="nav-links" id="navLinks">
                 <a href="../index.html#about" class="nav-link">About</a>
                 <a href="../index.html#products" class="nav-link">Products</a>
-                <a href="../blog.html" class="nav-link">Articles</a>
+                <a href="../blog.html" class="nav-link">Education</a>
+                <a href="../classroom.html" class="nav-link">Learn</a>
+                <a href="../contact.html" class="nav-link nav-link-cta">Contact Us</a>
             </div>
+            <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
@@ -226,15 +247,40 @@
     </main>
 
     <footer class="footer">
-        <div class="container">
-            <div class="footer-bottom">
-                <p>&copy; 2025 Pure Extracts TX. All rights reserved.</p>
-                <p>These statements have not been evaluated by the FDA.</p>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../blog.html">Education</a></li>
+                    <li><a href="../classes.html">Classes</a></li>
+                    <li><a href="../consulting.html">Consulting</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="../classroom.html">Interactive Learning</a></li>
+                    <li><a href="../research.html">Research Library</a></li>
+                    <li><a href="../roadmap.html">Roadmap</a></li>
+                </ul>
             </div>
         </div>
-    </footer>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Pure Extracts TX. All rights reserved.</p>
+            <p>These statements have not been evaluated by the FDA. Products are not intended to diagnose, treat, cure, or prevent any disease.</p>
+        </div>
+    </div>
+</footer>
 
     <script src="../script.js"></script>
     <script src="../age-verification.js"></script>
+    <script src="../chat-widget.js"></script>
+    <script src="../shipping-estimator.js"></script>
+    <script src="../site-enhancements.js"></script>
+    <script src="../site-search.js"></script>
+    <script src="../visual-enhancements.js"></script>
 </body>
 </html>

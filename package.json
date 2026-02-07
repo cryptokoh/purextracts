@@ -1,0 +1,21 @@
+{
+  "name": "pureextracts-stripe-api",
+  "version": "1.0.0",
+  "description": "Stripe checkout API for Pure Extracts TX",
+  "main": "api/create-checkout-session.js",
+  "scripts": {
+    "dev": "node api/create-checkout-session.js",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "dependencies": {
+    "stripe": "^14.0.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

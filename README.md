@@ -1,87 +1,138 @@
-# Pure Extracts TX - Website Redesign
+# Pure Extracts TX - E-Commerce Site
 
-A professional, science-backed botanical wellness website with three distinct visual themes. Built with pure HTML, CSS, and JavaScript - no frameworks required.
+Premium botanical extracts website with integrated Stripe checkout.
 
-## Themes
+## 🚀 Quick Start
 
-### 1. Clinical White
-Clean, medical-grade aesthetic with subtle botanical accents. Features teal primary colors, crisp whites, and professional typography.
+### Local Development
 
-### 2. Earth Apothecary
-Warm terracotta and sage tones with organic textures. Evokes traditional apothecary shops with cream backgrounds and earthy accents.
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-### 3. Modern Herbalist
-Dark mode with vibrant green accents. Contemporary, scientific feel with glowing effects and high-contrast design.
+2. **Start the local API server:**
+   ```bash
+   npm run dev
+   ```
+   This starts the Stripe checkout API on http://localhost:3001
 
-## Features
+3. **Serve the static site (in another terminal):**
+   ```bash
+   # Option 1: Python
+   python -m http.server 8000
 
-- **Theme Switcher**: Real-time theme switching with localStorage persistence
-- **Responsive Design**: Mobile-first approach, works on all devices
-- **Smooth Animations**: Scroll-triggered reveals, hover effects, and micro-interactions
-- **Accessibility**: Keyboard navigation, semantic HTML, proper ARIA attributes
-- **Performance**: No external dependencies, minimal CSS/JS, fast loading
+   # Option 2: Node.js
+   npx serve .
 
-## Content Sections
+   # Option 3: PHP
+   php -S localhost:8000
+   ```
 
-- Hero with company mission and statistics
-- Trust badges (Quality, Science-backed, Sustainable, Free Shipping)
-- About section with company story
-- Research articles (11+ ingredient guides)
-- Products preview (Coming Soon)
-- Professional services (Greenhouse, Extraction, Repair, Bulk)
-- Contact form
-- Footer with navigation
+4. **Test the checkout:**
+   - Open http://localhost:8000
+   - Add items to cart
+   - Use Stripe test card: `4242 4242 4242 4242`
 
-## Quick Start
+## 📁 Project Structure
+
+```
+pureextracts/
+├── api/
+│   └── create-checkout-session.js  # Stripe API endpoint
+├── articles/                        # Blog posts & guides
+├── products/                        # Product pages
+├── .env                            # Stripe API keys (DO NOT COMMIT)
+├── .env.example                    # Environment template
+├── stripe-config.js                # Frontend Stripe config
+├── cart.js                         # Shopping cart system
+├── success.html                    # Payment success page
+├── cancel.html                     # Payment cancel page
+├── index.html                      # Homepage
+└── netlify.toml                    # Netlify deployment config
+```
+
+## 🔐 Environment Variables
+
+Required environment variables in `.env`:
 
 ```bash
-# Clone the repo
-git clone https://github.com/cryptokoh/purextracts.git
-
-# Open in browser
-cd purextracts
-python -m http.server 8000
-# or just open index.html directly
+STRIPE_PUBLISHABLE_KEY=pk_test_...
+STRIPE_SECRET_KEY=sk_test_...
+STRIPE_WEBHOOK_SECRET=whsec_...  # Optional, for webhooks
+STRIPE_MODE=test
 ```
 
-## File Structure
+**Security:** The `.env` file is protected by `.gitignore` and will never be committed.
 
+## 🌐 Deployment
+
+### Deploy to Netlify (Recommended)
+
+1. **Connect your repository:**
+   - Go to https://app.netlify.com
+   - Click "Add new site" → "Import from Git"
+   - Select your repository
+
+2. **Configure build settings:**
+   - Build command: (leave empty for static site)
+   - Publish directory: `.`
+   - Functions directory: `api`
+
+3. **Add environment variables:**
+   - Go to Site Settings → Environment Variables
+   - Add `STRIPE_SECRET_KEY` and `STRIPE_PUBLISHABLE_KEY`
+
+4. **Deploy!** 
+   - Netlify will auto-deploy on every push to main branch
+
+### Deploy to Vercel
+
+```bash
+npm install -g vercel
+vercel --prod
+vercel env add STRIPE_SECRET_KEY
+vercel env add STRIPE_PUBLISHABLE_KEY
 ```
-purextracts/
-├── index.html    # Main HTML structure
-├── styles.css    # All 3 themes + responsive styles
-├── script.js     # Theme switcher & interactions
-└── README.md     # This file
-```
 
-## Customization
+Then update `stripe-config.js` to use `/api/create-checkout-session` endpoint.
 
-### Adding a New Theme
+## 💳 Testing Payments
 
-1. Add theme variables in `styles.css` under a new `[data-theme="yourtheme"]` block
-2. Add a preview button in the HTML theme switcher
-3. Add the preview gradient class in CSS
+Use these test cards:
 
-### Modifying Colors
+| Card Number | Result |
+|-------------|--------|
+| 4242 4242 4242 4242 | Success |
+| 4000 0000 0000 9995 | Declined |
+| 4000 0025 0000 3155 | Requires 3D Secure |
 
-All colors are CSS custom properties. Edit the theme variables to change:
-- `--color-primary`: Main brand color
-- `--color-bg`: Background color
-- `--color-text`: Primary text color
-- `--color-surface`: Card/container background
+- Expiry: Any future date
+- CVC: Any 3 digits
+- ZIP: Any 5 digits
 
-## Browser Support
+## 📚 Documentation
 
-- Chrome 80+
-- Firefox 75+
-- Safari 13+
-- Edge 80+
+- **Setup Guide:** See `STRIPE_SETUP.md` for detailed integration docs
+- **Stripe Docs:** https://stripe.com/docs/checkout
+- **Test Cards:** https://stripe.com/docs/testing
 
-## Credits
+## 🛠️ Tech Stack
 
-Original content from [pureextractstx.com](https://pureextractstx.com)
-Redesigned with love for botanical wellness.
+- **Frontend:** HTML, CSS, JavaScript (Vanilla)
+- **Payments:** Stripe Checkout
+- **Backend:** Serverless Functions (Netlify/Vercel)
+- **Hosting:** Netlify / Vercel
+- **Analytics:** Google Analytics 4
 
-## License
+## 🔒 Security
 
-MIT License - Feel free to use and modify for your projects.
+- ✅ API keys stored in environment variables
+- ✅ `.gitignore` protects sensitive files
+- ✅ Server-side payment processing
+- ✅ Stripe handles all card data (PCI compliant)
+- ✅ HTTPS enforced in production
+
+## 📝 License
+
+Copyright © 2024 Pure Extracts TX. All rights reserved.

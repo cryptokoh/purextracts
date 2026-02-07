@@ -10,9 +10,14 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="age-verification.css">
+    <link rel="stylesheet" href="chat-widget.css">
+    <link rel="stylesheet" href="shipping-estimator.css">
+    <link rel="stylesheet" href="site-enhancements.css">
+    <link rel="stylesheet" href="site-search.css">
+    <link rel="stylesheet" href="visual-enhancements.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -28,6 +33,16 @@
                 </div>
                 <span class="logo-text">Pure Extracts<span class="logo-suffix">TX</span></span>
             </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#products" class="nav-link">Products</a>
+                <a href="blog.html" class="nav-link">Education</a>
+                <a href="classroom.html" class="nav-link">Learn</a>
+                <a href="contact.html" class="nav-link nav-link-cta">Contact Us</a>
+            </div>
+            <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
 
@@ -129,7 +144,7 @@
             </div>
 
             <div class="explore-grid">
-                <a href="styles/ancient-lab/index.html" class="explore-card">
+                <a href="ancient-lab.html" class="explore-card">
                     <div class="explore-icon">
                         <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M8 4h8l-1 1v10a2 2 0 00.586 1.414l8.414 8.414V40a4 4 0 01-4 4H12a4 4 0 01-4-4V4z"/>
@@ -180,12 +195,33 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-bottom">
-                <p>&copy; 2025 Pure Extracts TX. All rights reserved.</p>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="blog.html">Education</a></li>
+                    <li><a href="classes.html">Classes</a></li>
+                    <li><a href="consulting.html">Consulting</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="classroom.html">Interactive Learning</a></li>
+                    <li><a href="research.html">Research Library</a></li>
+                    <li><a href="roadmap.html">Roadmap</a></li>
+                </ul>
             </div>
         </div>
-    </footer>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Pure Extracts TX. All rights reserved.</p>
+            <p>These statements have not been evaluated by the FDA. Products are not intended to diagnose, treat, cure, or prevent any disease.</p>
+        </div>
+    </div>
+</footer>
 
     <script src="script.js"></script>
     <style>
@@ -334,5 +370,10 @@
         }
     </style>
     <script src="age-verification.js"></script>
+    <script src="chat-widget.js"></script>
+    <script src="shipping-estimator.js"></script>
+    <script src="site-enhancements.js"></script>
+    <script src="site-search.js"></script>
+    <script src="visual-enhancements.js"></script>
 </body>
 </html>

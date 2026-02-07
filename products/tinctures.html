@@ -13,7 +13,7 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="../age-verification.css">
     <style>
@@ -71,6 +71,11 @@
         .back-link:hover { text-decoration: underline; }
         .back-link svg { width: 16px; height: 16px; }
     </style>
+    <link rel="stylesheet" href="../chat-widget.css">
+    <link rel="stylesheet" href="../shipping-estimator.css">
+    <link rel="stylesheet" href="../site-enhancements.css">
+    <link rel="stylesheet" href="../site-search.css">
+    <link rel="stylesheet" href="../visual-enhancements.css">
 </head>
 <body>
     <nav class="nav" id="nav">
@@ -186,57 +191,40 @@
     </main>
 
     <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-main">
-                <div class="footer-brand">
-                    <a href="../index.html" class="footer-logo">
-                        <div class="logo-icon">
-                            <svg viewBox="0 0 40 40" fill="none">
-                                <path d="M20 4C20 4 8 12 8 22C8 28.627 13.373 34 20 34C26.627 34 32 28.627 32 22C32 12 20 4 20 4Z" fill="currentColor" opacity="0.2"/>
-                                <path d="M20 8C20 8 12 14 12 22C12 26.418 15.582 30 20 30C24.418 30 28 26.418 28 22C28 14 20 8 20 8Z" fill="currentColor" opacity="0.4"/>
-                                <path d="M20 12C20 12 16 16 16 22C16 24.209 17.791 26 20 26C22.209 26 24 24.209 24 22C24 16 20 12 20 12Z" fill="currentColor"/>
-                            </svg>
-                        </div>
-                        <span class="logo-text">Pure Extracts<span class="logo-suffix">TX</span></span>
-                    </a>
-                    <p class="footer-tagline">Ancient Wisdom. Modern Science.</p>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4 class="footer-heading">Products</h4>
-                        <ul class="footer-nav">
-                            <li><a href="gummies.html">Gummies</a></li>
-                            <li><a href="tinctures.html">Tinctures</a></li>
-                            <li><a href="extracts.html">Pure Extracts</a></li>
-                            <li><a href="live-plants.html">Live Plants</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h4 class="footer-heading">Education</h4>
-                        <ul class="footer-nav">
-                            <li><a href="../blog.html">Articles</a></li>
-                            <li><a href="../classroom.html">The Classroom</a></li>
-                            <li><a href="../lab.html">Interactive Lab</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h4 class="footer-heading">Company</h4>
-                        <ul class="footer-nav">
-                            <li><a href="../index.html#about">About Us</a></li>
-                            <li><a href="../contact.html">Contact</a></li>
-                            <li><a href="mailto:wholesale@pureextractstx.com">Wholesale</a></li>
-                        </ul>
-                    </div>
-                </div>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../blog.html">Education</a></li>
+                    <li><a href="../classes.html">Classes</a></li>
+                    <li><a href="../consulting.html">Consulting</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
             </div>
-            <div class="footer-bottom">
-                <p class="footer-copyright">&copy; 2025 Pure Extracts TX. All rights reserved.</p>
-                <p class="footer-disclaimer">These statements have not been evaluated by the FDA. Our products are not intended to diagnose, treat, cure, or prevent any disease.</p>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="../classroom.html">Interactive Learning</a></li>
+                    <li><a href="../research.html">Research Library</a></li>
+                    <li><a href="../roadmap.html">Roadmap</a></li>
+                </ul>
             </div>
         </div>
-    </footer>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Pure Extracts TX. All rights reserved.</p>
+            <p>These statements have not been evaluated by the FDA. Products are not intended to diagnose, treat, cure, or prevent any disease.</p>
+        </div>
+    </div>
+</footer>
 
     <script src="../script.js"></script>
     <script src="../age-verification.js"></script>
+    <script src="../chat-widget.js"></script>
+    <script src="../shipping-estimator.js"></script>
+    <script src="../site-enhancements.js"></script>
+    <script src="../site-search.js"></script>
+    <script src="../visual-enhancements.js"></script>
 </body>
 </html>
