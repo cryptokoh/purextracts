@@ -4602,3 +4602,86 @@ ul, ol {
 .featured-footer .coming-soon-badge {
     margin-left: auto;
 }
+
+/* ============================================
+   Icon Container Fixes - Added Feb 2025
+   ============================================ */
+
+/* Product Card Icons */
+.product-icon {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary-subtle);
+    border-radius: var(--radius-xl);
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-primary);
+    flex-shrink: 0;
+}
+
+.product-icon svg {
+    width: 32px;
+    height: 32px;
+}
+
+/* Education Card Icons */
+.education-card-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary-subtle);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-md);
+    color: var(--color-primary);
+    flex-shrink: 0;
+}
+
+.education-card-icon svg {
+    width: 28px;
+    height: 28px;
+}
+
+/* About Feature Icons */
+.about-feature-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary-subtle);
+    border-radius: var(--radius-md);
+    color: var(--color-primary);
+    flex-shrink: 0;
+}
+
+.about-feature-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .product-icon {
+        width: 56px;
+        height: 56px;
+    }
+    
+    .product-icon svg {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .education-card-icon {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .education-card-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+}
