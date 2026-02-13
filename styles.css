@@ -62,7 +62,7 @@
     --container-padding: 1.5rem;
 
     /* Navigation */
-    --nav-height: 72px;
+    --nav-height: 64px;
 }
 
 /* ============================================
@@ -283,6 +283,8 @@ html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -292,6 +294,8 @@ body {
     color: var(--color-text);
     background-color: var(--color-bg);
     transition: background-color var(--transition-slow), color var(--transition-slow);
+    margin: 0;
+    padding: 0;
 }
 
 a {
@@ -549,6 +553,8 @@ ul, ol {
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--color-border);
     transition: all var(--transition-base);
+    margin: 0;
+    padding: 0;
 }
 
 .nav.scrolled {
@@ -570,12 +576,21 @@ ul, ol {
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
+    flex-wrap: nowrap;
+    white-space: nowrap;
 }
 
 .logo-icon {
-    width: 40px;
-    height: 40px;
+    width: 28px;
+    height: 28px;
     color: var(--color-primary);
+    flex-shrink: 0;
+}
+
+.logo-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
 }
 
 .logo-text {
