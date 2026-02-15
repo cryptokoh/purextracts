@@ -1044,6 +1044,124 @@
                 padding: var(--spacing-md);
             }
         }
+
+        /* ============================================
+           Technique Sections
+           ============================================ */
+
+        .technique-section .category-header::after {
+            background: linear-gradient(90deg, var(--color-ruin-moss) 0%, var(--color-living) 100%);
+        }
+
+        .technique-description {
+            font-size: var(--text-base);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            max-width: 700px;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .technique-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+        }
+
+        @media (max-width: 900px) {
+            .technique-grid { grid-template-columns: 1fr; }
+        }
+
+        .technique-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            transition: all 0.3s ease;
+        }
+
+        .technique-card:hover {
+            border-color: var(--color-living);
+            box-shadow: 0 8px 24px rgba(58, 125, 68, 0.08);
+            transform: translateY(-2px);
+        }
+
+        [data-theme="herbalist"] .technique-card:hover {
+            box-shadow: 0 8px 24px rgba(74, 222, 128, 0.06);
+        }
+
+        .technique-card h3 {
+            font-family: var(--font-serif);
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .technique-card p {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .technique-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .technique-card ul li {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+        }
+
+        .technique-card ul li::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            background: var(--color-living);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 7px;
+        }
+
+        .technique-full-width {
+            grid-column: 1 / -1;
+        }
+
+        /* Divider between plant categories and techniques */
+        .techniques-divider {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+            margin: var(--spacing-4xl) 0;
+            padding: var(--spacing-xl) 0;
+        }
+
+        .techniques-divider::before,
+        .techniques-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+        }
+
+        .techniques-divider-label {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-text-muted);
+            white-space: nowrap;
+        }
     </style>
     <link rel="stylesheet" href="../chat-widget.css">
     <link rel="stylesheet" href="../shipping-estimator.css">
@@ -1674,6 +1792,692 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                         <strong>Harvest parts:</strong> Fruiting body, mycelium, spores, conks
                     </span>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ============================================
+             Divider: Agricultural Techniques
+             ============================================ -->
+        <div class="techniques-divider">
+            <span class="techniques-divider-label">Agricultural Techniques</span>
+        </div>
+
+        <!-- ============================================
+             Technique 01: Irrigation Design
+             ============================================ -->
+        <section class="category-section technique-section" id="irrigation">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 2C12 2 6 8.5 6 13a6 6 0 0 0 12 0c0-4.5-6-11-6-11z"/>
+                        <path d="M12 19v-4" opacity="0.5"/>
+                        <path d="M10 17l2-2 2 2" opacity="0.5"/>
+                    </svg>
+                </div>
+                <div class="category-title-group">
+                    <div class="category-number">Technique 01</div>
+                    <h2 class="category-title">Irrigation Design</h2>
+                </div>
+            </div>
+            <p class="technique-description">
+                Water is the foundation of all cultivation. From simple hand-watering to fully automated
+                fertigation systems, irrigation design determines plant health, yield, and resource efficiency.
+                Matching the right delivery method to your growing environment is one of the most impactful
+                decisions a grower can make.
+            </p>
+            <div class="technique-grid">
+                <div class="technique-card">
+                    <h3>Water Sources</h3>
+                    <p>Understanding your water source is the first step in irrigation planning. Each source has unique mineral profiles, pH ranges, and treatment requirements.</p>
+                    <ul>
+                        <li>City/municipal water -- chlorine and chloramine removal required for living soil systems</li>
+                        <li>Well water -- test for hardness, iron, sulfur, and pH; may need filtration</li>
+                        <li>Rainwater collection -- naturally soft, low EC, ideal for sensitive plants</li>
+                        <li>In-ground water tables -- accessed via sub-irrigation and wicking beds</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Delivery Methods</h3>
+                    <p>Different crops and environments call for different irrigation approaches. The goal is uniform water distribution with minimal waste.</p>
+                    <ul>
+                        <li>Drip irrigation -- precise delivery to root zone, 90-95% water efficiency</li>
+                        <li>Flood tables and ebb-and-flow -- ideal for container growing and hydroponics</li>
+                        <li>Deep water culture (DWC) -- roots suspended in aerated nutrient solution</li>
+                        <li>Overhead sprinklers -- useful for field crops but higher evaporation loss</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Automation & Sensors</h3>
+                    <p>Modern irrigation systems use timers, sensors, and controllers to eliminate guesswork and reduce labor while improving consistency.</p>
+                    <ul>
+                        <li>Programmable timers for scheduled watering cycles</li>
+                        <li>Soil moisture sensors (capacitive or tensiometer) for on-demand watering</li>
+                        <li>Fertigation integration -- injecting nutrients directly into irrigation lines</li>
+                        <li>Flow meters and leak detection for system monitoring</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Scaling Systems</h3>
+                    <p>Irrigation needs change dramatically from a backyard garden to a commercial greenhouse to open field agriculture.</p>
+                    <ul>
+                        <li>Garden scale -- gravity-fed drip or hand watering with simple timers</li>
+                        <li>Greenhouse scale -- centralized mixing tanks, zone control, recirculation</li>
+                        <li>Field scale -- mainline and lateral pipe systems, pivot or drip tape</li>
+                        <li>Water budgeting and run-off management for environmental compliance</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             Technique 02: Growing Media & Soil
+             ============================================ -->
+        <section class="category-section technique-section" id="growing-media">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M2 20h20"/>
+                        <path d="M4 20v-4c0-1 1-2 3-2h10c2 0 3 1 3 2v4"/>
+                        <path d="M6 14v-2c0-1 .5-2 2-2h8c1.5 0 2 1 2 2v2"/>
+                        <path d="M8 10V8c0-1 1-2 4-2s4 1 4 2v2" opacity="0.5"/>
+                    </svg>
+                </div>
+                <div class="category-title-group">
+                    <div class="category-number">Technique 02</div>
+                    <h2 class="category-title">Growing Media & Soil</h2>
+                </div>
+            </div>
+            <p class="technique-description">
+                Soil is not dirt -- it is a living ecosystem of minerals, organic matter, water, air, and billions
+                of microorganisms. Understanding soil chemistry, structure, and biology allows growers to build
+                media that feeds plants naturally and sustains productivity across seasons.
+            </p>
+            <div class="technique-grid">
+                <div class="technique-card">
+                    <h3>Soil Assessment & Testing</h3>
+                    <p>Before amending soil, you need to understand what you are working with. Lab testing provides the baseline for all soil improvement decisions.</p>
+                    <ul>
+                        <li>pH testing -- most plants prefer 6.0-7.0; blueberries and azaleas prefer 4.5-5.5</li>
+                        <li>Nutrient panels -- nitrogen, phosphorus, potassium, calcium, magnesium, sulfur</li>
+                        <li>Texture analysis -- sand, silt, clay ratios determine drainage and water retention</li>
+                        <li>Organic matter percentage -- target 3-5% for most agricultural soils</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Amendments & Media Components</h3>
+                    <p>Amendments modify soil structure, drainage, aeration, and nutrient availability. Each component serves a specific purpose in the mix.</p>
+                    <ul>
+                        <li>Perlite -- volcanic glass for drainage and aeration; does not decompose</li>
+                        <li>Vermiculite -- expanded mica that retains moisture and cation exchange capacity</li>
+                        <li>Coco coir -- sustainable peat alternative with excellent water retention</li>
+                        <li>Biochar -- charcoal that improves CEC and provides microbial habitat for centuries</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Soil Chemistry & CEC</h3>
+                    <p>Cation Exchange Capacity (CEC) determines how well soil holds and releases nutrients. Higher CEC means greater fertility potential.</p>
+                    <ul>
+                        <li>CEC measures the soil's ability to hold positively charged nutrients (Ca, Mg, K)</li>
+                        <li>pH buffering -- how resistant soil is to pH changes from inputs</li>
+                        <li>Nutrient availability changes with pH -- iron locks out above 7.0, phosphorus below 6.0</li>
+                        <li>Base saturation ratios guide lime and gypsum application rates</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Regenerative & Living Soil</h3>
+                    <p>Regenerative agriculture builds soil health over time rather than depleting it. Living soil methods minimize tillage and maximize biological activity.</p>
+                    <ul>
+                        <li>No-till methods preserve fungal networks and soil structure</li>
+                        <li>Cover crops (clover, vetch, rye) fix nitrogen and prevent erosion</li>
+                        <li>Companion planting for nutrient cycling and pest management</li>
+                        <li>Mycorrhizal inoculation extends root reach by up to 700x</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             Technique 03: Composting
+             ============================================ -->
+        <section class="category-section technique-section" id="composting">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M21 12a9 9 0 1 1-9-9"/>
+                        <path d="M21 3v6h-6"/>
+                        <path d="M21 3l-9 9"/>
+                    </svg>
+                </div>
+                <div class="category-title-group">
+                    <div class="category-number">Technique 03</div>
+                    <h2 class="category-title">Composting</h2>
+                </div>
+            </div>
+            <p class="technique-description">
+                Composting transforms organic waste into rich humus teeming with beneficial microorganisms. It is
+                the oldest and most fundamental soil-building technique -- every successful garden starts with
+                good compost. Modern composting science has refined this ancient practice into a precise art.
+            </p>
+            <div class="technique-grid">
+                <div class="technique-card">
+                    <h3>Composting Methods</h3>
+                    <p>Different composting approaches suit different scales, timelines, and material types. Temperature management is the key differentiator.</p>
+                    <ul>
+                        <li>Hot composting -- 130-160F kills pathogens and weed seeds in 4-8 weeks</li>
+                        <li>Cold composting -- passive decomposition over 6-12 months, lower labor</li>
+                        <li>Vermicomposting -- red wigglers (Eisenia fetida) produce nutrient-dense castings</li>
+                        <li>Bokashi -- anaerobic fermentation using effective microorganisms (EM)</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Compost Teas & Extracts</h3>
+                    <p>Liquid compost preparations multiply beneficial microbes and deliver them directly to soil and foliage.</p>
+                    <ul>
+                        <li>Aerated compost tea (ACT) -- brewed with oxygen pump for 24-48 hours</li>
+                        <li>Non-aerated extracts -- simpler to make but favor different microbial populations</li>
+                        <li>Application methods: soil drench, foliar spray, seed soak</li>
+                        <li>Use within 4-6 hours of brewing for maximum microbial viability</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Inputs & C:N Ratios</h3>
+                    <p>The carbon-to-nitrogen ratio of your inputs determines composting speed and final product quality. The ideal ratio is 25-30:1.</p>
+                    <ul>
+                        <li>High carbon (browns): wood chips, straw, cardboard, dried leaves (C:N 60-500:1)</li>
+                        <li>High nitrogen (greens): kitchen scraps, grass clippings, manure (C:N 10-25:1)</li>
+                        <li>Comfrey and legume cuttings are grown specifically as compost activators</li>
+                        <li>Avoid: meat, dairy, diseased plants, pet waste, treated wood</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Beneficial Microbes & Monitoring</h3>
+                    <p>Healthy compost is alive with bacteria, fungi, protozoa, and beneficial nematodes. Monitoring ensures the process stays on track.</p>
+                    <ul>
+                        <li>Bacteria dominate early stages; fungi increase as compost matures</li>
+                        <li>Temperature monitoring with a compost thermometer (target 130-150F for hot compost)</li>
+                        <li>Moisture should feel like a wrung-out sponge (50-60%)</li>
+                        <li>Finished compost smells earthy, not sour or ammonia-like</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             Technique 04: Making Nutrients from Crops - KNF
+             ============================================ -->
+        <section class="category-section technique-section" id="knf-nutrients">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M9 3h6v4H9z" opacity="0.4"/>
+                        <path d="M10 7v5"/>
+                        <path d="M14 7v5"/>
+                        <path d="M6 12h12v2a8 8 0 0 1-12 0v-2z"/>
+                        <path d="M12 22v-4"/>
+                    </svg>
+                </div>
+                <div class="category-title-group">
+                    <div class="category-number">Technique 04</div>
+                    <h2 class="category-title">Making Nutrients from Crops &mdash; KNF</h2>
+                </div>
+            </div>
+            <p class="technique-description">
+                Korean Natural Farming (KNF), developed by Cho Han-Kyu, teaches growers to produce their own
+                fertilizers and soil amendments from locally available plants, fruits, and microorganisms. This
+                self-sufficient approach drastically reduces input costs and builds deeply resilient soil ecosystems.
+            </p>
+            <div class="technique-grid">
+                <div class="technique-card">
+                    <h3>FPJ & FFJ</h3>
+                    <p>Fermented Plant Juice and Fermented Fruit Juice are the backbone of KNF nutrition, providing growth-stage-specific nutrients from local biology.</p>
+                    <ul>
+                        <li>FPJ -- made from fast-growing plant tips (mugwort, comfrey) fermented with brown sugar</li>
+                        <li>FFJ -- made from ripe fruits fermented with brown sugar for flowering and fruiting</li>
+                        <li>1:1000 dilution ratio for foliar spray or soil drench application</li>
+                        <li>Harvest plants at dawn for maximum nutrient content before sugar translocation</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>LAB & OHN</h3>
+                    <p>Lactic Acid Bacteria and Oriental Herbal Nutrient are powerful microbial and plant-defense inputs that replace synthetic pesticides and soil conditioners.</p>
+                    <ul>
+                        <li>LAB -- cultured from rice wash water exposed to air, then fed with milk</li>
+                        <li>OHN -- garlic, ginger, cinnamon, and licorice fermented in alcohol and brown sugar</li>
+                        <li>LAB breaks down organic matter and suppresses harmful pathogens in soil</li>
+                        <li>OHN applied as foliar spray strengthens plant immune response</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Understanding pH, EC & ppm</h3>
+                    <p>Whether using KNF inputs or conventional nutrients, monitoring your solution chemistry is essential for plant health.</p>
+                    <ul>
+                        <li>pH -- measures hydrogen ion concentration; affects nutrient availability</li>
+                        <li>EC (electrical conductivity) -- measures total dissolved salts in solution</li>
+                        <li>ppm (parts per million) -- specific nutrient concentrations in water</li>
+                        <li>N-P-K ratios shift through growth stages: high N for veg, high P-K for bloom</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Fish & Seaweed Preparations</h3>
+                    <p>Marine-derived fertilizers provide broad-spectrum nutrition and growth hormones that complement fermented plant inputs.</p>
+                    <ul>
+                        <li>Fish hydrolysate -- cold-processed, retains amino acids and beneficial oils</li>
+                        <li>Fish emulsion -- heat-processed, cheaper but less biologically active</li>
+                        <li>Seaweed extract provides cytokinins, auxins, and trace minerals</li>
+                        <li>Combine fish + seaweed + molasses for a complete organic feed</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             Technique 05: Seed Production & Genetics
+             ============================================ -->
+        <section class="category-section technique-section" id="seed-production">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 22V10"/>
+                        <path d="M7 14c0-3 2.2-5 5-5s5 2 5 5"/>
+                        <circle cx="12" cy="6" r="3"/>
+                    </svg>
+                </div>
+                <div class="category-title-group">
+                    <div class="category-number">Technique 05</div>
+                    <h2 class="category-title">Seed Production & Genetics</h2>
+                </div>
+            </div>
+            <p class="technique-description">
+                Seed saving is one of humanity's oldest agricultural skills. Understanding plant genetics,
+                pollination, and storage allows growers to develop locally adapted varieties, maintain
+                biodiversity, and become independent from commercial seed suppliers.
+            </p>
+            <div class="technique-grid">
+                <div class="technique-card">
+                    <h3>Seed Saving & Storage</h3>
+                    <p>Proper seed harvest and storage can preserve viability for years or even decades depending on species.</p>
+                    <ul>
+                        <li>Harvest seeds when fully mature -- dry on the plant whenever possible</li>
+                        <li>Dry seeds to 6-8% moisture content before storage</li>
+                        <li>Store in cool (40-50F), dark, low-humidity conditions in airtight containers</li>
+                        <li>Silica gel packets help maintain low moisture in storage containers</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Cloning & Vegetative Propagation</h3>
+                    <p>Cloning produces genetically identical copies of a parent plant, preserving desirable traits with 100% fidelity.</p>
+                    <ul>
+                        <li>Stem cuttings with rooting hormone (IBA or natural willow water)</li>
+                        <li>Humidity domes maintain 90%+ humidity during root development</li>
+                        <li>Root development typically takes 7-21 days depending on species</li>
+                        <li>Air layering for woody plants that resist standard cutting propagation</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Plant Genetics Basics</h3>
+                    <p>Understanding inheritance patterns helps growers predict offspring traits and make informed breeding decisions.</p>
+                    <ul>
+                        <li>Dominant vs recessive traits -- Mendel's laws still govern plant breeding</li>
+                        <li>F1 hybrids show hybrid vigor but do not breed true in the F2 generation</li>
+                        <li>Open-pollinated varieties stabilize after 6-8 generations of selection</li>
+                        <li>Polyploidy (chromosome doubling) creates larger, more vigorous plants</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Breeding & Diversity</h3>
+                    <p>Selective breeding and genetic diversity are the twin pillars of crop improvement and resilience.</p>
+                    <ul>
+                        <li>Isolation distances prevent unwanted cross-pollination (varies by species)</li>
+                        <li>Hand pollination for controlled crosses between selected parents</li>
+                        <li>Maintaining seed banks preserves genetic resources for future generations</li>
+                        <li>Landrace varieties carry decades of natural selection for local conditions</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             Technique 06: Tissue Culture
+             ============================================ -->
+        <section class="category-section technique-section" id="tissue-culture">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="3"/>
+                        <circle cx="12" cy="12" r="7" opacity="0.3"/>
+                        <path d="M12 2v3"/>
+                        <path d="M12 19v3"/>
+                        <path d="M2 12h3"/>
+                        <path d="M19 12h3"/>
+                        <path d="M4.93 4.93l2.12 2.12" opacity="0.5"/>
+                        <path d="M16.95 16.95l2.12 2.12" opacity="0.5"/>
+                    </svg>
+                </div>
+                <div class="category-title-group">
+                    <div class="category-number">Technique 06</div>
+                    <h2 class="category-title">Tissue Culture</h2>
+                </div>
+            </div>
+            <p class="technique-description">
+                Tissue culture (micropropagation) uses sterile laboratory techniques to grow plants from tiny
+                tissue samples on nutrient agar media. This enables mass propagation of genetically identical
+                plants, virus elimination, and preservation of rare or endangered species.
+            </p>
+            <div class="technique-grid">
+                <div class="technique-card">
+                    <h3>Sterile Technique & Equipment</h3>
+                    <p>Contamination is the primary enemy of tissue culture. Every surface, tool, and media must be sterile before use.</p>
+                    <ul>
+                        <li>Laminar flow hoods provide a stream of HEPA-filtered air over the work surface</li>
+                        <li>Autoclaving sterilizes media, tools, and vessels at 121C / 15 PSI for 15-20 minutes</li>
+                        <li>Still air boxes (SABs) are a low-cost alternative for home tissue culture</li>
+                        <li>70% isopropyl alcohol and flame sterilization for tools between transfers</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Media Preparation</h3>
+                    <p>Tissue culture media provides all the nutrients, sugars, and hormones needed for plant cells to grow and differentiate.</p>
+                    <ul>
+                        <li>MS (Murashige & Skoog) media is the most widely used base formula</li>
+                        <li>Plant growth regulators: auxins (rooting) and cytokinins (shoot multiplication)</li>
+                        <li>Agar (6-8 g/L) provides the gel matrix; pH adjusted to 5.7-5.8 before autoclaving</li>
+                        <li>Sucrose (20-30 g/L) serves as the carbon source for growing tissue</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Culture Stages</h3>
+                    <p>Tissue culture follows a defined sequence from initial explant to established plantlet ready for soil.</p>
+                    <ul>
+                        <li>Stage 0: Mother plant selection and preconditioning</li>
+                        <li>Stage 1: Surface sterilization and explant establishment on media</li>
+                        <li>Stage 2: Multiplication -- shoots are divided and subcultured every 4-6 weeks</li>
+                        <li>Stage 3: Rooting on auxin-enriched media, then hardening off to ambient conditions</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Applications</h3>
+                    <p>Tissue culture serves diverse purposes from commercial nurseries to conservation biology to mycology.</p>
+                    <ul>
+                        <li>Mass propagation: produce thousands of identical plants from a single mother</li>
+                        <li>Virus elimination through meristem tip culture (0.2-0.5mm explants)</li>
+                        <li>Germplasm preservation of rare and endangered species</li>
+                        <li>Mycelium tissue culture for fungi -- transferring clean cultures to new media</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             Technique 07: Liquid Cultures
+             ============================================ -->
+        <section class="category-section technique-section" id="liquid-cultures">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 2v6l-3 4v5a3 3 0 0 0 6 0v-5l-3-4V2"/>
+                        <path d="M9 12h6"/>
+                        <circle cx="10" cy="15" r="1" opacity="0.4"/>
+                        <circle cx="13" cy="17" r="0.8" opacity="0.3"/>
+                    </svg>
+                </div>
+                <div class="category-title-group">
+                    <div class="category-number">Technique 07</div>
+                    <h2 class="category-title">Liquid Cultures</h2>
+                </div>
+            </div>
+            <p class="technique-description">
+                Liquid culture is a method of growing mycelium in a nutrient-rich broth rather than on solid
+                agar. This produces a suspension of mycelial fragments that can be used to quickly inoculate
+                grain spawn, dramatically speeding up the mushroom cultivation pipeline.
+            </p>
+            <div class="technique-grid">
+                <div class="technique-card">
+                    <h3>Media Recipes</h3>
+                    <p>Liquid culture media must provide sugars and nutrients while remaining easy to sterilize and work with.</p>
+                    <ul>
+                        <li>Light malt extract (LME) -- 4% solution (40g per liter) is the standard</li>
+                        <li>Honey water -- 4% solution, widely available and effective</li>
+                        <li>Potato dextrose broth -- made from potato flakes and dextrose</li>
+                        <li>Karo corn syrup -- 4% solution as a budget-friendly alternative</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Inoculation & Incubation</h3>
+                    <p>Clean inoculation and proper incubation conditions determine whether your liquid culture succeeds or contaminates.</p>
+                    <ul>
+                        <li>Inoculate from clean agar wedge or spore syringe using sterile technique</li>
+                        <li>Incubate at species-appropriate temperature (typically 75-80F)</li>
+                        <li>Gentle agitation (swirling or magnetic stir plate) breaks up mycelium for faster colonization</li>
+                        <li>Full colonization typically takes 7-14 days depending on species and conditions</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Contamination Testing</h3>
+                    <p>Every liquid culture must be tested before use. A single contaminated syringe can ruin an entire batch of grain spawn.</p>
+                    <ul>
+                        <li>Visual inspection: healthy LC is wispy white clouds; bacteria makes it cloudy or slimy</li>
+                        <li>Smell test: clean mycelium smells mushroomy; bacteria smells sour or foul</li>
+                        <li>Agar test: drop LC onto a clean agar plate and watch for 5-7 days</li>
+                        <li>pH test: healthy mycelium maintains slightly acidic conditions (pH 4-6)</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Scaling Up</h3>
+                    <p>Once you have a clean liquid culture, it can be expanded almost indefinitely to inoculate large quantities of grain spawn.</p>
+                    <ul>
+                        <li>Magnetic stir plates keep mycelium in suspension and promote even growth</li>
+                        <li>Air pumps with inline HEPA filters provide oxygen for aerobic species</li>
+                        <li>Self-healing injection ports allow repeated syringe draws without opening the jar</li>
+                        <li>One jar of LC can inoculate dozens of grain bags via syringe transfer</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             Technique 08: Substrate Preparation
+             ============================================ -->
+        <section class="category-section technique-section" id="substrate-prep">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="4" y="4" width="16" height="16" rx="2"/>
+                        <path d="M4 10h16"/>
+                        <path d="M4 16h16" opacity="0.5"/>
+                        <path d="M10 4v16" opacity="0.3"/>
+                    </svg>
+                </div>
+                <div class="category-title-group">
+                    <div class="category-number">Technique 08</div>
+                    <h2 class="category-title">Substrate Preparation</h2>
+                </div>
+            </div>
+            <p class="technique-description">
+                Substrate is the material that fungi colonize and fruit from. Proper substrate preparation --
+                selecting the right materials, achieving correct moisture content, and eliminating competing
+                organisms -- is the foundation of successful mushroom cultivation at any scale.
+            </p>
+            <div class="technique-grid">
+                <div class="technique-card">
+                    <h3>Substrate Materials</h3>
+                    <p>Different mushroom species prefer different substrates. Matching the right material to the right species is critical for success.</p>
+                    <ul>
+                        <li>Hardwood sawdust -- oak, maple, alder preferred for most gourmet species</li>
+                        <li>Straw -- wheat or oat straw for oyster mushrooms and wine caps</li>
+                        <li>Coco coir + vermiculite -- popular for general-purpose substrates</li>
+                        <li>Wood chips -- larger particle size for outdoor beds and log alternatives</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Pasteurization Methods</h3>
+                    <p>Pasteurization reduces competitor organisms while leaving some beneficial microbes intact. It is the minimum treatment for bulk substrates.</p>
+                    <ul>
+                        <li>Hot water bath -- submerge substrate at 160-180F for 60-90 minutes</li>
+                        <li>Steam pasteurization -- steam injected into substrate containers or drums</li>
+                        <li>Cold water lime bath -- hydrated lime (pH 12+) soaks substrate for 16-24 hours</li>
+                        <li>All methods target the elimination of mold spores and bacteria</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Sterilization</h3>
+                    <p>Sterilization kills all organisms in the substrate and is required for supplemented or nutrient-rich substrates that would otherwise contaminate.</p>
+                    <ul>
+                        <li>Pressure cooking at 15 PSI / 121C for 90-150 minutes depending on bag size</li>
+                        <li>Autoclaving for commercial operations -- same parameters at larger scale</li>
+                        <li>Required for: supplemented sawdust blocks, grain spawn, enriched substrates</li>
+                        <li>Sterile substrates must be inoculated in clean conditions (flow hood or SAB)</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Moisture & Supplements</h3>
+                    <p>Getting the moisture content right and adding appropriate supplements can dramatically increase yields.</p>
+                    <ul>
+                        <li>Target moisture: 60-65% field capacity (squeeze test -- a few drops, not a stream)</li>
+                        <li>Wheat bran supplement (5-15% by dry weight) boosts protein and nutrition</li>
+                        <li>Gypsum (calcium sulfate) at 2-5% improves structure and prevents clumping</li>
+                        <li>Coffee grounds can supplement but increase contamination risk above 25%</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             Technique 09: Fruiting Conditions
+             ============================================ -->
+        <section class="category-section technique-section" id="fruiting-conditions">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="4"/>
+                        <path d="M12 2v2"/>
+                        <path d="M12 20v2"/>
+                        <path d="M4.93 4.93l1.41 1.41"/>
+                        <path d="M17.66 17.66l1.41 1.41"/>
+                        <path d="M2 12h2"/>
+                        <path d="M20 12h2"/>
+                        <path d="M4.93 19.07l1.41-1.41" opacity="0.5"/>
+                        <path d="M17.66 6.34l1.41-1.41" opacity="0.5"/>
+                    </svg>
+                </div>
+                <div class="category-title-group">
+                    <div class="category-number">Technique 09</div>
+                    <h2 class="category-title">Fruiting Conditions</h2>
+                </div>
+            </div>
+            <p class="technique-description">
+                After colonization, mushroom mycelium needs specific environmental triggers to produce fruiting
+                bodies. Temperature, humidity, fresh air exchange, and light must all be carefully controlled
+                to achieve consistent harvests across multiple flushes.
+            </p>
+            <div class="technique-grid">
+                <div class="technique-card">
+                    <h3>Sealed Container Fruiting</h3>
+                    <p>Monotubs and shotgun fruiting chambers (SGFCs) are the most accessible methods for small-scale indoor mushroom cultivation.</p>
+                    <ul>
+                        <li>Monotubs -- modified storage totes with polyfill-stuffed holes for passive FAE</li>
+                        <li>Shotgun fruiting chambers -- perlite-lined totes with drilled holes for humidity</li>
+                        <li>Maintain 85-95% relative humidity during fruiting</li>
+                        <li>Fan briefly 2-3 times daily or use passive air exchange via hole placement</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Fruiting Room Setup</h3>
+                    <p>Dedicated fruiting rooms allow precise environmental control for commercial or serious hobbyist operations.</p>
+                    <ul>
+                        <li>Humidifier with controller maintaining 85-95% RH (ultrasonic or cool mist)</li>
+                        <li>Fresh air exchange (FAE) via inline fan with filter -- CO2 below 800 ppm</li>
+                        <li>Indirect light on 12/12 cycle -- mushrooms need light for directional growth</li>
+                        <li>Temperature control: most gourmets fruit at 55-75F depending on species</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Outdoor Cultivation</h3>
+                    <p>Many mushroom species thrive outdoors with minimal infrastructure, producing seasonal harvests from logs, straw beds, and wood chips.</p>
+                    <ul>
+                        <li>Log inoculation -- drill and plug hardwood logs with spawn for shiitake, lion's mane</li>
+                        <li>Straw beds and wood chip gardens for wine caps and king stropharia</li>
+                        <li>Shade, moisture, and seasonal temperature swings provide natural fruiting triggers</li>
+                        <li>Outdoor logs can produce for 3-7 years depending on log diameter and species</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Harvesting & Multiple Flushes</h3>
+                    <p>Timing the harvest correctly and managing between flushes maximizes total yield from each batch of substrate.</p>
+                    <ul>
+                        <li>Harvest just before or as caps flatten -- before spore drop for clean results</li>
+                        <li>Twist and pull or cut at the base with a clean blade</li>
+                        <li>Rehydrate substrate by soaking in cold water for 6-12 hours between flushes</li>
+                        <li>Most substrates produce 2-4 flushes with decreasing yields per flush</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             Technique 10: Leftover Substrate Uses
+             ============================================ -->
+        <section class="category-section technique-section" id="substrate-reuse">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M7.5 7.5L3 12l4.5 4.5"/>
+                        <path d="M16.5 16.5L21 12l-4.5-4.5"/>
+                        <path d="M3 12h18" opacity="0.3"/>
+                        <circle cx="12" cy="12" r="9"/>
+                    </svg>
+                </div>
+                <div class="category-title-group">
+                    <div class="category-number">Technique 10</div>
+                    <h2 class="category-title">Leftover Substrate Uses</h2>
+                </div>
+            </div>
+            <p class="technique-description">
+                Spent mushroom substrate (SMS) is not waste -- it is a valuable resource. After fruiting is
+                complete, the colonized material retains nutrients, beneficial mycelium, and organic matter
+                that can be redirected into gardens, construction, remediation, and even energy production.
+            </p>
+            <div class="technique-grid">
+                <div class="technique-card">
+                    <h3>Garden Amendment & Mulch</h3>
+                    <p>Spent substrate is an excellent soil amendment that adds organic matter, improves structure, and introduces beneficial fungi to garden beds.</p>
+                    <ul>
+                        <li>Break up spent blocks and incorporate into garden beds as soil conditioner</li>
+                        <li>Use as surface mulch around trees, shrubs, and perennial beds</li>
+                        <li>Mycelium in spent substrate continues to decompose organic matter in the garden</li>
+                        <li>Allow SMS to age 2-4 weeks before applying around sensitive seedlings</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Myco-Construction</h3>
+                    <p>Mycelium-bound substrates can be dried and formed into building materials, packaging, and insulation with remarkable properties.</p>
+                    <ul>
+                        <li>Mycelium bricks -- grown in molds, dried, and used as thermal insulation</li>
+                        <li>Packaging materials replacing styrofoam (companies like Ecovative lead this field)</li>
+                        <li>Acoustic panels from mycelium-bound agricultural waste</li>
+                        <li>Fully compostable at end of life unlike petroleum-based alternatives</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Bioremediation</h3>
+                    <p>Certain fungi can break down environmental pollutants including petroleum hydrocarbons, pesticides, and heavy metals.</p>
+                    <ul>
+                        <li>Mycoremediation -- using fungal mycelium to degrade toxic compounds in soil</li>
+                        <li>Oyster mushroom mycelium is particularly effective at breaking down hydrocarbons</li>
+                        <li>Mycofiltration -- using mycelium mats to filter contaminated water runoff</li>
+                        <li>Spent substrate placed in contaminated areas can reduce pollutant concentration over time</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Secondary Uses & Energy</h3>
+                    <p>Beyond soil and construction, spent substrate has applications in animal husbandry, energy production, and further cultivation.</p>
+                    <ul>
+                        <li>Animal feed supplement -- spent substrate retains protein and digestible fiber</li>
+                        <li>Biogas production through anaerobic digestion of spent organic material</li>
+                        <li>Re-inoculation with secondary species (e.g., fruit oysters on spent shiitake blocks)</li>
+                        <li>Worm food -- vermicomposting bins thrive on broken-up spent substrate</li>
+                    </ul>
                 </div>
             </div>
         </section>
