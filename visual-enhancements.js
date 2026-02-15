@@ -162,6 +162,144 @@
         content.appendChild(section);
     }
 
+    // Wrap select h2 sections in elevated shadow panels
+    function injectShadowPanels() {
+        var content = document.querySelector('.article-content');
+        if (!content) return;
+
+        var headings = content.querySelectorAll('h2');
+        if (headings.length < 4) return; // only for longer articles
+
+        // Wrap every 3rd h2 section in a shadow panel (starting at index 2)
+        for (var i = 2; i < headings.length; i += 3) {
+            var h2 = headings[i];
+            // Collect all elements until the next h2
+            var elements = [h2];
+            var next = h2.nextElementSibling;
+            while (next && next.tagName !== 'H2') {
+                elements.push(next);
+                next = next.nextElementSibling;
+            }
+
+            // Don't wrap if there's only the heading with no content
+            if (elements.length < 2) continue;
+
+            var panel = document.createElement('div');
+            panel.className = 'elevated-panel';
+            h2.parentNode.insertBefore(panel, h2);
+            for (var j = 0; j < elements.length; j++) {
+                panel.appendChild(elements[j]);
+            }
+        }
+    }
+
+    // Quick reference tables by category
+    var categoryTables = {
+        'cultivation': {
+            caption: 'Quick Reference: Growing Conditions',
+            headers: ['Factor', 'Details'],
+            rows: [
+                ['Sunlight', 'Full sun to partial shade (varies by species)'],
+                ['Water', 'Consistent moisture; avoid waterlogging'],
+                ['Soil pH', '5.5 - 7.0 (species dependent)'],
+                ['Temperature', '65-85\u00B0F optimal growing range'],
+                ['Harvest', 'Timing varies by plant part and maturity'],
+                ['Propagation', 'Seed, cutting, or division depending on species']
+            ]
+        },
+        'science': {
+            caption: 'Key Compound Overview',
+            headers: ['Property', 'Details'],
+            rows: [
+                ['Primary Compounds', 'Alkaloids, flavonoids, terpenes (varies by plant)'],
+                ['Extraction Methods', 'Water, ethanol, CO2, solventless'],
+                ['Bioavailability', 'Depends on delivery method and formulation'],
+                ['Storage', 'Cool, dark, dry conditions preserve potency'],
+                ['Lab Testing', 'HPLC for alkaloid profiling; microbial screening'],
+                ['Shelf Life', '1-3 years for properly stored dried material']
+            ]
+        },
+        'ethnobotanical': {
+            caption: 'Historical & Cultural Context',
+            headers: ['Aspect', 'Details'],
+            rows: [
+                ['Traditional Use', 'Centuries of documented ceremonial and medicinal use'],
+                ['Regions of Origin', 'Southeast Asia, Pacific Islands, Egypt, Americas'],
+                ['Preparation', 'Tea, chewing, smoking, topical application'],
+                ['Cultural Role', 'Medicine, ceremony, social bonding, spiritual practice'],
+                ['Modern Research', 'Active compounds identified and studied since 1900s'],
+                ['Legal Status', 'Varies widely by region and country']
+            ]
+        },
+        'guides': {
+            caption: 'Method Comparison',
+            headers: ['Method', 'Best For', 'Difficulty'],
+            rows: [
+                ['Water Extraction', 'Polar compounds, teas', 'Beginner'],
+                ['Ethanol Extraction', 'Full-spectrum extracts', 'Intermediate'],
+                ['Oil Infusion', 'Topicals, nonpolar compounds', 'Beginner'],
+                ['CO2 Extraction', 'High-purity concentrates', 'Advanced'],
+                ['Steam Distillation', 'Essential oils, aromatics', 'Intermediate'],
+                ['Solventless (Heat Press)', 'Rosin, mechanical separation', 'Beginner']
+            ]
+        },
+        'hemp': {
+            caption: 'Hemp & Cannabis Quick Facts',
+            headers: ['Factor', 'Hemp', 'Cannabis'],
+            rows: [
+                ['THC Content', '<0.3% by dry weight', 'Varies, often 15-30%'],
+                ['Legal Status (US)', 'Federally legal (2018 Farm Bill)', 'State-by-state regulation'],
+                ['Primary Compounds', 'CBD, CBG, terpenes', 'THC, CBD, terpenes'],
+                ['Common Uses', 'Extracts, fiber, seed oil, building', 'Medicinal, recreational'],
+                ['Growing Season', '90-120 days', '90-150 days'],
+                ['Extraction', 'CO2, ethanol most common', 'Hydrocarbon, CO2, solventless']
+            ]
+        }
+    };
+
+    // Inject a data table into articles with enough content
+    function injectDataTable() {
+        var content = document.querySelector('.article-content');
+        if (!content) return;
+
+        var headings = content.querySelectorAll('h2');
+        if (headings.length < 3) return; // only for longer articles
+
+        var category = detectCategory();
+        var tableData = categoryTables[category] || categoryTables['cultivation'];
+
+        // Insert table after the 2nd h2 section
+        var insertAfterH2 = headings[1];
+        var insertPoint = insertAfterH2.nextElementSibling;
+        // Skip past the content of this section to find the next h2
+        while (insertPoint && insertPoint.tagName !== 'H2') {
+            insertPoint = insertPoint.nextElementSibling;
+        }
+        if (!insertPoint) return;
+
+        var wrapper = document.createElement('div');
+        wrapper.className = 'auto-table-wrapper';
+
+        var html = '<table class="auto-table">';
+        html += '<caption>' + tableData.caption + '</caption>';
+        html += '<thead><tr>';
+        for (var h = 0; h < tableData.headers.length; h++) {
+            html += '<th>' + tableData.headers[h] + '</th>';
+        }
+        html += '</tr></thead><tbody>';
+        for (var r = 0; r < tableData.rows.length; r++) {
+            html += '<tr>';
+            for (var c = 0; c < tableData.rows[r].length; c++) {
+                html += '<td>' + tableData.rows[r][c] + '</td>';
+            }
+            html += '</tr>';
+        }
+        html += '</tbody></table>';
+
+        wrapper.innerHTML = html;
+        content.insertBefore(wrapper, insertPoint);
+    }
+
     // Inject decorative dividers between h2 sections
     function injectDividers() {
         var content = document.querySelector('.article-content');
@@ -175,7 +313,11 @@
             var divider = document.createElement('div');
             divider.className = 'section-divider';
             divider.innerHTML = leafSvg;
-            headings[i].parentNode.insertBefore(divider, headings[i]);
+            // Only insert before h2 that isn't inside an elevated-panel
+            var target = headings[i];
+            if (!target.closest || !target.closest('.elevated-panel')) {
+                target.parentNode.insertBefore(divider, target);
+            }
         }
     }
 
@@ -188,6 +330,8 @@
 
     function init() {
         injectHeroBanner();
+        injectDataTable();
+        injectShadowPanels();
         injectRelatedContent();
         injectDividers();
     }
