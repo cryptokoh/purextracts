@@ -1,6 +1,6 @@
 /* ============================================
    Pure Extracts TX - Visual Enhancements
-   Auto-injects hero banners, video sections,
+   Auto-injects hero banners, related content links,
    and decorative elements into articles
    ============================================ */
 
@@ -31,31 +31,31 @@
         vegetable: '<svg viewBox="0 0 160 160"><ellipse cx="80" cy="90" rx="35" ry="50" fill="currentColor" opacity="0.2"/><ellipse cx="80" cy="90" rx="25" ry="40" fill="currentColor" opacity="0.15"/><path d="M65 45c5-15 25-15 30 0" stroke="currentColor" stroke-width="2" fill="none" opacity="0.3"/><line x1="80" y1="50" x2="80" y2="130" stroke="currentColor" stroke-width="1.5" opacity="0.2"/></svg>'
     };
 
-    // Video recommendations by topic
-    var videoSuggestions = {
+    // Related classroom/research content by topic
+    var relatedContent = {
         'kratom': [
-            { title: 'Understanding Kratom Alkaloids', desc: 'Chemistry & pharmacology overview', category: 'Science' },
-            { title: 'Kratom Cultivation Basics', desc: 'Growing Mitragyna speciosa', category: 'Growing' }
+            { title: 'Effects on the Human Body', desc: 'How alkaloids interact with neurotransmitters and organ systems', href: '../classroom/effects.html' },
+            { title: 'Growing & Harvesting Plants', desc: 'Cultivation techniques for trees and woody botanicals', href: '../classroom/growing.html' }
         ],
         'kava': [
-            { title: 'Traditional Kava Preparation', desc: 'Pacific Island methods explained', category: 'Culture' },
-            { title: 'Kavalactone Chemistry', desc: 'Active compounds deep dive', category: 'Science' }
+            { title: 'Growing & Harvesting Plants', desc: 'Shrub cultivation, root development, and harvest timing', href: '../classroom/growing.html' },
+            { title: 'Extracting Plants & Making Products', desc: 'Water-based extractions and carrier methods', href: '../classroom/extraction.html' }
         ],
-        'ginger': [
-            { title: 'Ginger Rhizome Propagation', desc: 'Step-by-step planting guide', category: 'Growing' },
-            { title: 'Processing Fresh Ginger', desc: 'Drying, curing & extraction', category: 'Processing' }
+        'extraction': [
+            { title: 'Extracting Plants & Making Products', desc: 'Solventless, ethanol, CO2, chromatography, and distillation', href: '../classroom/extraction.html' },
+            { title: 'Building Infrastructure & Equipment', desc: 'Lab setup and equipment for extraction processes', href: '../classroom/infrastructure.html' }
         ],
-        'cannabis': [
-            { title: 'Hemp vs Cannabis: Key Differences', desc: 'Legal and botanical distinctions', category: 'Education' },
-            { title: 'CBD Extraction Methods', desc: 'CO2, ethanol & oil extraction', category: 'Processing' }
+        'cultivation': [
+            { title: 'Growing & Harvesting Plants', desc: 'From seed to harvest across every plant type', href: '../classroom/growing.html' },
+            { title: 'Building Infrastructure & Equipment', desc: 'Greenhouses, irrigation, indoor grow rooms', href: '../classroom/infrastructure.html' }
         ],
         'mushroom': [
-            { title: "Lion's Mane Cultivation", desc: 'Indoor growing techniques', category: 'Growing' },
-            { title: 'Medicinal Mushroom Compounds', desc: 'Hericenones & erinacines', category: 'Science' }
+            { title: 'Growing & Harvesting Plants', desc: 'Fungi cultivation, substrate preparation, and fruiting conditions', href: '../classroom/growing.html' },
+            { title: 'Extracting Plants & Making Products', desc: 'Processing methods for medicinal mushroom compounds', href: '../classroom/extraction.html' }
         ],
         'default': [
-            { title: 'Botanical Extraction 101', desc: 'Methods & best practices', category: 'Education' },
-            { title: 'Sustainable Cultivation', desc: 'Organic growing principles', category: 'Growing' }
+            { title: 'The Botanical Classroom', desc: 'Interactive learning experiences across all topics', href: '../classroom.html' },
+            { title: 'Research Library', desc: 'All classroom content in readable article format', href: '../research.html' }
         ]
     };
 
@@ -94,15 +94,19 @@
         return 'cultivation';
     }
 
-    // Detect video topic from title
-    function detectVideoTopic() {
+    // Detect content topic from title
+    function detectContentTopic() {
         var title = (document.title || '').toLowerCase();
-        var topics = Object.keys(videoSuggestions);
+        var topics = Object.keys(relatedContent);
         for (var i = 0; i < topics.length; i++) {
             if (topics[i] !== 'default' && title.indexOf(topics[i]) !== -1) {
                 return topics[i];
             }
         }
+        // Check category-based fallbacks
+        var category = detectCategory();
+        if (category === 'science' || category === 'guides') return 'extraction';
+        if (category === 'cultivation' || category === 'grass' || category === 'fruit' || category === 'vegetable') return 'cultivation';
         return 'default';
     }
 
@@ -124,33 +128,33 @@
         header.insertBefore(banner, header.firstChild);
     }
 
-    // Inject video recommendations
-    function injectVideoSection() {
+    // Inject related classroom content links
+    function injectRelatedContent() {
         var content = document.querySelector('.article-content');
         if (!content) return;
 
-        var topic = detectVideoTopic();
-        var videos = videoSuggestions[topic] || videoSuggestions['default'];
+        var topic = detectContentTopic();
+        var links = relatedContent[topic] || relatedContent['default'];
 
         var section = document.createElement('div');
-        section.className = 'video-recommendations';
+        section.className = 'related-content-section';
 
-        var playIcon = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/><polygon points="9.545,15.568 15.818,12 9.545,8.432" fill="#fff"/></svg>';
+        var bookIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>';
+        var arrowIcon = '<svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>';
 
-        var html = '<h3>' + playIcon + ' Watch & Learn</h3>';
-        html += '<p class="video-subtitle">Recommended educational videos related to this topic</p>';
-        html += '<div class="video-grid">';
+        var html = '<h3>' + bookIcon + ' Continue Learning</h3>';
+        html += '<p class="related-subtitle">Explore these topics in depth in our interactive classroom</p>';
+        html += '<div class="related-grid">';
 
-        for (var i = 0; i < videos.length; i++) {
-            var v = videos[i];
-            html += '<div class="video-card">';
-            html += '<div class="video-card-thumb">';
-            html += '<svg class="play-icon" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="rgba(220,38,38,0.85)"/><polygon points="19,14 19,34 36,24" fill="white"/></svg>';
+        for (var i = 0; i < links.length; i++) {
+            var link = links[i];
+            html += '<a href="' + link.href + '" class="related-card">';
+            html += '<div class="related-card-body">';
+            html += '<h4>' + link.title + '</h4>';
+            html += '<p>' + link.desc + '</p>';
             html += '</div>';
-            html += '<div class="video-card-info">';
-            html += '<h4>' + v.title + '</h4>';
-            html += '<p>' + v.desc + ' &middot; ' + v.category + '</p>';
-            html += '</div></div>';
+            html += '<span class="related-card-arrow">' + arrowIcon + '</span>';
+            html += '</a>';
         }
 
         html += '</div>';
@@ -184,7 +188,7 @@
 
     function init() {
         injectHeroBanner();
-        injectVideoSection();
+        injectRelatedContent();
         injectDividers();
     }
 })();
