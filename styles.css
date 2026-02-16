@@ -569,7 +569,7 @@ ul, ol {
     padding: var(--spacing-md) var(--container-padding);
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 1.25rem;
 }
 
 .nav-logo {
@@ -609,6 +609,7 @@ ul, ol {
     display: flex;
     align-items: center;
     gap: var(--spacing-xl);
+    margin-left: auto;
 }
 
 .nav-link {
@@ -660,6 +661,10 @@ ul, ol {
 
 .nav-link-cta:hover {
     opacity: 0.9;
+}
+
+.nav-link-home {
+    display: none;
 }
 
 .nav-mobile-toggle {
@@ -2824,6 +2829,10 @@ ul, ol {
 
     .nav-links.active {
         right: 0;
+    }
+
+    .nav-link-home {
+        display: block;
     }
 
     .nav-link {

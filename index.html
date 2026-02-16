@@ -242,7 +242,7 @@
         }
 
         @media (prefers-color-scheme: dark) {
-            :root {
+            :root:not([data-mode="light"]) {
                 --color-bg: #0f0f0f;
                 --color-surface: #1a1a1a;
                 --color-text: #f5f5f5;
@@ -254,6 +254,20 @@
                 --color-border: #2e2e2e;
                 --color-accent: #f59e0b;
             }
+        }
+
+        /* Manual dark override */
+        :root[data-mode="dark"] {
+            --color-bg: #0f0f0f;
+            --color-surface: #1a1a1a;
+            --color-text: #f5f5f5;
+            --color-text-secondary: #a1a1aa;
+            --color-text-muted: #71717a;
+            --color-primary: #14b8a6;
+            --color-primary-dark: #2dd4bf;
+            --color-primary-subtle: rgba(20, 184, 166, 0.15);
+            --color-border: #2e2e2e;
+            --color-accent: #f59e0b;
         }
 
         * {
@@ -281,14 +295,36 @@
 
         /* ==================== NAV OVERRIDE ==================== */
         .nav {
-            background: rgba(15, 18, 17, 0.95);
+            background: rgba(250, 250, 250, 0.9);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(20, 184, 166, 0.15);
+            border-bottom: 1px solid var(--color-border);
         }
 
         .nav.scrolled {
-            background: rgba(10, 12, 11, 0.98);
+            background: rgba(250, 250, 250, 0.97);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-mode="light"]) .nav {
+                background: rgba(15, 15, 15, 0.9);
+                border-bottom: 1px solid rgba(20, 184, 166, 0.15);
+            }
+
+            :root:not([data-mode="light"]) .nav.scrolled {
+                background: rgba(10, 10, 10, 0.97);
+                box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        :root[data-mode="dark"] .nav {
+            background: rgba(15, 15, 15, 0.9);
+            border-bottom: 1px solid rgba(20, 184, 166, 0.15);
+        }
+
+        :root[data-mode="dark"] .nav.scrolled {
+            background: rgba(10, 10, 10, 0.97);
             box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
         }
 
@@ -1122,6 +1158,151 @@
     <link rel="stylesheet" href="site-enhancements.css">
     <link rel="stylesheet" href="site-search.css">
     <link rel="stylesheet" href="visual-enhancements.css">
+
+    <!-- Dark mode nav overrides for inline search bar -->
+    <style>
+        /* Dark search bar styles - applied by system pref or manual toggle */
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-mode="light"]) .nav .nav-search-bar {
+                background: rgba(255, 255, 255, 0.08);
+                border-color: rgba(255, 255, 255, 0.15);
+            }
+            :root:not([data-mode="light"]) .nav .nav-search-bar:focus-within {
+                background: rgba(255, 255, 255, 0.12);
+                border-color: var(--color-primary);
+                box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.2);
+            }
+            :root:not([data-mode="light"]) .nav .nav-search-bar-input { color: rgba(255, 255, 255, 0.9); }
+            :root:not([data-mode="light"]) .nav .nav-search-bar-input::placeholder { color: rgba(255, 255, 255, 0.4); }
+            :root:not([data-mode="light"]) .nav .nav-search-bar-icon { color: rgba(255, 255, 255, 0.4); }
+            :root:not([data-mode="light"]) .nav .nav-search-bar:focus-within .nav-search-bar-icon { color: var(--color-primary); }
+            :root:not([data-mode="light"]) .nav .nav-search-bar-kbd {
+                background: rgba(255, 255, 255, 0.06);
+                border-color: rgba(255, 255, 255, 0.15);
+                color: rgba(255, 255, 255, 0.35);
+            }
+            :root:not([data-mode="light"]) .nav .site-search-trigger {
+                border-color: rgba(255, 255, 255, 0.15);
+                color: rgba(255, 255, 255, 0.5);
+            }
+            :root:not([data-mode="light"]) .nav .site-search-trigger:hover {
+                border-color: var(--color-primary);
+                color: var(--color-primary);
+                background: rgba(255, 255, 255, 0.08);
+            }
+            :root:not([data-mode="light"]) .nav .nav-classroom-icon {
+                border-color: rgba(255, 255, 255, 0.15);
+                color: rgba(255, 255, 255, 0.5);
+            }
+            :root:not([data-mode="light"]) .nav .nav-classroom-icon:hover {
+                border-color: var(--color-primary);
+                color: var(--color-primary);
+                background: rgba(255, 255, 255, 0.08);
+            }
+        }
+
+        /* Manual dark toggle overrides */
+        :root[data-mode="dark"] .nav .nav-search-bar {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+        :root[data-mode="dark"] .nav .nav-search-bar:focus-within {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.2);
+        }
+        :root[data-mode="dark"] .nav .nav-search-bar-input { color: rgba(255, 255, 255, 0.9); }
+        :root[data-mode="dark"] .nav .nav-search-bar-input::placeholder { color: rgba(255, 255, 255, 0.4); }
+        :root[data-mode="dark"] .nav .nav-search-bar-icon { color: rgba(255, 255, 255, 0.4); }
+        :root[data-mode="dark"] .nav .nav-search-bar:focus-within .nav-search-bar-icon { color: var(--color-primary); }
+        :root[data-mode="dark"] .nav .nav-search-bar-kbd {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.35);
+        }
+        :root[data-mode="dark"] .nav .site-search-trigger {
+            border-color: rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.5);
+        }
+        :root[data-mode="dark"] .nav .site-search-trigger:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        :root[data-mode="dark"] .nav .nav-classroom-icon {
+            border-color: rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.5);
+        }
+        :root[data-mode="dark"] .nav .nav-classroom-icon:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* ==================== THEME TOGGLE ==================== */
+        .theme-toggle {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            background: var(--color-border);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .theme-toggle:hover {
+            background: var(--color-text-muted);
+        }
+
+        .theme-toggle-knob {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #fff;
+            transition: transform 0.3s ease, background 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .theme-toggle-knob svg {
+            width: 11px;
+            height: 11px;
+            color: #f59e0b;
+            transition: color 0.3s ease;
+        }
+
+        /* Dark state */
+        .theme-toggle.is-dark {
+            background: rgba(20, 184, 166, 0.3);
+        }
+
+        .theme-toggle.is-dark:hover {
+            background: rgba(20, 184, 166, 0.45);
+        }
+
+        .theme-toggle.is-dark .theme-toggle-knob {
+            transform: translateX(20px);
+            background: #1a1a1a;
+        }
+
+        .theme-toggle.is-dark .theme-toggle-knob svg {
+            color: #a5b4fc;
+        }
+
+        @media (max-width: 768px) {
+            .theme-toggle {
+                order: -1;
+                margin-bottom: 8px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -1142,6 +1323,11 @@
                 <a href="#products" class="nav-link">Products</a>
                 <a href="blog.html" class="nav-link">Education</a>
                 <a href="classroom.html" class="nav-link">Learn</a>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                    <span class="theme-toggle-knob">
+                        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/></svg>
+                    </span>
+                </button>
                 <a href="contact.html" class="nav-link nav-link-cta">Contact Us</a>
             </div>
             <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle menu">
@@ -1716,6 +1902,54 @@
                 }
             });
         });
+    </script>
+    <!-- Theme toggle -->
+    <script>
+    (function() {
+        const sunIcon = '<svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/></svg>';
+        const moonIcon = '<svg viewBox="0 0 20 20" fill="currentColor"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>';
+
+        var toggle = document.getElementById('themeToggle');
+        if (!toggle) return;
+        var knob = toggle.querySelector('.theme-toggle-knob');
+
+        function getEffectiveDark() {
+            var saved = localStorage.getItem('petx-mode');
+            if (saved) return saved === 'dark';
+            return window.matchMedia('(prefers-color-scheme: dark)').matches;
+        }
+
+        function apply(isDark) {
+            document.documentElement.setAttribute('data-mode', isDark ? 'dark' : 'light');
+            toggle.classList.toggle('is-dark', isDark);
+            knob.innerHTML = isDark ? moonIcon : sunIcon;
+            toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+        }
+
+        // Init from saved preference or system
+        var saved = localStorage.getItem('petx-mode');
+        if (saved) {
+            apply(saved === 'dark');
+        } else {
+            apply(window.matchMedia('(prefers-color-scheme: dark)').matches);
+            // Don't set data-mode if following system (let media queries handle it)
+            document.documentElement.removeAttribute('data-mode');
+            toggle.classList.toggle('is-dark', window.matchMedia('(prefers-color-scheme: dark)').matches);
+            knob.innerHTML = window.matchMedia('(prefers-color-scheme: dark)').matches ? moonIcon : sunIcon;
+        }
+
+        toggle.addEventListener('click', function() {
+            var isDark = !toggle.classList.contains('is-dark');
+            localStorage.setItem('petx-mode', isDark ? 'dark' : 'light');
+            apply(isDark);
+        });
+
+        // Listen for system theme changes — clear manual override so system preference wins
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+            localStorage.removeItem('petx-mode');
+            apply(e.matches);
+        });
+    })();
     </script>
     <!-- Core navigation and site functionality -->
     <script src="script.js"></script>
