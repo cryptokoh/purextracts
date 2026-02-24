@@ -24,6 +24,9 @@ coverage/
 build/
 dist/
 
+# Business documents - NEVER COMMIT
+git-ignore-biz-docs/
+
 # Misc
 .DS_Store
 *.log

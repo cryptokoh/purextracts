@@ -44,6 +44,15 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Stripe webhook needs raw body - ensure it routes through functions
+[[redirects]]
+  from = "/api/stripe-webhook"
+  to = "/.netlify/functions/stripe-webhook"
+  status = 200
+
 # Environment variables (set these in Netlify UI)
 # STRIPE_SECRET_KEY = sk_test_...
 # STRIPE_PUBLISHABLE_KEY = pk_test_...
+# STRIPE_WEBHOOK_SECRET = whsec_...
+# SUPABASE_URL = https://YOUR_PROJECT.supabase.co
+# SUPABASE_SERVICE_ROLE_KEY = eyJ...

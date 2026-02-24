@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="clinical">
+<head>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-050E36TGR9"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-050E36TGR9");</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <title>Course | Pure Extracts TX</title>
+    <meta name="description" content="View course details, lesson list, and track your progress.">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="course-styles.css">
+    <link rel="stylesheet" href="../age-verification.css">
+    <link rel="stylesheet" href="../chat-widget.css">
+    <link rel="stylesheet" href="../site-enhancements.css">
+    <link rel="stylesheet" href="../site-search.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script src="auth.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 40 40" fill="none">
+                        <path d="M20 4C20 4 8 12 8 22C8 28.627 13.373 34 20 34C26.627 34 32 28.627 32 22C32 12 20 4 20 4Z" fill="currentColor" opacity="0.2"/>
+                        <path d="M20 8C20 8 12 14 12 22C12 26.418 15.582 30 20 30C24.418 30 28 26.418 28 22C28 14 20 8 20 8Z" fill="currentColor" opacity="0.4"/>
+                        <path d="M20 12C20 12 16 16 16 22C16 24.209 17.791 26 20 26C22.209 26 24 24.209 24 22C24 16 20 12 20 12Z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <span class="logo-text">Pure Extracts<span class="logo-suffix">TX</span></span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../index.html#about" class="nav-link">About</a>
+                <a href="../index.html#products" class="nav-link">Products</a>
+                <a href="../blog.html" class="nav-link">Education</a>
+                <a href="../classroom.html" class="nav-link">Learn</a>
+                <a href="../contact.html" class="nav-link nav-link-cta">Contact Us</a>
+            </div>
+            <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Theme Switcher -->
+    <div class="theme-switcher" id="themeSwitcher">
+        <button class="theme-toggle" id="themeToggle" aria-label="Change theme">
+            <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+        </button>
+        <div class="theme-options" id="themeOptions">
+            <button class="theme-option" data-theme="clinical"><span class="theme-preview clinical-preview"></span><span>Clinical White</span></button>
+            <button class="theme-option" data-theme="earth"><span class="theme-preview earth-preview"></span><span>Earth Apothecary</span></button>
+            <button class="theme-option" data-theme="herbalist"><span class="theme-preview herbalist-preview"></span><span>Modern Herbalist</span></button>
+        </div>
+    </div>
+
+    <main class="course-overview-page">
+        <div class="course-hero" id="courseHero">
+            <span class="course-hero-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                    <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                </svg>
+                Course
+            </span>
+            <h1 id="courseTitle">Loading...</h1>
+            <p class="course-hero-desc" id="courseDesc"></p>
+            <div class="course-meta" id="courseMeta"></div>
+            <div id="courseActions"></div>
+        </div>
+
+        <section class="lesson-list" id="lessonListSection">
+            <h2 class="lesson-list-header">Lessons</h2>
+            <div class="lesson-list-items" id="lessonListItems">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="../products/extracts.html">Botanical Extracts</a></li>
+                        <li><a href="../products/tinctures.html">Tinctures</a></li>
+                        <li><a href="../products/gummies.html">Gummies</a></li>
+                        <li><a href="../products/live-plants.html">Live Plants</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Learn</h4>
+                    <ul>
+                        <li><a href="../blog.html">Education</a></li>
+                        <li><a href="../classes.html">Classes</a></li>
+                        <li><a href="../classroom.html">Interactive Learning</a></li>
+                        <li><a href="../research.html">Research Library</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../consulting.html">Consulting</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                        <li><a href="../roadmap.html">Roadmap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Pure Extracts TX. All rights reserved.</p>
+                <p>These statements have not been evaluated by the FDA. Products are not intended to diagnose, treat, cure, or prevent any disease.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="course-app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            initAuthListener();
+
+            const params = new URLSearchParams(window.location.search);
+            const slug = params.get('slug');
+            if (!slug) {
+                window.location.href = 'catalog.html';
+                return;
+            }
+
+            const sb = getSupabase();
+
+            // Fetch course
+            const { data: course, error } = await sb
+                .from('courses')
+                .select('*')
+                .eq('slug', slug)
+                .eq('is_published', true)
+                .single();
+
+            if (error || !course) {
+                document.getElementById('courseTitle').textContent = 'Course not found';
+                return;
+            }
+
+            document.title = course.title + ' | Pure Extracts TX';
+            document.getElementById('courseTitle').textContent = course.title;
+            document.getElementById('courseDesc').textContent = course.description;
+
+            // Meta info
+            const metaEl = document.getElementById('courseMeta');
+            metaEl.innerHTML = `
+                <div class="course-meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    ${course.lesson_count} lessons
+                </div>
+                <div class="course-meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    Tier ${course.min_tier} required
+                </div>
+            `;
+
+            // Fetch lessons
+            const { data: lessons } = await sb
+                .from('lessons')
+                .select('id, slug, title, sort_order, estimated_minutes, is_free_preview')
+                .eq('course_id', course.id)
+                .order('sort_order');
+
+            // Check enrollment
+            const user = await getUser();
+            let enrolled = false;
+            let progressMap = {};
+
+            if (user) {
+                const { data: enrollment } = await sb
+                    .from('enrollments')
+                    .select('id')
+                    .eq('user_id', user.id)
+                    .eq('course_id', course.id)
+                    .eq('is_active', true)
+                    .single();
+
+                enrolled = !!enrollment;
+
+                if (enrolled) {
+                    const { data: progress } = await sb
+                        .from('lesson_progress')
+                        .select('lesson_id, is_completed')
+                        .eq('user_id', user.id)
+                        .eq('course_id', course.id);
+
+                    if (progress) {
+                        progress.forEach(p => { progressMap[p.lesson_id] = p.is_completed; });
+                    }
+                }
+            }
+
+            // Render actions
+            const actionsEl = document.getElementById('courseActions');
+            if (enrolled) {
+                actionsEl.innerHTML = `<a href="dashboard.html" class="course-card-btn course-card-btn-primary" style="display:inline-flex; width:auto;">Go to Dashboard</a>`;
+            } else if (user) {
+                actionsEl.innerHTML = `<a href="../classes.html" class="course-card-btn course-card-btn-primary" style="display:inline-flex; width:auto;">Enroll Now</a>`;
+            } else {
+                actionsEl.innerHTML = `<a href="login.html" class="course-card-btn course-card-btn-primary" style="display:inline-flex; width:auto;">Log In to Enroll</a>`;
+            }
+
+            // Render lesson list
+            const listEl = document.getElementById('lessonListItems');
+            if (lessons && lessons.length) {
+                listEl.innerHTML = lessons.map((lesson, i) => {
+                    const completed = progressMap[lesson.id];
+                    const canAccess = enrolled || lesson.is_free_preview;
+                    const cls = completed ? 'completed' : (!canAccess ? 'locked' : '');
+                    const href = canAccess
+                        ? `lesson.html?course=${slug}&lesson=${lesson.slug}`
+                        : '#';
+
+                    const statusIcon = completed
+                        ? '<svg class="lesson-status-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>'
+                        : lesson.is_free_preview
+                            ? '<svg class="lesson-status-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>'
+                            : canAccess
+                                ? '<svg class="lesson-status-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>'
+                                : '<svg class="lesson-status-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>';
+
+                    return `
+                        <a href="${href}" class="lesson-list-item ${cls}" ${!canAccess ? 'tabindex="-1"' : ''}>
+                            <span class="lesson-number">${i + 1}</span>
+                            <div class="lesson-info">
+                                <div class="lesson-info-title">${lesson.title}</div>
+                                <div class="lesson-info-meta">${lesson.estimated_minutes} min${lesson.is_free_preview ? ' &middot; Free Preview' : ''}</div>
+                            </div>
+                            ${statusIcon}
+                        </a>
+                    `;
+                }).join('');
+            }
+        });
+    </script>
+    <script src="../analytics.js"></script>
+    <script src="../age-verification.js"></script>
+    <script src="../chat-widget.js"></script>
+    <script src="../site-enhancements.js"></script>
+    <script src="../site-search.js"></script>
+</body>
+</html>

@@ -32,6 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
     initProductFiltering();
     initFeaturedCarousel();
     initViewAllProducts();
+
+    // Global auth nav state (only runs if Supabase is loaded)
+    if (typeof initAuthListener === 'function') {
+        initAuthListener();
+    }
 });
 
 /**
@@ -41,6 +46,13 @@ function initThemeSwitcher() {
     const themeSwitcher = document.getElementById('themeSwitcher');
     const themeToggle = document.getElementById('themeToggle');
     const themeOptions = document.querySelectorAll('.theme-option');
+
+    // If no theme switcher UI (e.g. index.html has its own theme system),
+    // just set clinical theme for CSS variable support and return early
+    if (!themeSwitcher) {
+        setTheme('clinical');
+        return;
+    }
 
     // Load saved theme or default to 'clinical'
     const savedTheme = localStorage.getItem('pureextracts-theme') || 'clinical';
@@ -120,6 +132,21 @@ function initNavigation() {
     const nav = document.getElementById('nav');
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
+
+    if (!nav || !navToggle || !navLinks) return;
+
+    // Inject Home link for mobile menu (hidden on desktop)
+    var path = window.location.pathname;
+    var prefix = '';
+    if (path.indexOf('/articles/') !== -1 || path.indexOf('/products/') !== -1 || path.indexOf('/classroom/') !== -1 || path.indexOf('/courses/') !== -1) {
+        prefix = '../';
+    }
+    var homeLink = document.createElement('a');
+    homeLink.href = prefix + 'index.html';
+    homeLink.className = 'nav-link nav-link-home';
+    homeLink.textContent = 'Home';
+    navLinks.insertBefore(homeLink, navLinks.firstChild);
+
     const links = navLinks.querySelectorAll('a');
 
     // Mobile menu toggle

@@ -614,6 +614,12 @@
     <link rel="stylesheet" href="site-enhancements.css">
     <link rel="stylesheet" href="site-search.css">
     <link rel="stylesheet" href="visual-enhancements.css">
+
+    <!-- Supabase CDN + Course Config -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="courses/supabase-config.js"></script>
+    <script src="courses/auth.js"></script>
+    <script src="courses/course-app.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -776,10 +782,10 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                         Email support included
                     </div>
-                    <a href="contact.html" class="tier-enroll">
+                    <button onclick="startCourseCheckout(1)" class="tier-enroll">
                         Enroll Now
                         <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
-                    </a>
+                    </button>
                 </div>
 
                 <!-- Tier 2: Advanced Practitioner -->
@@ -824,10 +830,10 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                         5 hours of direct 1-on-1 support
                     </div>
-                    <a href="contact.html" class="tier-enroll">
+                    <button onclick="startCourseCheckout(2)" class="tier-enroll">
                         Enroll Now
                         <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
-                    </a>
+                    </button>
                 </div>
 
                 <!-- Tier 3: Small Business -->
@@ -880,10 +886,10 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                         20 hours of direct 1-on-1 support
                     </div>
-                    <a href="contact.html" class="tier-enroll">
+                    <button onclick="startCourseCheckout(3)" class="tier-enroll">
                         Enroll Now
                         <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
-                    </a>
+                    </button>
                 </div>
 
                 <!-- Tier 4: Industrial Operations -->
@@ -940,10 +946,10 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                         50 hours of direct 1-on-1 support + on-site consultation
                     </div>
-                    <a href="contact.html" class="tier-enroll">
-                        Schedule Consultation
+                    <button onclick="startCourseCheckout(4)" class="tier-enroll">
+                        Enroll Now
                         <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
-                    </a>
+                    </button>
                 </div>
             </div>
         </section>
@@ -1157,6 +1163,12 @@
                     this.setAttribute('aria-expanded', 'true');
                 }
             });
+        });
+    </script>
+    <script>
+        // Initialize auth state for nav and handle pending tier from login redirect
+        document.addEventListener('DOMContentLoaded', () => {
+            initAuthListener();
         });
     </script>
     <script src="analytics.js"></script>

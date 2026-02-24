@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="clinical">
+<head>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-050E36TGR9"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-050E36TGR9");</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <title>Lesson | Pure Extracts TX</title>
+    <meta name="description" content="Course lesson viewer for Pure Extracts TX botanical education.">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../classroom-styles.css">
+    <link rel="stylesheet" href="course-styles.css">
+    <link rel="stylesheet" href="../age-verification.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script src="auth.js"></script>
+</head>
+<body>
+    <!-- Minimal Nav for Lesson Viewer -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 40 40" fill="none">
+                        <path d="M20 4C20 4 8 12 8 22C8 28.627 13.373 34 20 34C26.627 34 32 28.627 32 22C32 12 20 4 20 4Z" fill="currentColor" opacity="0.2"/>
+                        <path d="M20 8C20 8 12 14 12 22C12 26.418 15.582 30 20 30C24.418 30 28 26.418 28 22C28 14 20 8 20 8Z" fill="currentColor" opacity="0.4"/>
+                        <path d="M20 12C20 12 16 16 16 22C16 24.209 17.791 26 20 26C22.209 26 24 24.209 24 22C24 16 20 12 20 12Z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <span class="logo-text">Pure Extracts<span class="logo-suffix">TX</span></span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../index.html#about" class="nav-link">About</a>
+                <a href="../index.html#products" class="nav-link">Products</a>
+                <a href="../blog.html" class="nav-link">Education</a>
+                <a href="../classroom.html" class="nav-link">Learn</a>
+                <a href="../contact.html" class="nav-link nav-link-cta">Contact Us</a>
+            </div>
+            <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="lesson-page">
+        <!-- Gated content placeholder -->
+        <div id="gatedContent" class="gated-content" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            <h2>This Lesson Requires Enrollment</h2>
+            <p>Enroll in the course to unlock all lessons and track your progress.</p>
+            <a href="../classes.html" class="course-card-btn course-card-btn-primary" style="display:inline-flex; width:auto;">View Pricing</a>
+        </div>
+
+        <!-- Lesson layout -->
+        <div id="lessonLayout" class="lesson-layout" hidden>
+            <aside class="lesson-sidebar" id="lessonSidebar">
+                <div class="lesson-sidebar-header">
+                    <div class="lesson-sidebar-title" id="sidebarCourseTitle">Course</div>
+                    <div class="lesson-sidebar-progress" id="sidebarProgress">0 / 0 completed</div>
+                </div>
+                <nav id="sidebarLessonNav"></nav>
+            </aside>
+
+            <div class="lesson-content-area" id="lessonContentArea">
+                <div class="lesson-breadcrumb">
+                    <a href="dashboard.html">My Courses</a>
+                    <span class="lesson-breadcrumb-sep">/</span>
+                    <a href="#" id="breadcrumbCourse">Course</a>
+                    <span class="lesson-breadcrumb-sep">/</span>
+                    <span id="breadcrumbLesson">Lesson</span>
+                </div>
+
+                <h1 id="lessonTitle">Loading...</h1>
+                <div class="lesson-time-estimate" id="lessonTime">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <span></span>
+                </div>
+
+                <div class="lesson-body" id="lessonBody"></div>
+
+                <div class="lesson-footer-actions" id="lessonFooter">
+                    <button class="mark-complete-btn" id="markCompleteBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>Mark Complete</span>
+                    </button>
+                    <a href="#" class="next-lesson-link" id="nextLessonLink" hidden>
+                        Next Lesson
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../script.js"></script>
+    <script src="lesson-viewer.js"></script>
+    <script src="../analytics.js"></script>
+    <script src="../age-verification.js"></script>
+</body>
+</html>
