@@ -10,6 +10,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#1c3a13">
     <title>Image Library - Pure Extracts TX</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         /* ========================================
            RESET & CUSTOM PROPERTIES
@@ -1067,6 +1068,361 @@
             clip: rect(0, 0, 0, 0);
             border: 0;
         }
+
+        /* ========================================
+           AUTH BUTTON
+           ======================================== */
+        .auth-btn { position: relative; }
+        .auth-btn.logged-in { background: rgba(211, 250, 153, 0.15); }
+        .auth-btn.logged-in svg { color: var(--mossroot); }
+        .auth-btn.logged-in::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            right: 4px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--fluorescent-green);
+            border: 1.5px solid var(--snowwhite);
+        }
+
+        /* ========================================
+           DB STATUS DOT
+           ======================================== */
+        .db-status {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(28, 58, 19, 0.15);
+            display: inline-block;
+            margin-left: 0.375rem;
+            vertical-align: middle;
+            transition: background 0.3s;
+        }
+        .db-status.connected { background: var(--fluorescent-green); }
+
+        /* ========================================
+           EDIT BUTTON IN LIGHTBOX
+           ======================================== */
+        .lb-edit-btn { background: rgba(211, 250, 153, 0.15); }
+        .lb-edit-btn:hover { background: rgba(211, 250, 153, 0.3); }
+
+        /* ========================================
+           EDIT PANEL
+           ======================================== */
+        .edit-panel {
+            display: none;
+            flex-direction: column;
+            gap: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 0.75rem;
+            animation: editSlideUp 0.25s ease-out;
+        }
+
+        .edit-panel.open { display: flex; }
+
+        @keyframes editSlideUp {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .edit-panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .edit-panel-title {
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--fluorescent-green);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .edit-cancel-btn {
+            border: none;
+            background: none;
+            color: rgba(255, 255, 255, 0.6);
+            font-family: var(--font-sans);
+            font-size: 0.8125rem;
+            cursor: pointer;
+            padding: 0.25rem 0.625rem;
+            border-radius: var(--radius-pill);
+            transition: color 0.15s, background 0.15s;
+        }
+
+        .edit-cancel-btn:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .edit-field { display: flex; flex-direction: column; gap: 0.25rem; }
+
+        .edit-field label {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .edit-field textarea,
+        .edit-field input[type="text"],
+        .edit-field input[type="email"],
+        .edit-field input[type="password"],
+        .edit-field select {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1.5px solid rgba(255, 255, 255, 0.12);
+            border-radius: var(--radius-card);
+            padding: 0.5rem 0.75rem;
+            font-family: var(--font-sans);
+            font-size: 0.8125rem;
+            color: #fff;
+            outline: none;
+            transition: border-color 0.2s, background 0.2s;
+            -webkit-appearance: none;
+        }
+
+        .edit-field textarea:focus,
+        .edit-field input:focus,
+        .edit-field select:focus {
+            border-color: var(--fluorescent-green);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .edit-field textarea::placeholder,
+        .edit-field input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .edit-field select option {
+            background: var(--seedgreen);
+            color: #fff;
+        }
+
+        .edit-row {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .placement-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.375rem;
+        }
+
+        .placement-chip {
+            height: 28px;
+            padding: 0 0.75rem;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius-pill);
+            background: transparent;
+            color: rgba(255, 255, 255, 0.6);
+            font-family: var(--font-sans);
+            font-size: 0.6875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .placement-chip:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            color: #fff;
+        }
+
+        .placement-chip.active {
+            background: rgba(211, 250, 153, 0.2);
+            border-color: var(--fluorescent-green);
+            color: var(--fluorescent-green);
+            font-weight: 600;
+        }
+
+        .edit-actions { display: flex; gap: 0.5rem; padding-top: 0.25rem; }
+
+        .edit-save-btn {
+            flex: 1;
+            height: 40px;
+            border: none;
+            border-radius: var(--radius-pill);
+            background: var(--fluorescent-green);
+            color: var(--seedgreen);
+            font-family: var(--font-sans);
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.15s, transform 0.1s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .edit-save-btn:hover { opacity: 0.9; }
+        .edit-save-btn:active { transform: scale(0.98); }
+        .edit-save-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .edit-status {
+            font-size: 0.75rem;
+            text-align: center;
+            min-height: 1.25rem;
+        }
+
+        .edit-status.saving { color: var(--fluorescent-green); }
+        .edit-status.error { color: #ffb432; }
+
+        /* ========================================
+           LOGIN MODAL
+           ======================================== */
+        .login-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(28, 58, 19, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 600;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .login-overlay.open { opacity: 1; pointer-events: auto; }
+
+        .login-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.95);
+            z-index: 610;
+            width: calc(100% - 2rem);
+            max-width: 360px;
+            background: var(--snowwhite);
+            border-radius: 1.25rem;
+            box-shadow: 0 24px 80px rgba(28, 58, 19, 0.3);
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .login-modal.open {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .login-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 1.25rem 0.75rem;
+        }
+
+        .login-title {
+            font-weight: 700;
+            font-size: 1.0625rem;
+            color: var(--seedgreen);
+        }
+
+        .login-close {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: var(--foamwhite);
+            border-radius: 50%;
+            font-size: 1.25rem;
+            color: var(--olivegreen);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.15s;
+        }
+
+        .login-close:hover { background: rgba(28, 58, 19, 0.1); }
+
+        .login-body { padding: 0.5rem 1.25rem 1.5rem; }
+
+        .login-field { margin-bottom: 0.75rem; }
+
+        .login-field label {
+            display: block;
+            font-size: 0.6875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--olivegreen);
+            margin-bottom: 0.375rem;
+        }
+
+        .login-field input {
+            width: 100%;
+            height: 42px;
+            border: 1.5px solid rgba(28, 58, 19, 0.12);
+            border-radius: var(--radius-card);
+            background: #fff;
+            padding: 0 0.875rem;
+            font-family: var(--font-sans);
+            font-size: 0.875rem;
+            color: var(--seedgreen);
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .login-field input:focus {
+            border-color: var(--mossroot);
+            box-shadow: 0 0 0 3px rgba(61, 91, 52, 0.1);
+        }
+
+        .login-field input::placeholder { color: var(--olivegreen); opacity: 0.5; }
+
+        .login-submit {
+            width: 100%;
+            height: 44px;
+            border: none;
+            border-radius: var(--radius-pill);
+            background: var(--seedgreen);
+            color: var(--fluorescent-green);
+            font-family: var(--font-sans);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 0.25rem;
+            transition: background 0.15s;
+        }
+
+        .login-submit:hover { background: var(--seedgreen-hover); }
+        .login-submit:active { transform: scale(0.99); }
+
+        .login-error {
+            font-size: 0.8125rem;
+            color: #c0392b;
+            text-align: center;
+            min-height: 1.5rem;
+            padding-top: 0.5rem;
+        }
+
+        .login-alt {
+            text-align: center;
+            padding-top: 0.5rem;
+            border-top: 1px solid rgba(28, 58, 19, 0.06);
+            margin-top: 0.75rem;
+        }
+
+        .login-magic-btn {
+            border: none;
+            background: none;
+            font-family: var(--font-sans);
+            font-size: 0.8125rem;
+            color: var(--mossroot);
+            cursor: pointer;
+            padding: 0.375rem 0.75rem;
+            border-radius: var(--radius-pill);
+            transition: background 0.15s;
+        }
+
+        .login-magic-btn:hover { background: var(--foamwhite); }
     </style>
 </head>
 <body>
@@ -1089,6 +1445,9 @@
             </button>
             <button class="icon-btn" id="exportBtn" aria-label="Export descriptions">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            </button>
+            <button class="icon-btn auth-btn" id="authBtn" aria-label="Sign in" title="Sign in to edit">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
             </button>
         </div>
     </div>
@@ -1181,6 +1540,9 @@
     <div class="lightbox-topbar">
         <span class="lb-counter" id="lbCounter"></span>
         <div class="lb-actions">
+            <button class="lb-btn lb-edit-btn" id="lbEdit" aria-label="Edit description">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </button>
             <button class="lb-btn lb-download-btn" id="lbDownload" aria-label="Download">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </button>
@@ -1200,6 +1562,51 @@
         <div class="lb-filename" id="lbFilename"></div>
         <div class="lb-desc-text" id="lbDesc"></div>
         <div class="lb-tags" id="lbTags"></div>
+        <div class="edit-panel" id="editPanel">
+            <div class="edit-panel-header">
+                <span class="edit-panel-title">Edit Details</span>
+                <button class="edit-cancel-btn" id="editCancel">Cancel</button>
+            </div>
+            <div class="edit-field">
+                <label for="editDesc">Description</label>
+                <textarea id="editDesc" rows="3" placeholder="Describe this image..."></textarea>
+            </div>
+            <div class="edit-row">
+                <div class="edit-field" style="flex:1">
+                    <label for="editCategory">Category</label>
+                    <select id="editCategory">
+                        <option value="">Select category...</option>
+                        <option value="nursery">Nursery</option>
+                        <option value="extraction_equipment">Extraction Equipment</option>
+                        <option value="cultivation">Cultivation</option>
+                        <option value="landscape">Landscape</option>
+                        <option value="reference">Reference</option>
+                        <option value="garden">Garden</option>
+                        <option value="wild_plants">Wild Plants</option>
+                        <option value="finished_product">Finished Product</option>
+                        <option value="nature">Nature</option>
+                        <option value="harvest">Harvest</option>
+                        <option value="lifestyle">Lifestyle</option>
+                    </select>
+                </div>
+            </div>
+            <div class="edit-field">
+                <label for="editPlacement">Suggested Placement</label>
+                <div class="placement-chips" id="editPlacement"></div>
+            </div>
+            <div class="edit-field">
+                <label for="editTags">Tags (comma separated)</label>
+                <input type="text" id="editTags" placeholder="e.g. cactus, outdoor, macro">
+            </div>
+            <div class="edit-field">
+                <label for="editNotes">Notes</label>
+                <textarea id="editNotes" rows="2" placeholder="Internal notes..."></textarea>
+            </div>
+            <div class="edit-actions">
+                <button class="edit-save-btn" id="editSave">Save Changes</button>
+            </div>
+            <div class="edit-status" id="editStatus"></div>
+        </div>
     </div>
 </div>
 
@@ -1216,6 +1623,30 @@
     </div>
 </div>
 
+<!-- ============ LOGIN MODAL ============ -->
+<div class="login-overlay" id="loginOverlay"></div>
+<div class="login-modal" id="loginModal">
+    <div class="login-header">
+        <span class="login-title">Sign In to Edit</span>
+        <button class="login-close" id="loginClose">&times;</button>
+    </div>
+    <div class="login-body">
+        <div class="login-field">
+            <label for="loginEmail">Email</label>
+            <input type="email" id="loginEmail" placeholder="you@example.com">
+        </div>
+        <div class="login-field">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" placeholder="Password">
+        </div>
+        <button class="login-submit" id="loginSubmit">Sign In</button>
+        <div class="login-error" id="loginError"></div>
+        <div class="login-alt">
+            <button class="login-magic-btn" id="loginMagic">Send Magic Link Instead</button>
+        </div>
+    </div>
+</div>
+
 <!-- ============ TOAST ============ -->
 <div class="toast" id="toast"></div>
 
@@ -1226,6 +1657,139 @@
 const FILES = [{"file": "64383264671__35ACDE3A-B6EB-43E8-AF65-758586040E3F.jpg", "size": 690168}, {"file": "71461679852__972CBE57-ABC2-4E41-AC80-00C11D511555.jpg", "size": 847889}, {"file": "71461732811__A63FA18B-0AE8-4980-8834-4FEAD19B59FC.jpg", "size": 568249}, {"file": "71583752537__CC26FAF1-9EFA-4157-8D87-9DE608CFFCA1.mp4", "size": 4290931}, {"file": "71583759913__02D6BC78-59F2-47D0-87C6-267731CD72D0.mp4", "size": 8783312}, {"file": "71857742523__5BDB8733-9CD2-4396-A09C-EAB856180C0C.jpg", "size": 741506}, {"file": "72147166722__327AB19B-59DD-4064-B0DA-0851706BAE63.jpg", "size": 990277}, {"file": "DSC_6805.jpg", "size": 396690}, {"file": "IMG_0142.jpg", "size": 970435}, {"file": "IMG_0148.jpg", "size": 671092}, {"file": "IMG_0289.jpg", "size": 895492}, {"file": "IMG_0292.jpg", "size": 692344}, {"file": "IMG_0293.jpg", "size": 764887}, {"file": "IMG_0326.jpg", "size": 904129}, {"file": "IMG_0346.jpg", "size": 767029}, {"file": "IMG_0349.jpg", "size": 328603}, {"file": "IMG_0357.jpg", "size": 248364}, {"file": "IMG_0479.jpg", "size": 427526}, {"file": "IMG_0484.jpg", "size": 385242}, {"file": "IMG_0485.jpg", "size": 274963}, {"file": "IMG_0486.jpg", "size": 303612}, {"file": "IMG_0489.jpg", "size": 399790}, {"file": "IMG_0573.jpg", "size": 633772}, {"file": "IMG_0574.jpg", "size": 517641}, {"file": "IMG_0629.jpg", "size": 514056}, {"file": "IMG_0642.jpg", "size": 954744}, {"file": "IMG_0659.jpg", "size": 895289}, {"file": "IMG_0660.jpg", "size": 850481}, {"file": "IMG_0673.jpg", "size": 262895}, {"file": "IMG_0726.jpg", "size": 784086}, {"file": "IMG_0728.jpg", "size": 419586}, {"file": "IMG_0729.jpg", "size": 572329}, {"file": "IMG_0730.jpg", "size": 403888}, {"file": "IMG_0731.jpg", "size": 492124}, {"file": "IMG_0732.jpg", "size": 413636}, {"file": "IMG_0733.jpg", "size": 342798}, {"file": "IMG_0733.mp4", "size": 13478816}, {"file": "IMG_0749.jpg", "size": 689554}, {"file": "IMG_0750.jpg", "size": 977754}, {"file": "IMG_0751.jpg", "size": 333245}, {"file": "IMG_0753.jpg", "size": 926564}, {"file": "IMG_0756.jpg", "size": 542357}, {"file": "IMG_0892.jpg", "size": 321302}, {"file": "IMG_0893.jpg", "size": 235915}, {"file": "IMG_0922.mp4", "size": 6992406}, {"file": "IMG_0923.jpg", "size": 192092}, {"file": "IMG_0928.jpg", "size": 776560}, {"file": "IMG_0929.jpg", "size": 320195}, {"file": "IMG_0949.jpg", "size": 786336}, {"file": "IMG_0957.jpg", "size": 1011759}, {"file": "IMG_0963.jpg", "size": 262755}, {"file": "IMG_0964.jpg", "size": 328178}, {"file": "IMG_1018.jpg", "size": 623404}, {"file": "IMG_1019.jpg", "size": 686237}, {"file": "IMG_1020.jpg", "size": 571163}, {"file": "IMG_1057.jpg", "size": 786359}, {"file": "IMG_1066.jpg", "size": 1026157}, {"file": "IMG_1082.jpg", "size": 885376}, {"file": "IMG_1104.jpg", "size": 663571}, {"file": "IMG_1232.jpg", "size": 585893}, {"file": "IMG_1329.jpg", "size": 607050}, {"file": "IMG_1387.jpg", "size": 749221}, {"file": "IMG_1388.jpg", "size": 1003276}, {"file": "IMG_1392.jpg", "size": 330720}, {"file": "IMG_1467.jpg", "size": 1003639}, {"file": "IMG_1475.jpg", "size": 377457}, {"file": "IMG_1518.jpg", "size": 1027270}, {"file": "IMG_1547.jpg", "size": 745146}, {"file": "IMG_1550.jpg", "size": 299082}, {"file": "IMG_1578.jpg", "size": 582795}, {"file": "IMG_1581.jpg", "size": 288734}, {"file": "IMG_1583.jpg", "size": 494884}, {"file": "IMG_1658.jpg", "size": 329526}, {"file": "IMG_1660.jpg", "size": 843577}, {"file": "IMG_1663.jpg", "size": 362646}, {"file": "IMG_1665.jpg", "size": 375271}, {"file": "IMG_1666.jpg", "size": 300994}, {"file": "IMG_1667.jpg", "size": 356420}, {"file": "IMG_1668.jpg", "size": 992914}, {"file": "IMG_1945.jpg", "size": 407290}, {"file": "IMG_2009.jpg", "size": 213939}, {"file": "IMG_2063.jpg", "size": 310077}, {"file": "IMG_2066.jpg", "size": 387947}, {"file": "IMG_2229.jpg", "size": 352581}, {"file": "IMG_2288.jpg", "size": 748169}, {"file": "IMG_2415.jpg", "size": 379914}, {"file": "IMG_2445.jpg", "size": 817691}, {"file": "IMG_2446.jpg", "size": 615195}, {"file": "IMG_2554.jpg", "size": 293721}, {"file": "IMG_2556.jpg", "size": 341806}, {"file": "IMG_2559.jpg", "size": 281798}, {"file": "IMG_2562.jpg", "size": 391258}, {"file": "IMG_2563.jpg", "size": 331138}, {"file": "IMG_2589.jpg", "size": 779723}, {"file": "IMG_2628.jpg", "size": 617017}, {"file": "IMG_2629.jpg", "size": 771727}, {"file": "IMG_2753.jpg", "size": 316733}, {"file": "IMG_2810.jpg", "size": 1001414}, {"file": "IMG_2815.jpg", "size": 717313}, {"file": "IMG_2816.jpg", "size": 799321}, {"file": "IMG_2818.jpg", "size": 339982}, {"file": "IMG_2819.mp4", "size": 5889886}, {"file": "IMG_3072.jpg", "size": 322627}, {"file": "IMG_3073.jpg", "size": 331766}, {"file": "IMG_3074.jpg", "size": 1010886}, {"file": "IMG_3134.jpg", "size": 698415}, {"file": "IMG_3135.jpg", "size": 746628}, {"file": "IMG_3136.jpg", "size": 612538}, {"file": "IMG_3138.mp4", "size": 5364621}, {"file": "IMG_3141.mp4", "size": 3168938}, {"file": "IMG_3198.jpg", "size": 256529}, {"file": "IMG_3200.jpg", "size": 176158}, {"file": "IMG_5448.jpg", "size": 604158}, {"file": "IMG_5451.jpg", "size": 581792}, {"file": "IMG_6197.jpg", "size": 772222}, {"file": "IMG_6805.jpg", "size": 376388}, {"file": "IMG_7081.jpg", "size": 990796}, {"file": "IMG_7082.jpg", "size": 955944}, {"file": "IMG_7245.jpg", "size": 372744}, {"file": "IMG_7258.jpg", "size": 667377}, {"file": "IMG_8335.jpg", "size": 470846}, {"file": "IMG_8642.jpg", "size": 939947}, {"file": "IMG_8646.jpg", "size": 1031569}, {"file": "IMG_8758.jpg", "size": 799907}, {"file": "IMG_8904.jpg", "size": 89758}, {"file": "IMG_9240.jpg", "size": 1018512}, {"file": "IMG_9246.jpg", "size": 763685}, {"file": "IMG_9251.jpg", "size": 983681}, {"file": "IMG_9267.mp4", "size": 4966918}, {"file": "IMG_9268.mp4", "size": 5609642}, {"file": "IMG_9269.jpg", "size": 1041607}, {"file": "IMG_9270.mp4", "size": 7261118}, {"file": "IMG_9272.jpg", "size": 934597}, {"file": "IMG_9273.mp4", "size": 7213136}, {"file": "IMG_9274.mp4", "size": 6941468}, {"file": "IMG_9275.jpg", "size": 897396}, {"file": "IMG_9277.mp4", "size": 6430716}, {"file": "IMG_9278.mp4", "size": 5962002}, {"file": "IMG_9512.jpg", "size": 407211}, {"file": "IMG_9558.jpg", "size": 818301}, {"file": "signal-2025-08-13-171746.jpg", "size": 378145}, {"file": "signal-2025-08-19-181745.jpg", "size": 364269}, {"file": "signal-2025-08-19-181817.jpg", "size": 285180}, {"file": "signal-2025-08-19-184109.jpg", "size": 411722}];
 
 const DESCRIPTIONS = {"images/64383264671__35ACDE3A-B6EB-43E8-AF65-758586040E3F.jpg": {"description": "Hand holding a large freshly harvested black radish with leafy greens, tattoo visible on forearm", "category": "harvest", "suggested_placement": ["Blog", "Products", "About/Story"]}, "images/71461679852__972CBE57-ABC2-4E41-AC80-00C11D511555.jpg": {"description": "Lush basil plants growing in containers on a wooden porch/deck", "category": "garden", "suggested_placement": ["Blog", "Homepage", "About/Story"]}, "images/71461732811__A63FA18B-0AE8-4980-8834-4FEAD19B59FC.jpg": {"description": "San Pedro / Trichocereus cactus seedlings in small nursery pots under grow lights", "category": "nursery", "suggested_placement": ["Products", "Research", "Classroom"]}, "images/71857742523__5BDB8733-9CD2-4396-A09C-EAB856180C0C.jpg": {"description": "Indoor grow shelf with cannabis/hemp seedling trays (top) and smaller seedling trays in humidity domes (bottom) under fluorescent lights", "category": "cultivation", "suggested_placement": ["Classroom", "Research", "Blog"]}, "images/72147166722__327AB19B-59DD-4064-B0DA-0851706BAE63.jpg": {"description": "Indoor grow tent with San Pedro cacti, tropical plants, and various botanical specimens under LED grow lights on metal shelving", "category": "nursery", "suggested_placement": ["About/Story", "Research", "Lab"]}, "images/DSC_6805.jpg": {"description": "Stunning sunset landscape photo - lone yucca/Joshua tree silhouetted against orange-pink Texas desert sky, wide open scrubland", "category": "landscape", "suggested_placement": ["Homepage", "Hero Banner", "About/Story"]}, "images/IMG_0142.jpg": {"description": "Young plant growing in dry Texas soil, broad palmate leaves - possibly comfrey or similar medicinal herb", "category": "wild_plants", "suggested_placement": ["Research", "Blog", "Article Header"]}, "images/IMG_0148.jpg": {"description": "Purple/red kale (Redbor variety) growing densely with bamboo stakes for support, close-up showing vibrant purple stems", "category": "garden", "suggested_placement": ["Blog", "Products", "Homepage"]}, "images/IMG_0289.jpg": {"description": "Kanna (Sceletium tortuosum) or similar succulent cuttings/plants in pots on a wire shelf under grow lights", "category": "nursery", "suggested_placement": ["Products", "Research", "Classroom"]}, "images/IMG_0292.jpg": {"description": "Rosemary or similar narrow-leaf herb seedlings in nursery trays, dense propagation setup", "category": "nursery", "suggested_placement": ["Products", "Classroom", "Blog"]}, "images/IMG_0293.jpg": {"description": "Indoor seedling nursery under grow lights - multiple small pots with young tobacco or similar broad-leaf seedlings at various stages", "category": "nursery", "suggested_placement": ["Classroom", "Research", "About/Story"]}, "images/IMG_0326.jpg": {"description": "Raised herb garden bed with brick edging against a brick building - mixed herbs and flowers, wire cages for support", "category": "garden", "suggested_placement": ["Homepage", "About/Story", "Blog"]}, "images/IMG_0346.jpg": {"description": "Iridescent green June beetle / fig beetle on decaying wood with shelf fungi - beautiful macro nature shot", "category": "nature", "suggested_placement": ["Blog", "Research", "Article Header"]}, "images/IMG_0349.jpg": {"description": "Wild barrel cactus cluster growing in rocky terrain with long dark spines, close-up detail shot", "category": "wild_plants", "suggested_placement": ["Research", "Blog", "Article Header"]}, "images/IMG_0357.jpg": {"description": "Peach or similar fruit tree with ripening/split fruit showing red-pink flesh among colorful variegated leaves", "category": "garden", "suggested_placement": ["Products", "Blog", "Research"]}, "images/IMG_0479.jpg": {"description": "Screenshot of Facebook post (Josh's post) - massive mature San Pedro cactus colony growing outdoors, towering cluster", "category": "reference", "suggested_placement": ["Research", "Blog"]}, "images/IMG_0484.jpg": {"description": "Screenshot of Facebook post (Josh's post) - large Trichocereus pachanoi 'Powerline' clone, hand for scale showing massive girth", "category": "reference", "suggested_placement": ["Research", "Blog"]}, "images/IMG_0485.jpg": {"description": "Screenshot of Facebook post - Trichocereus 'Ear Grabber' clone with flower bud, and close-up of Lophophora (peyote) cactus below", "category": "reference", "suggested_placement": ["Research"]}, "images/IMG_0486.jpg": {"description": "Screenshot of Facebook post (Josh's post) - tall San Pedro cacti growing in mountainous landscape, dramatic misty mountains backdrop", "category": "reference", "suggested_placement": ["Research", "Blog", "Hero Banner"]}, "images/IMG_0489.jpg": {"description": "Large mature San Pedro / Trichocereus colony outside a house, massive spreading growth - reference photo", "category": "reference", "suggested_placement": ["Research", "Blog"]}, "images/IMG_0573.jpg": {"description": "Potted San Pedro cactus seedling with spines, surrounded by other cacti varieties at night under artificial light", "category": "nursery", "suggested_placement": ["Products", "Research"]}, "images/IMG_0574.jpg": {"description": "San Pedro cactus with multiple pups/offsets growing from base, showing flower bud, in black nursery pot at night", "category": "nursery", "suggested_placement": ["Products", "Research", "Blog"]}, "images/IMG_0629.jpg": {"description": "Trays of San Pedro cactus seedlings under grow lights, dozens of young columnar cacti in individual cells with blue labels", "category": "nursery", "suggested_placement": ["Products", "Classroom", "About/Story"]}, "images/IMG_0642.jpg": {"description": "Stainless steel extraction equipment - closed-loop BHO/hydrocarbon extraction manifold with braided hoses and yellow ball valves, outdoor setup", "category": "extraction_equipment", "suggested_placement": ["Consulting", "Classroom", "Research"]}, "images/IMG_0659.jpg": {"description": "Black dog wading in clear lake water on a sunny day - Texas lakeside nature scene", "category": "lifestyle", "suggested_placement": ["About/Story", "Blog"]}, "images/IMG_0660.jpg": {"description": "Large indoor cannabis cultivation room under HPS lights - rows of mature flowering plants in black pots with trellis netting, commercial scale", "category": "cultivation", "suggested_placement": ["Consulting", "Classroom", "Blog"]}, "images/IMG_0673.jpg": {"description": "Screenshot from future4200.com - closed-loop BHO extraction setup in a tent with pressure gauge, stainless steel column, insulated lines", "category": "extraction_equipment", "suggested_placement": ["Classroom", "Consulting", "Research"]}, "images/IMG_0726.jpg": {"description": "Beautiful ocean/Gulf Coast sunset - sandbar stretching into calm water, dramatic clouds with golden light", "category": "landscape", "suggested_placement": ["Homepage", "Hero Banner", "About/Story"]}, "images/IMG_0728.jpg": {"description": "Large extraction vessel in workshop - insulated tank wrapped in foil tape, stainless steel column beside it, OSB-walled workspace", "category": "extraction_equipment", "suggested_placement": ["Consulting", "Classroom", "About/Story"]}, "images/IMG_0729.jpg": {"description": "Multi-column stainless steel extraction rack system - 5 parallel columns with pressure gauges, professional setup in workshop", "category": "extraction_equipment", "suggested_placement": ["Consulting", "Classroom", "Homepage"]}, "images/IMG_0730.jpg": {"description": "Professional extraction lab interior - insulated lines, stainless vessels, explosion-proof lighting, pumps, gas cylinders - commercial scale C1D1 room", "category": "extraction_equipment", "suggested_placement": ["Homepage", "Consulting", "Classroom"]}, "images/IMG_0731.jpg": {"description": "Another angle of commercial extraction lab - insulated column array, stainless vessels, pressure gauges, yellow ball valves, professional setup", "category": "extraction_equipment", "suggested_placement": ["Homepage", "Consulting", "Classroom"]}, "images/IMG_0732.jpg": {"description": "Commercial extraction lab - multiple stainless columns, recovery pump, CO2/solvent tank, red hoses, professional C1D1 rated room", "category": "extraction_equipment", "suggested_placement": ["Homepage", "Consulting", "Classroom"]}, "images/IMG_0733.jpg": {"description": "Extraction equipment close-up - frosted recovery vessel on stand with scale readout, pump, insulated lines, professional lab", "category": "extraction_equipment", "suggested_placement": ["Consulting", "Classroom", "Research"]}, "images/IMG_0749.jpg": {"description": "Small succulent-like plant cuttings with red stems in a white pot with perlite - propagation", "category": "nursery", "suggested_placement": ["Products", "Blog"]}, "images/IMG_0750.jpg": {"description": "Polished resin or extract domes/half-spheres on kitchen counter - dark amber/brown, multiple sizes, glossy finish", "category": "finished_product", "suggested_placement": ["Products", "Homepage", "Blog"]}, "images/IMG_0751.jpg": {"description": "Same extract domes from above angle - approximately 10 polished dome shapes in various amber/dark brown shades on speckled counter", "category": "finished_product", "suggested_placement": ["Products", "Homepage", "Blog"]}, "images/IMG_0753.jpg": {"description": "Two large dark purple/maroon extract pucks - polished, glossy, kidney-shaped on kitchen counter", "category": "finished_product", "suggested_placement": ["Products", "Homepage"]}, "images/IMG_0756.jpg": {"description": "Single extract dome/puck side view - shows layered coloring (amber top, dark bottom), macro detail on speckled counter", "category": "finished_product", "suggested_placement": ["Products", "Blog"]}, "images/IMG_0892.jpg": {"description": "Dense carpet of Kanna (Sceletium tortuosum) or similar succulent ground cover with white/yellow daisy-like flowers, growing in red soil", "category": "wild_plants", "suggested_placement": ["Research", "Blog", "Products"]}, "images/IMG_0893.jpg": {"description": "Close-up of same succulent ground cover with white feathery flowers - Sceletium/Kanna species in bloom", "category": "wild_plants", "suggested_placement": ["Research", "Blog", "Products"]}, "images/IMG_0923.jpg": {"description": "Outdoor hillside cannabis farm - plants among dry grass with hoop houses visible, California-style guerrilla/sun-grown operation", "category": "cultivation", "suggested_placement": ["Blog", "Research", "Consulting"]}, "images/IMG_0928.jpg": {"description": "Large commercial indoor cultivation facility - rows of raised flood tables under HPS lights, clone/veg stage, industrial scale", "category": "cultivation", "suggested_placement": ["Consulting", "Classroom", "Blog"]}, "images/IMG_0929.jpg": {"description": "Wild mushrooms growing in grass - small tan/white parasol-type mushrooms in a lawn, foraging subject", "category": "nature", "suggested_placement": ["Research", "Blog", "Article Header"]}, "images/IMG_0949.jpg": {"description": "Beautiful wild bolete mushroom - golden yellow stem with red/orange cap, macro photo on forest floor with rocks and leaves", "category": "nature", "suggested_placement": ["Research", "Blog", "Article Header", "Homepage"]}, "images/IMG_0957.jpg": {"description": "Texas Hill Country pond/creek - green rolling hills, calm water with reeds, overcast sky, peaceful rural landscape", "category": "landscape", "suggested_placement": ["Homepage", "About/Story", "Hero Banner"]}, "images/IMG_0963.jpg": {"description": "Stunning moonlit night landscape - full moon reflecting on still pond/lake, stars visible, Texas Hill Country silhouette", "category": "landscape", "suggested_placement": ["Homepage", "Hero Banner", "About/Story"]}, "images/IMG_0964.jpg": {"description": "Same moonlit scene, different angle - moon reflecting on winding creek/river, wispy clouds, Hill Country horizon", "category": "landscape", "suggested_placement": ["Homepage", "Hero Banner", "About/Story"]}, "images/IMG_1018.jpg": {"description": "Cannabis flower close-up - dense trichome-covered bud under HPS grow lights, purple and orange hues, professional macro", "category": "cultivation", "suggested_placement": ["Products", "Blog", "Research"]}, "images/IMG_1019.jpg": {"description": "Cannabis flower close-up - frosty trichome-laden cola, professional macro photography showing crystal structure", "category": "cultivation", "suggested_placement": ["Products", "Blog", "Research"]}};
+
+
+// ===================================================================
+// SUPABASE CONFIG
+// ===================================================================
+const SUPABASE_URL = 'https://uqyfsqenjakqyzixfcta.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVxeWZzcWVuamFrcXl6aXhmY3RhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk1NTQzMjAsImV4cCI6MjA4NTEzMDMyMH0.SFFaYsDxdlHCFU30aV3Qzi6SI7759o2bePCaqKAHkTA';
+
+let _sb = null;
+let dbConnected = false;
+let currentUser = null;
+
+function getSb() {
+    if (!_sb && window.supabase && SUPABASE_ANON_KEY !== 'YOUR_SUPABASE_ANON_KEY') {
+        _sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+            auth: { autoRefreshToken: true, persistSession: true, detectSessionInUrl: true }
+        });
+    }
+    return _sb;
+}
+
+async function loadFromSupabase() {
+    const sb = getSb();
+    if (!sb) { console.log('Supabase not configured, using embedded data'); return; }
+
+    try {
+        const { data, error } = await sb.from('image_library').select('*');
+        if (error) throw error;
+
+        // Merge DB data into DESCRIPTIONS (DB wins over embedded)
+        let updated = 0;
+        data.forEach(row => {
+            const key = 'images/' + row.filename;
+            if (row.description || row.category) {
+                DESCRIPTIONS[key] = {
+                    description: row.description || '',
+                    category: row.category || '',
+                    suggested_placement: row.suggested_placement || [],
+                    tags: row.tags || [],
+                    notes: row.notes || ''
+                };
+                updated++;
+            }
+        });
+
+        dbConnected = true;
+        toast('Loaded ' + updated + ' descriptions from database');
+
+        // Refresh stats and grid with DB data
+        recalcStats();
+        buildCatOptions();
+        updateStats();
+        applyFilters();
+
+    } catch (err) {
+        console.warn('Supabase load failed, using embedded data:', err.message);
+    }
+}
+
+async function saveToSupabase(filename, updates) {
+    const sb = getSb();
+    if (!sb) { toast('Database not connected'); return false; }
+
+    try {
+        // Try update first
+        const { data, error } = await sb.from('image_library')
+            .update(updates)
+            .eq('filename', filename);
+
+        if (error) {
+            console.error('Save failed:', error);
+            toast('Save failed: ' + error.message);
+            return false;
+        }
+        return true;
+    } catch (err) {
+        console.error('Save error:', err);
+        toast('Save error: ' + err.message);
+        return false;
+    }
+}
+
+async function initAuth() {
+    const sb = getSb();
+    if (!sb) return;
+
+    // Check existing session
+    const { data: { session } } = await sb.auth.getSession();
+    if (session) {
+        currentUser = session.user;
+        updateAuthUI();
+    }
+
+    // Listen for auth changes
+    sb.auth.onAuthStateChange((event, session) => {
+        currentUser = session?.user || null;
+        updateAuthUI();
+    });
+}
+
+function updateAuthUI() {
+    const btn = document.getElementById('authBtn');
+    if (currentUser) {
+        btn.classList.add('logged-in');
+        btn.setAttribute('aria-label', 'Signed in as ' + (currentUser.email || 'user'));
+        btn.title = currentUser.email || 'Signed in';
+    } else {
+        btn.classList.remove('logged-in');
+        btn.setAttribute('aria-label', 'Sign in');
+        btn.title = 'Sign in to edit';
+    }
+}
+
+async function signIn(email, password) {
+    const sb = getSb();
+    if (!sb) return { error: { message: 'Database not configured' } };
+    return await sb.auth.signInWithPassword({ email, password });
+}
+
+async function sendMagicLink(email) {
+    const sb = getSb();
+    if (!sb) return { error: { message: 'Database not configured' } };
+    return await sb.auth.signInWithOtp({ email });
+}
+
+async function signOut() {
+    const sb = getSb();
+    if (!sb) return;
+    await sb.auth.signOut();
+    currentUser = null;
+    updateAuthUI();
+    toast('Signed out');
+}
 
 // ===================================================================
 // STATE
@@ -1246,8 +1810,8 @@ const state = {
 const allCategories = new Map();
 const photoCount = FILES.filter(f => !isVideo(f.file)).length;
 const videoCount = FILES.filter(f => isVideo(f.file)).length;
-const descCount = Object.keys(DESCRIPTIONS).length;
-const nodescCount = FILES.filter(f => !getDesc(f.file)).length;
+let descCount = Object.keys(DESCRIPTIONS).length;
+let nodescCount = FILES.filter(f => !getDesc(f.file)).length;
 
 FILES.forEach(f => {
     const d = getDesc(f.file);
@@ -1272,6 +1836,19 @@ function fmtSize(bytes) {
 
 function fmtCat(cat) {
     return cat.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+}
+
+function recalcStats() {
+    // Recalculate allCategories from current DESCRIPTIONS
+    allCategories.clear();
+    descCount = Object.keys(DESCRIPTIONS).length;
+    nodescCount = FILES.filter(f => !getDesc(f.file)).length;
+    FILES.forEach(f => {
+        const d = getDesc(f.file);
+        if (d && d.category) {
+            allCategories.set(d.category, (allCategories.get(d.category) || 0) + 1);
+        }
+    });
 }
 
 function toast(msg) {
@@ -1762,6 +2339,9 @@ function navLightbox(dir) {
 }
 
 function renderLightbox() {
+    // Close edit panel when navigating
+    if (typeof editingFile !== 'undefined' && editingFile) closeEditPanel();
+
     const item = state.visible[state.lightboxIdx];
     if (!item) return;
 
@@ -1880,11 +2460,188 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 // ===================================================================
+// AUTH EVENTS
+// ===================================================================
+document.getElementById('authBtn').addEventListener('click', () => {
+    if (currentUser) {
+        if (confirm('Sign out of ' + currentUser.email + '?')) signOut();
+    } else {
+        openLoginModal();
+    }
+});
+
+function openLoginModal() {
+    document.getElementById('loginOverlay').classList.add('open');
+    document.getElementById('loginModal').classList.add('open');
+    document.getElementById('loginEmail').focus();
+    document.getElementById('loginError').textContent = '';
+}
+
+function closeLoginModal() {
+    document.getElementById('loginOverlay').classList.remove('open');
+    document.getElementById('loginModal').classList.remove('open');
+}
+
+document.getElementById('loginClose').addEventListener('click', closeLoginModal);
+document.getElementById('loginOverlay').addEventListener('click', closeLoginModal);
+
+document.getElementById('loginSubmit').addEventListener('click', async () => {
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value;
+    const errEl = document.getElementById('loginError');
+
+    if (!email || !password) { errEl.textContent = 'Enter email and password'; return; }
+
+    errEl.textContent = 'Signing in...';
+    const { error } = await signIn(email, password);
+    if (error) {
+        errEl.textContent = error.message;
+    } else {
+        closeLoginModal();
+        toast('Signed in successfully');
+    }
+});
+
+document.getElementById('loginPassword').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') document.getElementById('loginSubmit').click();
+});
+
+document.getElementById('loginMagic').addEventListener('click', async () => {
+    const email = document.getElementById('loginEmail').value.trim();
+    const errEl = document.getElementById('loginError');
+
+    if (!email) { errEl.textContent = 'Enter your email first'; return; }
+
+    errEl.textContent = 'Sending magic link...';
+    const { error } = await sendMagicLink(email);
+    if (error) {
+        errEl.textContent = error.message;
+    } else {
+        errEl.textContent = '';
+        toast('Magic link sent to ' + email);
+        closeLoginModal();
+    }
+});
+
+// ===================================================================
+// EDIT PANEL
+// ===================================================================
+let editingFile = null;
+
+function openEditPanel() {
+    if (!currentUser) {
+        openLoginModal();
+        return;
+    }
+
+    const item = state.visible[state.lightboxIdx];
+    if (!item) return;
+
+    editingFile = item.file;
+    const desc = getDesc(item.file);
+
+    // Populate fields
+    document.getElementById('editDesc').value = desc?.description || '';
+    document.getElementById('editCategory').value = desc?.category || '';
+    document.getElementById('editTags').value = (desc?.tags || []).join(', ');
+    document.getElementById('editNotes').value = desc?.notes || '';
+
+    // Populate placement chips
+    const placements = ['Homepage', 'Blog', 'Products', 'Research', 'Classroom', 'Consulting', 'About/Story', 'Hero Banner', 'Article Header', 'Lab'];
+    const activePlacements = desc?.suggested_placement || [];
+    const chipsHtml = placements.map(p =>
+        '<button class="placement-chip ' + (activePlacements.includes(p) ? 'active' : '') + '" data-placement="' + p + '">' + p + '</button>'
+    ).join('');
+    document.getElementById('editPlacement').innerHTML = chipsHtml;
+
+    // Show edit panel, hide view info
+    document.getElementById('editPanel').classList.add('open');
+    document.getElementById('lbDesc').style.display = 'none';
+    document.getElementById('lbTags').style.display = 'none';
+    document.getElementById('editStatus').textContent = '';
+}
+
+function closeEditPanel() {
+    document.getElementById('editPanel').classList.remove('open');
+    document.getElementById('lbDesc').style.display = '';
+    document.getElementById('lbTags').style.display = '';
+    editingFile = null;
+}
+
+document.getElementById('lbEdit').addEventListener('click', openEditPanel);
+document.getElementById('editCancel').addEventListener('click', closeEditPanel);
+
+// Placement chip toggle
+document.getElementById('editPlacement').addEventListener('click', (e) => {
+    const chip = e.target.closest('.placement-chip');
+    if (chip) chip.classList.toggle('active');
+});
+
+document.getElementById('editSave').addEventListener('click', async () => {
+    if (!editingFile) return;
+
+    const statusEl = document.getElementById('editStatus');
+    const saveBtn = document.getElementById('editSave');
+
+    const description = document.getElementById('editDesc').value.trim();
+    const category = document.getElementById('editCategory').value;
+    const tags = document.getElementById('editTags').value.split(',').map(t => t.trim()).filter(Boolean);
+    const notes = document.getElementById('editNotes').value.trim();
+    const suggested_placement = [...document.querySelectorAll('#editPlacement .placement-chip.active')].map(c => c.dataset.placement);
+
+    saveBtn.disabled = true;
+    statusEl.textContent = 'Saving...';
+    statusEl.className = 'edit-status saving';
+
+    const isVid = isVideo(editingFile);
+    const fileObj = FILES.find(f => f.file === editingFile);
+    const updates = {
+        description: description || null,
+        category: category || null,
+        suggested_placement,
+        tags,
+        notes: notes || null,
+        is_video: isVid,
+        file_size: fileObj ? fileObj.size : null
+    };
+    const ok = await saveToSupabase(editingFile, updates);
+
+    if (ok) {
+        // Update local DESCRIPTIONS
+        const key = 'images/' + editingFile;
+        DESCRIPTIONS[key] = { description, category, suggested_placement, tags, notes };
+
+        // Recalc stats and refresh
+        recalcStats();
+        buildCatOptions();
+        updateStats();
+
+        // Update lightbox view
+        renderLightbox();
+
+        // Refresh grid to show updated badges/descriptions
+        renderGrid();
+
+        toast('Saved successfully');
+        statusEl.textContent = '';
+    } else {
+        statusEl.textContent = 'Failed to save. Try again.';
+        statusEl.className = 'edit-status error';
+    }
+
+    saveBtn.disabled = false;
+});
+
+// ===================================================================
 // INIT
 // ===================================================================
 buildCatOptions();
 updateStats();
 applyFilters();
+
+// Load from Supabase (async, merges into embedded data)
+loadFromSupabase();
+initAuth();
 </script>
 </body>
 </html>
