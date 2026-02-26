@@ -121,7 +121,7 @@
      */
     function trackPageContext() {
         // Track which theme is active
-        const theme = document.documentElement.getAttribute('data-theme') || 'unknown';
+        const theme = 'seedgreen';
         gtag('event', 'page_context', {
             event_category: 'site',
             event_label: 'theme_' + theme

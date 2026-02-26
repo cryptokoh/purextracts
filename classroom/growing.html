@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="clinical">
+<html lang="en">
 <head>
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-050E36TGR9"></script>
@@ -73,19 +73,6 @@
             --color-harvested-border: rgba(184, 134, 11, 0.25);
             --color-ruin-stone: #8b7d6b;
             --color-ruin-moss: #6b7c5e;
-        }
-
-        [data-theme="herbalist"] .growing-body {
-            --color-living: #4ade80;
-            --color-living-light: #86efac;
-            --color-living-subtle: rgba(74, 222, 128, 0.1);
-            --color-living-border: rgba(74, 222, 128, 0.25);
-            --color-harvested: #fbbf24;
-            --color-harvested-light: #fcd34d;
-            --color-harvested-subtle: rgba(251, 191, 36, 0.1);
-            --color-harvested-border: rgba(251, 191, 36, 0.25);
-            --color-ruin-stone: #6b8f7a;
-            --color-ruin-moss: #22c55e;
         }
 
         /* ============================================
@@ -176,9 +163,6 @@
         }
 
         /* Theme Switcher */
-        .theme-switcher {
-            position: relative;
-        }
 
         .theme-toggle {
             width: 36px;
@@ -306,14 +290,6 @@
                 radial-gradient(ellipse at 20% 80%, rgba(58, 125, 68, 0.08) 0%, transparent 50%),
                 radial-gradient(ellipse at 80% 80%, rgba(184, 134, 11, 0.06) 0%, transparent 50%),
                 radial-gradient(ellipse at 50% 20%, rgba(139, 125, 107, 0.05) 0%, transparent 60%),
-                linear-gradient(180deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
-        }
-
-        [data-theme="herbalist"] .growing-hero-bg::before {
-            background:
-                radial-gradient(ellipse at 20% 80%, rgba(74, 222, 128, 0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(251, 191, 36, 0.04) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 20%, rgba(107, 143, 122, 0.04) 0%, transparent 60%),
                 linear-gradient(180deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
         }
 
@@ -511,14 +487,6 @@
             box-shadow: var(--shadow-md);
         }
 
-        [data-theme="herbalist"] .view-toggle-btn.active-living {
-            box-shadow: 0 2px 8px rgba(74, 222, 128, 0.3);
-        }
-
-        [data-theme="herbalist"] .view-toggle-btn.active-harvested {
-            box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);
-        }
-
         /* ============================================
            Plant Category Sections
            ============================================ */
@@ -640,10 +608,6 @@
             transform: translateY(-2px);
         }
 
-        [data-theme="herbalist"] .plant-card-living:hover {
-            box-shadow: 0 8px 24px rgba(74, 222, 128, 0.1);
-        }
-
         .plant-card-harvested {
             background: var(--color-harvested-subtle);
             border: 1px solid var(--color-harvested-border);
@@ -657,10 +621,6 @@
             border-color: var(--color-harvested);
             box-shadow: 0 8px 24px rgba(184, 134, 11, 0.12);
             transform: translateY(-2px);
-        }
-
-        [data-theme="herbalist"] .plant-card-harvested:hover {
-            box-shadow: 0 8px 24px rgba(251, 191, 36, 0.1);
         }
 
         .card-state-label {
@@ -686,17 +646,9 @@
             background: rgba(58, 125, 68, 0.08);
         }
 
-        [data-theme="herbalist"] .state-living {
-            background: rgba(74, 222, 128, 0.08);
-        }
-
         .state-harvested {
             color: var(--color-harvested);
             background: rgba(184, 134, 11, 0.08);
-        }
-
-        [data-theme="herbalist"] .state-harvested {
-            background: rgba(251, 191, 36, 0.08);
         }
 
         .card-title {
@@ -1085,10 +1037,6 @@
             transform: translateY(-2px);
         }
 
-        [data-theme="herbalist"] .technique-card:hover {
-            box-shadow: 0 8px 24px rgba(74, 222, 128, 0.06);
-        }
-
         .technique-card h3 {
             font-family: var(--font-serif);
             font-size: var(--text-lg);
@@ -1189,30 +1137,6 @@
                 <a href="../blog.html" class="nav-link">Articles</a>
                 <a href="../classroom.html" class="nav-link active">Learn</a>
                 <a href="../contact.html" class="nav-link nav-link-cta">Contact Us</a>
-                <!-- Theme Switcher -->
-                <div class="theme-switcher" id="themeSwitcher">
-                    <button class="theme-toggle" id="themeToggle" aria-label="Change theme">
-                        <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="3"/>
-                            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-                        </svg>
-                    </button>
-                    <div class="theme-options" id="themeOptions">
-                        <button class="theme-option" data-theme="clinical">
-                            <span class="theme-preview clinical-preview"></span>
-                            <span>Clinical White</span>
-                        </button>
-                        <button class="theme-option" data-theme="earth">
-                            <span class="theme-preview earth-preview"></span>
-                            <span>Earth Apothecary</span>
-                        </button>
-                        <button class="theme-option" data-theme="herbalist">
-                            <span class="theme-preview herbalist-preview"></span>
-                            <span>Modern Herbalist</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
             <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
@@ -2601,35 +2525,6 @@
             // ============================================
             // Theme Switcher
             // ============================================
-            var themeToggle = document.getElementById('themeToggle');
-            var themeOptions = document.getElementById('themeOptions');
-            var themeOptionBtns = document.querySelectorAll('.theme-option');
-
-            if (themeToggle && themeOptions) {
-                themeToggle.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    themeOptions.classList.toggle('active');
-                });
-
-                themeOptionBtns.forEach(function(btn) {
-                    btn.addEventListener('click', function() {
-                        var theme = this.getAttribute('data-theme');
-                        document.documentElement.setAttribute('data-theme', theme);
-                        localStorage.setItem('pureextracts-theme', theme);
-                        themeOptions.classList.remove('active');
-                    });
-                });
-
-                document.addEventListener('click', function() {
-                    themeOptions.classList.remove('active');
-                });
-            }
-
-            // Load saved theme
-            var savedTheme = localStorage.getItem('pureextracts-theme');
-            if (savedTheme) {
-                document.documentElement.setAttribute('data-theme', savedTheme);
-            }
         })();
     </script>
     <script src="../age-verification.js"></script>

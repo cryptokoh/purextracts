@@ -564,11 +564,3 @@
 /* ============================================
    DARK MODE / THEME ADJUSTMENTS
    ============================================ */
-
-[data-theme="earth"] .blog-categories {
-    background: var(--color-bg);
-}
-
-[data-theme="herbalist"] .newsletter-card {
-    background: linear-gradient(135deg, var(--color-primary), #16a34a);
-}

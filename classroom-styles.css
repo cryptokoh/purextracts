@@ -21,10 +21,6 @@
     backdrop-filter: blur(10px);
 }
 
-[data-theme="herbalist"] .classroom-nav {
-    background: rgba(10, 15, 13, 0.95);
-}
-
 /* ============================================
    Classroom Hero Section
    ============================================ */
@@ -45,10 +41,6 @@
     inset: 0;
     background: linear-gradient(135deg, #f5f2ed 0%, #ede9e3 50%, #e5ddd3 100%);
     z-index: 0;
-}
-
-[data-theme="herbalist"] .classroom-hero-bg {
-    background: linear-gradient(135deg, #0a0f0d 0%, #111916 50%, #1a2420 100%);
 }
 
 .hero-gradient-overlay {
@@ -302,13 +294,6 @@
 .hub-growing .hub-visual { background: linear-gradient(135deg, #f5f2ed 0%, #ede9e3 100%); }
 .hub-extraction .hub-visual { background: linear-gradient(135deg, var(--color-surface-alt, #f0f4f8) 0%, var(--color-bg-secondary, #e8ecf0) 100%); }
 .hub-effects .hub-visual { background: linear-gradient(135deg, var(--color-surface-alt, #f8f8ff) 0%, var(--color-bg-secondary, #f0f0ff) 100%); }
-
-[data-theme="herbalist"] .hub-growing .hub-visual,
-[data-theme="herbalist"] .hub-infrastructure .hub-visual,
-[data-theme="herbalist"] .hub-extraction .hub-visual,
-[data-theme="herbalist"] .hub-effects .hub-visual {
-    background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.06) 100%);
-}
 
 /* ============================================
    Learning Tracks Section

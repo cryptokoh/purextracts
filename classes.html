@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="clinical">
+<html lang="en">
 <head>
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-050E36TGR9"></script>
@@ -235,10 +235,6 @@
         .tier-2 .tier-badge { background: #eff6ff; color: #2563eb; }
         .tier-3 .tier-badge { background: #fefce8; color: #ca8a04; }
         .tier-4 .tier-badge { background: #faf5ff; color: #9333ea; }
-        [data-theme="herbalist"] .tier-1 .tier-badge { background: rgba(34, 197, 94, 0.12); color: #4ade80; }
-        [data-theme="herbalist"] .tier-2 .tier-badge { background: rgba(59, 130, 246, 0.12); color: #60a5fa; }
-        [data-theme="herbalist"] .tier-3 .tier-badge { background: rgba(234, 179, 8, 0.12); color: #facc15; }
-        [data-theme="herbalist"] .tier-4 .tier-badge { background: rgba(168, 85, 247, 0.12); color: #c084fc; }
         .tier-card h3 {
             font-family: var(--font-serif);
             font-size: var(--text-xl);
@@ -342,9 +338,6 @@
         }
         .tier-card.tier-4 .tier-enroll {
             background: linear-gradient(135deg, #7c3aed, #9333ea);
-        }
-        [data-theme="earth"] .tier-card.tier-4 .tier-enroll {
-            background: linear-gradient(135deg, #92400e, #b45309);
         }
 
         /* How It Works */
@@ -649,84 +642,6 @@
             </button>
         </div>
     </nav>
-
-    <!-- Theme Switcher -->
-    <div class="theme-switcher" id="themeSwitcher">
-        <button class="theme-toggle" id="themeToggle" aria-label="Change theme">
-            <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="3"/>
-                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-            </svg>
-        </button>
-        <div class="theme-options" id="themeOptions">
-            <button class="theme-option" data-theme="clinical">
-                <span class="theme-preview clinical-preview"></span>
-                <span>Clinical White</span>
-            </button>
-            <button class="theme-option" data-theme="earth">
-                <span class="theme-preview earth-preview"></span>
-                <span>Earth Apothecary</span>
-            </button>
-            <button class="theme-option" data-theme="herbalist">
-                <span class="theme-preview herbalist-preview"></span>
-                <span>Modern Herbalist</span>
-            </button>
-        </div>
-    </div>
-
-    <main class="classes-page">
-        <!-- Hero -->
-        <div class="classes-hero">
-            <span class="classes-hero-badge">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-                    <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-                </svg>
-                Paid Courses
-            </span>
-            <h1>Botanical Education Programs</h1>
-            <p>Four tiers of hands-on training from home growing to industrial manufacturing. 30+ years of cultivation and extraction experience, from seed to finished product.</p>
-        </div>
-
-        <!-- What You Get Feature Bar -->
-        <div class="features-bar">
-            <div class="features-grid">
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <polyline points="12 6 12 12 16 14"/>
-                        </svg>
-                    </div>
-                    <h3>Self-Paced Learning</h3>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                        </svg>
-                    </div>
-                    <h3>Lifetime Access</h3>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                            <polyline points="22 4 12 14.01 9 11.01"/>
-                        </svg>
-                    </div>
-                    <h3>Certificate of Completion</h3>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                        </svg>
-                    </div>
-                    <h3>Direct Instructor Support</h3>
-                </div>
-            </div>
-        </div>
 
         <!-- Tier Pricing -->
         <section class="tiers-section">
