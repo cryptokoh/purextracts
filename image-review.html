@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Image Manager - Pure Extracts TX</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-bottom: 2px solid #0d9488;
+            padding: 1rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .header h1 {
+            font-family: 'Cinzel', serif;
+            color: #0d9488;
+            font-size: 1.3rem;
+            white-space: nowrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 200px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: #e0e0e0;
+            padding: 0.5rem 0.75rem 0.5rem 2rem;
+            font-size: 0.85rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-box input:focus { border-color: #0d9488; }
+
+        .search-box::before {
+            content: '\1F50D';
+            position: absolute;
+            left: 0.6rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.8rem;
+            opacity: 0.5;
+        }
+
+        .stats-bar {
+            font-size: 0.8rem;
+            color: #64748b;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .stats-bar span.val { color: #0d9488; font-weight: 600; }
+        .stats-bar span.warn { color: #f59e0b; font-weight: 600; }
+
+        .filter-row {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .filter-row label {
+            font-size: 0.75rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-right: 0.25rem;
+        }
+
+        .fbtn {
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #94a3b8;
+            padding: 0.25rem 0.6rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.15s;
+            white-space: nowrap;
+        }
+
+        .fbtn:hover { border-color: #0d9488; color: #0d9488; }
+        .fbtn.active { background: #0d9488; color: #fff; border-color: #0d9488; }
+        .fbtn.warn { border-color: #f59e0b; color: #f59e0b; }
+        .fbtn.warn.active { background: #f59e0b; color: #000; }
+
+        .action-row {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .abtn {
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #94a3b8;
+            padding: 0.3rem 0.75rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.15s;
+        }
+
+        .abtn:hover { background: #0d9488; color: #fff; border-color: #0d9488; }
+        .abtn.primary { background: #0d9488; color: #fff; border-color: #0d9488; }
+        .abtn.primary:hover { background: #0f766e; }
+
+        .view-toggle {
+            margin-left: auto;
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+        }
+
+        .grid.compact {
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 0.5rem;
+        }
+
+        .card {
+            background: #111827;
+            border: 1px solid #1e293b;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .card:hover {
+            border-color: #0d9488;
+            box-shadow: 0 0 15px rgba(13, 148, 136, 0.12);
+        }
+
+        .card.oversized { border-color: #f59e0b; }
+        .card.has-desc { border-left: 3px solid #0d9488; }
+        .card.selected { border-color: #818cf8; box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.3); }
+
+        .card-media {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/3;
+            background: #0a0a0a;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .card-media img,
+        .card-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .card-media:hover img,
+        .card-media:hover video {
+            transform: scale(1.05);
+        }
+
+        .card-badges {
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            font-size: 0.6rem;
+            padding: 1px 6px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            font-weight: 600;
+        }
+
+        .badge-type { background: rgba(0,0,0,0.75); color: #94a3b8; }
+        .badge-cat { background: rgba(13, 148, 136, 0.85); color: #fff; }
+        .badge-size { background: rgba(0,0,0,0.75); color: #94a3b8; }
+        .badge-warn { background: rgba(245, 158, 11, 0.9); color: #000; }
+
+        .card-select {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 22px;
+            height: 22px;
+            border-radius: 4px;
+            border: 2px solid rgba(255,255,255,0.4);
+            background: rgba(0,0,0,0.5);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: transparent;
+            transition: all 0.15s;
+        }
+
+        .card-select:hover { border-color: #818cf8; }
+        .card.selected .card-select {
+            background: #818cf8;
+            border-color: #818cf8;
+            color: #fff;
+        }
+
+        .card-body { padding: 0.75rem; }
+
+        .card-filename {
+            font-size: 0.7rem;
+            color: #64748b;
+            font-family: monospace;
+            word-break: break-all;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-desc {
+            font-size: 0.8rem;
+            color: #cbd5e1;
+            margin-bottom: 0.4rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-meta {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            font-size: 0.7rem;
+            color: #475569;
+        }
+
+        .card-meta .placement {
+            background: #1e293b;
+            padding: 1px 5px;
+            border-radius: 3px;
+            color: #94a3b8;
+        }
+
+        .compact .card-body { padding: 0.5rem; }
+        .compact .card-desc { -webkit-line-clamp: 2; font-size: 0.75rem; }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.open { display: flex; }
+
+        .lightbox-media {
+            max-width: 90vw;
+            max-height: 75vh;
+            object-fit: contain;
+            border-radius: 6px;
+        }
+
+        .lightbox-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 2rem 2rem 1.5rem;
+        }
+
+        .lightbox-filename {
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-bottom: 0.3rem;
+        }
+
+        .lightbox-desc {
+            font-size: 0.95rem;
+            color: #e0e0e0;
+            margin-bottom: 0.5rem;
+        }
+
+        .lightbox-meta {
+            font-size: 0.8rem;
+            color: #64748b;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .lightbox-meta span.val { color: #0d9488; }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            z-index: 1001;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .lightbox-close:hover { opacity: 1; }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: #fff;
+            font-size: 2rem;
+            padding: 1rem 0.75rem;
+            cursor: pointer;
+            border-radius: 6px;
+            opacity: 0.5;
+            transition: opacity 0.2s;
+        }
+
+        .lightbox-nav:hover { opacity: 1; }
+        .lightbox-prev { left: 1rem; }
+        .lightbox-next { right: 1rem; }
+
+        .lightbox-dl {
+            position: absolute;
+            top: 1rem;
+            left: 1.5rem;
+            z-index: 1001;
+        }
+
+        .lightbox-dl a {
+            color: #0d9488;
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 0.3rem 0.75rem;
+            border: 1px solid #0d9488;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .lightbox-dl a:hover {
+            background: #0d9488;
+            color: #fff;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #1e293b;
+            border: 1px solid #0d9488;
+            color: #e0e0e0;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            z-index: 2000;
+            transition: transform 0.3s ease;
+            pointer-events: none;
+        }
+
+        .toast.show { transform: translateX(-50%) translateY(0); }
+
+        /* Selection bar */
+        .sel-bar {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #111827;
+            border-top: 2px solid #818cf8;
+            padding: 0.75rem 1.5rem;
+            z-index: 200;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .sel-bar.open { display: flex; }
+
+        .sel-bar .sel-count {
+            color: #818cf8;
+            font-weight: 600;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; padding: 0.5rem; }
+            .header { padding: 0.75rem; }
+            .card-body { padding: 0.5rem; }
+            .card-desc { font-size: 0.75rem; }
+        }
+
+        @media (max-width: 480px) {
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="header-top">
+        <h1>Image Manager</h1>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search descriptions, filenames..." oninput="applyFilters()">
+        </div>
+        <div class="stats-bar">
+            <span><span class="val" id="shown">0</span>/<span id="total">0</span> shown</span>
+            <span><span class="val" id="described">0</span> described</span>
+            <span><span class="warn" id="oversized">0</span> oversized</span>
+            <span>Total: <span class="val" id="totalSize">0</span></span>
+        </div>
+    </div>
+
+    <div class="filter-row">
+        <label>Type:</label>
+        <button class="fbtn active" data-filter="type" data-val="all" onclick="setFilter('type','all',this)">All</button>
+        <button class="fbtn" data-filter="type" data-val="photo" onclick="setFilter('type','photo',this)">Photos</button>
+        <button class="fbtn" data-filter="type" data-val="video" onclick="setFilter('type','video',this)">Videos</button>
+
+        <label style="margin-left:0.75rem">Category:</label>
+        <button class="fbtn active" data-filter="cat" data-val="all" onclick="setFilter('cat','all',this)">All</button>
+        <button class="fbtn" data-filter="cat" data-val="nursery" onclick="setFilter('cat','nursery',this)">Nursery</button>
+        <button class="fbtn" data-filter="cat" data-val="extraction_equipment" onclick="setFilter('cat','extraction_equipment',this)">Equipment</button>
+        <button class="fbtn" data-filter="cat" data-val="cultivation" onclick="setFilter('cat','cultivation',this)">Cultivation</button>
+        <button class="fbtn" data-filter="cat" data-val="landscape" onclick="setFilter('cat','landscape',this)">Landscape</button>
+        <button class="fbtn" data-filter="cat" data-val="garden" onclick="setFilter('cat','garden',this)">Garden</button>
+        <button class="fbtn" data-filter="cat" data-val="wild_plants" onclick="setFilter('cat','wild_plants',this)">Wild Plants</button>
+        <button class="fbtn" data-filter="cat" data-val="finished_product" onclick="setFilter('cat','finished_product',this)">Product</button>
+        <button class="fbtn" data-filter="cat" data-val="nature" onclick="setFilter('cat','nature',this)">Nature</button>
+        <button class="fbtn" data-filter="cat" data-val="reference" onclick="setFilter('cat','reference',this)">Reference</button>
+        <button class="fbtn" data-filter="cat" data-val="lifestyle" onclick="setFilter('cat','lifestyle',this)">Lifestyle</button>
+        <button class="fbtn" data-filter="cat" data-val="harvest" onclick="setFilter('cat','harvest',this)">Harvest</button>
+        <button class="fbtn" data-filter="cat" data-val="undescribed" onclick="setFilter('cat','undescribed',this)">No Desc</button>
+    </div>
+
+    <div class="filter-row">
+        <label>Size:</label>
+        <button class="fbtn active" data-filter="size" data-val="all" onclick="setFilter('size','all',this)">All</button>
+        <button class="fbtn warn" data-filter="size" data-val="over1mb" onclick="setFilter('size','over1mb',this)">&gt;1MB</button>
+        <button class="fbtn" data-filter="size" data-val="500k-1mb" onclick="setFilter('size','500k-1mb',this)">500KB-1MB</button>
+        <button class="fbtn" data-filter="size" data-val="under500k" onclick="setFilter('size','under500k',this)">&lt;500KB</button>
+
+        <label style="margin-left:0.75rem">Sort:</label>
+        <button class="fbtn active" data-filter="sort" data-val="name" onclick="setFilter('sort','name',this)">Name</button>
+        <button class="fbtn" data-filter="sort" data-val="size-desc" onclick="setFilter('sort','size-desc',this)">Largest</button>
+        <button class="fbtn" data-filter="sort" data-val="size-asc" onclick="setFilter('sort','size-asc',this)">Smallest</button>
+        <button class="fbtn" data-filter="sort" data-val="category" onclick="setFilter('sort','category',this)">Category</button>
+    </div>
+
+    <div class="action-row">
+        <button class="abtn" onclick="selectAll()">Select All Visible</button>
+        <button class="abtn" onclick="selectNone()">Deselect All</button>
+        <button class="abtn" onclick="selectOversized()">Select &gt;1MB</button>
+        <button class="abtn primary" onclick="downloadSelected()">Download Selected</button>
+        <button class="abtn" onclick="exportJSON()">Export Descriptions</button>
+        <div class="view-toggle">
+            <button class="fbtn active" id="view-normal" onclick="setView('normal')">Normal</button>
+            <button class="fbtn" id="view-compact" onclick="setView('compact')">Compact</button>
+        </div>
+    </div>
+</div>
+
+<!-- Selection bar -->
+<div class="sel-bar" id="selBar">
+    <span class="sel-count"><span id="selCount">0</span> selected</span>
+    <button class="abtn primary" onclick="downloadSelected()">Download Selected</button>
+    <button class="abtn" onclick="selectNone()">Clear</button>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <div class="lightbox-dl" id="lightbox-dl"></div>
+    <button class="lightbox-nav lightbox-prev" onclick="navLightbox(-1)">&lsaquo;</button>
+    <button class="lightbox-nav lightbox-next" onclick="navLightbox(1)">&rsaquo;</button>
+    <div id="lightbox-content"></div>
+    <div class="lightbox-info">
+        <div class="lightbox-filename" id="lb-filename"></div>
+        <div class="lightbox-desc" id="lb-desc"></div>
+        <div class="lightbox-meta" id="lb-meta"></div>
+    </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<div class="grid" id="grid"></div>
+
+<script>
+// ===== DATA =====
+const FILES = [{"file": "64383264671__35ACDE3A-B6EB-43E8-AF65-758586040E3F.jpg", "size": 690168}, {"file": "71461679852__972CBE57-ABC2-4E41-AC80-00C11D511555.jpg", "size": 847889}, {"file": "71461732811__A63FA18B-0AE8-4980-8834-4FEAD19B59FC.jpg", "size": 568249}, {"file": "71583752537__CC26FAF1-9EFA-4157-8D87-9DE608CFFCA1.mp4", "size": 4290931}, {"file": "71583759913__02D6BC78-59F2-47D0-87C6-267731CD72D0.mp4", "size": 8783312}, {"file": "71857742523__5BDB8733-9CD2-4396-A09C-EAB856180C0C.jpg", "size": 741506}, {"file": "72147166722__327AB19B-59DD-4064-B0DA-0851706BAE63.jpg", "size": 990277}, {"file": "DSC_6805.jpg", "size": 396690}, {"file": "IMG_0142.jpg", "size": 970435}, {"file": "IMG_0148.jpg", "size": 671092}, {"file": "IMG_0289.jpg", "size": 895492}, {"file": "IMG_0292.jpg", "size": 692344}, {"file": "IMG_0293.jpg", "size": 764887}, {"file": "IMG_0326.jpg", "size": 904129}, {"file": "IMG_0346.jpg", "size": 767029}, {"file": "IMG_0349.jpg", "size": 328603}, {"file": "IMG_0357.jpg", "size": 248364}, {"file": "IMG_0479.jpg", "size": 427526}, {"file": "IMG_0484.jpg", "size": 385242}, {"file": "IMG_0485.jpg", "size": 274963}, {"file": "IMG_0486.jpg", "size": 303612}, {"file": "IMG_0489.jpg", "size": 399790}, {"file": "IMG_0573.jpg", "size": 633772}, {"file": "IMG_0574.jpg", "size": 517641}, {"file": "IMG_0629.jpg", "size": 514056}, {"file": "IMG_0642.jpg", "size": 954744}, {"file": "IMG_0659.jpg", "size": 895289}, {"file": "IMG_0660.jpg", "size": 850481}, {"file": "IMG_0673.jpg", "size": 262895}, {"file": "IMG_0726.jpg", "size": 784086}, {"file": "IMG_0728.jpg", "size": 419586}, {"file": "IMG_0729.jpg", "size": 572329}, {"file": "IMG_0730.jpg", "size": 403888}, {"file": "IMG_0731.jpg", "size": 492124}, {"file": "IMG_0732.jpg", "size": 413636}, {"file": "IMG_0733.jpg", "size": 342798}, {"file": "IMG_0733.mp4", "size": 13478816}, {"file": "IMG_0749.jpg", "size": 689554}, {"file": "IMG_0750.jpg", "size": 977754}, {"file": "IMG_0751.jpg", "size": 333245}, {"file": "IMG_0753.jpg", "size": 926564}, {"file": "IMG_0756.jpg", "size": 542357}, {"file": "IMG_0892.jpg", "size": 321302}, {"file": "IMG_0893.jpg", "size": 235915}, {"file": "IMG_0922.mp4", "size": 6992406}, {"file": "IMG_0923.jpg", "size": 192092}, {"file": "IMG_0928.jpg", "size": 776560}, {"file": "IMG_0929.jpg", "size": 320195}, {"file": "IMG_0949.jpg", "size": 786336}, {"file": "IMG_0957.jpg", "size": 1011759}, {"file": "IMG_0963.jpg", "size": 262755}, {"file": "IMG_0964.jpg", "size": 328178}, {"file": "IMG_1018.jpg", "size": 623404}, {"file": "IMG_1019.jpg", "size": 686237}, {"file": "IMG_1020.jpg", "size": 571163}, {"file": "IMG_1057.jpg", "size": 786359}, {"file": "IMG_1066.jpg", "size": 1026157}, {"file": "IMG_1082.jpg", "size": 885376}, {"file": "IMG_1104.jpg", "size": 663571}, {"file": "IMG_1232.jpg", "size": 585893}, {"file": "IMG_1329.jpg", "size": 607050}, {"file": "IMG_1387.jpg", "size": 749221}, {"file": "IMG_1388.jpg", "size": 1003276}, {"file": "IMG_1392.jpg", "size": 330720}, {"file": "IMG_1467.jpg", "size": 1003639}, {"file": "IMG_1475.jpg", "size": 377457}, {"file": "IMG_1518.jpg", "size": 1027270}, {"file": "IMG_1547.jpg", "size": 745146}, {"file": "IMG_1550.jpg", "size": 299082}, {"file": "IMG_1578.jpg", "size": 582795}, {"file": "IMG_1581.jpg", "size": 288734}, {"file": "IMG_1583.jpg", "size": 494884}, {"file": "IMG_1658.jpg", "size": 329526}, {"file": "IMG_1660.jpg", "size": 843577}, {"file": "IMG_1663.jpg", "size": 362646}, {"file": "IMG_1665.jpg", "size": 375271}, {"file": "IMG_1666.jpg", "size": 300994}, {"file": "IMG_1667.jpg", "size": 356420}, {"file": "IMG_1668.jpg", "size": 992914}, {"file": "IMG_1945.jpg", "size": 407290}, {"file": "IMG_2009.jpg", "size": 213939}, {"file": "IMG_2063.jpg", "size": 310077}, {"file": "IMG_2066.jpg", "size": 387947}, {"file": "IMG_2229.jpg", "size": 352581}, {"file": "IMG_2288.jpg", "size": 748169}, {"file": "IMG_2415.jpg", "size": 379914}, {"file": "IMG_2445.jpg", "size": 817691}, {"file": "IMG_2446.jpg", "size": 615195}, {"file": "IMG_2554.jpg", "size": 293721}, {"file": "IMG_2556.jpg", "size": 341806}, {"file": "IMG_2559.jpg", "size": 281798}, {"file": "IMG_2562.jpg", "size": 391258}, {"file": "IMG_2563.jpg", "size": 331138}, {"file": "IMG_2589.jpg", "size": 779723}, {"file": "IMG_2628.jpg", "size": 617017}, {"file": "IMG_2629.jpg", "size": 771727}, {"file": "IMG_2753.jpg", "size": 316733}, {"file": "IMG_2810.jpg", "size": 1001414}, {"file": "IMG_2815.jpg", "size": 717313}, {"file": "IMG_2816.jpg", "size": 799321}, {"file": "IMG_2818.jpg", "size": 339982}, {"file": "IMG_2819.mp4", "size": 5889886}, {"file": "IMG_3072.jpg", "size": 322627}, {"file": "IMG_3073.jpg", "size": 331766}, {"file": "IMG_3074.jpg", "size": 1010886}, {"file": "IMG_3134.jpg", "size": 698415}, {"file": "IMG_3135.jpg", "size": 746628}, {"file": "IMG_3136.jpg", "size": 612538}, {"file": "IMG_3138.mp4", "size": 5364621}, {"file": "IMG_3141.mp4", "size": 3168938}, {"file": "IMG_3198.jpg", "size": 256529}, {"file": "IMG_3200.jpg", "size": 176158}, {"file": "IMG_5448.jpg", "size": 604158}, {"file": "IMG_5451.jpg", "size": 581792}, {"file": "IMG_6197.jpg", "size": 772222}, {"file": "IMG_6805.jpg", "size": 376388}, {"file": "IMG_7081.jpg", "size": 990796}, {"file": "IMG_7082.jpg", "size": 955944}, {"file": "IMG_7245.jpg", "size": 372744}, {"file": "IMG_7258.jpg", "size": 667377}, {"file": "IMG_8335.jpg", "size": 470846}, {"file": "IMG_8642.jpg", "size": 939947}, {"file": "IMG_8646.jpg", "size": 1031569}, {"file": "IMG_8758.jpg", "size": 799907}, {"file": "IMG_8904.jpg", "size": 89758}, {"file": "IMG_9240.jpg", "size": 1018512}, {"file": "IMG_9246.jpg", "size": 763685}, {"file": "IMG_9251.jpg", "size": 983681}, {"file": "IMG_9267.mp4", "size": 4966918}, {"file": "IMG_9268.mp4", "size": 5609642}, {"file": "IMG_9269.jpg", "size": 1041607}, {"file": "IMG_9270.mp4", "size": 7261118}, {"file": "IMG_9272.jpg", "size": 934597}, {"file": "IMG_9273.mp4", "size": 7213136}, {"file": "IMG_9274.mp4", "size": 6941468}, {"file": "IMG_9275.jpg", "size": 897396}, {"file": "IMG_9277.mp4", "size": 6430716}, {"file": "IMG_9278.mp4", "size": 5962002}, {"file": "IMG_9512.jpg", "size": 407211}, {"file": "IMG_9558.jpg", "size": 818301}, {"file": "signal-2025-08-13-171746.jpg", "size": 378145}, {"file": "signal-2025-08-19-181745.jpg", "size": 364269}, {"file": "signal-2025-08-19-181817.jpg", "size": 285180}, {"file": "signal-2025-08-19-184109.jpg", "size": 411722}];
+
+const DESCRIPTIONS = {"images/64383264671__35ACDE3A-B6EB-43E8-AF65-758586040E3F.jpg": {"description": "Hand holding a large freshly harvested black radish with leafy greens, tattoo visible on forearm", "category": "harvest", "suggested_placement": ["Blog", "Products", "About/Story"]}, "images/71461679852__972CBE57-ABC2-4E41-AC80-00C11D511555.jpg": {"description": "Lush basil plants growing in containers on a wooden porch/deck", "category": "garden", "suggested_placement": ["Blog", "Homepage", "About/Story"]}, "images/71461732811__A63FA18B-0AE8-4980-8834-4FEAD19B59FC.jpg": {"description": "San Pedro / Trichocereus cactus seedlings in small nursery pots under grow lights", "category": "nursery", "suggested_placement": ["Products", "Research", "Classroom"]}, "images/71857742523__5BDB8733-9CD2-4396-A09C-EAB856180C0C.jpg": {"description": "Indoor grow shelf with cannabis/hemp seedling trays (top) and smaller seedling trays in humidity domes (bottom) under fluorescent lights", "category": "cultivation", "suggested_placement": ["Classroom", "Research", "Blog"]}, "images/72147166722__327AB19B-59DD-4064-B0DA-0851706BAE63.jpg": {"description": "Indoor grow tent with San Pedro cacti, tropical plants, and various botanical specimens under LED grow lights on metal shelving", "category": "nursery", "suggested_placement": ["About/Story", "Research", "Lab"]}, "images/DSC_6805.jpg": {"description": "Stunning sunset landscape photo - lone yucca/Joshua tree silhouetted against orange-pink Texas desert sky, wide open scrubland", "category": "landscape", "suggested_placement": ["Homepage", "Hero Banner", "About/Story"]}, "images/IMG_0142.jpg": {"description": "Young plant growing in dry Texas soil, broad palmate leaves - possibly comfrey or similar medicinal herb", "category": "wild_plants", "suggested_placement": ["Research", "Blog", "Article Header"]}, "images/IMG_0148.jpg": {"description": "Purple/red kale (Redbor variety) growing densely with bamboo stakes for support, close-up showing vibrant purple stems", "category": "garden", "suggested_placement": ["Blog", "Products", "Homepage"]}, "images/IMG_0289.jpg": {"description": "Kanna (Sceletium tortuosum) or similar succulent cuttings/plants in pots on a wire shelf under grow lights", "category": "nursery", "suggested_placement": ["Products", "Research", "Classroom"]}, "images/IMG_0292.jpg": {"description": "Rosemary or similar narrow-leaf herb seedlings in nursery trays, dense propagation setup", "category": "nursery", "suggested_placement": ["Products", "Classroom", "Blog"]}, "images/IMG_0293.jpg": {"description": "Indoor seedling nursery under grow lights - multiple small pots with young tobacco or similar broad-leaf seedlings at various stages", "category": "nursery", "suggested_placement": ["Classroom", "Research", "About/Story"]}, "images/IMG_0326.jpg": {"description": "Raised herb garden bed with brick edging against a brick building - mixed herbs and flowers, wire cages for support", "category": "garden", "suggested_placement": ["Homepage", "About/Story", "Blog"]}, "images/IMG_0346.jpg": {"description": "Iridescent green June beetle / fig beetle on decaying wood with shelf fungi - beautiful macro nature shot", "category": "nature", "suggested_placement": ["Blog", "Research", "Article Header"]}, "images/IMG_0349.jpg": {"description": "Wild barrel cactus cluster growing in rocky terrain with long dark spines, close-up detail shot", "category": "wild_plants", "suggested_placement": ["Research", "Blog", "Article Header"]}, "images/IMG_0357.jpg": {"description": "Peach or similar fruit tree with ripening/split fruit showing red-pink flesh among colorful variegated leaves", "category": "garden", "suggested_placement": ["Products", "Blog", "Research"]}, "images/IMG_0479.jpg": {"description": "Screenshot of Facebook post (Josh's post) - massive mature San Pedro cactus colony growing outdoors, towering cluster", "category": "reference", "suggested_placement": ["Research", "Blog"]}, "images/IMG_0484.jpg": {"description": "Screenshot of Facebook post (Josh's post) - large Trichocereus pachanoi 'Powerline' clone, hand for scale showing massive girth", "category": "reference", "suggested_placement": ["Research", "Blog"]}, "images/IMG_0485.jpg": {"description": "Screenshot of Facebook post - Trichocereus 'Ear Grabber' clone with flower bud, and close-up of Lophophora (peyote) cactus below", "category": "reference", "suggested_placement": ["Research"]}, "images/IMG_0486.jpg": {"description": "Screenshot of Facebook post (Josh's post) - tall San Pedro cacti growing in mountainous landscape, dramatic misty mountains backdrop", "category": "reference", "suggested_placement": ["Research", "Blog", "Hero Banner"]}, "images/IMG_0489.jpg": {"description": "Large mature San Pedro / Trichocereus colony outside a house, massive spreading growth - reference photo", "category": "reference", "suggested_placement": ["Research", "Blog"]}, "images/IMG_0573.jpg": {"description": "Potted San Pedro cactus seedling with spines, surrounded by other cacti varieties at night under artificial light", "category": "nursery", "suggested_placement": ["Products", "Research"]}, "images/IMG_0574.jpg": {"description": "San Pedro cactus with multiple pups/offsets growing from base, showing flower bud, in black nursery pot at night", "category": "nursery", "suggested_placement": ["Products", "Research", "Blog"]}, "images/IMG_0629.jpg": {"description": "Trays of San Pedro cactus seedlings under grow lights, dozens of young columnar cacti in individual cells with blue labels", "category": "nursery", "suggested_placement": ["Products", "Classroom", "About/Story"]}, "images/IMG_0642.jpg": {"description": "Stainless steel extraction equipment - closed-loop BHO/hydrocarbon extraction manifold with braided hoses and yellow ball valves, outdoor setup", "category": "extraction_equipment", "suggested_placement": ["Consulting", "Classroom", "Research"]}, "images/IMG_0659.jpg": {"description": "Black dog wading in clear lake water on a sunny day - Texas lakeside nature scene", "category": "lifestyle", "suggested_placement": ["About/Story", "Blog"]}, "images/IMG_0660.jpg": {"description": "Large indoor cannabis cultivation room under HPS lights - rows of mature flowering plants in black pots with trellis netting, commercial scale", "category": "cultivation", "suggested_placement": ["Consulting", "Classroom", "Blog"]}, "images/IMG_0673.jpg": {"description": "Screenshot from future4200.com - closed-loop BHO extraction setup in a tent with pressure gauge, stainless steel column, insulated lines", "category": "extraction_equipment", "suggested_placement": ["Classroom", "Consulting", "Research"]}, "images/IMG_0726.jpg": {"description": "Beautiful ocean/Gulf Coast sunset - sandbar stretching into calm water, dramatic clouds with golden light", "category": "landscape", "suggested_placement": ["Homepage", "Hero Banner", "About/Story"]}, "images/IMG_0728.jpg": {"description": "Large extraction vessel in workshop - insulated tank wrapped in foil tape, stainless steel column beside it, OSB-walled workspace", "category": "extraction_equipment", "suggested_placement": ["Consulting", "Classroom", "About/Story"]}, "images/IMG_0729.jpg": {"description": "Multi-column stainless steel extraction rack system - 5 parallel columns with pressure gauges, professional setup in workshop", "category": "extraction_equipment", "suggested_placement": ["Consulting", "Classroom", "Homepage"]}, "images/IMG_0730.jpg": {"description": "Professional extraction lab interior - insulated lines, stainless vessels, explosion-proof lighting, pumps, gas cylinders - commercial scale C1D1 room", "category": "extraction_equipment", "suggested_placement": ["Homepage", "Consulting", "Classroom"]}, "images/IMG_0731.jpg": {"description": "Another angle of commercial extraction lab - insulated column array, stainless vessels, pressure gauges, yellow ball valves, professional setup", "category": "extraction_equipment", "suggested_placement": ["Homepage", "Consulting", "Classroom"]}, "images/IMG_0732.jpg": {"description": "Commercial extraction lab - multiple stainless columns, recovery pump, CO2/solvent tank, red hoses, professional C1D1 rated room", "category": "extraction_equipment", "suggested_placement": ["Homepage", "Consulting", "Classroom"]}, "images/IMG_0733.jpg": {"description": "Extraction equipment close-up - frosted recovery vessel on stand with scale readout, pump, insulated lines, professional lab", "category": "extraction_equipment", "suggested_placement": ["Consulting", "Classroom", "Research"]}, "images/IMG_0749.jpg": {"description": "Small succulent-like plant cuttings with red stems in a white pot with perlite - propagation", "category": "nursery", "suggested_placement": ["Products", "Blog"]}, "images/IMG_0750.jpg": {"description": "Polished resin or extract domes/half-spheres on kitchen counter - dark amber/brown, multiple sizes, glossy finish", "category": "finished_product", "suggested_placement": ["Products", "Homepage", "Blog"]}, "images/IMG_0751.jpg": {"description": "Same extract domes from above angle - approximately 10 polished dome shapes in various amber/dark brown shades on speckled counter", "category": "finished_product", "suggested_placement": ["Products", "Homepage", "Blog"]}, "images/IMG_0753.jpg": {"description": "Two large dark purple/maroon extract pucks - polished, glossy, kidney-shaped on kitchen counter", "category": "finished_product", "suggested_placement": ["Products", "Homepage"]}, "images/IMG_0756.jpg": {"description": "Single extract dome/puck side view - shows layered coloring (amber top, dark bottom), macro detail on speckled counter", "category": "finished_product", "suggested_placement": ["Products", "Blog"]}, "images/IMG_0892.jpg": {"description": "Dense carpet of Kanna (Sceletium tortuosum) or similar succulent ground cover with white/yellow daisy-like flowers, growing in red soil", "category": "wild_plants", "suggested_placement": ["Research", "Blog", "Products"]}, "images/IMG_0893.jpg": {"description": "Close-up of same succulent ground cover with white feathery flowers - Sceletium/Kanna species in bloom", "category": "wild_plants", "suggested_placement": ["Research", "Blog", "Products"]}, "images/IMG_0923.jpg": {"description": "Outdoor hillside cannabis farm - plants among dry grass with hoop houses visible, California-style guerrilla/sun-grown operation", "category": "cultivation", "suggested_placement": ["Blog", "Research", "Consulting"]}, "images/IMG_0928.jpg": {"description": "Large commercial indoor cultivation facility - rows of raised flood tables under HPS lights, clone/veg stage, industrial scale", "category": "cultivation", "suggested_placement": ["Consulting", "Classroom", "Blog"]}, "images/IMG_0929.jpg": {"description": "Wild mushrooms growing in grass - small tan/white parasol-type mushrooms in a lawn, foraging subject", "category": "nature", "suggested_placement": ["Research", "Blog", "Article Header"]}, "images/IMG_0949.jpg": {"description": "Beautiful wild bolete mushroom - golden yellow stem with red/orange cap, macro photo on forest floor with rocks and leaves", "category": "nature", "suggested_placement": ["Research", "Blog", "Article Header", "Homepage"]}, "images/IMG_0957.jpg": {"description": "Texas Hill Country pond/creek - green rolling hills, calm water with reeds, overcast sky, peaceful rural landscape", "category": "landscape", "suggested_placement": ["Homepage", "About/Story", "Hero Banner"]}, "images/IMG_0963.jpg": {"description": "Stunning moonlit night landscape - full moon reflecting on still pond/lake, stars visible, Texas Hill Country silhouette", "category": "landscape", "suggested_placement": ["Homepage", "Hero Banner", "About/Story"]}, "images/IMG_0964.jpg": {"description": "Same moonlit scene, different angle - moon reflecting on winding creek/river, wispy clouds, Hill Country horizon", "category": "landscape", "suggested_placement": ["Homepage", "Hero Banner", "About/Story"]}, "images/IMG_1018.jpg": {"description": "Cannabis flower close-up - dense trichome-covered bud under HPS grow lights, purple and orange hues, professional macro", "category": "cultivation", "suggested_placement": ["Products", "Blog", "Research"]}, "images/IMG_1019.jpg": {"description": "Cannabis flower close-up - frosty trichome-laden cola, professional macro photography showing crystal structure", "category": "cultivation", "suggested_placement": ["Products", "Blog", "Research"]}};
+
+// ===== STATE =====
+const selected = new Set();
+let filters = { type: 'all', cat: 'all', size: 'all', sort: 'name' };
+let viewMode = 'normal';
+let lightboxIdx = -1;
+let visibleItems = [];
+
+// ===== HELPERS =====
+function fmtSize(bytes) {
+    if (bytes >= 1048576) return (bytes / 1048576).toFixed(1) + 'MB';
+    return (bytes / 1024).toFixed(0) + 'KB';
+}
+
+function isVideo(f) { return /\.(mp4|mov|webm)$/i.test(f); }
+
+function getDesc(file) { return DESCRIPTIONS['images/' + file] || null; }
+
+function toast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ===== FILTERS =====
+function setFilter(group, val, btn) {
+    filters[group] = val;
+    document.querySelectorAll(`.fbtn[data-filter="${group}"]`).forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyFilters();
+}
+
+function applyFilters() {
+    const search = document.getElementById('searchInput').value.toLowerCase().trim();
+
+    visibleItems = FILES.filter(f => {
+        const desc = getDesc(f.file);
+        const vid = isVideo(f.file);
+
+        // Type filter
+        if (filters.type === 'photo' && vid) return false;
+        if (filters.type === 'video' && !vid) return false;
+
+        // Category filter
+        if (filters.cat === 'undescribed' && desc) return false;
+        if (filters.cat !== 'all' && filters.cat !== 'undescribed') {
+            if (!desc || desc.category !== filters.cat) return false;
+        }
+
+        // Size filter
+        if (filters.size === 'over1mb' && f.size < 1048576) return false;
+        if (filters.size === '500k-1mb' && (f.size < 512000 || f.size >= 1048576)) return false;
+        if (filters.size === 'under500k' && f.size >= 512000) return false;
+
+        // Search
+        if (search) {
+            const hay = (f.file + ' ' + (desc ? desc.description + ' ' + desc.category + ' ' + (desc.suggested_placement || []).join(' ') : '')).toLowerCase();
+            if (!hay.includes(search)) return false;
+        }
+
+        return true;
+    });
+
+    // Sort
+    if (filters.sort === 'size-desc') visibleItems.sort((a, b) => b.size - a.size);
+    else if (filters.sort === 'size-asc') visibleItems.sort((a, b) => a.size - b.size);
+    else if (filters.sort === 'category') visibleItems.sort((a, b) => {
+        const ca = (getDesc(a.file) || {}).category || 'zzz';
+        const cb = (getDesc(b.file) || {}).category || 'zzz';
+        return ca.localeCompare(cb) || a.file.localeCompare(b.file);
+    });
+    else visibleItems.sort((a, b) => a.file.localeCompare(b.file));
+
+    render();
+}
+
+// ===== RENDER =====
+function render() {
+    const grid = document.getElementById('grid');
+    grid.className = 'grid' + (viewMode === 'compact' ? ' compact' : '');
+
+    let html = '';
+    visibleItems.forEach((f, idx) => {
+        const desc = getDesc(f.file);
+        const vid = isVideo(f.file);
+        const over = f.size >= 1048576;
+        const sel = selected.has(f.file);
+        const hasDesc = !!desc;
+
+        const classes = ['card'];
+        if (over) classes.push('oversized');
+        if (hasDesc) classes.push('has-desc');
+        if (sel) classes.push('selected');
+
+        html += `<div class="${classes.join(' ')}" data-file="${f.file}" data-idx="${idx}">
+            <div class="card-media" onclick="openLightbox(${idx})">
+                ${vid
+                    ? `<video src="images/${f.file}" preload="metadata" muted></video>`
+                    : `<img src="images/${f.file}" loading="lazy" alt="${f.file}">`
+                }
+                <div class="card-badges">
+                    <span class="badge badge-type">${vid ? 'VIDEO' : 'JPG'}</span>
+                    ${desc ? `<span class="badge badge-cat">${desc.category.replace('_', ' ')}</span>` : ''}
+                    <span class="badge ${over ? 'badge-warn' : 'badge-size'}">${fmtSize(f.size)}</span>
+                </div>
+                <div class="card-select" onclick="event.stopPropagation(); toggleSelect('${f.file}')">${sel ? '&#10003;' : ''}</div>
+            </div>
+            <div class="card-body">
+                <div class="card-filename">${f.file}</div>
+                ${desc ? `<div class="card-desc">${desc.description}</div>` : '<div class="card-desc" style="color:#475569;font-style:italic">No description yet</div>'}
+                ${desc && desc.suggested_placement ? `<div class="card-meta">${desc.suggested_placement.map(p => `<span class="placement">${p}</span>`).join('')}</div>` : ''}
+            </div>
+        </div>`;
+    });
+
+    grid.innerHTML = html;
+    updateStats();
+}
+
+function updateStats() {
+    document.getElementById('shown').textContent = visibleItems.length;
+    document.getElementById('total').textContent = FILES.length;
+    document.getElementById('described').textContent = Object.keys(DESCRIPTIONS).length;
+    document.getElementById('oversized').textContent = FILES.filter(f => f.size >= 1048576).length;
+    document.getElementById('totalSize').textContent = fmtSize(FILES.reduce((s, f) => s + f.size, 0));
+    document.getElementById('selCount').textContent = selected.size;
+    document.getElementById('selBar').classList.toggle('open', selected.size > 0);
+}
+
+// ===== VIEW =====
+function setView(mode) {
+    viewMode = mode;
+    document.getElementById('view-normal').classList.toggle('active', mode === 'normal');
+    document.getElementById('view-compact').classList.toggle('active', mode === 'compact');
+    render();
+}
+
+// ===== SELECTION =====
+function toggleSelect(file) {
+    if (selected.has(file)) selected.delete(file);
+    else selected.add(file);
+    const card = document.querySelector(`[data-file="${file}"]`);
+    if (card) {
+        card.classList.toggle('selected', selected.has(file));
+        const cb = card.querySelector('.card-select');
+        cb.innerHTML = selected.has(file) ? '&#10003;' : '';
+    }
+    updateStats();
+}
+
+function selectAll() {
+    visibleItems.forEach(f => selected.add(f.file));
+    render();
+    toast(`Selected ${selected.size} files`);
+}
+
+function selectNone() {
+    selected.clear();
+    render();
+}
+
+function selectOversized() {
+    FILES.filter(f => f.size >= 1048576).forEach(f => selected.add(f.file));
+    render();
+    toast(`Selected ${selected.size} files (includes >1MB)`);
+}
+
+// ===== DOWNLOAD =====
+function downloadSelected() {
+    if (selected.size === 0) { toast('Nothing selected'); return; }
+    if (selected.size === 1) {
+        const file = [...selected][0];
+        downloadFile(file);
+        return;
+    }
+    // Download multiple via sequential links
+    let i = 0;
+    const files = [...selected];
+    function next() {
+        if (i >= files.length) return;
+        downloadFile(files[i]);
+        i++;
+        setTimeout(next, 300);
+    }
+    next();
+    toast(`Downloading ${files.length} files...`);
+}
+
+function downloadFile(file) {
+    const a = document.createElement('a');
+    a.href = 'images/' + file;
+    a.download = file;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+
+// ===== EXPORT =====
+function exportJSON() {
+    const data = JSON.stringify(DESCRIPTIONS, null, 2);
+    const blob = new Blob([data], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'image-descriptions.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    toast('Exported descriptions JSON');
+}
+
+// ===== LIGHTBOX =====
+function openLightbox(idx) {
+    lightboxIdx = idx;
+    renderLightbox();
+    document.getElementById('lightbox').classList.add('open');
+}
+
+function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.getElementById('lightbox-content').innerHTML = '';
+}
+
+function navLightbox(dir) {
+    event.stopPropagation();
+    lightboxIdx += dir;
+    if (lightboxIdx < 0) lightboxIdx = visibleItems.length - 1;
+    if (lightboxIdx >= visibleItems.length) lightboxIdx = 0;
+    renderLightbox();
+}
+
+function renderLightbox() {
+    const f = visibleItems[lightboxIdx];
+    if (!f) return;
+    const desc = getDesc(f.file);
+    const vid = isVideo(f.file);
+    const content = document.getElementById('lightbox-content');
+
+    if (vid) {
+        content.innerHTML = `<video class="lightbox-media" src="images/${f.file}" controls autoplay></video>`;
+    } else {
+        content.innerHTML = `<img class="lightbox-media" src="images/${f.file}">`;
+    }
+
+    document.getElementById('lb-filename').textContent = f.file;
+    document.getElementById('lb-desc').textContent = desc ? desc.description : 'No description';
+    document.getElementById('lb-meta').innerHTML = `
+        <span>Size: <span class="val">${fmtSize(f.size)}</span></span>
+        ${desc ? `<span>Category: <span class="val">${desc.category}</span></span>` : ''}
+        ${desc && desc.suggested_placement ? `<span>Placement: <span class="val">${desc.suggested_placement.join(', ')}</span></span>` : ''}
+        <span>${lightboxIdx + 1} / ${visibleItems.length}</span>
+    `;
+
+    document.getElementById('lightbox-dl').innerHTML = `<a href="images/${f.file}" download="${f.file}">Download</a>`;
+}
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+    if (document.getElementById('lightbox').classList.contains('open')) {
+        if (e.key === 'ArrowLeft') navLightbox(-1);
+        if (e.key === 'ArrowRight') navLightbox(1);
+    }
+});
+
+document.getElementById('lightbox').addEventListener('click', e => {
+    if (e.target.id === 'lightbox' || e.target.closest('.lightbox-info')) {
+        if (e.target.id === 'lightbox') closeLightbox();
+    }
+});
+
+// ===== INIT =====
+applyFilters();
+</script>
+
+</body>
+</html>

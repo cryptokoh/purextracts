@@ -27,6 +27,13 @@ dist/
 # Business documents - NEVER COMMIT
 git-ignore-biz-docs/
 
+# Image backup originals
+images/_originals_backup/
+
+# Temp scripts
+scrape-seed*.js
+seed-rip/
+
 # Misc
 .DS_Store
 *.log
