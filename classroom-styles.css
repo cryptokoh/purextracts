@@ -3,23 +3,7 @@
    Educational entry point with lab navigation
    ============================================ */
 
-/* Override theme for classroom */
-.classroom-body {
-    --color-primary: #6b7c5e;
-    --color-primary-light: #8a9e7a;
-    --color-primary-dark: #4f5c45;
-    --color-accent: #d4a857;
-    --color-accent-light: #e6c88a;
-}
-
-/* ============================================
-   Classroom Navigation
-   ============================================ */
-
-.classroom-nav {
-    background: rgba(250, 248, 245, 0.95);
-    backdrop-filter: blur(10px);
-}
+/* Classroom uses site-wide seed palette */
 
 /* ============================================
    Classroom Hero Section

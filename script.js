@@ -38,80 +38,194 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-/* Theme switcher removed - single seed green theme */
-
 /**
- * Navigation
+ * Navigation (Seed Style)
  */
 function initNavigation() {
     const nav = document.getElementById('nav');
-    const navToggle = document.getElementById('navToggle');
-    const navLinks = document.getElementById('navLinks');
+    const hamburger = document.getElementById('navToggle');
+    if (!nav) return;
 
-    if (!nav || !navToggle || !navLinks) return;
+    // Scroll effect: add .scrolled for nav blur bg
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    }, { passive: true });
 
-    // Inject Home link for mobile menu (hidden on desktop)
-    var path = window.location.pathname;
-    var prefix = '';
-    if (path.indexOf('/articles/') !== -1 || path.indexOf('/products/') !== -1 || path.indexOf('/classroom/') !== -1 || path.indexOf('/courses/') !== -1) {
-        prefix = '../';
-    }
-    var homeLink = document.createElement('a');
-    homeLink.href = prefix + 'index.html';
-    homeLink.className = 'nav-link nav-link-home';
-    homeLink.textContent = 'Home';
-    navLinks.insertBefore(homeLink, navLinks.firstChild);
-
-    const links = navLinks.querySelectorAll('a');
-
-    // Mobile menu toggle
-    navToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        navToggle.classList.toggle('active');
-
-        // Toggle aria-expanded
-        const isExpanded = navLinks.classList.contains('active');
-        navToggle.setAttribute('aria-expanded', isExpanded);
-    });
-
-    // Close mobile menu when clicking a link
-    links.forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            navToggle.classList.remove('active');
+    // Smooth scroll for anchor links
+    nav.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const target = document.querySelector(link.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                const offset = nav.offsetHeight + 20;
+                window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+                history.pushState(null, '', link.getAttribute('href'));
+            }
         });
     });
 
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!nav.contains(e.target) && navLinks.classList.contains('active')) {
-            navLinks.classList.remove('active');
-            navToggle.classList.remove('active');
-        }
+    // Inject fullscreen mobile menu HTML
+    if (hamburger) {
+        initFullscreenMenu(hamburger);
+    }
+}
+
+/**
+ * Fullscreen Takeover Menu (Seed Pattern)
+ * Injected via JS to avoid touching 80 HTML pages
+ */
+function initFullscreenMenu(hamburger) {
+    // Detect path prefix for correct links
+    var path = window.location.pathname;
+    var p = '';
+    if (path.indexOf('/articles/') !== -1 || path.indexOf('/products/') !== -1 ||
+        path.indexOf('/classroom/') !== -1 || path.indexOf('/courses/') !== -1) {
+        p = '../';
+    }
+
+    // Build menu HTML
+    var menuHTML = '<div class="fs-menu-backdrop" id="menuBackdrop"></div>' +
+        '<div class="fs-menu" id="fsMenu">' +
+        '<a href="' + p + 'articles/complete-kratom-guide.html" class="fs-menu-banner">Is KR-01 Kratom Full Spectrum Right For You? <span>&rarr;</span></a>' +
+        '<div class="fs-menu-tabs">' +
+        '<div class="fs-menu-logo"></div>' +
+        '<button class="fs-tab active" data-tab="shop">Shop</button>' +
+        '<button class="fs-tab" data-tab="science">Science</button>' +
+        '<button class="fs-tab" data-tab="learn">Learn</button>' +
+        '<button class="fs-tab" data-tab="login">Login</button>' +
+        '<button class="fs-menu-close" id="menuClose" aria-label="Close">&times;</button>' +
+        '</div>' +
+        '<div class="fs-menu-scroll">' +
+        // SHOP panel
+        '<div class="fs-panel active" data-panel="shop">' +
+        '<a href="' + p + 'products/extracts.html" class="product-row"><div class="product-thumb"><div class="jar green"></div></div><div class="product-info"><div class="product-code">KR-01</div><div class="product-name">Kratom Full Spectrum</div></div></a>' +
+        '<a href="' + p + 'products/extracts.html" class="product-row"><div class="product-thumb"><div class="jar teal"></div></div><div class="product-info"><div class="product-code">KR-02</div><div class="product-name">Kratom Enhanced Blend</div></div></a>' +
+        '<a href="' + p + 'products/extracts.html" class="product-row"><div class="product-thumb"><div class="jar green"></div></div><div class="product-info"><div class="product-code">KV-01</div><div class="product-name">Kava Noble Extract</div></div></a>' +
+        '<a href="' + p + 'products/tinctures.html" class="product-row"><div class="product-thumb"><div class="jar blue"></div></div><div class="product-info"><div class="product-code">BL-01</div><div class="product-name">Blue Lotus Concentrate</div></div></a>' +
+        '<a href="' + p + 'products/gummies.html" class="product-row"><div class="product-thumb"><div class="jar amber"></div></div><div class="product-info"><div class="product-code">BD-01</div><div class="product-name">Hill Country Bundle</div></div></a>' +
+        '<a href="' + p + 'products/extracts.html" class="product-row"><div class="product-thumb"><div class="jar purple"></div></div><div class="product-info"><div class="product-code">ET-01</div><div class="product-name">Ethnobotanical Sampler</div></div></a>' +
+        '<a href="' + p + 'index.html#products" class="shop-all-link">Shop All Products &rarr;</a>' +
+        '</div>' +
+        // SCIENCE panel
+        '<div class="fs-panel" data-panel="science">' +
+        '<a href="' + p + 'index.html#about" class="panel-item"><div class="panel-item-image img-approach">&#128300;</div><div class="panel-item-content"><div class="panel-item-title">Approach</div><div class="panel-item-desc">Botanical science for human wellness</div></div></a>' +
+        '<a href="' + p + 'research.html" class="panel-item"><div class="panel-item-image img-labs">&#9878;</div><div class="panel-item-content"><div class="panel-item-title">PETX[Labs]</div><div class="panel-item-desc">Frontier extraction science</div></div></a>' +
+        '<a href="' + p + 'consulting.html" class="panel-item"><div class="panel-item-image img-scientists">&#128200;</div><div class="panel-item-content"><div class="panel-item-title">Researchers</div><div class="panel-item-desc">Leading ethnobotanical experts</div></div></a>' +
+        '<a href="' + p + 'research.html#growing" class="panel-item"><div class="panel-item-image img-sustainability">&#127807;</div><div class="panel-item-content"><div class="panel-item-title">Sustainability</div><div class="panel-item-desc">Sourcing impact on ecological health</div></div></a>' +
+        '<div class="panel-group-header">Reference</div>' +
+        '<ul class="ref-list">' +
+        '<li><a href="' + p + 'articles/complete-kratom-guide.html">KR-01 Kratom Full Spectrum</a></li>' +
+        '<li><a href="' + p + 'articles/kratom-alkaloid-profiles.html">KR-02 Kratom Enhanced Blend</a></li>' +
+        '<li><a href="' + p + 'articles/kava-noble-vs-tudei.html">KV-01 Kava Noble Extract</a></li>' +
+        '<li><a href="' + p + 'articles/blue-lotus-guide.html">BL-01 Blue Lotus Concentrate</a></li>' +
+        '</ul>' +
+        '</div>' +
+        // LEARN panel
+        '<div class="fs-panel" data-panel="learn">' +
+        '<a href="' + p + 'classroom/extraction.html" class="panel-item"><div class="panel-item-image img-approach">&#9752;</div><div class="panel-item-content"><div class="panel-item-title">Extraction 101</div><div class="panel-item-desc">The science of isolating active plant compounds.</div></div></a>' +
+        '<a href="' + p + 'classroom/effects.html" class="panel-item"><div class="panel-item-image img-sustainability">&#127807;</div><div class="panel-item-content"><div class="panel-item-title">Alkaloids 101</div><div class="panel-item-desc">How mitragynine, kavalactones and aporphines work.</div></div></a>' +
+        '<div class="panel-group-header">Featured Articles</div>' +
+        '<a href="' + p + 'articles/kratom-alkaloid-profiles.html" class="panel-item"><div class="article-thumb article-thumb-1"></div><div class="panel-item-content"><div class="panel-item-title">Understanding Kratom Alkaloid Profiles</div><div class="panel-item-meta">8 min read</div></div></a>' +
+        '<a href="' + p + 'articles/kava-noble-vs-tudei.html" class="panel-item"><div class="article-thumb article-thumb-2"></div><div class="panel-item-content"><div class="panel-item-title">Kava Noble vs Tudei: Why It Matters</div><div class="panel-item-meta">6 min read</div></div></a>' +
+        '<a href="' + p + 'articles/water-vs-ethanol-extraction.html" class="panel-item"><div class="article-thumb article-thumb-3"></div><div class="panel-item-content"><div class="panel-item-title">Water vs Ethanol Extraction Methods</div><div class="panel-item-meta">10 min read</div></div></a>' +
+        '<a href="' + p + 'articles/blue-lotus-guide.html" class="panel-item"><div class="article-thumb article-thumb-4"></div><div class="panel-item-content"><div class="panel-item-title">Blue Lotus in Ancient Egyptian Medicine</div><div class="panel-item-meta">12 min read</div></div></a>' +
+        '<a href="' + p + 'blog.html" class="all-articles-link">All Articles &rarr;</a>' +
+        '</div>' +
+        // LOGIN panel
+        '<div class="fs-panel" data-panel="login">' +
+        '<div class="login-brand">[ PureCircle ]</div>' +
+        '<h2 class="login-heading">Login</h2>' +
+        '<p class="login-subtitle">Access your account, courses, lab reports, and more.</p>' +
+        '<div class="login-divider"><span>EMAIL LOGIN</span></div>' +
+        '<div class="login-field"><input type="email" placeholder="Email" class="login-input"></div>' +
+        '<div class="login-field"><input type="password" placeholder="Password" class="login-input"></div>' +
+        '<div class="login-actions"><a href="' + p + 'courses/login.html" class="login-forgot">Forgot password?</a><button class="login-submit" onclick="window.location.href=\'' + p + 'courses/login.html\'">Sign In</button></div>' +
+        '</div>' +
+        '</div>' + // /fs-menu-scroll
+        '</div>' + // /fs-menu
+        '<div class="fs-menu-footer" id="menuFooter">' +
+        '<a href="' + p + 'products/extracts.html" class="fs-cta-primary">Shop KR-01</a>' +
+        '<a href="' + p + 'contact.html" class="fs-cta-secondary">Get Started &rarr;</a>' +
+        '</div>';
+
+    // Insert menu into DOM
+    document.body.insertAdjacentHTML('beforeend', menuHTML);
+
+    // Get references
+    var fsMenu = document.getElementById('fsMenu');
+    var menuBackdrop = document.getElementById('menuBackdrop');
+    var menuClose = document.getElementById('menuClose');
+    var menuFooter = document.getElementById('menuFooter');
+    var tabs = document.querySelectorAll('.fs-tab');
+    var panels = document.querySelectorAll('.fs-panel');
+
+    function openMenu() {
+        fsMenu.classList.add('open');
+        menuBackdrop.classList.add('open');
+        menuFooter.classList.add('open');
+        hamburger.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+        fsMenu.classList.remove('open');
+        menuBackdrop.classList.remove('open');
+        menuFooter.classList.remove('open');
+        hamburger.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', function() {
+        fsMenu.classList.contains('open') ? closeMenu() : openMenu();
     });
 
-    // Smooth scroll for anchor links
-    links.forEach(link => {
-        if (link.getAttribute('href').startsWith('#')) {
-            link.addEventListener('click', (e) => {
-                const targetId = link.getAttribute('href');
-                const target = document.querySelector(targetId);
+    menuClose.addEventListener('click', closeMenu);
+    menuBackdrop.addEventListener('click', closeMenu);
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMenu(); });
 
-                if (target) {
-                    e.preventDefault();
-                    const navHeight = nav.offsetHeight;
-                    const targetPosition = target.offsetTop - navHeight - 20;
+    // Tab switching
+    function switchTab(tabName) {
+        tabs.forEach(function(tab) { tab.classList.toggle('active', tab.dataset.tab === tabName); });
+        panels.forEach(function(panel) { panel.classList.toggle('active', panel.dataset.panel === tabName); });
+        var scrollEl = document.querySelector('.fs-menu-scroll');
+        if (scrollEl) scrollEl.scrollTop = 0;
+    }
 
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
+    tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() { switchTab(tab.dataset.tab); });
+    });
 
-                    // Update URL without scrolling
-                    history.pushState(null, '', targetId);
-                }
-            });
-        }
+    // Swipe between tabs
+    var touchStartX = 0;
+    var touchStartY = 0;
+    var scrollEl = document.querySelector('.fs-menu-scroll');
+    var tabOrder = ['shop', 'science', 'learn', 'login'];
+
+    if (scrollEl) {
+        scrollEl.addEventListener('touchstart', function(e) {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        scrollEl.addEventListener('touchend', function(e) {
+            var dx = e.changedTouches[0].clientX - touchStartX;
+            var dy = e.changedTouches[0].clientY - touchStartY;
+            if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+                var current = document.querySelector('.fs-tab.active').dataset.tab;
+                var i = tabOrder.indexOf(current);
+                if (dx < 0 && i < tabOrder.length - 1) switchTab(tabOrder[i + 1]);
+                else if (dx > 0 && i > 0) switchTab(tabOrder[i - 1]);
+            }
+        }, { passive: true });
+    }
+
+    // Close on link click inside menu
+    fsMenu.querySelectorAll('.product-row, .panel-item, .fs-cta-primary, .fs-cta-secondary, .shop-all-link, .ref-list a, .all-articles-link').forEach(function(el) {
+        el.addEventListener('click', closeMenu);
     });
 }
 
@@ -119,51 +233,11 @@ function initNavigation() {
  * Scroll Effects
  */
 function initScrollEffects() {
-    const nav = document.getElementById('nav');
-    let lastScrollY = window.scrollY;
-
-    // Throttled scroll handler
-    let ticking = false;
-
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            window.requestAnimationFrame(() => {
-                handleScroll();
-                ticking = false;
-            });
-            ticking = true;
-        }
-    });
-
-    function handleScroll() {
-        const currentScrollY = window.scrollY;
-
-        // Add scrolled class for nav styling
-        if (currentScrollY > 50) {
-            nav.classList.add('scrolled');
-        } else {
-            nav.classList.remove('scrolled');
-        }
-
-        // Hide/show nav on scroll (optional - can enable if desired)
-        // if (currentScrollY > lastScrollY && currentScrollY > 200) {
-        //     nav.style.transform = 'translateY(-100%)';
-        // } else {
-        //     nav.style.transform = 'translateY(0)';
-        // }
-
-        lastScrollY = currentScrollY;
-    }
-
     // Reveal animations on scroll
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
+    var observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
 
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+    var revealObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
             if (entry.isIntersecting) {
                 entry.target.classList.add('revealed');
                 revealObserver.unobserve(entry.target);
@@ -171,13 +245,26 @@ function initScrollEffects() {
         });
     }, observerOptions);
 
-    // Observe elements for reveal animation
-    document.querySelectorAll('.research-card, .product-card, .service-card, .trust-item').forEach(el => {
+    document.querySelectorAll('.research-card, .product-card, .service-card, .trust-item').forEach(function(el) {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         revealObserver.observe(el);
     });
+
+    // .reveal class observer (seed-template pattern)
+    var revealEls = document.querySelectorAll('.reveal');
+    if (revealEls.length) {
+        var seedObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    seedObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+        revealEls.forEach(function(el) { seedObserver.observe(el); });
+    }
 }
 
 /**
