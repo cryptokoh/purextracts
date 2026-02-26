@@ -97,7 +97,7 @@
 
     // Category colors
     var CAT_COLORS = {
-        'Pages': '#6b7280', 'Products': '#0d9488', 'Kratom': '#16a34a',
+        'Pages': '#6b7280', 'Products': '#1c3a13', 'Kratom': '#16a34a',
         'Kava': '#7c3aed', 'Blue Lotus': '#2563eb', 'Science': '#dc2626',
         'Guides': '#059669', 'Texas Natives': '#b45309', 'Cannabis': '#65a30d',
         'Classroom': '#8b5cf6'

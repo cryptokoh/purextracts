@@ -147,7 +147,7 @@
 
 .auth-btn-primary:hover:not(:disabled) {
     transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(13, 148, 136, 0.3);
+    box-shadow: 0 6px 20px rgba(28, 58, 19, 0.3);
 }
 
 .auth-btn-primary:disabled {
@@ -388,7 +388,7 @@
 
 .course-card-btn-primary:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+    box-shadow: 0 4px 12px rgba(28, 58, 19, 0.3);
 }
 
 .course-card-btn-secondary {
@@ -814,7 +814,7 @@
 
 .mark-complete-btn:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+    box-shadow: 0 4px 12px rgba(28, 58, 19, 0.3);
 }
 
 .mark-complete-btn.completed {

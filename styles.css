@@ -1164,8 +1164,8 @@ ul, ol {
 }
 
 @keyframes pulse-badge {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.4); }
-    50% { box-shadow: 0 0 0 8px rgba(13, 148, 136, 0); }
+    0%, 100% { box-shadow: 0 0 0 0 rgba(28, 58, 19, 0.4); }
+    50% { box-shadow: 0 0 0 8px rgba(28, 58, 19, 0); }
 }
 
 /* Hero Signup Form - Paywall Style */
@@ -1881,7 +1881,7 @@ ul, ol {
 }
 
 .research-icon.adaptogen {
-    background: rgba(13, 148, 136, 0.1);
+    background: rgba(28, 58, 19, 0.1);
     color: var(--color-adaptogen);
 }
 
@@ -3517,11 +3517,6 @@ ul, ol {
     html {
         scroll-behavior: auto;
     }
-}
-
-/* Dark mode preference detection (optional enhancement) */
-@media (prefers-color-scheme: dark) {
-    /* Could auto-switch to herbalist theme */
 }
 
 /* ============================================

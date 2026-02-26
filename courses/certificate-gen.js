@@ -24,12 +24,12 @@ function renderCertificate(canvas, data) {
     ctx.fillRect(0, 0, W, H);
 
     // Border
-    ctx.strokeStyle = '#0d9488';
+    ctx.strokeStyle = '#1c3a13';
     ctx.lineWidth = 3;
     ctx.strokeRect(30, 30, W - 60, H - 60);
 
     // Inner border (decorative)
-    ctx.strokeStyle = '#99f6e4';
+    ctx.strokeStyle = '#b8d4a8';
     ctx.lineWidth = 1;
     ctx.strokeRect(40, 40, W - 80, H - 80);
 
@@ -41,18 +41,18 @@ function renderCertificate(canvas, data) {
 
     // Header text
     ctx.textAlign = 'center';
-    ctx.fillStyle = '#0d9488';
+    ctx.fillStyle = '#1c3a13';
     ctx.font = '14px Inter, sans-serif';
     ctx.letterSpacing = '4px';
     ctx.fillText('PURE EXTRACTS TX', W / 2, 120);
 
     // "Certificate of Completion"
     ctx.fillStyle = '#1a1a2e';
-    ctx.font = '600 42px "Playfair Display", Georgia, serif';
+    ctx.font = '600 42px Inter, sans-serif';
     ctx.fillText('Certificate of Completion', W / 2, 190);
 
     // Divider line
-    ctx.strokeStyle = '#0d9488';
+    ctx.strokeStyle = '#1c3a13';
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo(W / 2 - 150, 210);
@@ -66,7 +66,7 @@ function renderCertificate(canvas, data) {
 
     // Student name
     ctx.fillStyle = '#1a1a2e';
-    ctx.font = '600 36px "Playfair Display", Georgia, serif';
+    ctx.font = '600 36px Inter, sans-serif';
     ctx.fillText(data.displayName || 'Student', W / 2, 320);
 
     // Underline below name
@@ -84,8 +84,8 @@ function renderCertificate(canvas, data) {
     ctx.fillText('has successfully completed all requirements for', W / 2, 380);
 
     // Course title
-    ctx.fillStyle = '#0d9488';
-    ctx.font = '600 28px "Playfair Display", Georgia, serif';
+    ctx.fillStyle = '#1c3a13';
+    ctx.font = '600 28px Inter, sans-serif';
     wrapText(ctx, data.courseTitle || 'Course', W / 2, 425, W - 200, 36);
 
     // Tier info
@@ -146,7 +146,7 @@ function drawCornerAccent(ctx, x, y, rotation) {
     ctx.save();
     ctx.translate(x, y);
     ctx.rotate(rotation);
-    ctx.strokeStyle = '#99f6e4';
+    ctx.strokeStyle = '#b8d4a8';
     ctx.lineWidth = 1.5;
 
     // Simple leaf-like curves
@@ -165,7 +165,7 @@ function drawCornerAccent(ctx, x, y, rotation) {
 
 function drawDropletLogo(ctx, cx, cy, size) {
     ctx.save();
-    ctx.fillStyle = '#0d9488';
+    ctx.fillStyle = '#1c3a13';
     ctx.globalAlpha = 0.3;
     ctx.beginPath();
     ctx.moveTo(cx, cy - size);
