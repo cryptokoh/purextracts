@@ -494,66 +494,7 @@
             font-size: var(--text-sm);
         }
 
-        /* Footer layout */
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-        .footer-main {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 2.5rem;
-            margin-bottom: 2.5rem;
-        }
-        .footer-brand .logo-icon {
-            width: 32px;
-            height: 32px;
-        }
-        .footer-heading {
-            font-size: var(--text-sm);
-            font-weight: 600;
-            color: var(--color-text);
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        .footer-nav { list-style: none; padding: 0; margin: 0; }
-        .footer-nav li { margin-bottom: 0.5rem; }
-        .footer-nav a {
-            color: var(--color-text-muted);
-            font-size: var(--text-sm);
-            text-decoration: none;
-        }
-        .footer-nav a:hover { color: var(--color-primary); }
-        .footer-bottom {
-            border-top: 1px solid var(--color-border);
-            padding-top: 1.5rem;
-            text-align: center;
-        }
-        .footer-copyright {
-            font-size: var(--text-sm);
-            color: var(--color-text-muted);
-            margin-bottom: 0.5rem;
-        }
-        .footer-disclaimer {
-            font-size: var(--text-xs);
-            color: var(--color-text-muted);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.5;
-        }
-        @media (max-width: 768px) {
-            .footer-main {
-                grid-template-columns: 1fr 1fr;
-                gap: 1.5rem;
-            }
-        }
-        @media (max-width: 480px) {
-            .footer-main {
-                grid-template-columns: 1fr;
-            }
-        }
+        /* Seed footer styles inherited from styles.css */
     </style>
     <link rel="stylesheet" href="chat-widget.css">
     <link rel="stylesheet" href="shipping-estimator.css">
@@ -701,45 +642,83 @@
             </div>
         </div>
     </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-    <div class="container">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4>Products</h4>
-                <ul>
-                    <li><a href="products/extracts.html">Botanical Extracts</a></li>
-                    <li><a href="products/tinctures.html">Tinctures</a></li>
-                    <li><a href="products/gummies.html">Gummies</a></li>
-                    <li><a href="products/live-plants.html">Live Plants</a></li>
-                </ul>
+    <footer class="seed-footer">
+        <div class="seed-footer-inner">
+            <div class="seed-footer-top">
+                <div class="seed-footer-mission">
+                    <h3>Pioneering botanical science for human wellness since 2010.</h3>
+                    <p>Precision extraction. Full transparency. Crafted in Texas Hill Country for those who demand evidence over marketing.</p>
+                </div>
+                <div class="seed-footer-signup">
+                    <p>Science with PETX &mdash; research updates for your inbox.</p>
+                    <div class="seed-footer-email-row">
+                        <input type="email" placeholder="Your email" class="seed-footer-email">
+                        <button class="seed-footer-email-btn">Subscribe</button>
+                    </div>
+                </div>
             </div>
-            <div class="footer-col">
-                <h4>Learn</h4>
-                <ul>
-                    <li><a href="blog.html">Education</a></li>
-                    <li><a href="classes.html">Classes</a></li>
-                    <li><a href="classroom.html">Interactive Learning</a></li>
-                    <li><a href="research.html">Research Library</a></li>
-                </ul>
+            <div class="seed-footer-links">
+                <div class="seed-footer-col">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="products/extracts.html">Botanical Extracts</a></li>
+                        <li><a href="products/tinctures.html">Tinctures</a></li>
+                        <li><a href="products/gummies.html">Gummies</a></li>
+                        <li><a href="products/live-plants.html">Live Plants</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Learn</h4>
+                    <ul>
+                        <li><a href="blog.html">Education</a></li>
+                        <li><a href="classes.html">Classes</a></li>
+                        <li><a href="classroom.html">Classroom</a></li>
+                        <li><a href="research.html">Research Library</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Science</h4>
+                    <ul>
+                        <li><a href="articles/extraction-methods.html">Extraction 101</a></li>
+                        <li><a href="articles/kratom-alkaloids.html">Kratom Science</a></li>
+                        <li><a href="articles/kavalactones-explained.html">Kava Science</a></li>
+                        <li><a href="articles/blue-lotus-compounds.html">Blue Lotus</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Help</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="consulting.html">Consulting</a></li>
+                        <li><a href="courses/login.html">Course Login</a></li>
+                        <li><a href="roadmap.html">Roadmap</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="seo.html">Transparency</a></li>
+                        <li><a href="welcome.html">Welcome</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="contact.html">Terms of Service</a></li>
+                        <li><a href="contact.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="footer-col">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="consulting.html">Consulting</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="roadmap.html">Roadmap</a></li>
-                </ul>
+            <div class="seed-footer-disclaimer">
+                *These statements have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure, or prevent any disease. Consult your healthcare provider before use. Must be 21+ to purchase. Not for sale where prohibited by law. Pure Extracts TX products are manufactured in a GMP-compliant facility and tested by independent third-party laboratories.
+            </div>
+            <div class="seed-footer-bottom">
+                <span>&copy; 2026 Pure Extracts TX. All rights reserved.</span>
+                <span>Crafted in Texas Hill Country</span>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Pure Extracts TX. All rights reserved.</p>
-            <p>These statements have not been evaluated by the FDA. Products are not intended to diagnose, treat, cure, or prevent any disease.</p>
-        </div>
-    </div>
-</footer>
+    </footer>
 
     <script src="script.js"></script>
     <script>
