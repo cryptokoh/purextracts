@@ -1546,6 +1546,9 @@
             <button class="lb-btn lb-download-btn" id="lbDownload" aria-label="Download">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </button>
+            <button class="lb-btn lb-share-btn" id="lbShare" aria-label="Share link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
             <button class="lb-btn" id="lbClose" aria-label="Close">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             </button>
@@ -2280,6 +2283,9 @@ function openLightbox(idx) {
     renderLightbox();
     document.getElementById('lightbox').classList.add('open');
     document.body.style.overflow = 'hidden';
+    // Update URL hash
+    const item = state.visible[idx];
+    if (item) history.replaceState(null, '', '#' + encodeURIComponent(item.file));
 }
 
 function closeLightbox() {
@@ -2289,6 +2295,8 @@ function closeLightbox() {
     const wrap = document.getElementById('lbMediaWrap');
     const vid = wrap.querySelector('video');
     if (vid) vid.pause();
+    // Clear hash
+    history.replaceState(null, '', location.pathname + location.search);
 }
 
 function navLightbox(dir) {
@@ -2296,6 +2304,9 @@ function navLightbox(dir) {
     if (state.lightboxIdx < 0) state.lightboxIdx = state.visible.length - 1;
     if (state.lightboxIdx >= state.visible.length) state.lightboxIdx = 0;
     renderLightbox();
+    // Update hash for new image
+    const item = state.visible[state.lightboxIdx];
+    if (item) history.replaceState(null, '', '#' + encodeURIComponent(item.file));
 }
 
 function renderLightbox() {
@@ -2341,6 +2352,24 @@ document.getElementById('lbDownload').addEventListener('click', () => {
     if (item) {
         downloadFile(item.file);
         toast('Downloading ' + item.file);
+    }
+});
+
+document.getElementById('lbShare').addEventListener('click', () => {
+    const url = location.href;
+    if (navigator.share) {
+        navigator.share({ title: 'PETX Image', url: url }).catch(() => {});
+    } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(() => toast('Link copied!'));
+    } else {
+        // Fallback
+        const ta = document.createElement('textarea');
+        ta.value = url;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        toast('Link copied!');
     }
 });
 
@@ -2574,11 +2603,30 @@ document.getElementById('editSave').addEventListener('click', async () => {
 });
 
 // ===================================================================
+// URL HASH ROUTING
+// ===================================================================
+function openFromHash() {
+    const hash = decodeURIComponent(location.hash.slice(1));
+    if (!hash) return;
+    const idx = state.visible.findIndex(f => f.file === hash);
+    if (idx !== -1) openLightbox(idx);
+}
+
+window.addEventListener('hashchange', () => {
+    if (location.hash) {
+        openFromHash();
+    } else if (state.lightboxOpen) {
+        closeLightbox();
+    }
+});
+
+// ===================================================================
 // INIT
 // ===================================================================
 buildCatOptions();
 updateStats();
 applyFilters();
+openFromHash();
 
 // Load from Supabase (async, merges into embedded data)
 loadFromSupabase();
