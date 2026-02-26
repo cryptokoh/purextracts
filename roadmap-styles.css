@@ -65,7 +65,7 @@
 .project-title {
     font-family: var(--font-serif);
     font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: 700;
+    font-weight: 500;
     color: var(--color-text);
     margin-bottom: var(--spacing-md);
     background: var(--gradient-text);
@@ -130,7 +130,7 @@
 
 .stat-value {
     font-size: var(--text-2xl);
-    font-weight: 700;
+    font-weight: 500;
     color: var(--color-text);
     line-height: 1.2;
 }
@@ -213,7 +213,7 @@
     color: white;
     border-radius: var(--radius-full);
     font-size: var(--text-xs);
-    font-weight: 700;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     animation: pulse-badge 2s infinite;
@@ -232,14 +232,14 @@
     color: var(--color-text-secondary);
     border-radius: var(--radius-full);
     font-size: var(--text-xs);
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
 .sprint-date {
     font-size: var(--text-sm);
-    font-weight: 600;
+    font-weight: 500;
     color: var(--color-text-secondary);
     font-family: var(--font-mono);
 }
@@ -247,7 +247,7 @@
 .sprint-title {
     font-family: var(--font-serif);
     font-size: var(--text-2xl);
-    font-weight: 700;
+    font-weight: 500;
     color: var(--color-text);
     margin-bottom: var(--spacing-xs);
 }
@@ -281,7 +281,7 @@
 
 .sprint-stat-value {
     font-size: var(--text-xl);
-    font-weight: 700;
+    font-weight: 500;
     color: var(--color-primary);
     font-family: var(--font-mono);
 }
@@ -299,7 +299,7 @@
 
 .sprint-deliverables-title {
     font-size: var(--text-base);
-    font-weight: 600;
+    font-weight: 500;
     color: var(--color-text);
     margin-bottom: var(--spacing-md);
     text-transform: uppercase;
@@ -327,7 +327,7 @@
     padding: 2px var(--spacing-sm);
     border-radius: var(--radius-sm);
     font-size: 10px;
-    font-weight: 700;
+    font-weight: 500;
     letter-spacing: 0.05em;
     margin-top: 2px;
 }
@@ -350,7 +350,7 @@
 
 .sprint-item-content strong {
     font-size: var(--text-sm);
-    font-weight: 600;
+    font-weight: 500;
     color: var(--color-text);
 }
 
@@ -419,7 +419,7 @@
     color: white;
     border-radius: var(--radius-full);
     font-size: var(--text-xs);
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-bottom: var(--spacing-md);
@@ -472,7 +472,7 @@
 
 .feature-title {
     font-size: var(--text-xl);
-    font-weight: 600;
+    font-weight: 500;
     color: var(--color-text);
     margin-bottom: var(--spacing-sm);
 }
@@ -581,7 +581,7 @@
     color: white;
     border-radius: var(--radius-md);
     font-size: var(--text-xs);
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-bottom: var(--spacing-sm);
@@ -589,7 +589,7 @@
 
 .timeline-title {
     font-size: var(--text-lg);
-    font-weight: 600;
+    font-weight: 500;
     color: var(--color-text);
     margin-bottom: var(--spacing-xs);
 }
@@ -620,7 +620,7 @@
 .timeline-effort {
     font-size: var(--text-xs);
     color: var(--color-primary);
-    font-weight: 600;
+    font-weight: 500;
     background: var(--color-primary-subtle);
     padding: var(--spacing-xs) var(--spacing-sm);
     border-radius: var(--radius-sm);
@@ -703,7 +703,7 @@
 
 .kanban-header h3 {
     font-size: var(--text-base);
-    font-weight: 600;
+    font-weight: 500;
     color: var(--color-text);
 }
 
@@ -717,7 +717,7 @@
     background: var(--color-bg-muted);
     border-radius: var(--radius-full);
     font-size: var(--text-xs);
-    font-weight: 600;
+    font-weight: 500;
     color: var(--color-text-secondary);
 }
 
@@ -764,7 +764,7 @@
 
 .card-title {
     font-size: var(--text-sm);
-    font-weight: 600;
+    font-weight: 500;
     color: var(--color-text);
     line-height: 1.4;
 }
@@ -921,7 +921,7 @@
 
 .action-card h3 {
     font-size: var(--text-lg);
-    font-weight: 600;
+    font-weight: 500;
     color: var(--color-text);
     margin-bottom: var(--spacing-xs);
 }
@@ -979,7 +979,7 @@
 
 .modal-header h3 {
     font-size: var(--text-xl);
-    font-weight: 600;
+    font-weight: 500;
     color: var(--color-text);
 }
 
@@ -1259,7 +1259,7 @@
     align-items: center;
     gap: 6px;
     font-size: 0.75rem;
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: #d97706;
@@ -1292,7 +1292,7 @@
 .vision-title {
     font-family: var(--font-display, 'Inter', sans-serif);
     font-size: 1.25rem;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--color-text);
     margin-bottom: var(--spacing-sm);
 }
@@ -1312,7 +1312,7 @@
 .vision-options h4,
 .vision-requirements h4 {
     font-size: 0.75rem;
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--color-text-muted);
@@ -1380,7 +1380,7 @@
 .vision-decision-box h4 {
     font-family: var(--font-display, 'Inter', sans-serif);
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--color-text);
     margin-bottom: var(--spacing-md);
 }

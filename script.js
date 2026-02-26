@@ -227,6 +227,13 @@ function initFullscreenMenu(hamburger) {
     fsMenu.querySelectorAll('.product-row, .panel-item, .fs-cta-primary, .fs-cta-secondary, .shop-all-link, .ref-list a, .all-articles-link').forEach(function(el) {
         el.addEventListener('click', closeMenu);
     });
+
+    // Auto-close menu when resizing past desktop breakpoint
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && fsMenu.classList.contains('open')) {
+            closeMenu();
+        }
+    });
 }
 
 /**

@@ -70,7 +70,7 @@
 .classroom-title {
     font-family: var(--font-serif);
     font-size: clamp(2.5rem, 8vw, 4rem);
-    font-weight: 700;
+    font-weight: 500;
     line-height: 1.1;
     margin-bottom: var(--spacing-lg);
     color: var(--color-text);
@@ -109,7 +109,7 @@
     color: white;
     border-radius: var(--radius-lg);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
     font-size: var(--text-sm);
     transition: all 0.3s ease;
     border: 2px solid var(--color-primary);
@@ -198,7 +198,7 @@
 .hub-number {
     font-family: var(--font-mono);
     font-size: var(--text-sm);
-    font-weight: 600;
+    font-weight: 500;
     color: var(--color-primary);
     opacity: 0.7;
     margin-bottom: 0.5rem;
@@ -253,7 +253,7 @@
     padding: 0.625rem 1.25rem;
     border-radius: var(--radius-full);
     font-size: var(--text-sm);
-    font-weight: 600;
+    font-weight: 500;
     text-decoration: none;
     transition: var(--transition-fast);
 }
@@ -341,7 +341,7 @@
 .track-label {
     font-size: var(--text-xs);
     color: var(--color-primary);
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -354,7 +354,7 @@
 .track-title {
     font-family: var(--font-serif);
     font-size: var(--text-xl);
-    font-weight: 600;
+    font-weight: 500;
     margin-bottom: var(--spacing-sm);
     color: var(--color-text);
 }
@@ -392,7 +392,7 @@
 
 .track-article .article-badge {
     font-size: 10px;
-    font-weight: 700;
+    font-weight: 500;
     color: white;
     background: var(--color-accent);
     padding: 2px 8px;
@@ -498,7 +498,7 @@
 .guide-badge {
     display: inline-block;
     font-size: 10px;
-    font-weight: 700;
+    font-weight: 500;
     color: white;
     background: var(--color-accent);
     padding: 2px 10px;
@@ -510,7 +510,7 @@
 
 .guide-content h3 {
     font-size: var(--text-base);
-    font-weight: 600;
+    font-weight: 500;
     color: var(--color-text);
     margin-bottom: var(--spacing-xs);
 }
@@ -586,7 +586,7 @@
 .stat-number {
     font-family: var(--font-serif);
     font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 700;
+    font-weight: 500;
     line-height: 1;
     margin-bottom: var(--spacing-xs);
 }
@@ -614,7 +614,7 @@
 .cta-content h2 {
     font-family: var(--font-serif);
     font-size: var(--text-3xl);
-    font-weight: 700;
+    font-weight: 500;
     margin-bottom: var(--spacing-md);
     color: var(--color-text);
 }
@@ -706,7 +706,7 @@
     background: linear-gradient(135deg, #d4a857, #b8860b);
     color: #fff;
     font-size: var(--text-xs);
-    font-weight: 600;
+    font-weight: 500;
     padding: var(--spacing-xs) var(--spacing-md);
     border-radius: var(--radius-full);
     text-transform: uppercase;
@@ -753,7 +753,7 @@
 .lab-card-title {
     font-family: var(--font-serif);
     font-size: var(--text-xl);
-    font-weight: 600;
+    font-weight: 500;
     margin-bottom: var(--spacing-sm);
     color: var(--color-text);
 }
@@ -791,7 +791,7 @@
     align-items: center;
     gap: var(--spacing-sm);
     font-size: var(--text-sm);
-    font-weight: 600;
+    font-weight: 500;
     color: var(--color-primary);
     transition: gap var(--transition-base);
 }
@@ -859,7 +859,7 @@
 .path-card h3 {
     font-family: var(--font-serif);
     font-size: var(--text-lg);
-    font-weight: 600;
+    font-weight: 500;
     margin-bottom: var(--spacing-sm);
     color: var(--color-text);
 }
