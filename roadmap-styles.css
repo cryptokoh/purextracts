@@ -220,8 +220,8 @@
 }
 
 @keyframes pulse-badge {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.4); }
-    50% { box-shadow: 0 0 0 8px rgba(13, 148, 136, 0); }
+    0%, 100% { box-shadow: 0 0 0 0 rgba(28, 58, 19, 0.4); }
+    50% { box-shadow: 0 0 0 8px rgba(28, 58, 19, 0); }
 }
 
 .sprint-prev-badge {
@@ -448,7 +448,7 @@
 }
 
 /* Feature icon variations */
-.feature-icon.homepage { background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%); }
+.feature-icon.homepage { background: linear-gradient(135deg, #1c3a13 0%, #3d5b34 100%); }
 .feature-icon.products { background: linear-gradient(135deg, #6366f1 0%, #818cf8 100%); }
 .feature-icon.cart { background: linear-gradient(135deg, #10b981 0%, #34d399 100%); }
 .feature-icon.themes { background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); }
@@ -456,7 +456,7 @@
 .feature-icon.lab3d { background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%); }
 .feature-icon.lab2d { background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%); }
 .feature-icon.ruins { background: linear-gradient(135deg, #c2703b 0%, #d4845a 100%); }
-.feature-icon.blog { background: linear-gradient(135deg, #14b8a6 0%, #2dd4bf 100%); }
+.feature-icon.blog { background: linear-gradient(135deg, #3d5b34 0%, #61735e 100%); }
 .feature-icon.seo { background: linear-gradient(135deg, #f43f5e 0%, #fb7185 100%); }
 .feature-icon.mobile { background: linear-gradient(135deg, #6366f1 0%, #a78bfa 100%); }
 .feature-icon.design { background: linear-gradient(135deg, #22c55e 0%, #4ade80 100%); }
@@ -553,7 +553,7 @@
 
 @keyframes pulse-marker {
     0%, 100% { box-shadow: 0 0 0 4px var(--color-primary-subtle); }
-    50% { box-shadow: 0 0 0 8px rgba(13, 148, 136, 0.1); }
+    50% { box-shadow: 0 0 0 8px rgba(28, 58, 19, 0.1); }
 }
 
 .timeline-content {
@@ -1276,7 +1276,7 @@
     width: 48px;
     height: 48px;
     border-radius: var(--radius-md, 8px);
-    background: linear-gradient(135deg, rgba(13, 148, 136, 0.1), rgba(13, 148, 136, 0.05));
+    background: linear-gradient(135deg, rgba(28, 58, 19, 0.1), rgba(28, 58, 19, 0.05));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1290,7 +1290,7 @@
 }
 
 .vision-title {
-    font-family: var(--font-display, 'Cinzel', serif);
+    font-family: var(--font-display, 'Inter', sans-serif);
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--color-text);
@@ -1378,7 +1378,7 @@
 }
 
 .vision-decision-box h4 {
-    font-family: var(--font-display, 'Cinzel', serif);
+    font-family: var(--font-display, 'Inter', sans-serif);
     font-size: 1rem;
     font-weight: 600;
     color: var(--color-text);

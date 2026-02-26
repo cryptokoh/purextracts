@@ -85,7 +85,7 @@
     border-radius: 16px;
 }
 .related-content-section h3 {
-    font-family: var(--font-display, 'Cinzel', serif);
+    font-family: var(--font-display, 'Inter', sans-serif);
     font-size: 1.3rem;
     margin: 0 0 0.5rem;
     display: flex;
@@ -198,7 +198,7 @@
 .auto-table caption {
     caption-side: top;
     text-align: left;
-    font-family: var(--font-display, 'Cinzel', serif);
+    font-family: var(--font-display, 'Inter', sans-serif);
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--color-text, #111827);

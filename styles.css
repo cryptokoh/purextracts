@@ -1433,9 +1433,10 @@ ul, ol {
     gap: var(--spacing-sm);
     padding: var(--spacing-md) var(--spacing-xl);
     font-size: var(--text-sm);
-    font-weight: 600;
-    border-radius: var(--radius-lg);
+    font-weight: 500;
+    border-radius: 99em;
     transition: all var(--transition-base);
+    cursor: pointer;
 }
 
 .btn svg {
@@ -1444,8 +1445,8 @@ ul, ol {
 }
 
 .btn-primary {
-    background: var(--gradient-primary);
-    color: var(--color-text-inverse);
+    background: var(--color--seedgreen);
+    color: var(--color--snowwhite);
     box-shadow: var(--shadow-md);
     position: relative;
     overflow: hidden;
@@ -1471,7 +1472,7 @@ ul, ol {
 
 .btn-primary:hover {
     transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 8px 25px rgba(var(--color-primary-rgb, 13, 148, 136), 0.35);
+    box-shadow: 0 8px 25px rgba(28, 58, 19, 0.35);
 }
 
 .btn-primary:active {
@@ -1663,9 +1664,10 @@ ul, ol {
 }
 
 .section-title {
-    font-family: var(--font-display);
+    font-family: var(--font-sans);
     font-size: clamp(var(--text-3xl), 5vw, var(--text-4xl));
-    font-weight: 700;
+    font-weight: 350;
+    letter-spacing: -0.5px;
     line-height: 1.2;
     margin-bottom: var(--spacing-md);
 }

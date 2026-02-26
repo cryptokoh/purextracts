@@ -97,7 +97,7 @@
 
 .chat-panel-header h3 {
     margin: 0 0 0.25rem;
-    font-family: var(--font-display, 'Cinzel', serif);
+    font-family: var(--font-display, 'Inter', sans-serif);
     font-size: 1.1rem;
     font-weight: 600;
 }
@@ -218,7 +218,7 @@
 
 .chat-success h4 {
     margin: 0 0 0.5rem;
-    font-family: var(--font-display, 'Cinzel', serif);
+    font-family: var(--font-display, 'Inter', sans-serif);
     font-size: 1.1rem;
 }
 

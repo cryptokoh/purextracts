@@ -56,7 +56,7 @@
 }
 
 .age-gate-logo-text {
-    font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+    font-family: var(--font-serif, 'Inter', sans-serif);
     font-size: 24px;
     font-weight: 600;
     color: var(--color-text, #1a1a1a);
@@ -87,7 +87,7 @@
 
 /* Content */
 .age-gate-title {
-    font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+    font-family: var(--font-serif, 'Inter', sans-serif);
     font-size: 24px;
     font-weight: 600;
     color: var(--color-text, #1a1a1a);
