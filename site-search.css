@@ -39,7 +39,7 @@
 .nav-search-bar:focus-within {
     width: 220px;
     border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.12);
+    box-shadow: 0 0 0 3px rgba(28, 58, 19, 0.12);
 }
 
 .nav-search-bar-icon {
@@ -126,7 +126,7 @@
 
 .nav-search-result:hover,
 .nav-search-result.selected {
-    background: var(--color-primary-subtle, rgba(13, 148, 136, 0.08));
+    background: var(--color-primary-subtle, rgba(28, 58, 19, 0.08));
 }
 
 .nav-search-result + .nav-search-result {
@@ -225,7 +225,7 @@
 .nav-search-suggestion:hover {
     border-color: var(--color-primary);
     color: var(--color-primary);
-    background: var(--color-primary-subtle, rgba(13, 148, 136, 0.06));
+    background: var(--color-primary-subtle, rgba(28, 58, 19, 0.06));
 }
 
 /* Search Trigger Button (mobile only) */
@@ -487,7 +487,7 @@
 
 /* Match highlighting */
 mark {
-    background: rgba(13, 148, 136, 0.18);
+    background: rgba(28, 58, 19, 0.18);
     color: var(--color-primary);
     border-radius: 2px;
     padding: 0 2px;

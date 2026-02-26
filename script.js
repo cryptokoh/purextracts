@@ -1,6 +1,6 @@
 /**
- * Pure Extracts TX - Theme Switcher & Interactions
- * Supports 3 themes: Clinical White, Earth Apothecary, Modern Herbalist
+ * Pure Extracts TX - Site Interactions
+ * Seed green design system
  */
 
 // Prevent browser scroll restoration
@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(() => window.scrollTo(0, 0));
 
     // Initialize all components
-    initThemeSwitcher();
     initNavigation();
     initScrollEffects();
     initForms();
@@ -39,91 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-/**
- * Theme Switcher
- */
-function initThemeSwitcher() {
-    const themeSwitcher = document.getElementById('themeSwitcher');
-    const themeToggle = document.getElementById('themeToggle');
-    const themeOptions = document.querySelectorAll('.theme-option');
-
-    // If no theme switcher UI (e.g. index.html has its own theme system),
-    // just set clinical theme for CSS variable support and return early
-    if (!themeSwitcher) {
-        setTheme('clinical');
-        return;
-    }
-
-    // Load saved theme or default to 'clinical'
-    const savedTheme = localStorage.getItem('pureextracts-theme') || 'clinical';
-    setTheme(savedTheme);
-
-    // Toggle theme dropdown
-    themeToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        themeSwitcher.classList.toggle('active');
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!themeSwitcher.contains(e.target)) {
-            themeSwitcher.classList.remove('active');
-        }
-    });
-
-    // Handle theme selection
-    themeOptions.forEach(option => {
-        option.addEventListener('click', () => {
-            const theme = option.dataset.theme;
-            setTheme(theme);
-            themeSwitcher.classList.remove('active');
-
-            // Add a subtle animation
-            document.body.style.transition = 'background-color 0.5s ease, color 0.5s ease';
-            setTimeout(() => {
-                document.body.style.transition = '';
-            }, 500);
-        });
-    });
-
-    // Keyboard navigation
-    themeToggle.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            themeSwitcher.classList.toggle('active');
-        }
-    });
-
-    themeOptions.forEach((option, index) => {
-        option.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                option.click();
-            } else if (e.key === 'ArrowDown') {
-                e.preventDefault();
-                const next = themeOptions[index + 1] || themeOptions[0];
-                next.focus();
-            } else if (e.key === 'ArrowUp') {
-                e.preventDefault();
-                const prev = themeOptions[index - 1] || themeOptions[themeOptions.length - 1];
-                prev.focus();
-            }
-        });
-    });
-}
-
-function setTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('pureextracts-theme', theme);
-
-    // Update active state in options
-    document.querySelectorAll('.theme-option').forEach(option => {
-        option.classList.toggle('active', option.dataset.theme === theme);
-    });
-
-    // Dispatch custom event for other components
-    window.dispatchEvent(new CustomEvent('themechange', { detail: { theme } }));
-}
+/* Theme switcher removed - single seed green theme */
 
 /**
  * Navigation
@@ -553,18 +468,7 @@ function initMobileEnhancements() {
         }
     }, { passive: false });
 
-    // Update theme color meta tag when theme changes
-    window.addEventListener('themechange', (e) => {
-        const themeColors = {
-            clinical: '#0d9488',
-            earth: '#c2703b',
-            herbalist: '#22c55e'
-        };
-        const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-        if (metaThemeColor && themeColors[e.detail.theme]) {
-            metaThemeColor.setAttribute('content', themeColors[e.detail.theme]);
-        }
-    });
+    /* Theme color meta handled statically */
 
     // Lazy load images when they come into view (for future image additions)
     if ('IntersectionObserver' in window) {

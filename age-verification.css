@@ -52,7 +52,7 @@
 .age-gate-logo-icon {
     width: 48px;
     height: 48px;
-    color: var(--color-primary, #0d9488);
+    color: var(--color-primary, #1c3a13);
 }
 
 .age-gate-logo-text {
@@ -63,7 +63,7 @@
 }
 
 .age-gate-logo-suffix {
-    color: var(--color-primary, #0d9488);
+    color: var(--color-primary, #1c3a13);
 }
 
 /* Age Badge */
@@ -73,10 +73,10 @@
     justify-content: center;
     width: 72px;
     height: 72px;
-    background: linear-gradient(135deg, var(--color-primary, #0d9488) 0%, #0f766e 100%);
+    background: linear-gradient(135deg, var(--color-primary, #1c3a13) 0%, #142d0e 100%);
     border-radius: 50%;
     margin-bottom: 24px;
-    box-shadow: 0 4px 14px rgba(13, 148, 136, 0.4);
+    box-shadow: 0 4px 14px rgba(28, 58, 19, 0.4);
 }
 
 .age-gate-badge span {
@@ -124,14 +124,14 @@
 }
 
 .age-gate-btn-confirm {
-    background: linear-gradient(135deg, var(--color-primary, #0d9488) 0%, #0f766e 100%);
+    background: linear-gradient(135deg, var(--color-primary, #1c3a13) 0%, #142d0e 100%);
     color: white;
-    box-shadow: 0 4px 14px rgba(13, 148, 136, 0.3);
+    box-shadow: 0 4px 14px rgba(28, 58, 19, 0.3);
 }
 
 .age-gate-btn-confirm:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(13, 148, 136, 0.4);
+    box-shadow: 0 6px 20px rgba(28, 58, 19, 0.4);
 }
 
 .age-gate-btn-confirm:active {
@@ -160,7 +160,7 @@
 }
 
 .age-gate-disclaimer a {
-    color: var(--color-primary, #0d9488);
+    color: var(--color-primary, #1c3a13);
     text-decoration: none;
 }
 
@@ -168,29 +168,7 @@
     text-decoration: underline;
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-    .age-gate-modal {
-        background: var(--color-surface, #1a1a1a);
-    }
-
-    .age-gate-logo-text {
-        color: var(--color-text, #f5f5f5);
-    }
-
-    .age-gate-title {
-        color: var(--color-text, #f5f5f5);
-    }
-
-    .age-gate-btn-deny {
-        background: var(--color-bg, #0f0f0f);
-        border-color: var(--color-border, #2e2e2e);
-    }
-
-    .age-gate-btn-deny:hover {
-        background: var(--color-border, #2e2e2e);
-    }
-}
+/* Dark mode removed - single seed theme */
 
 /* Mobile adjustments */
 @media (max-width: 480px) {

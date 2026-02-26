@@ -9,7 +9,7 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: var(--color-primary, #6b7c5e);
+    background: var(--color-primary, #1c3a13);
     color: white;
     border: none;
     cursor: pointer;
@@ -90,7 +90,7 @@
 
 /* Panel Header */
 .chat-panel-header {
-    background: var(--color-primary, #6b7c5e);
+    background: var(--color-primary, #1c3a13);
     color: white;
     padding: 1.25rem 1.5rem;
 }
@@ -148,8 +148,8 @@
 .chat-form-group textarea:focus,
 .chat-form-group select:focus {
     outline: none;
-    border-color: var(--color-primary, #6b7c5e);
-    box-shadow: 0 0 0 3px rgba(107, 124, 94, 0.15);
+    border-color: var(--color-primary, #1c3a13);
+    box-shadow: 0 0 0 3px rgba(28, 58, 19, 0.12);
 }
 
 .chat-form-group textarea {
@@ -160,7 +160,7 @@
 .chat-submit-btn {
     width: 100%;
     padding: 0.75rem 1.5rem;
-    background: var(--color-primary, #6b7c5e);
+    background: var(--color-primary, #1c3a13);
     color: white;
     border: none;
     border-radius: 8px;
@@ -202,7 +202,7 @@
 .chat-success-icon {
     width: 56px;
     height: 56px;
-    background: rgba(107, 124, 94, 0.1);
+    background: rgba(28, 58, 19, 0.08);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -213,7 +213,7 @@
 .chat-success-icon svg {
     width: 28px;
     height: 28px;
-    color: var(--color-primary, #6b7c5e);
+    color: var(--color-primary, #1c3a13);
 }
 
 .chat-success h4 {

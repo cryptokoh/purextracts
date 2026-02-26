@@ -8,7 +8,7 @@
     gap: 0.4rem;
     font-family: var(--font-sans, 'Inter', sans-serif);
     font-size: 0.8125rem;
-    color: var(--color-primary, #0d9488);
+    color: var(--color-primary, #1c3a13);
     background: none;
     border: none;
     cursor: pointer;
@@ -87,13 +87,13 @@
 .shipping-form-group input:focus,
 .shipping-form-group select:focus {
     outline: none;
-    border-color: var(--color-primary, #0d9488);
-    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.12);
+    border-color: var(--color-primary, #1c3a13);
+    box-shadow: 0 0 0 3px rgba(28, 58, 19, 0.12);
 }
 
 .shipping-calc-btn {
     width: 100%; padding: 0.75rem;
-    background: var(--color-primary, #0d9488);
+    background: var(--color-primary, #1c3a13);
     color: white; border: none; border-radius: 8px;
     font-family: var(--font-sans, 'Inter', sans-serif);
     font-size: 0.9rem; font-weight: 600; cursor: pointer;
@@ -118,7 +118,7 @@
     border-radius: 10px; margin-bottom: 0.5rem;
     transition: border-color 0.2s ease;
 }
-.shipping-option:first-of-type { border-color: var(--color-primary, #0d9488); }
+.shipping-option:first-of-type { border-color: var(--color-primary, #1c3a13); }
 .shipping-option-info h5 {
     margin: 0; font-size: 0.9rem; font-weight: 600;
     color: var(--color-text, #111827);
@@ -129,7 +129,7 @@
 }
 .shipping-option-price {
     font-size: 1.1rem; font-weight: 700;
-    color: var(--color-primary, #0d9488);
+    color: var(--color-primary, #1c3a13);
     white-space: nowrap;
 }
 .shipping-option-price.free {
@@ -138,7 +138,7 @@
 
 .shipping-note {
     margin-top: 0.75rem; padding: 0.75rem;
-    background: var(--color-primary-subtle, rgba(13,148,136,0.08));
+    background: var(--color-primary-subtle, rgba(28,58,19,0.08));
     border-radius: 8px; font-size: 0.8rem;
     color: var(--color-text-secondary, #475569);
     line-height: 1.5;

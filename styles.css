@@ -1,16 +1,90 @@
 /* ============================================
-   Pure Extracts TX - Multi-Theme Stylesheet
-   3 Themes: Clinical White, Earth Apothecary, Modern Herbalist
+   Pure Extracts TX - Seed Green Design System
+   Single theme: Botanical green palette inspired by seed.com
    ============================================ */
 
-/* Font imports - Cinzel for display titles, Cormorant Garamond for refined headings */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+/* Font import - Inter only */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;350;400;500;600;700&display=swap');
 
 /* ============================================
-   CSS Custom Properties - Theme Variables
+   CSS Custom Properties
    ============================================ */
 
 :root {
+    /* Seed palette */
+    --color--seedgreen: #1c3a13;
+    --color--seedgreen-hover: #334e2b;
+    --color--seedgreen-card: #45663c;
+    --color--snowwhite: #fcfcf7;
+    --color--foamwhite: #eff1e4;
+    --color--mossroot: #3d5b34;
+    --color--olivegreen: #61735e;
+    --color--frostedglass: rgba(87, 94, 85, 0.4);
+    --color--frostedglass-t55: rgba(87, 94, 85, 0.55);
+    --color--frostedglass-t35: rgba(87, 94, 85, 0.35);
+    --color--frostedglass-t8: rgba(87, 94, 85, 0.08);
+    --color-guidance-fluorescent-green: #d3fa99;
+    --color--lemongrass: #e9f0ca;
+
+    /* Frosted glass tokens */
+    --seed-glass: rgba(87, 94, 85, 0.4);
+    --seed-blur: blur(38px);
+    --seed-text-on-glass: #fcfcf7;
+    --seed-text-muted-on-glass: rgba(252, 252, 247, 0.5);
+    --seed-tab-pill: rgba(255, 255, 255, 0.1);
+
+    /* Mapped vars for widget compatibility */
+    --color-primary: #1c3a13;
+    --color-primary-light: #3d5b34;
+    --color-primary-dark: #142d0e;
+    --color-primary-subtle: rgba(28, 58, 19, 0.08);
+    --color-primary-rgb: 28, 58, 19;
+
+    --color-secondary: #3d5b34;
+    --color-secondary-light: #61735e;
+    --color-secondary-dark: #1c3a13;
+
+    --color-accent: #d3fa99;
+    --color-accent-light: #e9f0ca;
+    --color-accent-subtle: rgba(211, 250, 153, 0.15);
+
+    --color-bg: #fcfcf7;
+    --color-bg-rgb: 252, 252, 247;
+    --color-bg-alt: #eff1e4;
+    --color-bg-elevated: #ffffff;
+    --color-bg-muted: #e8ead9;
+
+    --color-surface: #fcfcf7;
+    --color-surface-hover: #eff1e4;
+    --color-surface-active: #e8ead9;
+
+    --color-text: #1c3a13;
+    --color-text-secondary: #3d5b34;
+    --color-text-muted: #61735e;
+    --color-text-inverse: #fcfcf7;
+
+    --color-border: rgba(28, 58, 19, 0.1);
+    --color-border-light: rgba(28, 58, 19, 0.06);
+    --color-border-dark: rgba(28, 58, 19, 0.18);
+
+    --color-success: #3d5b34;
+    --color-warning: #d4a84b;
+    --color-error: #c45c4b;
+    --color-info: #5a7fa8;
+
+    --gradient-primary: linear-gradient(135deg, #1c3a13 0%, #3d5b34 100%);
+    --gradient-hero: linear-gradient(180deg, #eff1e4 0%, #fcfcf7 100%);
+    --gradient-text: linear-gradient(135deg, #1c3a13 0%, #3d5b34 100%);
+    --gradient-card: linear-gradient(180deg, #fcfcf7 0%, #eff1e4 100%);
+
+    --color-adaptogen: #3d5b34;
+    --color-mushroom: #7c3aed;
+    --color-nootropic: #2563eb;
+    --color-mood: #ec4899;
+
+    --shadow-card: 0 4px 6px -1px rgb(28 58 19 / 0.08), 0 2px 4px -2px rgb(28 58 19 / 0.06);
+    --shadow-elevated: 0 20px 25px -5px rgb(28 58 19 / 0.08), 0 8px 10px -6px rgb(28 58 19 / 0.06);
+
     /* Base spacing and sizing */
     --spacing-xs: 0.25rem;
     --spacing-sm: 0.5rem;
@@ -23,8 +97,8 @@
 
     /* Typography */
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-serif: 'Cormorant Garamond', Georgia, serif;
-    --font-display: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
+    --font-serif: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
     --text-xs: 0.75rem;
@@ -45,6 +119,7 @@
     --radius-xl: 1rem;
     --radius-2xl: 1.5rem;
     --radius-full: 9999px;
+    --bdrs-pill: 99em;
 
     /* Shadows */
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -56,218 +131,17 @@
     --transition-fast: 150ms ease;
     --transition-base: 250ms ease;
     --transition-slow: 350ms ease;
+    --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
 
     /* Container */
     --container-max: 1280px;
     --container-padding: 1.5rem;
 
     /* Navigation */
-    --nav-height: 64px;
+    --nav-height: 49px;
 }
 
-/* ============================================
-   Theme 1: Clinical White
-   Clean, medical-grade aesthetic with botanical accents
-   ============================================ */
-
-[data-theme="clinical"] {
-    /* Primary palette */
-    --color-primary: #0d9488;
-    --color-primary-light: #14b8a6;
-    --color-primary-dark: #0f766e;
-    --color-primary-subtle: #ccfbf1;
-
-    /* Secondary palette */
-    --color-secondary: #6366f1;
-    --color-secondary-light: #818cf8;
-    --color-secondary-dark: #4f46e5;
-
-    /* Accent */
-    --color-accent: #10b981;
-    --color-accent-light: #34d399;
-    --color-accent-subtle: #d1fae5;
-
-    /* Background */
-    --color-bg: #ffffff;
-    --color-bg-rgb: 255, 255, 255;
-    --color-bg-alt: #f8fafc;
-    --color-bg-elevated: #ffffff;
-    --color-bg-muted: #f1f5f9;
-
-    /* Surface */
-    --color-surface: #ffffff;
-    --color-surface-hover: #f8fafc;
-    --color-surface-active: #f1f5f9;
-
-    /* Text */
-    --color-text: #0f172a;
-    --color-text-secondary: #475569;
-    --color-text-muted: #94a3b8;
-    --color-text-inverse: #ffffff;
-
-    /* Borders */
-    --color-border: #e2e8f0;
-    --color-border-light: #f1f5f9;
-    --color-border-dark: #cbd5e1;
-
-    /* Semantic */
-    --color-success: #10b981;
-    --color-warning: #f59e0b;
-    --color-error: #ef4444;
-    --color-info: #3b82f6;
-
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
-    --gradient-hero: linear-gradient(180deg, #f0fdfa 0%, #ffffff 100%);
-    --gradient-text: linear-gradient(135deg, #0d9488 0%, #10b981 100%);
-    --gradient-card: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-
-    /* Category colors */
-    --color-adaptogen: #0d9488;
-    --color-mushroom: #7c3aed;
-    --color-nootropic: #2563eb;
-    --color-mood: #ec4899;
-
-    /* Shadows (theme-specific) */
-    --shadow-card: 0 4px 6px -1px rgb(13 148 136 / 0.1), 0 2px 4px -2px rgb(13 148 136 / 0.1);
-    --shadow-elevated: 0 20px 25px -5px rgb(13 148 136 / 0.1), 0 8px 10px -6px rgb(13 148 136 / 0.1);
-}
-
-/* ============================================
-   Theme 2: Earth Apothecary
-   Warm terracotta and sage tones, organic textures
-   ============================================ */
-
-[data-theme="earth"] {
-    /* Primary palette - Terracotta */
-    --color-primary: #c2703b;
-    --color-primary-light: #d4845a;
-    --color-primary-dark: #a65c2e;
-    --color-primary-subtle: #fef3e9;
-
-    /* Secondary palette - Sage */
-    --color-secondary: #6b7c5e;
-    --color-secondary-light: #8a9e7a;
-    --color-secondary-dark: #4f5c45;
-
-    /* Accent - Gold */
-    --color-accent: #b8860b;
-    --color-accent-light: #d4a84b;
-    --color-accent-subtle: #fef9e7;
-
-    /* Background - Warm cream */
-    --color-bg: #faf8f5;
-    --color-bg-rgb: 250, 248, 245;
-    --color-bg-alt: #f5f2ed;
-    --color-bg-elevated: #ffffff;
-    --color-bg-muted: #ede9e3;
-
-    /* Surface */
-    --color-surface: #ffffff;
-    --color-surface-hover: #faf8f5;
-    --color-surface-active: #f5f2ed;
-
-    /* Text - Warm browns */
-    --color-text: #3d2c1e;
-    --color-text-secondary: #5c4a3d;
-    --color-text-muted: #8b7355;
-    --color-text-inverse: #faf8f5;
-
-    /* Borders */
-    --color-border: #e5ddd3;
-    --color-border-light: #f0ebe4;
-    --color-border-dark: #d4c9bc;
-
-    /* Semantic */
-    --color-success: #6b7c5e;
-    --color-warning: #d4a84b;
-    --color-error: #c45c4b;
-    --color-info: #5a7fa8;
-
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, #c2703b 0%, #d4845a 100%);
-    --gradient-hero: linear-gradient(180deg, #fef3e9 0%, #faf8f5 100%);
-    --gradient-text: linear-gradient(135deg, #c2703b 0%, #b8860b 100%);
-    --gradient-card: linear-gradient(180deg, #ffffff 0%, #faf8f5 100%);
-
-    /* Category colors */
-    --color-adaptogen: #6b7c5e;
-    --color-mushroom: #8b5a2b;
-    --color-nootropic: #5a7fa8;
-    --color-mood: #b8628b;
-
-    /* Shadows */
-    --shadow-card: 0 4px 6px -1px rgb(194 112 59 / 0.1), 0 2px 4px -2px rgb(194 112 59 / 0.1);
-    --shadow-elevated: 0 20px 25px -5px rgb(194 112 59 / 0.1), 0 8px 10px -6px rgb(194 112 59 / 0.1);
-}
-
-/* ============================================
-   Theme 3: Modern Herbalist
-   Dark mode with vibrant green accents, contemporary feel
-   ============================================ */
-
-[data-theme="herbalist"] {
-    /* Primary palette - Vibrant Green */
-    --color-primary: #22c55e;
-    --color-primary-light: #4ade80;
-    --color-primary-dark: #16a34a;
-    --color-primary-subtle: rgba(34, 197, 94, 0.15);
-
-    /* Secondary palette - Electric Blue */
-    --color-secondary: #38bdf8;
-    --color-secondary-light: #7dd3fc;
-    --color-secondary-dark: #0ea5e9;
-
-    /* Accent - Amber */
-    --color-accent: #fbbf24;
-    --color-accent-light: #fcd34d;
-    --color-accent-subtle: rgba(251, 191, 36, 0.15);
-
-    /* Background - Deep dark */
-    --color-bg: #0a0f0d;
-    --color-bg-rgb: 10, 15, 13;
-    --color-bg-alt: #111916;
-    --color-bg-elevated: #1a2420;
-    --color-bg-muted: #0d1210;
-
-    /* Surface */
-    --color-surface: #1a2420;
-    --color-surface-hover: #1f2d28;
-    --color-surface-active: #243530;
-
-    /* Text */
-    --color-text: #f0fdf4;
-    --color-text-secondary: #bbf7d0;
-    --color-text-muted: #6b8f7a;
-    --color-text-inverse: #0a0f0d;
-
-    /* Borders */
-    --color-border: #2d3f36;
-    --color-border-light: #1f2d28;
-    --color-border-dark: #3d5448;
-
-    /* Semantic */
-    --color-success: #22c55e;
-    --color-warning: #fbbf24;
-    --color-error: #f87171;
-    --color-info: #38bdf8;
-
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, #22c55e 0%, #4ade80 100%);
-    --gradient-hero: linear-gradient(180deg, #0d1210 0%, #0a0f0d 100%);
-    --gradient-text: linear-gradient(135deg, #22c55e 0%, #38bdf8 100%);
-    --gradient-card: linear-gradient(180deg, #1a2420 0%, #111916 100%);
-
-    /* Category colors */
-    --color-adaptogen: #22c55e;
-    --color-mushroom: #a78bfa;
-    --color-nootropic: #38bdf8;
-    --color-mood: #f472b6;
-
-    /* Shadows - Glow effects */
-    --shadow-card: 0 4px 6px -1px rgb(34 197 94 / 0.2), 0 2px 4px -2px rgb(34 197 94 / 0.2);
-    --shadow-elevated: 0 0 40px rgb(34 197 94 / 0.15), 0 0 20px rgb(34 197 94 / 0.1);
-}
+/* Theme blocks removed - single seed palette in :root */
 
 /* ============================================
    Base Styles
@@ -290,13 +164,16 @@ html {
 body {
     font-family: var(--font-sans);
     font-size: var(--text-base);
+    font-weight: 350;
     line-height: 1.6;
+    letter-spacing: -0.16px;
     color: var(--color-text);
     background-color: var(--color-bg);
-    transition: background-color var(--transition-slow), color var(--transition-slow);
     margin: 0;
     padding: 0;
 }
+
+::selection { background: rgba(28, 58, 19, 0.12); }
 
 a {
     color: inherit;
@@ -332,211 +209,9 @@ ul, ol {
     padding: 0 var(--container-padding);
 }
 
-/* ============================================
-   Theme Switcher
-   ============================================ */
+/* Theme switcher removed - single seed theme */
 
-.theme-switcher {
-    position: relative;
-    z-index: 10;
-}
-
-.theme-toggle {
-    width: 36px;
-    height: 36px;
-    border-radius: var(--radius-full);
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow-md);
-    transition: all var(--transition-base);
-    cursor: pointer;
-}
-
-.theme-toggle:hover {
-    background: var(--color-surface-hover);
-    transform: scale(1.05);
-}
-
-.theme-icon {
-    width: 18px;
-    height: 18px;
-    color: var(--color-primary);
-}
-
-.theme-options {
-    position: absolute;
-    top: calc(100% + var(--spacing-sm));
-    right: 0;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-sm);
-    box-shadow: var(--shadow-xl);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all var(--transition-base);
-    min-width: 180px;
-}
-
-.theme-switcher.active .theme-options {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.theme-option {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-    width: 100%;
-    padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: var(--radius-md);
-    font-size: var(--text-sm);
-    font-weight: 500;
-    color: var(--color-text);
-    transition: background var(--transition-fast);
-}
-
-.theme-option:hover {
-    background: var(--color-surface-hover);
-}
-
-.theme-preview {
-    width: 20px;
-    height: 20px;
-    border-radius: var(--radius-full);
-    border: 2px solid var(--color-border);
-}
-
-.clinical-preview {
-    background: linear-gradient(135deg, #0d9488 50%, #f0fdfa 50%);
-}
-
-.earth-preview {
-    background: linear-gradient(135deg, #c2703b 50%, #faf8f5 50%);
-}
-
-.herbalist-preview {
-    background: linear-gradient(135deg, #22c55e 50%, #0a0f0d 50%);
-}
-
-/* ============================================
-   Ambient Floating Elements
-   ============================================ */
-
-.ambient-container {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
-}
-
-.ambient-orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(60px);
-    opacity: 0.4;
-    animation: float 20s ease-in-out infinite;
-}
-
-.orb-1 {
-    width: 400px;
-    height: 400px;
-    background: var(--color-primary);
-    top: -100px;
-    right: -100px;
-    animation-delay: 0s;
-}
-
-.orb-2 {
-    width: 300px;
-    height: 300px;
-    background: var(--color-accent);
-    bottom: 20%;
-    left: -80px;
-    animation-delay: -7s;
-    animation-duration: 25s;
-}
-
-.orb-3 {
-    width: 200px;
-    height: 200px;
-    background: var(--color-primary-light);
-    top: 50%;
-    right: 10%;
-    animation-delay: -14s;
-    animation-duration: 18s;
-}
-
-.ambient-particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: var(--color-primary);
-    border-radius: 50%;
-    opacity: 0.6;
-    animation: drift 15s linear infinite;
-}
-
-.particle-1 {
-    left: 20%;
-    animation-delay: 0s;
-}
-
-.particle-2 {
-    left: 50%;
-    animation-delay: -5s;
-}
-
-.particle-3 {
-    left: 80%;
-    animation-delay: -10s;
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translate(0, 0) scale(1);
-    }
-    25% {
-        transform: translate(30px, -30px) scale(1.05);
-    }
-    50% {
-        transform: translate(-20px, 20px) scale(0.95);
-    }
-    75% {
-        transform: translate(20px, 10px) scale(1.02);
-    }
-}
-
-@keyframes drift {
-    0% {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 0;
-    }
-    10% {
-        opacity: 0.6;
-    }
-    90% {
-        opacity: 0.6;
-    }
-    100% {
-        transform: translateY(-100px) rotate(720deg);
-        opacity: 0;
-    }
-}
-
-/* Reduce motion for accessibility */
-@media (prefers-reduced-motion: reduce) {
-    .ambient-orb,
-    .ambient-particle {
-        animation: none;
-    }
-}
+/* Ambient elements removed */
 
 /* ============================================
    Navigation
@@ -908,14 +583,7 @@ ul, ol {
     transform: translateX(4px);
 }
 
-/* Theme-specific adjustments for classroom link */
-[data-theme="earth"] .classroom-icon {
-    background: linear-gradient(135deg, var(--color-primary), #a85d2e);
-}
-
-[data-theme="herbalist"] .classroom-icon {
-    background: linear-gradient(135deg, var(--color-primary), #16a34a);
-}
+/* Theme-specific overrides removed */
 
 /* Mobile adjustments */
 @media (max-width: 767px) {
@@ -2115,10 +1783,7 @@ ul, ol {
     color: var(--color-text-inverse);
 }
 
-[data-theme="herbalist"] .newsletter-form .btn {
-    background: var(--color-bg);
-    color: var(--color-primary);
-}
+/* Herbalist theme override removed */
 
 /* ============================================
    Services Section
@@ -2708,7 +2373,7 @@ ul, ol {
 
 /* Touch target minimum size */
 @media (pointer: coarse) {
-    .btn, .nav-link, .theme-option, .research-link,
+    .btn, .nav-link, .research-link,
     .footer-links a, .contact-item a {
         min-height: 44px;
         min-width: 44px;
@@ -2894,22 +2559,7 @@ ul, ol {
         transform: rotate(-45deg) translate(6px, -6px);
     }
 
-    /* Theme switcher in mobile menu */
-    .theme-switcher {
-        margin-top: var(--spacing-md);
-        padding-top: var(--spacing-md);
-        border-top: 1px solid var(--color-border);
-    }
-
-    .theme-toggle {
-        width: 40px;
-        height: 40px;
-    }
-
-    .theme-options {
-        right: auto;
-        left: 0;
-    }
+    /* Theme switcher removed */
 
     /* Hero - Mobile optimized */
     .hero {
