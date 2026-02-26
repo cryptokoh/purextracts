@@ -1623,27 +1623,20 @@
     </div>
 </div>
 
-<!-- ============ LOGIN MODAL ============ -->
+<!-- ============ PASSWORD MODAL ============ -->
 <div class="login-overlay" id="loginOverlay"></div>
 <div class="login-modal" id="loginModal">
     <div class="login-header">
-        <span class="login-title">Sign In to Edit</span>
+        <span class="login-title">Enter Password to Edit</span>
         <button class="login-close" id="loginClose">&times;</button>
     </div>
     <div class="login-body">
         <div class="login-field">
-            <label for="loginEmail">Email</label>
-            <input type="email" id="loginEmail" placeholder="you@example.com">
-        </div>
-        <div class="login-field">
             <label for="loginPassword">Password</label>
             <input type="password" id="loginPassword" placeholder="Password">
         </div>
-        <button class="login-submit" id="loginSubmit">Sign In</button>
+        <button class="login-submit" id="loginSubmit">Unlock</button>
         <div class="login-error" id="loginError"></div>
-        <div class="login-alt">
-            <button class="login-magic-btn" id="loginMagic">Send Magic Link Instead</button>
-        </div>
     </div>
 </div>
 
@@ -1667,13 +1660,11 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 
 let _sb = null;
 let dbConnected = false;
-let currentUser = null;
+let unlocked = sessionStorage.getItem('petx_edit_unlocked') === 'true';
 
 function getSb() {
     if (!_sb && window.supabase && SUPABASE_ANON_KEY !== 'YOUR_SUPABASE_ANON_KEY') {
-        _sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-            auth: { autoRefreshToken: true, persistSession: true, detectSessionInUrl: true }
-        });
+        _sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     }
     return _sb;
 }
@@ -1739,56 +1730,25 @@ async function saveToSupabase(filename, updates) {
     }
 }
 
-async function initAuth() {
-    const sb = getSb();
-    if (!sb) return;
+function checkPassword() {
+    if (unlocked) return true;
+    openPasswordModal();
+    return false;
+}
 
-    // Check existing session
-    const { data: { session } } = await sb.auth.getSession();
-    if (session) {
-        currentUser = session.user;
-        updateAuthUI();
-    }
-
-    // Listen for auth changes
-    sb.auth.onAuthStateChange((event, session) => {
-        currentUser = session?.user || null;
-        updateAuthUI();
-    });
+function unlock() {
+    unlocked = true;
+    sessionStorage.setItem('petx_edit_unlocked', 'true');
+    document.getElementById('authBtn').classList.add('logged-in');
+    document.getElementById('authBtn').title = 'Edit mode unlocked';
 }
 
 function updateAuthUI() {
     const btn = document.getElementById('authBtn');
-    if (currentUser) {
+    if (unlocked) {
         btn.classList.add('logged-in');
-        btn.setAttribute('aria-label', 'Signed in as ' + (currentUser.email || 'user'));
-        btn.title = currentUser.email || 'Signed in';
-    } else {
-        btn.classList.remove('logged-in');
-        btn.setAttribute('aria-label', 'Sign in');
-        btn.title = 'Sign in to edit';
+        btn.title = 'Edit mode unlocked';
     }
-}
-
-async function signIn(email, password) {
-    const sb = getSb();
-    if (!sb) return { error: { message: 'Database not configured' } };
-    return await sb.auth.signInWithPassword({ email, password });
-}
-
-async function sendMagicLink(email) {
-    const sb = getSb();
-    if (!sb) return { error: { message: 'Database not configured' } };
-    return await sb.auth.signInWithOtp({ email });
-}
-
-async function signOut() {
-    const sb = getSb();
-    if (!sb) return;
-    await sb.auth.signOut();
-    currentUser = null;
-    updateAuthUI();
-    toast('Signed out');
 }
 
 // ===================================================================
@@ -2460,67 +2420,51 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 // ===================================================================
-// AUTH EVENTS
+// PASSWORD GATE
 // ===================================================================
 document.getElementById('authBtn').addEventListener('click', () => {
-    if (currentUser) {
-        if (confirm('Sign out of ' + currentUser.email + '?')) signOut();
+    if (unlocked) {
+        toast('Edit mode already unlocked');
     } else {
-        openLoginModal();
+        openPasswordModal();
     }
 });
 
-function openLoginModal() {
+function openPasswordModal() {
     document.getElementById('loginOverlay').classList.add('open');
     document.getElementById('loginModal').classList.add('open');
-    document.getElementById('loginEmail').focus();
+    document.getElementById('loginPassword').value = '';
     document.getElementById('loginError').textContent = '';
+    document.getElementById('loginPassword').focus();
 }
 
-function closeLoginModal() {
+function closePasswordModal() {
     document.getElementById('loginOverlay').classList.remove('open');
     document.getElementById('loginModal').classList.remove('open');
 }
 
-document.getElementById('loginClose').addEventListener('click', closeLoginModal);
-document.getElementById('loginOverlay').addEventListener('click', closeLoginModal);
+document.getElementById('loginClose').addEventListener('click', closePasswordModal);
+document.getElementById('loginOverlay').addEventListener('click', closePasswordModal);
 
-document.getElementById('loginSubmit').addEventListener('click', async () => {
-    const email = document.getElementById('loginEmail').value.trim();
-    const password = document.getElementById('loginPassword').value;
+document.getElementById('loginSubmit').addEventListener('click', () => {
+    const pass = document.getElementById('loginPassword').value;
     const errEl = document.getElementById('loginError');
 
-    if (!email || !password) { errEl.textContent = 'Enter email and password'; return; }
-
-    errEl.textContent = 'Signing in...';
-    const { error } = await signIn(email, password);
-    if (error) {
-        errEl.textContent = error.message;
+    if (pass === 'bud') {
+        unlock();
+        closePasswordModal();
+        toast('Edit mode unlocked');
+        // If they were trying to edit, open the edit panel now
+        if (state.lightboxOpen) openEditPanel();
     } else {
-        closeLoginModal();
-        toast('Signed in successfully');
+        errEl.textContent = 'Wrong password';
+        document.getElementById('loginPassword').value = '';
+        document.getElementById('loginPassword').focus();
     }
 });
 
 document.getElementById('loginPassword').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') document.getElementById('loginSubmit').click();
-});
-
-document.getElementById('loginMagic').addEventListener('click', async () => {
-    const email = document.getElementById('loginEmail').value.trim();
-    const errEl = document.getElementById('loginError');
-
-    if (!email) { errEl.textContent = 'Enter your email first'; return; }
-
-    errEl.textContent = 'Sending magic link...';
-    const { error } = await sendMagicLink(email);
-    if (error) {
-        errEl.textContent = error.message;
-    } else {
-        errEl.textContent = '';
-        toast('Magic link sent to ' + email);
-        closeLoginModal();
-    }
 });
 
 // ===================================================================
@@ -2529,10 +2473,7 @@ document.getElementById('loginMagic').addEventListener('click', async () => {
 let editingFile = null;
 
 function openEditPanel() {
-    if (!currentUser) {
-        openLoginModal();
-        return;
-    }
+    if (!checkPassword()) return;
 
     const item = state.visible[state.lightboxIdx];
     if (!item) return;
@@ -2641,7 +2582,7 @@ applyFilters();
 
 // Load from Supabase (async, merges into embedded data)
 loadFromSupabase();
-initAuth();
+updateAuthUI();
 </script>
 </body>
 </html>
