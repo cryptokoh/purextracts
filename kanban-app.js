@@ -10,8 +10,8 @@
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVxeWZzcWVuamFrcXl6aXhmY3RhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk1NTQzMjAsImV4cCI6MjA4NTEzMDMyMH0.SFFaYsDxdlHCFU30aV3Qzi6SI7759o2bePCaqKAHkTA';
 
     const COLUMNS = ['backlog', 'todo', 'in-progress', 'done'];
-    const USERS = { steph: 'Steph', koh: 'Koh', chris: 'Chris' };
-    const USER_COLORS = { steph: '#7c3aed', koh: '#2563eb', chris: '#d97706' };
+    const USERS = { steph: 'Steph', koh: 'Koh', c: 'C' };
+    const USER_COLORS = { steph: '#7c3aed', koh: '#2563eb', c: '#d97706' };
     const PASSWORD = 'bud';
 
     const LABEL_COLORS = {
@@ -250,28 +250,17 @@
         document.getElementById('loginGate').style.display = 'flex';
         document.getElementById('kanbanApp').style.display = 'none';
 
-        var selectedUser = null;
-        var btns = document.querySelectorAll('.login-user-btn');
-        var passwordRow = document.getElementById('loginPasswordRow');
+        var usernameInput = document.getElementById('loginUsername');
         var passwordInput = document.getElementById('loginPassword');
         var errorEl = document.getElementById('loginError');
 
-        btns.forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                btns.forEach(function (b) { b.classList.remove('selected'); });
-                btn.classList.add('selected');
-                selectedUser = btn.dataset.user;
-                passwordRow.style.display = 'flex';
-                errorEl.style.display = 'none';
-                passwordInput.value = '';
-                passwordInput.focus();
-            });
-        });
+        usernameInput.focus();
 
         function attemptLogin() {
-            if (!selectedUser) return;
-            if (passwordInput.value === PASSWORD) {
-                currentUser = selectedUser;
+            var name = usernameInput.value.trim().toLowerCase();
+            if (!name || !passwordInput.value) return;
+            if (USERS[name] && passwordInput.value === PASSWORD) {
+                currentUser = name;
                 localStorage.setItem('kanban_user', currentUser);
                 showApp();
             } else {
@@ -284,6 +273,9 @@
         document.getElementById('loginSubmit').addEventListener('click', attemptLogin);
         passwordInput.addEventListener('keydown', function (e) {
             if (e.key === 'Enter') attemptLogin();
+        });
+        usernameInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') passwordInput.focus();
         });
     }
 

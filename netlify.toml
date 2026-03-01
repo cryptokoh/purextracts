@@ -10,6 +10,12 @@
   to = "/.netlify/functions/:splat"
   status = 200
 
+# Clean URL for kanban
+[[redirects]]
+  from = "/kanban"
+  to = "/kanban.html"
+  status = 200
+
 # SPA fallback for client-side routing (if needed)
 [[redirects]]
   from = "/*"
